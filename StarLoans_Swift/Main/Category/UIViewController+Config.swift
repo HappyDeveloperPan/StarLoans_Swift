@@ -14,10 +14,10 @@ extension UIViewController {
         let navBar = navigationController?.navigationBar
         navBar?.barStyle = .default
         navBar?.barTintColor = .white
-        navBar?.tintColor = .black
+        navBar?.tintColor = kTitleColor
         navBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navBar?.shadowImage = UIImage()
-        navBar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.black]
+        navBar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor:kTitleColor]
     }
 }
 

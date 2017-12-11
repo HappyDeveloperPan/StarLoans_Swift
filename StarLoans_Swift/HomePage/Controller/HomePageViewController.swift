@@ -8,9 +8,18 @@
 
 import UIKit
 
+
+fileprivate let IMAGE_HEIGHT:CGFloat = 200
+fileprivate let NAVBAR_COLORCHANGE_POINT:CGFloat = IMAGE_HEIGHT - CGFloat(64 * 2)
+
 //MARK: - 界面部分
 class HomePageViewController: UIViewController {
-    
+    //记录顶部状态栏颜色
+    var statusBarColor:UIStatusBarStyle = .default {
+        didSet {
+            UIApplication.shared.statusBarStyle = statusBarColor
+        }
+    }
     //MARK: - 主界面部分
     lazy var mainView: UIScrollView = { [unowned self] in
         let mainView = UIScrollView()
@@ -21,25 +30,32 @@ class HomePageViewController: UIViewController {
         if #available(iOS 11.0, *) {
             mainView.contentInsetAdjustmentBehavior = .never
         }
-//        mainView.contentSize = CGSize(width: kScreenWidth, height: kScreenHeight * 2)
+        mainView.delegate = self
         return mainView
     }()
     
+    ///顶部渐变搜索栏
+    lazy var navView: UIView = { [unowned self] in
+        let navView = UIView()
+        self.view.addSubview(navView)
+        navView.backgroundColor = kMainColor
+        navView.alpha = 0
+        return navView
+    }()
+    
     lazy var addressBtn: UIButton = { [unowned self] in
-        let addressBtn = UIButton()
+        let addressBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 30))
         self.view.addSubview(addressBtn)
-        addressBtn.setTitle("深圳ⅴ", for: .normal)
+        addressBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         addressBtn.setTitleColor(UIColor.white, for: .normal)
+        addressBtn.set(image: #imageLiteral(resourceName: "ICON-xiala"), title: "定位", titlePosition: .left, additionalSpacing: 2, state: .normal)
         return addressBtn
     }()
     
-    ///搜索栏
-    lazy var searchView: UITextField = { [unowned self] in
-        let searchView = UITextField()
+    lazy var searchView: SearchView = { [unowned self] in
+        let searchView = SearchView()
         self.view.addSubview(searchView)
-        searchView.placeholder = "经纪人 视频 资讯"
-        searchView.backgroundColor = UIColor.white
-        searchView.layer.cornerRadius = 8
+        searchView.layer.cornerRadius = 17
         searchView.alpha = 0.7
         return searchView
     }()
@@ -56,6 +72,7 @@ class HomePageViewController: UIViewController {
     lazy var functionView: FunctionView = { [unowned self] in
         let functionView = FunctionView()
         self.mainView.addSubview(functionView)
+        functionView.delegate = self
         return functionView
     }()
     
@@ -80,11 +97,18 @@ class HomePageViewController: UIViewController {
         return quickRobView
     }()
     
-    //合伙人计划
+    ///信用卡专区
     lazy var partnerPlanView: PlanView = { [unowned self] in
         let partnerPlanView = PlanView()
         self.mainView.addSubview(partnerPlanView)
         return partnerPlanView
+    }()
+    
+    ///消息栏
+    lazy var infoView: InformationView = { [unowned self] in
+        let infoView = InformationView()
+        self.mainView.addSubview(infoView)
+        return infoView
     }()
     
     ///资讯研读
@@ -93,6 +117,7 @@ class HomePageViewController: UIViewController {
         self.mainView.addSubview(messageReadView)
         return messageReadView
     }()
+    
     //MARK: - 可操作数据
     ///广告栏数据
     var adverList: Array<String> = ["http://p.lrlz.com/data/upload/mobile/special/s252/s252_05471521705899113.png",
@@ -106,39 +131,49 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        automaticallyAdjustsScrollViewInsets = false
+        
 //        edgesForExtendedLayout = .top
         //获取广告数据刷新界面
         topAdBannerView.serverImgArray = adverList
-        //注册cell
-//        videoView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         topAdBannerView.isAutoScroll = true
+        UIApplication.shared.statusBarStyle = statusBarColor
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+        ///全局滚动视图
         mainView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         
-        addressBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(13.5)
-            make.top.equalTo(20)
-            make.size.equalTo(CGSize(width: 60, height: 36))
+        ///渐变假nav栏
+        navView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.size.equalTo(CGSize(width: kScreenWidth, height: kNavHeight))
         }
+        ///搜索视图
+        addressBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(kStatusHeight + 2)
+            make.height.equalTo(34)
+        }
+        addressBtn.layoutIfNeeded()
         
         searchView.snp.makeConstraints { (make) in
-            make.top.equalTo(20)
-            make.left.equalTo(addressBtn.snp.right)
+            make.top.equalTo(kStatusHeight + 2)
+            make.left.equalTo(addressBtn.snp.right).offset(8)
             make.right.equalTo(-30)
-            make.height.equalTo(36)
-//            make.size.equalTo(CGSize(width: kScreenWidth - 60, height: 40))
+            make.height.equalTo(34)
         }
+        searchView.layoutIfNeeded()
     
+        ///广告栏
         topAdBannerView.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview()
             make.width.equalTo(kScreenWidth)
@@ -146,6 +181,7 @@ class HomePageViewController: UIViewController {
         }
         topAdBannerView.layoutIfNeeded()
         
+        ///功能栏
         functionView.snp.makeConstraints { (make) in
             make.top.equalTo(topAdBannerView.snp.bottom)
             make.left.equalToSuperview()
@@ -154,6 +190,7 @@ class HomePageViewController: UIViewController {
         }
         functionView.layoutIfNeeded()
         
+        ///视频栏
         videoView.snp.makeConstraints { (make) in
             make.top.equalTo(functionView.snp.bottom)
             make.left.right.equalToSuperview()
@@ -162,6 +199,7 @@ class HomePageViewController: UIViewController {
         }
         videoView.layoutIfNeeded()
         
+        ///热门栏
         hotAgencyView.snp.makeConstraints { (make) in
             make.top.equalTo(videoView.snp.bottom)
             make.left.right.equalToSuperview()
@@ -169,6 +207,7 @@ class HomePageViewController: UIViewController {
         }
         hotAgencyView.layoutIfNeeded()
         
+        ///急速抢单
         quickRobView.snp.makeConstraints { (make) in
             make.top.equalTo(hotAgencyView.snp.bottom).offset(8.5)
             make.left.right.equalToSuperview()
@@ -176,6 +215,7 @@ class HomePageViewController: UIViewController {
         }
         quickRobView.layoutIfNeeded()
         
+        ///信用卡专区
         partnerPlanView.snp.makeConstraints { (make) in
             make.top.equalTo(quickRobView.snp.bottom).offset(8)
             make.left.right.equalToSuperview()
@@ -184,34 +224,61 @@ class HomePageViewController: UIViewController {
         }
         partnerPlanView.layoutIfNeeded()
         
-        messageReadView.snp.makeConstraints { (make) in
+        ///消息栏
+        infoView.snp.makeConstraints { (make) in
             make.top.equalTo(partnerPlanView.snp.bottom).offset(8)
+            make.left.right.equalToSuperview()
+            make.size.equalTo(CGSize(width: kScreenWidth, height: 30))
+        }
+        infoView.layoutIfNeeded()
+        
+        ///资讯栏
+        messageReadView.snp.makeConstraints { (make) in
+            make.top.equalTo(infoView.snp.bottom).offset(8)
             make.left.right.equalToSuperview()
             make.size.equalTo(CGSize(width: kScreenWidth, height: 353))
             make.bottom.equalToSuperview()
         }
-        
+        messageReadView.layoutIfNeeded()
         //layoutNeeded可以立即获取到frame
         mainView.layoutIfNeeded()
 //        mainView.contentSize = CGSize(width: kScreenWidth, height: kScreenHeight * 3)
-        print(mainView.frame)
-
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super .viewDidAppear(animated)
-        print("已经加入窗口")
-    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
         topAdBannerView.isAutoScroll = false
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+}
+
+//MARK: - 滚动代理
+extension HomePageViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        let offsetY = scrollView.contentOffset.y
+        if (offsetY > NAVBAR_COLORCHANGE_POINT)
+        {
+            let alpha = (offsetY - NAVBAR_COLORCHANGE_POINT) / CGFloat(64)
+            navView.alpha = alpha
+//            UIApplication.shared.statusBarStyle = .lightContent
+            statusBarColor = .lightContent
+        }
+        else
+        {
+            navView.alpha = 0
+//            UIApplication.shared.statusBarStyle = .default
+            statusBarColor = .default
+        }
+    }
 }
 
 //MARK: - 顶部广告栏代理
@@ -226,15 +293,17 @@ extension HomePageViewController: TopAdverViewDelegate {
     }
 }
 
-//MARK: - 视频栏代理
-//extension HomePageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 3
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath)
-//        return cell
-//    }
-//}
+//MARK: - 工具栏代理
+extension HomePageViewController: FunctionViewDelegate {
+    func buttonDidSelect(at index: Int) {
+        switch index {
+        case 1:
+            let vc = BusinessResourceViewController()
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            break
+        }
+    }
+}
 

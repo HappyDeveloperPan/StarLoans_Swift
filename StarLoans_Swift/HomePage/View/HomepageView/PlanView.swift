@@ -14,7 +14,7 @@ class PlanView: UIView {
     lazy var topMoreBtn: UIButton = { [unowned self] in
         let topMoreBtn = UIButton()
         addSubview(topMoreBtn)
-        topMoreBtn.setTitle("合伙人计划>", for: .normal)
+        topMoreBtn.setTitle("信用卡专区>", for: .normal)
         topMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         topMoreBtn.setTitleColor(UIColor.RGB(with: 51, green: 51, blue: 51), for: .normal)
         topMoreBtn.setImage(#imageLiteral(resourceName: "ICON-jihua"), for: .normal)
@@ -95,6 +95,6 @@ class PlanView: UIView {
     }
     
     @objc func topMoreBtnClick(_ sender: UIButton) {
-        print("更多合伙人计划")
+        print("信用卡专区")
     }
 }

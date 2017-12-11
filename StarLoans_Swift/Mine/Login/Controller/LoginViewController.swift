@@ -25,6 +25,11 @@ class LoginViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: registerBtn)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
     override func viewWillLayoutSubviews() {
         setupUI()
     }
@@ -93,7 +98,7 @@ class LoginViewController: UIViewController {
     }()
     
     lazy var registerBtn: UIButton = { [unowned self] in
-        let registerBtn = UIButton()
+        let registerBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
         registerBtn.setTitle("注册", for: .normal)
         registerBtn.setTitleColor(kMainColor, for: .normal)
         registerBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -178,6 +183,7 @@ extension LoginViewController {
     }
     
     @objc func callback() {
+        UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.dismiss(animated: true, completion: {
         })
     }

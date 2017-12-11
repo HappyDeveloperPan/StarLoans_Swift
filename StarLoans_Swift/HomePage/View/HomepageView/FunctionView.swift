@@ -8,14 +8,25 @@
 
 import UIKit
 
+@objc protocol FunctionViewDelegate {
+//    /// 点击图片回调
+//    func topAdverViewDidSelect(at index:Int, cycleScrollView:WRCycleScrollView)
+//    /// 图片滚动回调
+//    func topAdverViewDidScroll(to index:Int, cycleScrollView:WRCycleScrollView)
+    
+    func buttonDidSelect(at index: Int)
+}
+
 //MARK: - 功能栏
 class FunctionView: UIView {
     
     var imagesArr: Array<UIImage> = [#imageLiteral(resourceName: "ICON-hangyeziyuan"), #imageLiteral(resourceName: "ICON-daikuanxueyuan"), #imageLiteral(resourceName: "ICON-tuiguanggongju"), #imageLiteral(resourceName: "ICON-meiriqiandao"), #imageLiteral(resourceName: "ICON-zixunyandu"), #imageLiteral(resourceName: "ICON-video")]
     var listArr: Array<String> = ["行业资源", "贷款学院", "推广工具", "每日签到", "资讯研读", "视频中心"]
     
-    // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行 changeToFirstCycleCell 方法
+    // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行
     fileprivate var isLoadOver = false
+    
+    weak var delegate:FunctionViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,7 +80,8 @@ class FunctionView: UIView {
     
     //按钮点击
     @objc func funcBtnClick(_ button: UIButton) {
-        print("第\(button.tag + 1)个按钮被点击了")
+        print("第\(button.tag)个按钮被点击了")
+        delegate?.buttonDidSelect(at: button.tag)
     }
 }
 

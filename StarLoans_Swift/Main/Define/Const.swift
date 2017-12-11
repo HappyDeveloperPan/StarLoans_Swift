@@ -24,6 +24,10 @@ let kMainWindow  = UIApplication.shared.delegate?.window
 let kScreenWidth = UIScreen.main.bounds.width
 /// 屏幕的高
 let kScreenHeight = UIScreen.main.bounds.height
+/// 导航栏高度
+let kNavHeight = UIApplication.shared.statusBarFrame.size.height + 44
+/// 状态栏高度
+let kStatusHeight = UIApplication.shared.statusBarFrame.size.height
 
 /// idfv
 let idfv = UIDevice.current.identifierForVendor?.uuidString

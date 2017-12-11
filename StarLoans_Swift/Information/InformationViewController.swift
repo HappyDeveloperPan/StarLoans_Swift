@@ -12,8 +12,9 @@ class InformationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "消息"
         view.backgroundColor = UIColor.white
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -118,7 +118,7 @@ extension VerifyViewController {
         
         JSProgress.showBusy()
         
-        ///测试用, 以后删除
+        //FIXME: - 测试用, 以后删除
         let passwordVc = PasswordViewController()
         passwordVc.vcType = vcType
         navigationController?.pushViewController(passwordVc, animated: true)

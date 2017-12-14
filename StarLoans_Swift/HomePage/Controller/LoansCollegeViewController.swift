@@ -1,19 +1,17 @@
 //
-//  BusinessResourceViewController.swift
+//  LoansCollegeViewController.swift
 //  StarLoans_Swift
 //
-//  Created by iOS Pan on 2017/12/11.
+//  Created by iOS Pan on 2017/12/12.
 //  Copyright © 2017年 iOS Pan. All rights reserved.
 //
 
 import UIKit
 
-fileprivate let teachCellID = "TeachCollectionViewCell"
-fileprivate let clientListCellId = "ClientListCollectionViewCell"
-fileprivate let productCellID = "ProductCollectionViewCell"
+fileprivate let collegeCellID = "LoansCollegeCollectionViewCell"
 
 //MARK: - 界面部分
-class BusinessResourceViewController: UIViewController {
+class LoansCollegeViewController: UIViewController {
 
     //MARK: - 可操作数据
     ///广告栏数据
@@ -43,9 +41,9 @@ class BusinessResourceViewController: UIViewController {
         let segmentView = SMSegmentView(frame: .zero, dividerColour: UIColor.RGB(with: 210, green: 210, blue: 210), dividerWidth: 0, segmentAppearance: appearance)
         self.view.addSubview(segmentView)
         segmentView.backgroundColor = UIColor.white
-        segmentView.addSegmentWithTitle("推单教学", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.addSegmentWithTitle("客户名单", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.addSegmentWithTitle("爆款产品", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("技能培训", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("产品介绍", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("职业培训", onSelectionImage: nil, offSelectionImage: nil)
         segmentView.selectedSegmentIndex = 0
         segmentView.addTarget(self, action: #selector(selectSegmentInSegmentView(segmentView:)), for: .valueChanged)
         return segmentView
@@ -60,10 +58,7 @@ class BusinessResourceViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         self.view.addSubview(collectionView)
         collectionView.backgroundColor = UIColor.white
-        collectionView.register(TeachCollectionViewCell.self, forCellWithReuseIdentifier: teachCellID)
-        collectionView.register(ClientListCollectionViewCell.self, forCellWithReuseIdentifier: clientListCellId)
-        collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: productCellID)
-//        collectionView.register(UINib(nibName: cellID2, bundle: nil), forCellWithReuseIdentifier: cellID2)
+        collectionView.register(LoansCollegeCollectionViewCell.self, forCellWithReuseIdentifier: collegeCellID)
         collectionView.isPagingEnabled = true
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
@@ -73,17 +68,14 @@ class BusinessResourceViewController: UIViewController {
         return collectionView
         }()
     
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "行业资源"
+        title = "贷款学院"
         view.backgroundColor = UIColor.white
         setNavigationBarConfig()
         
         topAdBannerView.localImgArray = adverList
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     override func viewWillLayoutSubviews() {
@@ -110,7 +102,12 @@ class BusinessResourceViewController: UIViewController {
         }
         collectionView.layoutIfNeeded()
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
+
     @objc func selectSegmentInSegmentView(segmentView: SMSegmentView) {
         let index = IndexPath(item: segmentView.selectedSegmentIndex, section: 0)
         collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
@@ -119,7 +116,7 @@ class BusinessResourceViewController: UIViewController {
 }
 
 //MARK: - TopAdverView代理
-extension BusinessResourceViewController: TopAdverViewDelegate {
+extension LoansCollegeViewController: TopAdverViewDelegate {
     /// 点击图片回调
     func topAdverViewDidSelect(at index: Int, cycleScrollView: WRCycleScrollView) {
         print("点击了第\(index+1)个图片")
@@ -131,30 +128,19 @@ extension BusinessResourceViewController: TopAdverViewDelegate {
 }
 
 //MARK: - UICollectionView代理
-extension BusinessResourceViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension LoansCollegeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: teachCellID, for: indexPath) as! TeachCollectionViewCell
-            return cell
-        }
-        if indexPath.row == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: clientListCellId, for: indexPath) as! ClientListCollectionViewCell
-            return cell
-        }
-        if indexPath.row == 2 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellID, for: indexPath) as! ProductCollectionViewCell
-            return cell
-        }
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collegeCellID, for: indexPath)
+        return cell
     }
 }
 
 //MARK: - UIScrollView代理
-extension BusinessResourceViewController: UIScrollViewDelegate {
+extension LoansCollegeViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == collectionView {
             segmentView.selectedSegmentIndex = Int(collectionView.contentOffset.x / kScreenWidth)

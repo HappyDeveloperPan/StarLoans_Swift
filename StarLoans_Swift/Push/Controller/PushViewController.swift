@@ -9,7 +9,6 @@
 import UIKit
 
 fileprivate let cellID = "SegmentCollectionViewCell"
-fileprivate let cellID2 = "PushViewCollectionViewCell"
 
 class PushViewController: UIViewController {
     //MARK: - 懒加载
@@ -51,7 +50,7 @@ class PushViewController: UIViewController {
         self.view.addSubview(collectionView)
         collectionView.backgroundColor = UIColor.white
         collectionView.register(SegmentCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView.register(UINib(nibName: cellID2, bundle: nil), forCellWithReuseIdentifier: cellID2)
+//        collectionView.register(UINib(nibName: cellID2, bundle: nil), forCellWithReuseIdentifier: cellID2)
         collectionView.isPagingEnabled = true
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false

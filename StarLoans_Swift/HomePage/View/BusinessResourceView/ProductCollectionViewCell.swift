@@ -1,20 +1,20 @@
 //
-//  TeachCollectionViewCell.swift
+//  ProductCollectionViewCell.swift
 //  StarLoans_Swift
 //
-//  Created by iOS Pan on 2017/12/11.
+//  Created by iOS Pan on 2017/12/12.
 //  Copyright © 2017年 iOS Pan. All rights reserved.
 //
 
 import UIKit
 
-fileprivate let cellID = "TeachDetailCollectionViewCell"
+fileprivate let cellID = "ProductDetailCollectionViewCell"
 
-class TeachCollectionViewCell: UICollectionViewCell {
-    
+class ProductCollectionViewCell: UICollectionViewCell {
+    //MARK: - 懒加载
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: kScreenWidth - 32, height: 100)
+        layout.itemSize = CGSize(width: kScreenWidth - 32, height: 160)
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 20, left: 16, bottom: 10, right: 16)
         layout.scrollDirection = .vertical
@@ -27,7 +27,7 @@ class TeachCollectionViewCell: UICollectionViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
-    }()
+        }()
     
     //MARK: - 生命周期
     override init(frame: CGRect) {
@@ -48,24 +48,13 @@ class TeachCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension TeachCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ProductCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! TeachDetailCollectionViewCell
-        cell.setCellData(with: indexPath.row)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ProductDetailCollectionViewCell
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = LoansCollegeDetailViewController.loadStoryboard()
-        let topViewController = Utils.currentTopViewController()
-        if topViewController?.navigationController != nil{
-            topViewController?.navigationController?.pushViewController(vc, animated: true)
-        }else{
-            topViewController?.present(vc, animated: true , completion: nil)
-        }
     }
 }

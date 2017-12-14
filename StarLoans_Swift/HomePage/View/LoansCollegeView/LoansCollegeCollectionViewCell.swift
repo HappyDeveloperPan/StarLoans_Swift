@@ -1,8 +1,8 @@
 //
-//  TeachCollectionViewCell.swift
+//  LoansCollegeCollectionViewCell.swift
 //  StarLoans_Swift
 //
-//  Created by iOS Pan on 2017/12/11.
+//  Created by iOS Pan on 2017/12/13.
 //  Copyright © 2017年 iOS Pan. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate let cellID = "TeachDetailCollectionViewCell"
 
-class TeachCollectionViewCell: UICollectionViewCell {
+class LoansCollegeCollectionViewCell: UICollectionViewCell {
     
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -27,7 +27,7 @@ class TeachCollectionViewCell: UICollectionViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
-    }()
+        }()
     
     //MARK: - 生命周期
     override init(frame: CGRect) {
@@ -48,7 +48,7 @@ class TeachCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension TeachCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension LoansCollegeCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
@@ -61,6 +61,7 @@ extension TeachCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = LoansCollegeDetailViewController.loadStoryboard()
+        vc.title = "推单教学"
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

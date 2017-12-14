@@ -146,5 +146,20 @@ extension UIView {
 //        self.layer.shadowRadius = 5
 //        self.layer.addSublayer(maskLayer)
     }
-
+    
+    // MARK: - 增加是否在当前显示的窗口
+    public func isShowingnKeyWindow() -> Bool {
+        
+        guard let keyWindow = UIApplication.shared.keyWindow else {
+            return false
+        }
+        
+        //以主窗口的左上角为原点, 计算self的矩形框(谁调用这个方法这个self就是谁)
+        let frame = keyWindow.convert(self.frame, from: self.superview)
+        
+        
+        //判断主窗口的bounds和self的范围是否有重叠
+        let isIntersects = frame.intersects(keyWindow.bounds)
+        return isIntersects && !self.isHidden && self.alpha > 0 && self.window == keyWindow
+    }
 }

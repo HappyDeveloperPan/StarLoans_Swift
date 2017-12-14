@@ -14,8 +14,14 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
     lazy var topBackView: UIView = { [unowned self] in
         let topBackView = UIView()
         contentView.addSubview(topBackView)
-        topBackView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "ICON-jianbianban"))
         return topBackView
+    }()
+    
+    lazy var topImgView: UIImageView = { [unowned self] in
+        let topImgView = UIImageView()
+        topBackView.addSubview(topImgView)
+        topImgView.image = #imageLiteral(resourceName: "ICON-jianbianban")
+        return topImgView
     }()
     
     lazy var topCenterLB: UILabel = { [unowned self] in
@@ -196,6 +202,11 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
             make.top.left.right.equalToSuperview()
             make.height.equalTo(40)
         }
+        
+        topImgView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
         topCenterLB.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 80, height: 18))

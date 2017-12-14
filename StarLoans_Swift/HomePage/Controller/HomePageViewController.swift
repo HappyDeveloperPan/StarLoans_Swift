@@ -132,7 +132,6 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         automaticallyAdjustsScrollViewInsets = false
-        
 //        edgesForExtendedLayout = .top
         //获取广告数据刷新界面
         topAdBannerView.serverImgArray = adverList
@@ -141,6 +140,7 @@ class HomePageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+//        navigationController?.setNavigationBarHidden(true, animated: true)
         topAdBannerView.isAutoScroll = true
         UIApplication.shared.statusBarStyle = statusBarColor
     }
@@ -249,6 +249,7 @@ class HomePageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
+//        navigationController?.setNavigationBarHidden(false, animated: true)
         topAdBannerView.isAutoScroll = false
         UIApplication.shared.statusBarStyle = .lightContent
     }
@@ -299,7 +300,12 @@ extension HomePageViewController: FunctionViewDelegate {
         switch index {
         case 1:
             let vc = BusinessResourceViewController()
-            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = LoansCollegeViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 4:
+            let vc = SignInViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
         default:
             break

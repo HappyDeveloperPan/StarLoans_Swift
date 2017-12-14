@@ -38,7 +38,8 @@ class AXDTabBarViewController: ESTabBarController{
         let contro1 = HomePageViewController()
         contro1.title = ""
         contro1.tabBarItem = ESTabBarItem(AXDTabBarItemContentView(), title: "首页", image: #imageLiteral(resourceName: "ICON-homepage"), selectedImage: #imageLiteral(resourceName: "ICON-homepage-select"))
-        let nav1 = UINavigationController(rootViewController: contro1)
+//        let nav1 = UINavigationController(rootViewController: contro1)
+        let nav1 = AXDNavigationController(rootViewController: contro1)
         
         let contro2 = LoansViewController()
         contro2.tabBarItem = ESTabBarItem(AXDTabBarItemContentView(), title: "贷款", image: #imageLiteral(resourceName: "ICON-loans"), selectedImage: #imageLiteral(resourceName: "ICON-loans-select"))
@@ -105,5 +106,7 @@ extension AXDTabBarViewController: UITabBarControllerDelegate {
         }
     }
 }
+
+
 
 

@@ -164,21 +164,20 @@
             </objects>
             <point key="canvasLocation" x="-210.40000000000001" y="187.55622188905548"/>
         </scene>
-        <!--AV Player View Controller-->
-        <scene sceneID="gZW-cV-h18">
+        <!--View Controller-->
+        <scene sceneID="IyV-VM-XSa">
             <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="Nbd-sn-XX2" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sxP-ss-pKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="JCQ-en-3Qo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fvA-Kx-YbJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2cK-xe-wEr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D5V-16-wvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414" y="188"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="yOu-bY-8ok">
-            <objects>
-                <viewControllerPlaceholder id="zFa-fq-z5v" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nSE-NA-vRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="246" y="213"/>
+            <point key="canvasLocation" x="440.80000000000001" y="187.55622188905548"/>
         </scene>
     </scenes>
 </document>

@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var allowRotation: Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -46,6 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if allowRotation{
+//            return UIInterfaceOrientationMask(rawValue: UIInterfaceOrientationMask.RawValue(UInt8(UIInterfaceOrientationMask.landscapeLeft.rawValue) | UInt8(UIInterfaceOrientationMask.landscapeRight.rawValue) | UInt8(UIInterfaceOrientationMask.portrait.rawValue)))
+            return [UIInterfaceOrientationMask.landscapeLeft, UIInterfaceOrientationMask.landscapeRight, UIInterfaceOrientationMask.portrait]
+        }
+        return UIInterfaceOrientationMask.portrait
+    }
 
 }
 

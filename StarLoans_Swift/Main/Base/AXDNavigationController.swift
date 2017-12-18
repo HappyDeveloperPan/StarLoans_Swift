@@ -12,7 +12,16 @@ class AXDNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let navBar = navigationBar
+        navBar.isTranslucent = false
+        navBar.barStyle = .default
+        navBar.barTintColor = .white
+        navBar.tintColor = kTitleColor
+        navBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navBar.shadowImage = UIImage()
+        navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:kTitleColor]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,5 +44,6 @@ class AXDNavigationController: UINavigationController {
         
         super.pushViewController(viewController, animated: animated)
     }
-
+    
 }
+

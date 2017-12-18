@@ -29,7 +29,8 @@ class LoansCollegeDetailViewController: UIViewController, StoryboardLoadable {
         let shadeLayer = CAGradientLayer()
         shadeLayer.frame = shadeView.bounds
          //设置渐变颜色数组,可以加透明度的渐变
-        shadeLayer.colors = [(UIColor(white: 0, alpha: 0.5).cgColor as? Any), (UIColor(white: 0, alpha: 1).cgColor as? Any)]
+//        shadeLayer.colors = [(UIColor(white: 0, alpha: 0.5).cgColor as? Any), (UIColor(white: 0, alpha: 1).cgColor as? Any)]
+        shadeLayer.colors = [UIColor(white: 0, alpha: 0.5).cgColor, UIColor(white: 0, alpha: 1).cgColor]
         //设置渐变区域的起始和终止位置（范围为0-1）
         shadeLayer.startPoint = CGPoint(x: 0, y: 0)
         shadeLayer.endPoint = CGPoint(x: 0, y: 0.8)

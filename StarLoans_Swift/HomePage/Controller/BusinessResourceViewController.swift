@@ -78,7 +78,6 @@ class BusinessResourceViewController: UIViewController {
         title = "行业资源"
         view.backgroundColor = UIColor.white
         setNavigationBarConfig()
-        
         topAdBannerView.localImgArray = adverList
     }
 

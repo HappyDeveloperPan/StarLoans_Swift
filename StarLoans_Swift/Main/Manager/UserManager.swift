@@ -11,6 +11,7 @@ import UIKit
 final class UserManager: NSObject {
     
     var userModel: UserModel?
+    var isLogin: Bool = false
     
     static let shareManager = UserManager()
     private override init() {

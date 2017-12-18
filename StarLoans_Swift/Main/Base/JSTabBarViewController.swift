@@ -60,8 +60,8 @@ class JSTabBarViewController: UITabBarController {
             selectNavVC = selectNavVC?.presentedViewController as? UINavigationController
         }
         let loginVC = LoginViewController()
-        let navVC = UINavigationController(rootViewController: loginVC as? UIViewController ?? UIViewController())
-        
+//        let navVC = UINavigationController(rootViewController: loginVC as? UIViewController ?? UIViewController())
+        let navVC = UINavigationController(rootViewController: loginVC)
         selectNavVC?.present(navVC, animated: true, completion: {
             
         })

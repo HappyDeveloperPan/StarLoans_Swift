@@ -11,7 +11,7 @@ import UIKit
 fileprivate let cellID = "TeachDetailCollectionViewCell"
 
 class LoansCollegeCollectionViewCell: UICollectionViewCell {
-    
+    //MARK: - 懒加载
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: kScreenWidth - 32, height: 100)

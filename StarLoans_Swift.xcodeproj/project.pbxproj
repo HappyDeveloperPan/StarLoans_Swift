@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C0892121FC3D66500E2320E /* AppDelegate+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0892111FC3D66500E2320E /* AppDelegate+System.swift */; };
 		1C0892201FC43D2500E2320E /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C08921F1FC43D2500E2320E /* ForgetViewController.swift */; };
 		1C0892221FC43E3B00E2320E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0892211FC43E3B00E2320E /* RegisterViewController.swift */; };
 		1C1050421FD8C6EA0050B187 /* CheshiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1050411FD8C6EA0050B187 /* CheshiTableViewCell.swift */; };
@@ -22,6 +21,12 @@
 		1C1C1F9F1FDFF5D000C71D73 /* LoansCollegeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C1F9E1FDFF5D000C71D73 /* LoansCollegeDetailViewController.swift */; };
 		1C1C1FA31FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1C1FA21FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard */; };
 		1C1C1FA51FDFFCB000C71D73 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C1FA41FDFFCB000C71D73 /* Utils.swift */; };
+		1C1D945E1FE2724F00F65049 /* VideoCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D945D1FE2724F00F65049 /* VideoCenterViewController.swift */; };
+		1C1D94601FE2732100F65049 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D945F1FE2732100F65049 /* BaseViewController.swift */; };
+		1C1D94671FE2792E00F65049 /* VideoCenterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D94661FE2792E00F65049 /* VideoCenterCollectionViewCell.swift */; };
+		1C1D946A1FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D94681FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.swift */; };
+		1C1D946B1FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1D94691FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib */; };
+		1C1D946D1FE2A9DB00F65049 /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D946C1FE2A9DB00F65049 /* VideoPlayViewController.swift */; };
 		1C2E2AD61FCE5F4E005E48C3 /* AXDTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E2AD51FCE5F4E005E48C3 /* AXDTabBarItemContentView.swift */; };
 		1C2E2AD81FCE96D1005E48C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E2AD71FCE96D0005E48C3 /* UIImageView+Extension.swift */; };
 		1C2E2ADA1FCE96FC005E48C3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E2AD91FCE96FC005E48C3 /* UIImage+Extension.swift */; };
@@ -47,10 +52,10 @@
 		1C40661F1FB190C8009A59FD /* StarLoans_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40661E1FB190C8009A59FD /* StarLoans_SwiftUITests.swift */; };
 		1C40662D1FB1A7EB009A59FD /* JSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40662C1FB1A7EB009A59FD /* JSTabBarViewController.swift */; };
 		1C40662F1FB1A965009A59FD /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40662E1FB1A965009A59FD /* HomePageViewController.swift */; };
-		1C4066311FB1A9A1009A59FD /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4066301FB1A9A1009A59FD /* MineViewController.swift */; };
 		1C4066331FB1A9B9009A59FD /* PushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4066321FB1A9B9009A59FD /* PushViewController.swift */; };
 		1C4066371FB1B0ED009A59FD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4066361FB1B0ED009A59FD /* LoginViewController.swift */; };
 		1C40663C1FB2B569009A59FD /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40663B1FB2B569009A59FD /* Const.swift */; };
+		1C40E2A81FE2707D00A01D2D /* AppDelegate+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40E2A71FE2707D00A01D2D /* AppDelegate+System.swift */; };
 		1C54A82D1FCFAEF000CF4F9B /* TopAdverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C54A82C1FCFAEF000CF4F9B /* TopAdverView.swift */; };
 		1C54A82F1FD00C2000CF4F9B /* FunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C54A82E1FD00C2000CF4F9B /* FunctionView.swift */; };
 		1C57AAF51FD636D600A7626A /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AAF41FD636D600A7626A /* CustomLayout.swift */; };
@@ -76,6 +81,10 @@
 		1CB728D81FDA2C5A006C1D2E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB728D71FDA2C5A006C1D2E /* String+Extension.swift */; };
 		1CB728DA1FDA37A4006C1D2E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB728D91FDA37A4006C1D2E /* SearchView.swift */; };
 		1CB728DC1FDA7889006C1D2E /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB728DB1FDA7889006C1D2E /* InformationView.swift */; };
+		1CBFFBA81FE4ED1B00E89B7E /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFFBA71FE4ED1A00E89B7E /* UICollectionView+Extension.swift */; };
+		1CBFFBAA1FE4ED2900E89B7E /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFFBA91FE4ED2900E89B7E /* UITableView+Extension.swift */; };
+		1CBFFBAC1FE4EDB500E89B7E /* MineViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CBFFBAB1FE4EDB500E89B7E /* MineViewController.storyboard */; };
+		1CBFFBAE1FE4EE4700E89B7E /* MineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFFBAD1FE4EE4700E89B7E /* MineTableViewController.swift */; };
 		1CC9C0E61FCC23CD00750C5E /* JSProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9C0E51FCC23CD00750C5E /* JSProgress.swift */; };
 		1CC9C0E81FCC3B2D00750C5E /* NetWorksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9C0E71FCC3B2D00750C5E /* NetWorksManager.swift */; };
 		1CCE1B421FC2C27F002EE6D9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCE1B411FC2C27F002EE6D9 /* UserManager.swift */; };
@@ -90,6 +99,13 @@
 		1CF12AA11FCD62A400474AFB /* LoansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF12AA01FCD62A400474AFB /* LoansViewController.swift */; };
 		1CF12AA31FCD62B500474AFB /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF12AA21FCD62B500474AFB /* InformationViewController.swift */; };
 		1CF12AAB1FCD7C8F00474AFB /* AXDTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF12AAA1FCD7C8F00474AFB /* AXDTabBarViewController.swift */; };
+		1CF9FCD61FE3B9BD003AE228 /* MineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF9FCD51FE3B9BD003AE228 /* MineHeaderView.swift */; };
+		1CF9FCD81FE3B9C8003AE228 /* MineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF9FCD71FE3B9C8003AE228 /* MineHeaderView.xib */; };
+		1CF9FCDA1FE3BD7C003AE228 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF9FCD91FE3BD7C003AE228 /* MineViewController.swift */; };
+		1CF9FCDF1FE3C2E5003AE228 /* MineTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF9FCDD1FE3C2E5003AE228 /* MineTableViewCell1.swift */; };
+		1CF9FCE01FE3C2E5003AE228 /* MineTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF9FCDE1FE3C2E5003AE228 /* MineTableViewCell1.xib */; };
+		1CF9FCE31FE3D5D7003AE228 /* MineTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF9FCE11FE3D5D7003AE228 /* MineTableViewCell2.swift */; };
+		1CF9FCE41FE3D5D7003AE228 /* MineTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF9FCE21FE3D5D7003AE228 /* MineTableViewCell2.xib */; };
 		53C1F44BE793F86D0E8E8A8D /* Pods_StarLoans_SwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0288A9E372FEDC157C4F3C6F /* Pods_StarLoans_SwiftTests.framework */; };
 		D0300B09417EA96C3BD65219 /* Pods_StarLoans_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6BDEFC18EFF12CD1227A27 /* Pods_StarLoans_Swift.framework */; };
 		D95A1D59E8EF4F543B0F1116 /* Pods_StarLoans_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BE9AF022939D1D7168CCDE /* Pods_StarLoans_SwiftUITests.framework */; };
@@ -116,7 +132,6 @@
 		0288A9E372FEDC157C4F3C6F /* Pods_StarLoans_SwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarLoans_SwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		093EF7603418866998285674 /* Pods-StarLoans_SwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarLoans_SwiftUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarLoans_SwiftUITests/Pods-StarLoans_SwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		09BE9AF022939D1D7168CCDE /* Pods_StarLoans_SwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarLoans_SwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C0892111FC3D66500E2320E /* AppDelegate+System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppDelegate+System.swift"; path = "../../../../../../Documents/AppDelegate+System.swift"; sourceTree = "<group>"; };
 		1C08921F1FC43D2500E2320E /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		1C0892211FC43E3B00E2320E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1C1050411FD8C6EA0050B187 /* CheshiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheshiTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,6 +146,12 @@
 		1C1C1F9E1FDFF5D000C71D73 /* LoansCollegeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansCollegeDetailViewController.swift; sourceTree = "<group>"; };
 		1C1C1FA21FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoansCollegeDetailViewController.storyboard; sourceTree = "<group>"; };
 		1C1C1FA41FDFFCB000C71D73 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1C1D945D1FE2724F00F65049 /* VideoCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCenterViewController.swift; sourceTree = "<group>"; };
+		1C1D945F1FE2732100F65049 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1C1D94661FE2792E00F65049 /* VideoCenterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCenterCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C1D94681FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCenterDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C1D94691FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCenterDetailCollectionViewCell.xib; sourceTree = "<group>"; };
+		1C1D946C1FE2A9DB00F65049 /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
 		1C2E2AD51FCE5F4E005E48C3 /* AXDTabBarItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AXDTabBarItemContentView.swift; sourceTree = "<group>"; };
 		1C2E2AD71FCE96D0005E48C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		1C2E2AD91FCE96FC005E48C3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -162,10 +183,10 @@
 		1C4066201FB190C8009A59FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C40662C1FB1A7EB009A59FD /* JSTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSTabBarViewController.swift; sourceTree = "<group>"; };
 		1C40662E1FB1A965009A59FD /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
-		1C4066301FB1A9A1009A59FD /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		1C4066321FB1A9B9009A59FD /* PushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushViewController.swift; sourceTree = "<group>"; };
 		1C4066361FB1B0ED009A59FD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C40663B1FB2B569009A59FD /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		1C40E2A71FE2707D00A01D2D /* AppDelegate+System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+System.swift"; sourceTree = "<group>"; };
 		1C54A82C1FCFAEF000CF4F9B /* TopAdverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAdverView.swift; sourceTree = "<group>"; };
 		1C54A82E1FD00C2000CF4F9B /* FunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionView.swift; sourceTree = "<group>"; };
 		1C57AAF41FD636D600A7626A /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
@@ -191,6 +212,10 @@
 		1CB728D71FDA2C5A006C1D2E /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1CB728D91FDA37A4006C1D2E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		1CB728DB1FDA7889006C1D2E /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		1CBFFBA71FE4ED1A00E89B7E /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		1CBFFBA91FE4ED2900E89B7E /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		1CBFFBAB1FE4EDB500E89B7E /* MineViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MineViewController.storyboard; sourceTree = "<group>"; };
+		1CBFFBAD1FE4EE4700E89B7E /* MineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTableViewController.swift; sourceTree = "<group>"; };
 		1CC9C0E51FCC23CD00750C5E /* JSProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSProgress.swift; sourceTree = "<group>"; };
 		1CC9C0E71FCC3B2D00750C5E /* NetWorksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorksManager.swift; sourceTree = "<group>"; };
 		1CCE1B411FC2C27F002EE6D9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -205,6 +230,13 @@
 		1CF12AA01FCD62A400474AFB /* LoansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansViewController.swift; sourceTree = "<group>"; };
 		1CF12AA21FCD62B500474AFB /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		1CF12AAA1FCD7C8F00474AFB /* AXDTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AXDTabBarViewController.swift; sourceTree = "<group>"; };
+		1CF9FCD51FE3B9BD003AE228 /* MineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHeaderView.swift; sourceTree = "<group>"; };
+		1CF9FCD71FE3B9C8003AE228 /* MineHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineHeaderView.xib; sourceTree = "<group>"; };
+		1CF9FCD91FE3BD7C003AE228 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
+		1CF9FCDD1FE3C2E5003AE228 /* MineTableViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTableViewCell1.swift; sourceTree = "<group>"; };
+		1CF9FCDE1FE3C2E5003AE228 /* MineTableViewCell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineTableViewCell1.xib; sourceTree = "<group>"; };
+		1CF9FCE11FE3D5D7003AE228 /* MineTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTableViewCell2.swift; sourceTree = "<group>"; };
+		1CF9FCE21FE3D5D7003AE228 /* MineTableViewCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineTableViewCell2.xib; sourceTree = "<group>"; };
 		2D6BDEFC18EFF12CD1227A27 /* Pods_StarLoans_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarLoans_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E61FFB04EE4486CFB289F3 /* Pods-StarLoans_SwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarLoans_SwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarLoans_SwiftTests/Pods-StarLoans_SwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D721F9D20CA593201116B125 /* Pods-StarLoans_SwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarLoans_SwiftUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarLoans_SwiftUITests/Pods-StarLoans_SwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -266,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				1C40662C1FB1A7EB009A59FD /* JSTabBarViewController.swift */,
+				1C1D945F1FE2732100F65049 /* BaseViewController.swift */,
 				1C363A391FE0BD8D00D87014 /* AXDNavigationController.swift */,
 				1CF12AAA1FCD7C8F00474AFB /* AXDTabBarViewController.swift */,
 				1C2E2AD51FCE5F4E005E48C3 /* AXDTabBarItemContentView.swift */,
@@ -354,6 +387,12 @@
 			isa = PBXGroup;
 			children = (
 				1C8442531FC91B0D005BE65C /* LoginInputView.swift */,
+				1CF9FCD51FE3B9BD003AE228 /* MineHeaderView.swift */,
+				1CF9FCD71FE3B9C8003AE228 /* MineHeaderView.xib */,
+				1CF9FCDD1FE3C2E5003AE228 /* MineTableViewCell1.swift */,
+				1CF9FCDE1FE3C2E5003AE228 /* MineTableViewCell1.xib */,
+				1CF9FCE11FE3D5D7003AE228 /* MineTableViewCell2.swift */,
+				1CF9FCE21FE3D5D7003AE228 /* MineTableViewCell2.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -361,7 +400,9 @@
 		1C0892161FC3F3E000E2320E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1C4066301FB1A9A1009A59FD /* MineViewController.swift */,
+				1CF9FCD91FE3BD7C003AE228 /* MineViewController.swift */,
+				1CBFFBAD1FE4EE4700E89B7E /* MineTableViewController.swift */,
+				1CBFFBAB1FE4EDB500E89B7E /* MineViewController.storyboard */,
 				1C4066361FB1B0ED009A59FD /* LoginViewController.swift */,
 				1C08921F1FC43D2500E2320E /* ForgetViewController.swift */,
 				1C0892211FC43E3B00E2320E /* RegisterViewController.swift */,
@@ -391,6 +432,16 @@
 			path = MessageReadView;
 			sourceTree = "<group>";
 		};
+		1C1D94611FE277D700F65049 /* VideoCenterView */ = {
+			isa = PBXGroup;
+			children = (
+				1C1D94661FE2792E00F65049 /* VideoCenterCollectionViewCell.swift */,
+				1C1D94681FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.swift */,
+				1C1D94691FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib */,
+			);
+			path = VideoCenterView;
+			sourceTree = "<group>";
+		};
 		1C2E2ADD1FCEB852005E48C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +455,7 @@
 				1CED7B531FDE786500AABDDE /* HomepageView */,
 				1CED7B561FDE9CDC00AABDDE /* BusinessResourceView */,
 				1C363A361FE0B69F00D87014 /* LoansCollegeView */,
+				1C1D94611FE277D700F65049 /* VideoCenterView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -421,6 +473,8 @@
 				1C363A3D1FE0D53C00D87014 /* PayCompleteViewController.storyboard */,
 				1C363A3F1FE0F7E700D87014 /* SignInViewController.swift */,
 				1C363A411FE0FA4A00D87014 /* SignInViewController.storyboard */,
+				1C1D945D1FE2724F00F65049 /* VideoCenterViewController.swift */,
+				1C1D946C1FE2A9DB00F65049 /* VideoPlayViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -584,7 +638,7 @@
 		1CC7BB861FB3E94000B59814 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				1C0892111FC3D66500E2320E /* AppDelegate+System.swift */,
+				1C40E2A71FE2707D00A01D2D /* AppDelegate+System.swift */,
 				1CDF1A081FC8094D00C29F43 /* UIViewController+Config.swift */,
 				1CB728D51FDA2C4C006C1D2E /* Date+Extension.swift */,
 				1C2E2AD71FCE96D0005E48C3 /* UIImageView+Extension.swift */,
@@ -593,6 +647,8 @@
 				1C91ED931FD67FE700DB3FA4 /* UIColor+Extension.swift */,
 				1CB728D11FDA22BD006C1D2E /* UIButton+Extension.swift */,
 				1CB728D71FDA2C5A006C1D2E /* String+Extension.swift */,
+				1CBFFBA71FE4ED1A00E89B7E /* UICollectionView+Extension.swift */,
+				1CBFFBA91FE4ED2900E89B7E /* UITableView+Extension.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -781,11 +837,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CF9FCE01FE3C2E5003AE228 /* MineTableViewCell1.xib in Resources */,
 				1C4066091FB190C8009A59FD /* LaunchScreen.storyboard in Resources */,
 				1C1C1F971FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib in Resources */,
 				1C1C1FA31FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard in Resources */,
 				1C10504B1FD8E35E0050B187 /* MessageTableViewCell.xib in Resources */,
+				1CF9FCE41FE3D5D7003AE228 /* MineTableViewCell2.xib in Resources */,
+				1CBFFBAC1FE4EDB500E89B7E /* MineViewController.storyboard in Resources */,
 				1CED7B5C1FDEA73100AABDDE /* TeachDetailCollectionViewCell.xib in Resources */,
+				1C1D946B1FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib in Resources */,
+				1CF9FCD81FE3B9C8003AE228 /* MineHeaderView.xib in Resources */,
 				1C4066061FB190C8009A59FD /* Assets.xcassets in Resources */,
 				1C4066041FB190C8009A59FD /* Main.storyboard in Resources */,
 				1CA4FCF01FD7DE5A009ECD30 /* RobbingTableViewCell.xib in Resources */,
@@ -999,15 +1060,16 @@
 				1C8442581FC96FAB005BE65C /* PasswordViewController.swift in Sources */,
 				1C1050441FD8D8C60050B187 /* PlanView.swift in Sources */,
 				1C40662F1FB1A965009A59FD /* HomePageViewController.swift in Sources */,
+				1CBFFBAE1FE4EE4700E89B7E /* MineTableViewController.swift in Sources */,
 				1C4066331FB1A9B9009A59FD /* PushViewController.swift in Sources */,
 				1C2E2AED1FCECDBB005E48C3 /* WRCycleCell.swift in Sources */,
 				1C4066371FB1B0ED009A59FD /* LoginViewController.swift in Sources */,
+				1C1D946A1FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.swift in Sources */,
 				1C4065FF1FB190C8009A59FD /* AppDelegate.swift in Sources */,
 				1C40663C1FB2B569009A59FD /* Const.swift in Sources */,
 				1CA4FCEF1FD7DE5A009ECD30 /* RobbingTableViewCell.swift in Sources */,
 				1CF12AA11FCD62A400474AFB /* LoansViewController.swift in Sources */,
 				1CDF1A091FC8094D00C29F43 /* UIViewController+Config.swift in Sources */,
-				1C0892121FC3D66500E2320E /* AppDelegate+System.swift in Sources */,
 				1C3BD8311FDF752100B660C4 /* ClientListFooterView.swift in Sources */,
 				1CB728D81FDA2C5A006C1D2E /* String+Extension.swift in Sources */,
 				1CF12AAB1FCD7C8F00474AFB /* AXDTabBarViewController.swift in Sources */,
@@ -1015,6 +1077,8 @@
 				1CED7B5E1FDEB19400AABDDE /* ClientListCollectionViewCell.swift in Sources */,
 				1CC9C0E81FCC3B2D00750C5E /* NetWorksManager.swift in Sources */,
 				1C54A82F1FD00C2000CF4F9B /* FunctionView.swift in Sources */,
+				1CF9FCD61FE3B9BD003AE228 /* MineHeaderView.swift in Sources */,
+				1C1D945E1FE2724F00F65049 /* VideoCenterViewController.swift in Sources */,
 				1CDE80D91FC7AFB0005A69DB /* UserModel.swift in Sources */,
 				1C3BD82E1FDF6E8800B660C4 /* ClientListDetailCollectionViewCell.swift in Sources */,
 				1CB08E0C1FDA9B0B007FCC31 /* SMSegmentAppearance.swift in Sources */,
@@ -1022,18 +1086,24 @@
 				1C1C1FA51FDFFCB000C71D73 /* Utils.swift in Sources */,
 				1C91ED921FD6762500DB3FA4 /* HotAgencyView.swift in Sources */,
 				1CB728D21FDA22BD006C1D2E /* UIButton+Extension.swift in Sources */,
+				1CF9FCE31FE3D5D7003AE228 /* MineTableViewCell2.swift in Sources */,
 				1C2E2ADC1FCE9704005E48C3 /* UIView+Extension.swift in Sources */,
 				1CED7B551FDE798300AABDDE /* BusinessResourceViewController.swift in Sources */,
 				1C2E2AD61FCE5F4E005E48C3 /* AXDTabBarItemContentView.swift in Sources */,
 				1C2E2AEF1FCECDBB005E48C3 /* WRPageControl.swift in Sources */,
 				1CB08E0E1FDA9B0B007FCC31 /* SMSegmentViewConstants.swift in Sources */,
 				1C363A3A1FE0BD8D00D87014 /* AXDNavigationController.swift in Sources */,
+				1C40E2A81FE2707D00A01D2D /* AppDelegate+System.swift in Sources */,
 				1C1C1F9B1FDFD41A00C71D73 /* LoansCollegeViewController.swift in Sources */,
+				1CBFFBAA1FE4ED2900E89B7E /* UITableView+Extension.swift in Sources */,
 				1C40662D1FB1A7EB009A59FD /* JSTabBarViewController.swift in Sources */,
 				1C363A381FE0B6F200D87014 /* LoansCollegeCollectionViewCell.swift in Sources */,
 				1C8B7E871FD28CCE008EA417 /* VideoView.swift in Sources */,
 				1C1C1F961FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift in Sources */,
 				1CCE1B421FC2C27F002EE6D9 /* UserManager.swift in Sources */,
+				1C1D94601FE2732100F65049 /* BaseViewController.swift in Sources */,
+				1C1D946D1FE2A9DB00F65049 /* VideoPlayViewController.swift in Sources */,
+				1C1D94671FE2792E00F65049 /* VideoCenterCollectionViewCell.swift in Sources */,
 				1C54A82D1FCFAEF000CF4F9B /* TopAdverView.swift in Sources */,
 				1C363A401FE0F7E700D87014 /* SignInViewController.swift in Sources */,
 				1C1050471FD8E0AF0050B187 /* MessageReadView.swift in Sources */,
@@ -1044,6 +1114,7 @@
 				1CB728DA1FDA37A4006C1D2E /* SearchView.swift in Sources */,
 				1C2E2AEE1FCECDBB005E48C3 /* WRCycleScrollView.swift in Sources */,
 				1CED7B581FDE9DAC00AABDDE /* TeachCollectionViewCell.swift in Sources */,
+				1CF9FCDA1FE3BD7C003AE228 /* MineViewController.swift in Sources */,
 				1C2E2AD81FCE96D1005E48C3 /* UIImageView+Extension.swift in Sources */,
 				1C1C1F9F1FDFF5D000C71D73 /* LoansCollegeDetailViewController.swift in Sources */,
 				1C10504A1FD8E35E0050B187 /* MessageTableViewCell.swift in Sources */,
@@ -1051,12 +1122,13 @@
 				1C363A3C1FE0D51B00D87014 /* PayCompleteViewController.swift in Sources */,
 				1C91ED941FD67FE700DB3FA4 /* UIColor+Extension.swift in Sources */,
 				1CB08E0B1FDA9B0B007FCC31 /* SMSegmentView.swift in Sources */,
-				1C4066311FB1A9A1009A59FD /* MineViewController.swift in Sources */,
 				1CB08E0D1FDA9B0B007FCC31 /* SMSegment.swift in Sources */,
 				1CB728DC1FDA7889006C1D2E /* InformationView.swift in Sources */,
+				1CBFFBA81FE4ED1B00E89B7E /* UICollectionView+Extension.swift in Sources */,
 				1C8442561FC96BB6005BE65C /* VerifyViewController.swift in Sources */,
 				1C8531DB1FDBC7C7009713A7 /* SegmentCollectionViewCell.swift in Sources */,
 				1C0892201FC43D2500E2320E /* ForgetViewController.swift in Sources */,
+				1CF9FCDF1FE3C2E5003AE228 /* MineTableViewCell1.swift in Sources */,
 				1CB728D61FDA2C4C006C1D2E /* Date+Extension.swift in Sources */,
 				1C8442541FC91B0D005BE65C /* LoginInputView.swift in Sources */,
 				1CED7B5B1FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift in Sources */,

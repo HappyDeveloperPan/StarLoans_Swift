@@ -23,6 +23,9 @@ class RobbingTableViewCell: UITableViewCell {
     @IBOutlet weak var cbTypeBtn: UILabel!
     @IBOutlet weak var rbTypeBtn: UILabel!
     @IBOutlet weak var needDayBtn: UILabel!
+    @IBOutlet weak var houseInfoLB: UILabel!
+    @IBOutlet weak var carInfoLB: UILabel!
+    @IBOutlet weak var incomeLB: UILabel!
     
     //MARK: - 生命周期
     override func awakeFromNib() {
@@ -49,4 +52,21 @@ class RobbingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+
+extension RobbingTableViewCell {
+    func setQuickRobData(with cellData: ClientInfoModel) {
+        userNameLB.text = cellData.client_name
+        userTypeImg.image = cellData.getTypeImage()
+        pledgeTypeLB.text = cellData.getpledgeType()
+        moneyLB.text = String(cellData.client_loan_need/10000) + "万"
+        houseInfoLB.text = cellData.getHouseInfo()
+        carInfoLB.text = cellData.getCarInfo()
+        incomeLB.text = "月收入" + String(cellData.client_month_income)
+        lbTypeBtn.isHidden = !cellData.client_is_shenzhen_census
+        cbTypeBtn.isHidden = !cellData.client_is_social_security
+        rbTypeBtn.isHidden = !cellData.client_is_accumulated_funds
+        needDayBtn.text = "需求程度" + String(cellData.client_days_need) + "天"
+        robbingBtn.setTitle(String(cellData.client_price) + "元抢单", for: .normal)
+    }
 }

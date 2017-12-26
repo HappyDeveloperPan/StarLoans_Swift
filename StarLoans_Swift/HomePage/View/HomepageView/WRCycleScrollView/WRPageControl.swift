@@ -71,7 +71,7 @@ extension WRPageControl
             {
                 if let curImage = currentImage {
                     imgView.image = curImage
-                    dot.backgroundColor = UIColor.clear
+                    dot.backgroundColor = UIColor.gray
                 } else {
                     imgView.image = nil
                     dot.backgroundColor = currentPageIndicatorTintColor

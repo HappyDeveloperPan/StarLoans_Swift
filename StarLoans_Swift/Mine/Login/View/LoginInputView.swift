@@ -14,15 +14,20 @@ enum rightImage {
     case eye    //隐藏显示密码
 }
 
+protocol LoginInputViewDelegate: class{
+    func verCodeBtnClick(clickHandler: (_ isPhone: Bool)->())
+}
+
 //MARK: - 自定义输入框
 class LoginInputView: UIView {
+    
+    weak var delegate: LoginInputViewDelegate?
     
     var textLength : Int = 0
     var image : UIImage?
     var selectImage : UIImage?
     var rightImage : rightImage = .none 
     var isShowPwd : Bool = false
-    
     
     //MARK: - 控件懒加载
     lazy var leftImageView: UIImageView = { [unowned self] in
@@ -52,6 +57,7 @@ class LoginInputView: UIView {
     lazy var verCodeBtn: VerCodeButton = { [unowned self] in
         let verCodeBtn = VerCodeButton()
         self.addSubview(verCodeBtn)
+        verCodeBtn.delegate = self
         return verCodeBtn
     }()
     
@@ -135,6 +141,18 @@ class LoginInputView: UIView {
     
 }
 
+extension LoginInputView: VerCodeButtonDelegate {
+    func verCodeBtnClick(clickHandler: (Bool) -> ()) {
+        delegate?.verCodeBtnClick(clickHandler: { (isPhone) in
+            clickHandler(isPhone)
+        })
+    }
+    
+//    func verCodeBtnClick() {
+//        delegate?.verCodeBtnClick()
+//    }
+}
+
 //MARK: - textfield代理
 extension LoginInputView: UITextFieldDelegate {
     
@@ -159,14 +177,20 @@ extension LoginInputView: UITextFieldDelegate {
     }
 }
 
+protocol VerCodeButtonDelegate: class{
+    func verCodeBtnClick(clickHandler: (_ isPhone: Bool)->())
+}
+
 //MARK: - 验证码按钮
 class VerCodeButton: UIButton {
+    
+    weak var delegate: VerCodeButtonDelegate?
     
     //MARK: - 初始化
     override init(frame: CGRect) {
         super .init(frame: frame)
         setTitle("获取验证码", for: .normal)
-        setTitleColor(kTextColor, for: .normal)
+        setTitleColor(kMainColor, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 14)
         layer.cornerRadius = 15
         layer.borderWidth = 0.5
@@ -175,8 +199,22 @@ class VerCodeButton: UIButton {
         addTarget(self, action: #selector(VerCodeButton.sendButtonClick(_:)), for: .touchUpInside)
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super .init(coder: aDecoder)
+//        fatalError("init(coder:) has not been implemented")
+//        setTitle("获取验证码", for: .normal)
+//        setTitleColor(kTextColor, for: .normal)
+//        titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//        layer.cornerRadius = 15
+//        layer.borderWidth = 0.5
+//        layer.borderColor = kMainColor.cgColor
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        addTarget(self, action: #selector(VerCodeButton.sendButtonClick(_:)), for: .touchUpInside)
+    }
+    
+    class func verCodeButton() -> VerCodeButton {
+        return Bundle.main.loadNibNamed(NSStringFromClass(self), owner: nil, options: nil)?.first as! VerCodeButton
     }
     
     //MARK: - 倒计时属性
@@ -185,9 +223,8 @@ class VerCodeButton: UIButton {
     var remainingSeconds: Int = 0 {
         willSet {
             setTitle("已发送(\(newValue)s)", for: .normal)
-            
             if newValue <= 0 {
-                setTitle("重新获取验证码", for: .normal)
+                setTitle("重新获取", for: .normal)
                 isCounting = false
             }
         }
@@ -198,10 +235,12 @@ class VerCodeButton: UIButton {
             if newValue {
                 countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime(_:)), userInfo: nil, repeats: true)
                 remainingSeconds = 5
+                setTitleColor(kTextColor, for: .normal)
                 layer.borderColor = kTextColor.cgColor
             } else {
                 countdownTimer?.invalidate()
                 countdownTimer = nil
+                setTitleColor(kMainColor, for: .normal)
                 layer.borderColor = kMainColor.cgColor
             }
             isEnabled = !newValue
@@ -211,7 +250,14 @@ class VerCodeButton: UIButton {
 
 extension VerCodeButton {
     @objc func sendButtonClick(_ sender: UIButton) {
-        isCounting = true
+        delegate?.verCodeBtnClick(clickHandler: { (isPhone) in
+            guard isPhone else {
+                return
+            }
+            isCounting = true
+        })
+        
+//        isCounting = true
     }
     
     @objc func updateTime(_ timer: Timer) {

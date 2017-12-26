@@ -8,12 +8,22 @@
 
 import UIKit
 
+fileprivate let cellWidth: CGFloat = kScreenWidth - 50
+fileprivate let cellHeight: CGFloat = 175
+
 class VideoCollectionViewCell: UICollectionViewCell {
+    //播放图片
+    lazy var backImg: UIImageView = { [unowned self] in
+        let backImg = UIImageView()
+        contentView.addSubview(backImg)
+        backImg.backgroundColor = UIColor.gray
+        return backImg
+    }()
     
     //左上角视频预告lable
     lazy var leftPredictView: UIView = { [unowned self] in
         let leftPredictView = UIView()
-        contentView.addSubview(leftPredictView)
+        backImg.addSubview(leftPredictView)
         leftPredictView.backgroundColor = UIColor.white
         leftPredictView.alpha = 0.4
         return leftPredictView
@@ -21,7 +31,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     
     lazy var leftPredictLB: UILabel = { [unowned self] in
         let leftPredictLB = UILabel()
-        contentView.addSubview(leftPredictLB)
+        backImg.addSubview(leftPredictLB)
         leftPredictLB.text = "视频预告"
         leftPredictLB.font = UIFont.systemFont(ofSize: 17)
         leftPredictLB.textColor = UIColor.white
@@ -32,7 +42,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     //中间播放图片
     lazy var playImageView: UIImageView = { [unowned self] in
         let playImageView = UIImageView()
-        contentView.addSubview(playImageView)
+        backImg.addSubview(playImageView)
         playImageView.image = #imageLiteral(resourceName: "ICON-play")
         return playImageView
     }()
@@ -40,7 +50,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     //倒计时lable
     lazy var countDownLB: UILabel = { [unowned self] in
         let countDownLB = UILabel()
-        contentView.addSubview(countDownLB)
+        backImg.addSubview(countDownLB)
         countDownLB.text = "倒计时: 23: 59: 59"
         countDownLB.textColor = UIColor.white
         countDownLB.font = UIFont.systemFont(ofSize: 12)
@@ -51,7 +61,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     //底部介绍lable
     lazy var bottomLB: UILabel = { [unowned self] in
         let bottomLB = UILabel()
-        contentView.addSubview(bottomLB)
+        backImg.addSubview(bottomLB)
         bottomLB.text = "这段话以后要删掉!"
         bottomLB.textColor = UIColor.white
         bottomLB.font = UIFont.systemFont(ofSize: 14)
@@ -74,6 +84,9 @@ class VideoCollectionViewCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
+        backImg.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         
         leftPredictView.snp.makeConstraints { (make) in
             make.top.equalTo(7.5)

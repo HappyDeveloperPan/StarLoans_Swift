@@ -10,7 +10,19 @@ import UIKit
 
 fileprivate let cellID = "VideoCenterDetailCollectionViewCell"
 
+protocol VideoCenterCellDelegate: class {
+    func reloadCellData(with cell: VideoCenterCollectionViewCell)
+}
+
 class VideoCenterCollectionViewCell: UICollectionViewCell {
+    //MARK: - 可操作数据
+    weak var delegate: VideoCenterCellDelegate?
+    var type: VideoType = .hotVideo
+    var cellDataArr: [VideoModel] = [VideoModel]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     //MARK: - 懒加载
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +45,10 @@ class VideoCenterCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = kHomeBackColor
+        collectionView.addHeaderRefresh { [weak self] in
+            self?.delegate?.reloadCellData(with: self!)
+        }
+        collectionView.beginHeaderRefresh()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,16 +66,19 @@ class VideoCenterCollectionViewCell: UICollectionViewCell {
 
 extension VideoCenterCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cellDataArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! VideoCenterDetailCollectionViewCell
+        cell.setVideoData(with: cellDataArr[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = VideoPlayViewController()
+//        let vc = VideoPlayViewController()
+        let vc = VideoDetailViewController.loadStoryboard()
+        vc.videoID = cellDataArr[indexPath.row].video_id
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

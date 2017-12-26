@@ -15,6 +15,8 @@ private let kProtocolwidth = 256
 class PasswordViewController: UIViewController {
     
     var vcType : vcType = .register
+    var userModel: UserModel = UserModel()
+    var user: String = ""
     
     //MARK: - 懒加载
     lazy var topLab: UILabel = { [unowned self] in
@@ -148,8 +150,53 @@ class PasswordViewController: UIViewController {
         print("我被点击了")
     }
     
+    ///根据类型判断是注册还是修改密码
     @objc func submitBtnClick() {
-        navigationController?.dismiss(animated: true, completion: nil)
+        
+        guard pwdView.textField.text?.lengthOfBytes(using: .utf8) != 0 else {
+            JSProgress.showFailStatus(with: "请填写密码")
+            return
+        }
+        
+        let parameters = ["user": user,
+                          "pass": pwdView.textField.text!.md5,
+                          "token": userModel.token,
+                          "yzm": userModel.yzm] as [String : Any]
+        let urlPath: String?
+        if vcType == .register {
+            urlPath = kUrl_Register
+        }else {
+            urlPath = kUrl_ForgetPWD
+        }
+        
+        JSProgress.showBusy()
+        
+        NetWorksManager.requst(with: urlPath!, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                if self?.vcType == .register {  //  登录
+                    UserManager.shareManager.userModel = UserModel(with: (jsonData?["data"])!)
+                    UserManager.shareManager.isLogin = true
+                    if let userDic = jsonData?["data"].dictionaryObject {
+                        Utils.setAsynchronous(userDic, withKey: kSavedUser)
+                    }
+//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
+                    self?.navigationController?.dismiss(animated: true, completion: nil)
+                }else { //  修改密码
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
+                
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+        
     }
 
 }

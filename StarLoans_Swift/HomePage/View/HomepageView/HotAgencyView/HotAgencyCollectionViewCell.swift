@@ -299,3 +299,13 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
     }
     
 }
+
+extension HotAgencyCollectionViewCell {
+    func setHotAgencyData(with cellModel: ProductAgencyModel) {
+        topCenterLB.text = cellModel.product
+        centerPriceLB.text = cellModel.quota
+        lbContentLb.text = cellModel.return_commission
+        cbContentLb.text = cellModel.claim_amount
+        rbContentLb.text = String(cellModel.leader_number)
+    }
+}

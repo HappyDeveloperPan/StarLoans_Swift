@@ -10,6 +10,18 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
+    public func setTopLine(with isHidden: Bool) {
+        let navBar = navigationController?.navigationBar
+        if isHidden {
+            navBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            navBar?.shadowImage = UIImage()
+        }else {
+            navBar?.setBackgroundImage(nil, for: .default)
+            navBar?.shadowImage = nil
+        }
+    }
+    
     public func setNavigationBarConfig() {
         let navBar = navigationController?.navigationBar
         navBar?.barStyle = .default
@@ -18,6 +30,7 @@ extension UIViewController {
         navBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navBar?.shadowImage = UIImage()
         navBar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor:kTitleColor]
+
     }
 }
 

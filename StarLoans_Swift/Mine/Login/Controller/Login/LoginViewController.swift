@@ -18,9 +18,8 @@ class LoginViewController: UIViewController {
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = ""
         view.backgroundColor = .white
-        setNavigationBarConfig()
+//        setNavigationBarConfig()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(callback))
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: registerBtn)
     }
@@ -153,6 +152,7 @@ class LoginViewController: UIViewController {
 //MARK: - 数据处理部分
 extension LoginViewController {
     
+    ///用户登录
     @objc func login() {
         
         guard phoneView.textField.text?.lengthOfBytes(using: .utf8) != 0 else {
@@ -163,22 +163,30 @@ extension LoginViewController {
             JSProgress.showFailStatus(with: "请输入密码")
             return
         }
+        let parameters = ["user": phoneView.textField.text!,
+                          "pass": pwdView.textField.text!.md5,] as [String : Any]
         
         JSProgress.showBusy()
         
-        //登录逻辑
-        LoginViewModel.login(with: phoneView.textField.text!, password: pwdView.textField.text!, success: { [weak self] (userModel) in
+        NetWorksManager.requst(with: kUrl_Login, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
             
             JSProgress.hidden()
             
-            if userModel.resultnumber == 200 {
+            if jsonData?["status"] == 200 {
+                UserManager.shareManager.userModel = UserModel(with: (jsonData?["data"])!)
+                UserManager.shareManager.isLogin = true
+                if let userDic = jsonData?["data"].dictionaryObject {
+                    Utils.setAsynchronous(userDic, withKey: kSavedUser)
+                }
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
                 self?.navigationController?.dismiss(animated: true, completion: nil)
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
             }
-            
-        }) { (error) in
-            
-            JSProgress.hidden()
-            JSProgress.showFailStatus(with: "登录失败")
         }
     }
     

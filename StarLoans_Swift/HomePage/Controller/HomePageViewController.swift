@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 
 fileprivate let IMAGE_HEIGHT:CGFloat = 200
 fileprivate let NAVBAR_COLORCHANGE_POINT:CGFloat = IMAGE_HEIGHT - CGFloat(64 * 2)
@@ -91,6 +91,14 @@ class HomePageViewController: UIViewController {
         return hotAgencyView
     }()
     
+    ///中部广告栏
+    lazy var centerAdverView: UIImageView = { [unowned self] in
+        let centerAdverView = UIImageView()
+        self.mainView.addSubview(centerAdverView)
+        centerAdverView.backgroundColor = kLineColor
+        return centerAdverView
+    }()
+    
     ///急速抢单
     lazy var quickRobView: QuickRobView = { [unowned self] in
         let quickRobView = QuickRobView()
@@ -125,8 +133,10 @@ class HomePageViewController: UIViewController {
                                     "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
                                     "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
     
+    var topBannerLocalArr: Array<String> = ["WechatIMG20", "WechatIMG20", "WechatIMG20"]
+//    var topBannerArr: [BannerModel] = [BannerModel]()
     ///视频栏数据
-    
+    var hotVideoArr: [HomePageModel]?
     
     //MARK: - 生命周期
     override func viewDidLoad() {
@@ -134,14 +144,18 @@ class HomePageViewController: UIViewController {
         view.backgroundColor = UIColor.white
         automaticallyAdjustsScrollViewInsets = false
 //        edgesForExtendedLayout = .top
-        //获取广告数据刷新界面
-        topAdBannerView.serverImgArray = adverList
+        topAdBannerView.localImgArray = topBannerLocalArr
+        
+        //刷新主界面数据
+        getTopBannerData()
+        getVideoData()
+        getHotProductData()
+        getBottomBannerData()
+        getHotQuickRobData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-//        navigationController?.navigationBar.isHidden = true
-//        navigationController?.setNavigationBarHidden(true, animated: true)
         topAdBannerView.isAutoScroll = true
         UIApplication.shared.statusBarStyle = statusBarColor
         
@@ -224,13 +238,21 @@ class HomePageViewController: UIViewController {
             make.top.equalTo(quickRobView.snp.bottom).offset(8)
             make.left.right.equalToSuperview()
             make.size.equalTo(CGSize(width: kScreenWidth, height: 206))
-            
+
         }
         partnerPlanView.layoutIfNeeded()
         
+        ///中部广告栏
+        centerAdverView.snp.makeConstraints { (make) in
+            make.top.equalTo(partnerPlanView.snp.bottom).offset(8)
+            make.left.right.equalToSuperview()
+            make.size.equalTo(CGSize(width: kScreenWidth, height: 120))
+        }
+        centerAdverView.layoutIfNeeded()
+        
         ///消息栏
         infoView.snp.makeConstraints { (make) in
-            make.top.equalTo(partnerPlanView.snp.bottom).offset(8)
+            make.top.equalTo(centerAdverView.snp.bottom).offset(8)
             make.left.right.equalToSuperview()
             make.size.equalTo(CGSize(width: kScreenWidth, height: 30))
         }
@@ -252,8 +274,6 @@ class HomePageViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
-//        navigationController?.navigationBar.isHidden = false
-//        navigationController?.setNavigationBarHidden(false, animated: true)
         topAdBannerView.isAutoScroll = false
         UIApplication.shared.statusBarStyle = .default
     }
@@ -262,6 +282,107 @@ class HomePageViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+}
+
+//MARK: - 数据处理
+extension HomePageViewController {
+    ///获取顶部广告栏
+    func getTopBannerData() {
+        NetWorksManager.requst(with: kUrl_HomePageTopBanner, type: .post, parameters: nil) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var bannerArr = [String]()
+//                for dict in (jsonData?["data"].array)! {
+//                    let bannerModel = BannerModel(with: dict)
+//                    bannerArr.append(bannerModel.image)
+//                }
+                for index in 0...2 {
+                    if !(jsonData!["data"][index].isEmpty) {
+                        let bannerModel = BannerModel(with: jsonData!["data"][index])
+                        bannerArr.append(bannerModel.image)
+                    }else {
+                        bannerArr.append("")
+                    }
+                }
+                self?.topAdBannerView.serverImgArray = bannerArr
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    ///获取热门视频
+    func getVideoData() {
+        NetWorksManager.requst(with: kUrl_HotVideo, type: .post, parameters: nil) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var videoArr = [HomePageModel]()
+                for dict in (jsonData?["data"].array)! {
+                    videoArr.append(HomePageModel(with: dict))
+                }
+                self?.videoView.videoArr = videoArr
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    
+    ///获取热门产品
+    func getHotProductData() {
+        NetWorksManager.requst(with: kUrl_HotProduct, type: .post, parameters: nil) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellArr = [ProductAgencyModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellArr.append(ProductAgencyModel(with: dict))
+                }
+                self?.hotAgencyView.cellDataArr = cellArr
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    ///中部广告页
+    func getBottomBannerData() {
+        NetWorksManager.requst(with: kUrl_BottomBanner, type: .post, parameters: nil) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                let bannerModel = BannerModel(with: jsonData!["data"][0])
+                self?.centerAdverView.setImage(with: bannerModel.image)
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    ///热门急速抢单
+    func getHotQuickRobData() {
+        NetWorksManager.requst(with: kUrl_HotQuickRob, type: .post, parameters: nil) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellArr = [ClientInfoModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellArr.append(ClientInfoModel(with: dict))
+                }
+                self?.quickRobView.cellArr = cellArr
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
 }
 
 //MARK: - 滚动代理
@@ -274,13 +395,11 @@ extension HomePageViewController: UIScrollViewDelegate {
         {
             let alpha = (offsetY - NAVBAR_COLORCHANGE_POINT) / CGFloat(64)
             navView.alpha = alpha
-//            UIApplication.shared.statusBarStyle = .lightContent
             statusBarColor = .lightContent
         }
         else
         {
             navView.alpha = 0
-//            UIApplication.shared.statusBarStyle = .default
             statusBarColor = .default
         }
     }
@@ -290,11 +409,11 @@ extension HomePageViewController: UIScrollViewDelegate {
 extension HomePageViewController: TopAdverViewDelegate {
     /// 点击图片回调
     func topAdverViewDidSelect(at index: Int, cycleScrollView: WRCycleScrollView) {
-        print("点击了第\(index+1)个图片")
+//        print("点击了第\(index+1)个图片")
     }
     /// 图片滚动回调
     func topAdverViewDidScroll(to index: Int, cycleScrollView: WRCycleScrollView) {
-        print("滚动到了第\(index+1)个图片")
+//        print("滚动到了第\(index+1)个图片")
     }
 }
 
@@ -310,6 +429,9 @@ extension HomePageViewController: FunctionViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         case 4:
             let vc = SignInViewController.loadStoryboard()
+            navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            let vc = MessageReadViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 6:
             let vc = VideoCenterViewController()

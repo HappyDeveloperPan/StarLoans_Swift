@@ -8,30 +8,52 @@
 
 import UIKit
 
-class MessageTableViewCell: UITableViewCell {
+class MessageTableViewCell: UITableViewCell, RegisterCellOrNib {
 
     @IBOutlet weak var messImageView: UIImageView!
     @IBOutlet weak var readNumber: UILabel!
     @IBOutlet weak var contentLB: UILabel!
     @IBOutlet weak var timeLB: UILabel!
     
+    lazy var bottomLine: UIView = { [unowned self] in
+        let bottomLine = UIView()
+        contentView.addSubview(bottomLine)
+        bottomLine.backgroundColor = kLineColor
+        return bottomLine
+    }()
+    
     //MARK: - 生命周期
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
         
-        let attribute = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
-        let lableSize = contentLB.text?.boundingRect(with: CGSize(width: contentLB.frame.size.width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: attribute, context: nil).size
-        contentLB.frame = CGRect(x: contentLB.frame.origin.x, y: contentLB.frame.origin.y, width: contentLB.frame.size.width, height: (lableSize?.height)!)
+//        let attribute = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
+//        let lableSize = contentLB.text?.boundingRect(with: CGSize(width: contentLB.frame.size.width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: attribute, context: nil).size
+//        contentLB.frame = CGRect(x: contentLB.frame.origin.x, y: contentLB.frame.origin.y, width: contentLB.frame.size.width, height: (lableSize?.height)!)
         contentLB.numberOfLines = 2
         contentLB.sizeToFit()
-        contentLB.text = "时刻发挥闪电发货后开始疯狂就是放假了时间了房价栏数据发了时间了房价类似纠纷时间浪费经历是放假了螺蛳粉逻辑是否了解老司机"
+//        contentLB.text = "时刻发挥闪电发货后开始疯狂就是放假了时间了房价栏数据发了时间了房价类似纠纷时间浪费经历是放假了螺蛳粉逻辑是否了解老司机"
+    }
+    
+    override func layoutSubviews() {
+        super .layoutSubviews()
+        bottomLine.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(0.5)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+}
+
+extension MessageTableViewCell {
+    func setMessageReadData(with cellData: MessageReadModel) {
+        messImageView.setImage(with: cellData.image_video)
+        contentLB.text = cellData.title
+        readNumber.text = String(cellData.reading_number)
+        timeLB.text = cellData.date_time
+    }
 }

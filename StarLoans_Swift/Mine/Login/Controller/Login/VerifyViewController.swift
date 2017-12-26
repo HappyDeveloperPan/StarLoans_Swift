@@ -19,6 +19,7 @@ private let kHeight = 45
 class VerifyViewController: UIViewController {
     
     var vcType : vcType = .register
+    var userModel: UserModel = UserModel()
 
     //MARK: - 懒加载
     lazy var phoneView: LoginInputView = { [unowned self] in
@@ -40,6 +41,7 @@ class VerifyViewController: UIViewController {
         verCodeView.textField.placeholder = "请输入验证码"
         verCodeView.textField.keyboardType = .numberPad
         verCodeView.rightImage = .verCode
+        verCodeView.delegate = self
         return verCodeView
         }()
     
@@ -116,27 +118,48 @@ extension VerifyViewController {
             return
         }
         
-        JSProgress.showBusy()
+        guard judgeVerCode() else {
+            JSProgress.showFailStatus(with: "验证码错误")
+            return
+        }
         
-        //FIXME: - 测试用, 以后删除
         let passwordVc = PasswordViewController()
         passwordVc.vcType = vcType
+        passwordVc.userModel = userModel
+        passwordVc.user = phoneView.textField.text!
         navigationController?.pushViewController(passwordVc, animated: true)
-        ///
         
-        LoginViewModel.phoneVerify(with: phoneView.textField.text!, verCode: verCodeView.textField.text!, success: { [weak self] (userModel) in
-            
-            JSProgress.hidden()
-            
-            let passwordVc = PasswordViewController()
-            passwordVc.vcType = (self?.vcType)!
-            self?.navigationController?.pushViewController(passwordVc, animated: true)
-            
-        }) { (error) in
-            
-            JSProgress.hidden()
-            JSProgress.showFailStatus(with: "验证失败")
-            
+    }
+    
+    ///判断验证码是否输入正确
+    func judgeVerCode() -> Bool {
+        return (verCodeView.textField.text == userModel.yzm) ? true : false
+    }
+}
+
+extension VerifyViewController: LoginInputViewDelegate {
+    ///获取验证码
+    func verCodeBtnClick(clickHandler: (Bool) -> ()) {
+        guard (phoneView.textField.text?.judgeMobileNumber())! else {
+            JSProgress.showFailStatus(with: "请输入正确的手机号")
+            return
+        }
+        clickHandler(true)
+        
+        let parameters = ["user": phoneView.textField.text!]
+        
+        NetWorksManager.requst(with: kUrl_GetCode, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+
+            if jsonData?["status"] == 200 {
+                self?.userModel = UserModel(with: (jsonData?["data"])!)
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
         }
     }
+
 }

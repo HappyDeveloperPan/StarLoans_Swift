@@ -199,7 +199,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="carInfoLB" destination="uFK-7U-Cba" id="veD-cM-N1b"/>
                 <outlet property="cbTypeBtn" destination="QGM-6r-7z7" id="Ew6-md-hI3"/>
+                <outlet property="houseInfoLB" destination="31s-h4-Kv7" id="gQE-eP-4Qb"/>
+                <outlet property="incomeLB" destination="6Yq-to-MSg" id="Hd7-wo-rbO"/>
                 <outlet property="lbTypeBtn" destination="aTy-Dc-5gP" id="7Sl-66-oxB"/>
                 <outlet property="moneyLB" destination="7Ut-yk-fqa" id="W0t-xV-ry1"/>
                 <outlet property="needDayBtn" destination="fZ9-lu-xcQ" id="ZfO-z2-ZIU"/>

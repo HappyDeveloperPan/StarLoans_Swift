@@ -20,7 +20,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         
         layer.cornerRadius = 6
         layer.shadowColor = UIColor.RGB(with: 205, green: 205, blue: 205).cgColor//shadowColor阴影颜色
-        layer.shadowOffset = CGSize(width: 0, height: 0)//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
+        layer.shadowOffset = CGSize(width: 2, height: 2)//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
         layer.shadowOpacity = 0.5//阴影透明度，默认0
         layer.shadowRadius = 2//阴影半径，默认3
         layer.masksToBounds = false//   不设置显示不出阴影

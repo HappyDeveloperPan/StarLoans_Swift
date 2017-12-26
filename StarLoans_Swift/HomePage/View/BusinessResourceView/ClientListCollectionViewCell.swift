@@ -16,16 +16,17 @@ class ClientListCollectionViewCell: UICollectionViewCell {
     //MARK: - 懒加载
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.itemSize = CGSize(width: kScreenWidth - 32, height: 160)
         layout.minimumInteritemSpacing = cellSpace
         layout.sectionInset = UIEdgeInsets(top: cellSpace, left: cellSpace, bottom: cellSpace, right: cellSpace)
-        layout.scrollDirection = .vertical
-        layout.footerReferenceSize = CGSize(width: kScreenWidth, height: 165)
+//        layout.scrollDirection = .vertical
+//        layout.footerReferenceSize = CGSize(width: kScreenWidth, height: 165)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         self.contentView.addSubview(collectionView)
         collectionView.backgroundColor = kHomeBackColor
-        collectionView.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
-        collectionView.register(ClientListFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: footerViewID)
+//        collectionView.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
+//        collectionView.register(ClientListFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: footerViewID)
+        collectionView.pan_registerCell(cell: HotResourceCell.self)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
@@ -58,28 +59,29 @@ extension ClientListCollectionViewCell: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ClientListDetailCollectionViewCell
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ClientListDetailCollectionViewCell
+        let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as HotResourceCell
 //        cell.setCellData(with: indexPath.row)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! ClientListDetailCollectionViewCell
-        cell.backgroundColor = UIColor.red
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.red.cgColor
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! ClientListDetailCollectionViewCell
-        cell.layer.borderWidth = 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        var footerView:UICollectionReusableView?
-        if kind == UICollectionElementKindSectionFooter {
-            footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerViewID, for: indexPath) as! ClientListFooterView
-        }
-        return footerView!
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as! ClientListDetailCollectionViewCell
+//        cell.backgroundColor = UIColor.red
+//        cell.layer.borderWidth = 1
+//        cell.layer.borderColor = UIColor.red.cgColor
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as! ClientListDetailCollectionViewCell
+//        cell.layer.borderWidth = 0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        var footerView:UICollectionReusableView?
+//        if kind == UICollectionElementKindSectionFooter {
+//            footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerViewID, for: indexPath) as! ClientListFooterView
+//        }
+//        return footerView!
+//    }
 }

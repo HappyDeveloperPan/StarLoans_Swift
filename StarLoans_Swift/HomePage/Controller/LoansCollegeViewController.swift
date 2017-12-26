@@ -10,17 +10,29 @@ import UIKit
 
 fileprivate let collegeCellID = "LoansCollegeCollectionViewCell"
 
+enum loansCollegeType: Int {
+    case newcomerGuide = 0
+    case skilltrain = 1
+    case customerstrategy = 2
+}
+
 //MARK: - 界面部分
 class LoansCollegeViewController: UIViewController {
-
+    
+//    enum type: Int {
+//        case newcomerGuide = 0
+//        case skilltrain = 1
+//        case customerstrategy = 2
+//    }
+    
     //MARK: - 可操作数据
     ///广告栏数据
     var adverList: Array<String> = ["banner-hangyeziyuan", "banner-hangyeziyuan", "banner-hangyeziyuan"]
-    
+    var identifierDic = [String: String]()
     //MARK: - 懒加载
     ///顶部广告栏
     lazy var topAdBannerView: TopAdverView = { [unowned self] in
-        let topAdBannerView = TopAdverView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 235))
+        let topAdBannerView = TopAdverView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 200))
         self.view.addSubview(topAdBannerView)
         topAdBannerView.adverDelegate = self
         return topAdBannerView
@@ -41,9 +53,9 @@ class LoansCollegeViewController: UIViewController {
         let segmentView = SMSegmentView(frame: .zero, dividerColour: UIColor.RGB(with: 210, green: 210, blue: 210), dividerWidth: 0, segmentAppearance: appearance)
         self.view.addSubview(segmentView)
         segmentView.backgroundColor = UIColor.white
+        segmentView.addSegmentWithTitle("新手指引", onSelectionImage: nil, offSelectionImage: nil)
         segmentView.addSegmentWithTitle("技能培训", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.addSegmentWithTitle("产品介绍", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.addSegmentWithTitle("职业培训", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("获客攻略", onSelectionImage: nil, offSelectionImage: nil)
         segmentView.selectedSegmentIndex = 0
         segmentView.addTarget(self, action: #selector(selectSegmentInSegmentView(segmentView:)), for: .valueChanged)
         return segmentView
@@ -73,8 +85,6 @@ class LoansCollegeViewController: UIViewController {
         super.viewDidLoad()
         title = "贷款学院"
         view.backgroundColor = UIColor.white
-        setNavigationBarConfig()
-        
         topAdBannerView.localImgArray = adverList
     }
     
@@ -112,7 +122,32 @@ class LoansCollegeViewController: UIViewController {
         let index = IndexPath(item: segmentView.selectedSegmentIndex, section: 0)
         collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
     }
+}
 
+//MARK: - 数据处理部分
+extension LoansCollegeViewController {
+    ///获取cell数据
+    func getLoansCollegeData(with type: loansCollegeType ,cell: LoansCollegeCollectionViewCell) {
+        
+        let parameters = ["type": type.rawValue + 1] as [String: Any]
+        
+        NetWorksManager.requst(with: kUrl_LoanCollege, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellArr = [LoansCollegeModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellArr.append(LoansCollegeModel(with: dict))
+                }
+                cell.cellArr = cellArr
+                cell.collectionView.endHeaderRefresh()
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
 }
 
 //MARK: - TopAdverView代理
@@ -134,7 +169,9 @@ extension LoansCollegeViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collegeCellID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collegeCellID, for: indexPath) as! LoansCollegeCollectionViewCell
+        cell.delegate = self
+        cell.type = loansCollegeType(rawValue: indexPath.row)!
         return cell
     }
 }
@@ -145,5 +182,12 @@ extension LoansCollegeViewController: UIScrollViewDelegate {
         if scrollView == collectionView {
             segmentView.selectedSegmentIndex = Int(collectionView.contentOffset.x / kScreenWidth)
         }
+    }
+}
+
+//MARK: - LoansCollegeCollectionViewCelld代理
+extension LoansCollegeViewController: LoansCollegeCollectionViewCellDelegate {
+    func reloadCellData(with cell: LoansCollegeCollectionViewCell) {
+        getLoansCollegeData(with: cell.type, cell: cell)
     }
 }

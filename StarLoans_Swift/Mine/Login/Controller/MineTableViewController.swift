@@ -8,6 +8,8 @@
 
 import UIKit
 
+public let kReloadUserData = "reloadUserData"
+
 class MineTableViewController: UITableViewController {
 
     //MARK: - 控件加载
@@ -37,10 +39,12 @@ class MineTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-
+        
         setupConfig()
         setupIndentCellUI()
         setupendShopCellUI()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUserData), name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
     }
     
     //基本配置
@@ -130,12 +134,23 @@ class MineTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        if UserManager.shareManager.isLogin {
+            reloadUserData()
+        }
+    }
+    
     override func viewWillLayoutSubviews() {
         super .viewWillLayoutSubviews()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Table view data source
@@ -162,8 +177,8 @@ class MineTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = TestViewController.loadStoryboard()
-//        navigationController?.pushViewController(vc, animated: true)
+        let vc = AccountViewController.loadStoryboard()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - Method
@@ -229,4 +244,11 @@ class MineTableViewController: UITableViewController {
     }
     */
 
+}
+
+//MARK: - 数据处理部分
+extension MineTableViewController {
+    @objc func reloadUserData() {
+        userNameBtn.setTitle(UserManager.shareManager.userModel?.user, for: .normal)
+    }
 }

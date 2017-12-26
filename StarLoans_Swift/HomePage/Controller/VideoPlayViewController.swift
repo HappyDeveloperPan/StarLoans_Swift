@@ -13,6 +13,8 @@ class VideoPlayViewController: UIViewController {
     
     weak var navController: UINavigationController?
     
+    var videoModel: VideoModel = VideoModel()
+    
     lazy var player: BMPlayer = { [unowned self] in
         var controller: BMPlayerControlView? = nil
         let player = BMPlayer(customControlView: controller)
@@ -30,6 +32,7 @@ class VideoPlayViewController: UIViewController {
         }
 //        let asset = BMPlayerResource(url: URL(string: "http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4")!,name: "原来你我相爱")
         let asset = BMPlayerResource(url: URL(string: "http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4")!, name: "原来你我相爱", cover: nil, subtitle: nil)
+//        let asset = BMPlayerResource(url: URL(string: videoModel.video_address)!, name: "原来你我相爱", cover: nil, subtitle: nil)
         player.setVideo(resource: asset)
     }
     

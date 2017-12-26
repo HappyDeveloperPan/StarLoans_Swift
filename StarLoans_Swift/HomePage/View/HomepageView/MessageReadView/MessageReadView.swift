@@ -37,7 +37,7 @@ class MessageReadView: UIView {
         tableView.backgroundColor = kHomeBackColor
         tableView.register(UINib(nibName: messageReadCellID, bundle: nil), forCellReuseIdentifier: messageReadCellID)
         tableView.isScrollEnabled = false
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         return tableView

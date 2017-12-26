@@ -17,4 +17,12 @@ final class UserManager: NSObject {
     private override init() {
         print("UserManager初始化一次")
     }
+    
+    //退出登录
+    func logOut() {
+        UserManager.shareManager.userModel = nil
+        UserManager.shareManager.isLogin = false
+        Utils.clearAsynchronous(withKey: kSavedUser)
+    }
+    
 }

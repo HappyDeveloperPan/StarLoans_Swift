@@ -14,12 +14,19 @@ fileprivate let cellHeight: CGFloat = 300
 fileprivate let cellID = "HotAgencyCollectionViewCell"
 
 class HotAgencyView: UIView {
+    //MARK: - 可操作数据
     var productList: Array<String> = ["http://p.lrlz.com/data/upload/mobile/special/s252/s252_05471521705899113.png",
                                       "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
                                       "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
-    
+    var cellDataArr: [ProductAgencyModel] = [ProductAgencyModel]() {
+        didSet {
+            productCollectionView.reloadData()
+        }
+    }
+    //TODO: - 如果服务器关闭了, 返回数量为零会造成奔溃
     fileprivate var itemsInSection: Int {
-        return productList.count * 50
+//        return cellDataArr.count * 50
+        return cellDataArr.count == 0 ? 150: cellDataArr.count * 50
     }
     
     fileprivate var contentOffsetX: CGFloat = 0
@@ -122,6 +129,13 @@ extension HotAgencyView: UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! HotAgencyCollectionViewCell
+        let cellModel: ProductAgencyModel
+        if cellDataArr.count == 0 {
+            cellModel = ProductAgencyModel()
+        }else {
+            cellModel = cellDataArr[indexPath.item%cellDataArr.count]
+        }
+        cell.setHotAgencyData(with: cellModel)
         return cell
     }
     
@@ -170,7 +184,7 @@ extension HotAgencyView: UIScrollViewDelegate {
 //        if fabs(scrollView.contentOffset.x - contentOffsetX) > 25 {
 //            scrollOnePage(with: scrollView)
 //        }
-//        scrollOnePage(with: scrollView)
+        scrollOnePage(with: scrollView)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView)

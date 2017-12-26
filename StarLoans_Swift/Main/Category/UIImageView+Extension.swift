@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIImageView {
     /// 设置圆形图片
@@ -52,5 +53,11 @@ extension UIImageView {
         context.strokePath()
         
         self.image = UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+    ///获取网络图片
+    func setImage(with url: String) {
+//        kf.setImage(with: URL(string: url)!)
+        kf.setImage(with: URL(string: url))
     }
 }

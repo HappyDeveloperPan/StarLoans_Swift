@@ -24,13 +24,16 @@ fileprivate let cellID = "VideoCollectionViewCell"
 
 class VideoView: UIView {
 
-    //MARK: - 懒加载
-    var adverList: Array<String> = ["http://p.lrlz.com/data/upload/mobile/special/s252/s252_05471521705899113.png",
-                                    "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
-                                    "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
+    //MARK: - 可操作数据
+    var videoArr: [HomePageModel] = [HomePageModel](){
+        didSet {
+            collectionView?.reloadData()
+        }
+    }
     //真实item数量
     var itemsInSection: Int {
-        return adverList.count * 20
+//        return adverList.count * 20
+        return videoArr.count == 0 ? 60: videoArr.count * 20
     }
     
     var contentOffsetX: CGFloat = 0
@@ -88,7 +91,9 @@ class VideoView: UIView {
 }
 
 extension VideoView {
-    
+    func reloadData(with videoArr: Array<Any>) {
+        
+    }
 }
 
 //MARK: - UICollectionView代理
@@ -99,12 +104,29 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! VideoCollectionViewCell
-        cell.leftPredictLB.text = "图片\(indexPath.item % itemsInSection)"
+        let videoModel: HomePageModel
+        if videoArr.count == 0 {
+            videoModel = HomePageModel()
+        }else {
+            videoModel = videoArr[indexPath.item % videoArr.count]
+        }
+        cell.bottomLB.text = videoModel.videoTitle
+        cell.backImg.image = #imageLiteral(resourceName: "banner-hangyeziyuan")
+        cell.backImg.image?.cornerImage(size: (cell.backImg.image?.size)!, radius: 4, fillColor: kHomeBackColor, completion: { (image) in
+            cell.backImg.image = image
+        })
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("被点击了")
+        let vc = VideoDetailViewController.loadStoryboard()
+        vc.videoID = videoArr[indexPath.item % videoArr.count].video_id
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
 }
 
@@ -112,7 +134,6 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
 extension VideoView: UIScrollViewDelegate {
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         contentOffsetX = scrollView.contentOffset.x
-        print(contentOffsetX)
     }
     
     //滑动减速时触发的代理，当用户用力滑动或者清扫时触发

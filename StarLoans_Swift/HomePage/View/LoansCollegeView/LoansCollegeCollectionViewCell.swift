@@ -7,10 +7,24 @@
 //
 
 import UIKit
+import MJRefresh
 
 fileprivate let cellID = "TeachDetailCollectionViewCell"
 
-class LoansCollegeCollectionViewCell: UICollectionViewCell {
+protocol LoansCollegeCollectionViewCellDelegate: class {
+    func reloadCellData(with cell: LoansCollegeCollectionViewCell)
+}
+
+class LoansCollegeCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
+    
+    //MARK: - 可操作数据
+    weak var delegate: LoansCollegeCollectionViewCellDelegate?
+    var type: loansCollegeType = .newcomerGuide
+    var cellArr: [LoansCollegeModel] = [LoansCollegeModel]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     //MARK: - 懒加载
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +47,11 @@ class LoansCollegeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = kHomeBackColor
+        
+        collectionView.addHeaderRefresh { [weak self] in
+            self?.delegate?.reloadCellData(with: self!)
+        }
+        collectionView.beginHeaderRefresh()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,12 +69,13 @@ class LoansCollegeCollectionViewCell: UICollectionViewCell {
 
 extension LoansCollegeCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cellArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! TeachDetailCollectionViewCell
-        cell.setCellData(with: indexPath.row)
+        let cellModel = cellArr[indexPath.row]
+        cell.setCellData(with: cellModel)
         return cell
     }
     

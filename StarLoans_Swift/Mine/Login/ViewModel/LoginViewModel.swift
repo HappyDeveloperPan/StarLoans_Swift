@@ -7,10 +7,11 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class LoginViewModel: NSObject {
+    
+    var userModel:UserModel? //     用户数据
     
     /// 用户登录
     ///
@@ -24,7 +25,7 @@ class LoginViewModel: NSObject {
         let urlString = "http://www.yituinfo.cn/Patrolling/interface/leader/query/leaderLogin.do"
         let parameters = ["phoneNumber": phoneNumber,
                           "password": password ]
-    
+        
         NetWorksManager.requst(with: urlString, type: .post, parameters: parameters, success: { (response) in
             //当响应成功是，使用临时变量value接受服务器返回的信息并判断是否为[String: AnyObject]类型 如果是那么将其传给其定义方法中的success
             if let value = response as? [String: AnyObject] {
@@ -34,6 +35,31 @@ class LoginViewModel: NSObject {
             }
         }) { (error) in
             failture(error)
+        }
+    }
+    
+    
+    /// 获取验证码
+    ///
+    /// - Parameters:
+    ///   - phoneNumber: 手机号
+    ///   - success: 成功回调
+    ///   - failture: 失败回调
+    class func getVerCode(with phoneNumber: String, success: @escaping (_ userModel: UserModel)->(), failture: @escaping  (_ error: Error)->()) {
+        
+        let parameters = ["user": phoneNumber]
+        
+        NetWorksManager.requst(with: kUrl_GetCode, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData!["status"] == 200 {
+               let userModel  = UserModel(with: jsonData!["Data"])
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: jsonData!["msg"].stringValue)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            
         }
     }
     

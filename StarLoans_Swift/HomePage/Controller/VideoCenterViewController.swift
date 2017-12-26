@@ -10,6 +10,12 @@ import UIKit
 
 fileprivate let cellID = "VideoCenterCollectionViewCell"
 
+enum VideoType: Int {
+    case hotVideo = 0
+    case productVideo = 1
+    case showVideo = 2
+}
+
 class VideoCenterViewController: BaseViewController {
     
     //MARK: - 懒加载
@@ -89,6 +95,33 @@ class VideoCenterViewController: BaseViewController {
     }
 }
 
+//MARK: - 数据处理部分
+extension VideoCenterViewController {
+    ///获取cell数据
+    func getVideoData(with type: VideoType ,cell: VideoCenterCollectionViewCell) {
+        
+        let parameters = ["video_type": type.rawValue + 1,
+                          "page": 1] as [String: Any]
+        
+        NetWorksManager.requst(with: kUrl_VideoCenter, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellDataArr = [VideoModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellDataArr.append(VideoModel(with: dict))
+                }
+                cell.cellDataArr = cellDataArr
+                cell.collectionView.endHeaderRefresh()
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+}
+
 //MARK: - UICollectionView代理
 extension VideoCenterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -96,7 +129,9 @@ extension VideoCenterViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! VideoCenterCollectionViewCell
+        cell.delegate = self
+        cell.type = VideoType(rawValue: indexPath.row)!
         return cell
     }
 }
@@ -107,6 +142,12 @@ extension VideoCenterViewController: UIScrollViewDelegate {
         if scrollView == collectionView {
             segmentView.selectedSegmentIndex = Int(collectionView.contentOffset.x / kScreenWidth)
         }
+    }
+}
+
+extension VideoCenterViewController: VideoCenterCellDelegate {
+    func reloadCellData(with cell: VideoCenterCollectionViewCell) {
+        getVideoData(with: cell.type, cell: cell)
     }
 }
 

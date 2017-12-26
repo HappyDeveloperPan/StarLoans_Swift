@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class NetWorksManager: NSObject {
     
@@ -25,14 +26,14 @@ class NetWorksManager: NSObject {
 //                                    "Accept": "text/javascript",
 //                                    "Accept": "text/html",
 //                                    "Accept": "text/plain"]
-        
+
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 15
         
-        print("url:\n\(url)")
-        print("parameters:\n\(parameters)")
+        print("url:\n\(url)\n")
+        print("parameters:\n\(parameters)\n")
 
-        manager.request(url, method: type, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+        manager.request(url, method: type, parameters: parameters, headers: headers).responseJSON { (response) in
             
             print("response: \n\(String(describing: response.result.value as? [String: AnyObject]))")
             
@@ -45,6 +46,44 @@ class NetWorksManager: NSObject {
             case .failure(let error):
                 print("error:\(error)")
                 failture(error)
+            }
+        }
+        
+    }
+    
+    
+    /// 接口请求
+    ///
+    /// - Parameters:
+    ///   - url: 请求地址
+    ///   - type: 请求类型
+    ///   - parameters: 请求参数
+    ///   - completionHandler: 数据回调
+    class func requst(with url: String, type: HTTPMethod, parameters: Dictionary<String , Any>?, completionHandler: @escaping (_ response : JSON?, _ error: Error?) -> ()) {
+        
+        let headers: HTTPHeaders = ["Accept": "application/json"]
+        //                                    "Accept": "text/javascript",
+        //                                    "Accept": "text/html",
+        //                                    "Accept": "text/plain"]
+        
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 15
+        
+        print("url:\n\(url)\n")
+        print("parameters:\n\(String(describing: parameters))\n")
+        
+        manager.request(url, method: type, parameters: parameters, headers: headers).responseJSON { (response) in
+            
+            print("response: \n\(String(describing: response.result.value as? [String: AnyObject]))")
+            
+            switch response.result {
+            case .success(let value):
+                if let responseObject = value as? [String: Any] {
+                    completionHandler(JSON(responseObject), nil)
+                }
+            case .failure(let error):
+                completionHandler(nil, error)
+                print("error:\(error)")
             }
         }
         

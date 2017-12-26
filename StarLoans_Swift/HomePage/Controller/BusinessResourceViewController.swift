@@ -43,8 +43,8 @@ class BusinessResourceViewController: UIViewController {
         let segmentView = SMSegmentView(frame: .zero, dividerColour: UIColor.RGB(with: 210, green: 210, blue: 210), dividerWidth: 0, segmentAppearance: appearance)
         self.view.addSubview(segmentView)
         segmentView.backgroundColor = UIColor.white
-        segmentView.addSegmentWithTitle("推单教学", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.addSegmentWithTitle("客户名单", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("进件教程", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("热门资源", onSelectionImage: nil, offSelectionImage: nil)
         segmentView.addSegmentWithTitle("爆款产品", onSelectionImage: nil, offSelectionImage: nil)
         segmentView.selectedSegmentIndex = 0
         segmentView.addTarget(self, action: #selector(selectSegmentInSegmentView(segmentView:)), for: .valueChanged)

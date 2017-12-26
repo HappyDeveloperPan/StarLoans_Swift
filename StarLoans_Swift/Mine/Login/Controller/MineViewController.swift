@@ -12,11 +12,6 @@ class MineViewController: BaseViewController, StoryboardLoadable {
     //MARK: - 控件
     @IBOutlet weak var containerView: UIView!
     
-    fileprivate let cellData:Array<Dictionary<String, Any>> = [["title":"信贷经理认证","rightImg":#imageLiteral(resourceName: "ICON-xindairenzhen")],
-                                                               ["title":"设置","rightImg":#imageLiteral(resourceName: "ICON-shezhi")],
-                                                               ["title":"常见问题v","rightImg":#imageLiteral(resourceName: "ICON-wenti")],
-                                                               ["title":"关于我们","rightImg":#imageLiteral(resourceName: "ICON-about")]]
-    
     weak var navController: UINavigationController?
     
     //MARK: - 生命周期

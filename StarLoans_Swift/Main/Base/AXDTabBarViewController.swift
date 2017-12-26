@@ -9,7 +9,7 @@
 import UIKit
 import ESTabBarController_swift
 
-public let kPresentLogin = "PresentLogin"
+public let kPresentLogin = "presentLogin"
 
 class AXDTabBarViewController: ESTabBarController{
 

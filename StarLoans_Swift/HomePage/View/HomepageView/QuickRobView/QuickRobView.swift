@@ -11,7 +11,19 @@ import UIKit
 fileprivate let robbingCell: String = "RobbingTableViewCell"
 fileprivate let ceshiCell: String = "CheshiTableViewCell"
 
+//protocol QuickRobViewDelegate: class {
+//    func reloadCellData()
+//}
+
 class QuickRobView: UIView {
+//    weak var delegate: QuickRobViewDelegate?
+    //MARK: - 可操作数据
+    var cellArr: [ClientInfoModel] = [ClientInfoModel]() {
+        didSet {
+            
+            tableView.reloadData()
+        }
+    }
     //MARK: - 懒加载
     lazy var topMoreBtn: UIButton = { [unowned self] in
         let topMoreBtn = UIButton()
@@ -70,7 +82,7 @@ class QuickRobView: UIView {
 //MARK: - UITableView代理
 extension QuickRobView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return cellArr.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,7 +105,7 @@ extension QuickRobView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: robbingCell, for: indexPath) as! RobbingTableViewCell
-//        let cell = tableView.dequeueReusableCell(withIdentifier: ceshiCell, for: indexPath) as! CheshiTableViewCell
+        cell.setQuickRobData(with: cellArr[indexPath.section])
         return cell
     }
 }

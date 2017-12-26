@@ -20,14 +20,19 @@ class VideoCenterDetailCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.white
-        
-        //FIXME: - 临时背景图
-        backImg.image = #imageLiteral(resourceName: "banner-hangyeziyuan")
-        
         videoTypeLB.layer.backgroundColor = UIColor.RGB(with: 248, green: 225, blue: 225).cgColor
         videoTypeLB.layer.cornerRadius = videoTypeLB.height/2
-        
         readNumberLB.sizeToFit()
     }
 
+}
+
+extension VideoCenterDetailCollectionViewCell {
+    func setVideoData(with cellData: VideoModel) {
+        titleLB.text = cellData.video_title
+        videoTypeLB.text = cellData.getVideoType()
+        readNumberLB.text = String(cellData.video_view_count)
+        //FIXME: - 临时背景图
+        backImg.image = #imageLiteral(resourceName: "banner-hangyeziyuan")
+    }
 }

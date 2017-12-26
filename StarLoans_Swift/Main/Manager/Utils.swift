@@ -9,7 +9,7 @@
 import UIKit
 
 public class Utils {
-    //获取当前页面
+    ///获取当前页面
     public class func currentTopViewController() -> UIViewController? {
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController{
             return currentTopViewController(rootViewController: rootViewController)
@@ -31,5 +31,20 @@ public class Utils {
             return currentTopViewController(rootViewController: rootViewController.presentedViewController!)
         }
         return rootViewController
+    }
+    
+    ///数据持久化
+    class func setAsynchronous(_ object: Any, withKey key: String) {
+        UserDefaults.standard.set(object, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func clearAsynchronous(withKey key: String) {
+        UserDefaults.standard.removeObject(forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func getAsynchronousWithKey(_ key: String) -> Any {
+        return UserDefaults.standard.value(forKey: key) ?? 0
     }
 }

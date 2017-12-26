@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +16,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var allowRotation: Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        ///     自动登录
+        if let userDic = Utils.getAsynchronousWithKey(kSavedUser) as? Dictionary<String, Any>{
+            
+            UserManager.shareManager.userModel = UserModel(with: JSON(userDic))
+            
+            let parameters = ["token": UserManager.shareManager.userModel?.token] as [String : AnyObject]
+            
+            NetWorksManager.requst(with: kUrl_AutoLogin, type: .post, parameters: parameters, completionHandler: { (jsonData, error) in
+                if jsonData?["status"] == 200 {
+                    UserManager.shareManager.isLogin = true
+                    UserManager.shareManager.userModel = UserModel(with: jsonData!["data"])
+                }else {
+                    if error == nil {
+                        JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    }else {
+                        JSProgress.showFailStatus(with: "请求失败")
+                    }
+                }
+            })
+        }
+        
         window = UIWindow.init(frame: UIScreen.main.bounds)
-//        window?.rootViewController = JSTabBarViewController()
         window?.rootViewController = AXDTabBarViewController()
         window?.makeKeyAndVisible()
         setupGlobalConfig()
@@ -48,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         if allowRotation{
-//            return UIInterfaceOrientationMask(rawValue: UIInterfaceOrientationMask.RawValue(UInt8(UIInterfaceOrientationMask.landscapeLeft.rawValue) | UInt8(UIInterfaceOrientationMask.landscapeRight.rawValue) | UInt8(UIInterfaceOrientationMask.portrait.rawValue)))
             return [UIInterfaceOrientationMask.landscapeLeft, UIInterfaceOrientationMask.landscapeRight, UIInterfaceOrientationMask.portrait]
         }
         return UIInterfaceOrientationMask.portrait

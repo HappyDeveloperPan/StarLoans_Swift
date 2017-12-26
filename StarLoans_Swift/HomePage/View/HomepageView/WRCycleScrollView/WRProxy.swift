@@ -14,7 +14,7 @@ import UIKit
 
 // 图片资源
 enum ImgSource {
-    case SERVER(url:URL)
+    case SERVER(url:URL?)
     case LOCAL(name:String)
 }
 
@@ -49,7 +49,7 @@ struct Proxy
         if imgType == .SERVER
         {
             imgArray = array.map({ (urlStr) -> ImgSource in
-                return ImgSource.SERVER(url: URL(string: urlStr)!)
+                return ImgSource.SERVER(url: URL(string: urlStr))
             })
         }
         else

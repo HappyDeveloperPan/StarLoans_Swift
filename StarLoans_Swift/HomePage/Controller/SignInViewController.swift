@@ -13,7 +13,7 @@ fileprivate let kLabbleSpace = (kScreenWidth - 35.0*7) / 8
 fileprivate let dayArr = ["+5分", "未签到", "+5分", "+6分", "+7分", "+8分", "+9分"]
 fileprivate let dateArr = ["11.23", "昨天", "今天", "明天", "11.27", "11.28", "11.29"]
 
-class SignInViewController: UIViewController, StoryboardLoadable {
+class SignInViewController: BaseViewController, StoryboardLoadable {
 
     @IBOutlet weak var integralLB: UILabel!
     @IBOutlet weak var contiSignInLB: UILabel!
@@ -23,8 +23,8 @@ class SignInViewController: UIViewController, StoryboardLoadable {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "每日签到"
-        view.backgroundColor = UIColor.white
-        setNavigationBarConfig()
+//        view.backgroundColor = UIColor.white
+//        setNavigationBarConfig()
         createDayLB()
     }
     
@@ -101,4 +101,16 @@ class SignInViewController: UIViewController, StoryboardLoadable {
         todayintegralLB.text = "明日签到可领6积分"
     }
     
+}
+
+extension SignInViewController {
+    ///获取用户签到信息
+    func getSignInData() {
+        
+    }
+    
+    ///用户签到
+    func userSignIn() {
+        
+    }
 }

@@ -23,12 +23,10 @@ class HotAgencyView: UIView {
             productCollectionView.reloadData()
         }
     }
-    //TODO: - 如果服务器关闭了, 返回数量为零会造成奔溃
     fileprivate var itemsInSection: Int {
 //        return cellDataArr.count * 50
         return cellDataArr.count == 0 ? 150: cellDataArr.count * 50
     }
-    
     fileprivate var contentOffsetX: CGFloat = 0
     // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行 changeToFirstCycleCell 方法
     fileprivate var isLoadOver = false

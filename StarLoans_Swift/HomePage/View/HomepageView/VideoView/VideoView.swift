@@ -120,7 +120,13 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = VideoDetailViewController.loadStoryboard()
-        vc.videoID = videoArr[indexPath.item % videoArr.count].video_id
+        let videoModel: HomePageModel
+        if videoArr.count == 0 {
+            videoModel = HomePageModel()
+        }else {
+            videoModel = videoArr[indexPath.item % videoArr.count]
+        }
+        vc.videoID = videoModel.video_id
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

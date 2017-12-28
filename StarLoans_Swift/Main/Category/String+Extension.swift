@@ -9,7 +9,7 @@
 import UIKit
 
 extension String {
-
+    
     /// 获取高度计算
     ///
     /// - Parameters:
@@ -67,5 +67,17 @@ extension String {
         result.deinitialize()
         
         return String(format: hash as String)
+    }
+    
+    // 判断输入的字符串是否为数字，不含其它字符
+    
+    func isPurnInt() -> Bool {
+        
+        let scan: Scanner = Scanner(string: self)
+        
+        var val:Int = 0
+        
+        return scan.scanInt(&val) && scan.isAtEnd
+        
     }
 }

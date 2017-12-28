@@ -43,7 +43,6 @@ class MineTableViewController: UITableViewController {
         setupConfig()
         setupIndentCellUI()
         setupendShopCellUI()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadUserData), name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
     }
     

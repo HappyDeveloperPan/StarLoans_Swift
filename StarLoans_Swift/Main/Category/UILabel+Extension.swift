@@ -11,16 +11,7 @@ import CoreText
 
 
 extension UILabel {
-    func changeAlignmentRightandLeft() {
-//        let textSize: CGRect = text!.boundingRect(with: CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine, .usesFontLeading], attributes: [NSAttributedStringKey.font: font], context: nil)
-        let textSize: CGRect = text!.boundingRect(with: CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedStringKey.font: font], context: nil)
-        let margin: CGFloat = (frame.size.width - textSize.size.width) / CGFloat((text?.lengthOfBytes(using: String.Encoding.utf8))! - 1)
-        let number = margin
-        let attributeString = NSMutableAttributedString(string: text!)
-        attributeString.addAttribute(kCTKernAttributeName as NSAttributedStringKey, value: number, range: NSRange(location: 0, length: (attributeString.length - 1)))
-        attributedText = attributeString
-    }
-    
+    ///设置label左右对齐
     func textAlignmentLeftAndRight() {
         let size = text?.boundingRect(with: CGSize(width: frame.width, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine, .usesFontLeading], attributes: [NSAttributedStringKey.font: font], context: nil).size
         let margin: CGFloat = (frame.width - size!.width) / CGFloat((text?.count)! - 1)

@@ -96,7 +96,7 @@ class PushViewController: UIViewController {
     }
     
     @objc func callback() {
-        UIApplication.shared.statusBarStyle = .lightContent
+//        UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.dismiss(animated: true, completion: {
         })
     }

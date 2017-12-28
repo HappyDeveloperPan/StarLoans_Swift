@@ -20,6 +20,13 @@
 		1C10F6A71FED0CA800C3A62A /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C10F6A61FED0CA800C3A62A /* MessageDetailViewController.swift */; };
 		1C10F6A91FED0CBA00C3A62A /* MessageDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C10F6A81FED0CBA00C3A62A /* MessageDetailViewController.storyboard */; };
 		1C1376061FF1E7B4003EC987 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1376051FF1E7B4003EC987 /* VideoModel.swift */; };
+		1C1376081FF22025003EC987 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1376071FF22025003EC987 /* SignInModel.swift */; };
+		1C13760D1FF23013003EC987 /* LoansSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C13760C1FF23013003EC987 /* LoansSegmentCell.swift */; };
+		1C13760F1FF26443003EC987 /* LoansModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C13760E1FF26443003EC987 /* LoansModel.swift */; };
+		1C1376111FF27893003EC987 /* LoansDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1376101FF27893003EC987 /* LoansDetailViewController.swift */; };
+		1C1376131FF27A02003EC987 /* LoansDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1376121FF27A02003EC987 /* LoansDetailViewController.storyboard */; };
+		1C1376151FF27C87003EC987 /* LoansProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1376141FF27C87003EC987 /* LoansProductView.swift */; };
+		1C1376171FF27CBB003EC987 /* LoansProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1376161FF27CBB003EC987 /* LoansProductView.xib */; };
 		1C1C1F931FDFBBFF00C71D73 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C1F921FDFBBFF00C71D73 /* ProductCollectionViewCell.swift */; };
 		1C1C1F961FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C1F941FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift */; };
 		1C1C1F971FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1C1F951FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib */; };
@@ -64,6 +71,10 @@
 		1C40E2A81FE2707D00A01D2D /* AppDelegate+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40E2A71FE2707D00A01D2D /* AppDelegate+System.swift */; };
 		1C4682901FEB9689002DA528 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C46828F1FEB9689002DA528 /* HomePageModel.swift */; };
 		1C4682921FEBDCAF002DA528 /* LoansCollegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4682911FEBDCAF002DA528 /* LoansCollegeModel.swift */; };
+		1C4B28721FF39A2600FC32CA /* UICollectionGridViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4B28711FF39A2500FC32CA /* UICollectionGridViewLayout.swift */; };
+		1C4B28761FF39C4A00FC32CA /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4B28751FF39C4A00FC32CA /* GridView.swift */; };
+		1C4B28791FF3CD3B00FC32CA /* ProblemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4B28771FF3CD3B00FC32CA /* ProblemCell.swift */; };
+		1C4B287A1FF3CD3B00FC32CA /* ProblemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C4B28781FF3CD3B00FC32CA /* ProblemCell.xib */; };
 		1C54A82D1FCFAEF000CF4F9B /* TopAdverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C54A82C1FCFAEF000CF4F9B /* TopAdverView.swift */; };
 		1C54A82F1FD00C2000CF4F9B /* FunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C54A82E1FD00C2000CF4F9B /* FunctionView.swift */; };
 		1C57AAF51FD636D600A7626A /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AAF41FD636D600A7626A /* CustomLayout.swift */; };
@@ -175,6 +186,13 @@
 		1C10F6A61FED0CA800C3A62A /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		1C10F6A81FED0CBA00C3A62A /* MessageDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageDetailViewController.storyboard; sourceTree = "<group>"; };
 		1C1376051FF1E7B4003EC987 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		1C1376071FF22025003EC987 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
+		1C13760C1FF23013003EC987 /* LoansSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansSegmentCell.swift; sourceTree = "<group>"; };
+		1C13760E1FF26443003EC987 /* LoansModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansModel.swift; sourceTree = "<group>"; };
+		1C1376101FF27893003EC987 /* LoansDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansDetailViewController.swift; sourceTree = "<group>"; };
+		1C1376121FF27A02003EC987 /* LoansDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoansDetailViewController.storyboard; sourceTree = "<group>"; };
+		1C1376141FF27C87003EC987 /* LoansProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansProductView.swift; sourceTree = "<group>"; };
+		1C1376161FF27CBB003EC987 /* LoansProductView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoansProductView.xib; sourceTree = "<group>"; };
 		1C1C1F921FDFBBFF00C71D73 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C1C1F941FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C1C1F951FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -226,6 +244,10 @@
 		1C40E2A71FE2707D00A01D2D /* AppDelegate+System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+System.swift"; sourceTree = "<group>"; };
 		1C46828F1FEB9689002DA528 /* HomePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		1C4682911FEBDCAF002DA528 /* LoansCollegeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansCollegeModel.swift; sourceTree = "<group>"; };
+		1C4B28711FF39A2500FC32CA /* UICollectionGridViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionGridViewLayout.swift; sourceTree = "<group>"; };
+		1C4B28751FF39C4A00FC32CA /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		1C4B28771FF3CD3B00FC32CA /* ProblemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCell.swift; sourceTree = "<group>"; };
+		1C4B28781FF3CD3B00FC32CA /* ProblemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProblemCell.xib; sourceTree = "<group>"; };
 		1C54A82C1FCFAEF000CF4F9B /* TopAdverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAdverView.swift; sourceTree = "<group>"; };
 		1C54A82E1FD00C2000CF4F9B /* FunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionView.swift; sourceTree = "<group>"; };
 		1C57AAF41FD636D600A7626A /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
@@ -500,6 +522,38 @@
 			path = MessageReadView;
 			sourceTree = "<group>";
 		};
+		1C1376091FF22FC9003EC987 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1C13760E1FF26443003EC987 /* LoansModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1C13760A1FF22FD3003EC987 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1C13760C1FF23013003EC987 /* LoansSegmentCell.swift */,
+				1C1376141FF27C87003EC987 /* LoansProductView.swift */,
+				1C1376161FF27CBB003EC987 /* LoansProductView.xib */,
+				1C4B28711FF39A2500FC32CA /* UICollectionGridViewLayout.swift */,
+				1C4B28751FF39C4A00FC32CA /* GridView.swift */,
+				1C4B28771FF3CD3B00FC32CA /* ProblemCell.swift */,
+				1C4B28781FF3CD3B00FC32CA /* ProblemCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1C13760B1FF22FD9003EC987 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1CF12AA01FCD62A400474AFB /* LoansViewController.swift */,
+				1C1376101FF27893003EC987 /* LoansDetailViewController.swift */,
+				1C1376121FF27A02003EC987 /* LoansDetailViewController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		1C1D94611FE277D700F65049 /* VideoCenterView */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,6 +574,7 @@
 				1C6716BB1FEE4F1D0029E6DE /* ProductAgencyModel.swift */,
 				1C6716BD1FEE50520029E6DE /* ClientInfoModel.swift */,
 				1C1376051FF1E7B4003EC987 /* VideoModel.swift */,
+				1C1376071FF22025003EC987 /* SignInModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -814,7 +869,9 @@
 		1CF12A9E1FCD625A00474AFB /* Loans */ = {
 			isa = PBXGroup;
 			children = (
-				1CF12AA01FCD62A400474AFB /* LoansViewController.swift */,
+				1C1376091FF22FC9003EC987 /* Model */,
+				1C13760A1FF22FD3003EC987 /* View */,
+				1C13760B1FF22FD9003EC987 /* Controller */,
 			);
 			path = Loans;
 			sourceTree = "<group>";
@@ -954,6 +1011,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C1376171FF27CBB003EC987 /* LoansProductView.xib in Resources */,
 				1C4066091FB190C8009A59FD /* LaunchScreen.storyboard in Resources */,
 				1C609DA61FE7ABDA004D4E54 /* AccountViewController.storyboard in Resources */,
 				1C1C1F971FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib in Resources */,
@@ -962,8 +1020,10 @@
 				1CDC915F1FF0DCFC0040434B /* HotResourceCell.xib in Resources */,
 				1C1C1FA31FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard in Resources */,
 				1C10504B1FD8E35E0050B187 /* MessageTableViewCell.xib in Resources */,
+				1C4B287A1FF3CD3B00FC32CA /* ProblemCell.xib in Resources */,
 				1CBFFBAC1FE4EDB500E89B7E /* MineViewController.storyboard in Resources */,
 				1CDC91631FF0EA800040434B /* VideoDetailViewController.storyboard in Resources */,
+				1C1376131FF27A02003EC987 /* LoansDetailViewController.storyboard in Resources */,
 				1CD0B4211FE8B8AD00A4A796 /* BindingCardNextViewController.storyboard in Resources */,
 				1CED7B5C1FDEA73100AABDDE /* TeachDetailCollectionViewCell.xib in Resources */,
 				1C609DAC1FE7BE38004D4E54 /* BankCardCollectionViewCell.xib in Resources */,
@@ -1185,8 +1245,10 @@
 				1CDC91611FF0E9F90040434B /* VideoDetailViewController.swift in Sources */,
 				1CD0B41F1FE8B89C00A4A796 /* BindingCardNextViewController.swift in Sources */,
 				1C40662F1FB1A965009A59FD /* HomePageViewController.swift in Sources */,
+				1C4B28761FF39C4A00FC32CA /* GridView.swift in Sources */,
 				1CBFFBAE1FE4EE4700E89B7E /* MineTableViewController.swift in Sources */,
 				1C4066331FB1A9B9009A59FD /* PushViewController.swift in Sources */,
+				1C4B28791FF3CD3B00FC32CA /* ProblemCell.swift in Sources */,
 				1C10F6A71FED0CA800C3A62A /* MessageDetailViewController.swift in Sources */,
 				1C2E2AED1FCECDBB005E48C3 /* WRCycleCell.swift in Sources */,
 				1C4066371FB1B0ED009A59FD /* LoginViewController.swift in Sources */,
@@ -1195,12 +1257,14 @@
 				1C40663C1FB2B569009A59FD /* Const.swift in Sources */,
 				1CA4FCEF1FD7DE5A009ECD30 /* RobbingTableViewCell.swift in Sources */,
 				1C10F6A31FECF50200C3A62A /* MessageReadCell.swift in Sources */,
+				1C4B28721FF39A2600FC32CA /* UICollectionGridViewLayout.swift in Sources */,
 				1CF12AA11FCD62A400474AFB /* LoansViewController.swift in Sources */,
 				1CDF1A091FC8094D00C29F43 /* UIViewController+Config.swift in Sources */,
 				1C3BD8311FDF752100B660C4 /* ClientListFooterView.swift in Sources */,
 				1CB728D81FDA2C5A006C1D2E /* String+Extension.swift in Sources */,
 				1CF12AAB1FCD7C8F00474AFB /* AXDTabBarViewController.swift in Sources */,
 				1CDE80DC1FC7C021005A69DB /* LoginViewModel.swift in Sources */,
+				1C13760F1FF26443003EC987 /* LoansModel.swift in Sources */,
 				1C10F69E1FECB1A300C3A62A /* UIScrollView+Extension.swift in Sources */,
 				1CED7B5E1FDEB19400AABDDE /* ClientListCollectionViewCell.swift in Sources */,
 				1CC9C0E81FCC3B2D00750C5E /* NetWorksManager.swift in Sources */,
@@ -1216,6 +1280,7 @@
 				1C91ED921FD6762500DB3FA4 /* HotAgencyView.swift in Sources */,
 				1CB728D21FDA22BD006C1D2E /* UIButton+Extension.swift in Sources */,
 				1C609DA11FE7A9F9004D4E54 /* AccountViewController.swift in Sources */,
+				1C1376151FF27C87003EC987 /* LoansProductView.swift in Sources */,
 				1C2E2ADC1FCE9704005E48C3 /* UIView+Extension.swift in Sources */,
 				1CD0B4151FE8AB1400A4A796 /* UrlPath.swift in Sources */,
 				1C6716BC1FEE4F1D0029E6DE /* ProductAgencyModel.swift in Sources */,
@@ -1234,6 +1299,7 @@
 				1CD0B41D1FE8B88900A4A796 /* BindingCardNextTableViewController.swift in Sources */,
 				1CBFFBAA1FE4ED2900E89B7E /* UITableView+Extension.swift in Sources */,
 				1C40662D1FB1A7EB009A59FD /* JSTabBarViewController.swift in Sources */,
+				1C1376081FF22025003EC987 /* SignInModel.swift in Sources */,
 				1C363A381FE0B6F200D87014 /* LoansCollegeCollectionViewCell.swift in Sources */,
 				1C8B7E871FD28CCE008EA417 /* VideoView.swift in Sources */,
 				1C1C1F961FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift in Sources */,
@@ -1246,11 +1312,13 @@
 				1C1D94671FE2792E00F65049 /* VideoCenterCollectionViewCell.swift in Sources */,
 				1C54A82D1FCFAEF000CF4F9B /* TopAdverView.swift in Sources */,
 				1C363A401FE0F7E700D87014 /* SignInViewController.swift in Sources */,
+				1C1376111FF27893003EC987 /* LoansDetailViewController.swift in Sources */,
 				1C1050471FD8E0AF0050B187 /* MessageReadView.swift in Sources */,
 				1CA4FCEB1FD7D9AC009ECD30 /* QuickRobView.swift in Sources */,
 				1C2E2ADA1FCE96FC005E48C3 /* UIImage+Extension.swift in Sources */,
 				1C0892221FC43E3B00E2320E /* RegisterViewController.swift in Sources */,
 				1C609DA41FE7AB29004D4E54 /* AccountTableViewController.swift in Sources */,
+				1C13760D1FF23013003EC987 /* LoansSegmentCell.swift in Sources */,
 				1CB728DA1FDA37A4006C1D2E /* SearchView.swift in Sources */,
 				1C2E2AEE1FCECDBB005E48C3 /* WRCycleScrollView.swift in Sources */,
 				1CED7B581FDE9DAC00AABDDE /* TeachCollectionViewCell.swift in Sources */,

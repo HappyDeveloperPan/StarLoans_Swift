@@ -133,7 +133,8 @@ class HomePageViewController: UIViewController {
                                     "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
                                     "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
     
-    var topBannerLocalArr: Array<String> = ["WechatIMG20", "WechatIMG20", "WechatIMG20"]
+//    var topBannerLocalArr: Array<String> = ["WechatIMG20", "WechatIMG20", "WechatIMG20"]
+    var topBannerLocalArr: Array<String> = ["WechatIMG49", "WechatIMG49", "WechatIMG49"]
 //    var topBannerArr: [BannerModel] = [BannerModel]()
     ///视频栏数据
     var hotVideoArr: [HomePageModel]?

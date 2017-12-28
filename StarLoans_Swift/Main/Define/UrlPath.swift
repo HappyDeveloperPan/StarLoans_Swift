@@ -42,10 +42,16 @@ public let kUrl_BottomBanner = hostAdress + "/Home/mobileFooterAdvertisement/foo
 ///  热门抢单
 public let kUrl_HotQuickRob = hostAdress + "/Home/QuickBill/getHotBill"
 
+///  行业资源
+public let kUrl_IndustryResources = hostAdress + "/Home/MobileIndustryResources/index"
 ///  贷款学院
 public let kUrl_LoanCollege = hostAdress + "/Home/MobileLoanCollege/index"
-///  行业资讯
-public let kUrl_IndustryResources = hostAdress + "/Home/MobileIndustryResources/index"
+///  推广工具
+public let kUrl_PopularizeTool = hostAdress + ""
+///  获取用户签到
+public let kUrl_GetSignInfo = hostAdress + "/Home/MobileSign/index"
+///  用户签到
+public let kUrl_UserSignIn = hostAdress + "/Home/MobileSign/index"
 ///  资讯研读
 public let kUrl_InfoStudying = hostAdress + "/Home/MobileInformationStudy/index"
 ///  视频中心

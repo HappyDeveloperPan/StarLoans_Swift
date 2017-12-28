@@ -147,7 +147,25 @@ extension UIView {
 //        self.layer.addSublayer(maskLayer)
     }
     
-    // MARK: - 增加是否在当前显示的窗口
+    
+    /// 设置view半透明
+    func translucence() {
+        let shadeLayer = CAGradientLayer()
+        shadeLayer.frame = self.bounds
+        //设置渐变颜色数组,可以加透明度的渐变
+        //        shadeLayer.colors = [(UIColor(white: 0, alpha: 0.5).cgColor as? Any), (UIColor(white: 0, alpha: 1).cgColor as? Any)]
+        shadeLayer.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 1).cgColor]
+        //设置渐变区域的起始和终止位置（范围为0-1）
+        shadeLayer.startPoint = CGPoint(x: 0, y: 0)
+        shadeLayer.endPoint = CGPoint(x: 0, y: 0.8)
+        //gradientLayer.locations = @[@(0.8f)];//设置渐变位置数组
+        //注意：这里不用下边的这句话
+        //[gradientView.layer addSublayer:gradientLayer];//将CAGradientlayer对象添加在我们要设置背景色的视图的layer层
+        //设置蒙版，用来改变layer的透明度
+        self.layer.mask = shadeLayer
+    }
+    
+    /// 增加是否在当前显示的窗口
     public func isShowingnKeyWindow() -> Bool {
         
         guard let keyWindow = UIApplication.shared.keyWindow else {

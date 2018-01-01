@@ -115,7 +115,6 @@ extension MessageReadViewController {
                     cellArr.append(MessageReadModel(with: dict))
                 }
                 cell.cellArr = cellArr
-                cell.tableView.endHeaderRefresh()
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
@@ -123,6 +122,7 @@ extension MessageReadViewController {
                     JSProgress.showFailStatus(with: "请求失败")
                 }
             }
+            cell.tableView.endHeaderRefresh()
         }
     }
 }

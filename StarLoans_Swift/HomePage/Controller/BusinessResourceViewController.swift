@@ -117,6 +117,79 @@ class BusinessResourceViewController: UIViewController {
 
 }
 
+//MARK: - 数据处理
+extension BusinessResourceViewController {
+    ///获取进件教程数据
+    func getCourseData(with cell: TeachCollectionViewCell) {
+        
+        let parameters = ["type": 1,
+                          "page": 1] as [String: Any]
+        
+        NetWorksManager.requst(with: kUrl_IndustryResources, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellDataArr = [ResourceModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellDataArr.append(ResourceModel(with: dict))
+                }
+                cell.cellDataArr = cellDataArr
+                
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            cell.collectionView.endHeaderRefresh()
+        }
+    }
+    ///获取客户资源数据
+    func getClientListData(with cell: ClientListCollectionViewCell) {
+        
+        let parameters = ["type": 2,
+                          "page": 1] as [String: Any]
+        
+        NetWorksManager.requst(with: kUrl_IndustryResources, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellDataArr = [ClientInfoModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellDataArr.append(ClientInfoModel(with: dict))
+                }
+                cell.cellDataArr = cellDataArr
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            cell.collectionView.endHeaderRefresh()
+        }
+    }
+    ///获取爆款产品数据
+    func getProductData(with cell: ProductCollectionViewCell) {
+        let parameters = ["type": 3,
+                          "page": 1] as [String: Any]
+        
+        NetWorksManager.requst(with: kUrl_IndustryResources, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellDataArr = [ProductModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellDataArr.append(ProductModel(with: dict))
+                }
+                cell.cellDataArr = cellDataArr
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            cell.collectionView.endHeaderRefresh()
+        }
+    }
+}
+
 //MARK: - TopAdverView代理
 extension BusinessResourceViewController: TopAdverViewDelegate {
     /// 点击图片回调
@@ -138,14 +211,17 @@ extension BusinessResourceViewController: UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: teachCellID, for: indexPath) as! TeachCollectionViewCell
+            cell.delegate = self
             return cell
         }
         if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: clientListCellId, for: indexPath) as! ClientListCollectionViewCell
+            cell.delegate = self
             return cell
         }
         if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellID, for: indexPath) as! ProductCollectionViewCell
+            cell.delegate = self
             return cell
         }
         return UICollectionViewCell()
@@ -160,3 +236,26 @@ extension BusinessResourceViewController: UIScrollViewDelegate {
         }
     }
 }
+
+//MARK: - TeachCollectionViewCell代理
+extension BusinessResourceViewController: TeachCellDelegate {
+    func reloadCellData(with cell: TeachCollectionViewCell) {
+        getCourseData(with: cell)
+    }
+}
+
+//MARK: - ClientListCollectionViewCell代理
+extension BusinessResourceViewController: ClientListCellDelegate {
+    func reloadCellData(with cell: ClientListCollectionViewCell) {
+        getClientListData(with: cell)
+    }
+}
+
+//MARK: - ProductCollectionViewCell代理
+extension BusinessResourceViewController: ProductCellDelegate {
+    func reloadCellData(with cell: ProductCollectionViewCell) {
+        getProductData(with: cell)
+    }
+}
+
+

@@ -23,9 +23,11 @@ class SignInViewController: BaseViewController, StoryboardLoadable {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "每日签到"
-//        view.backgroundColor = UIColor.white
-//        setNavigationBarConfig()
         createDayLB()
+        //如果用户登录并且签到就获取用户签到信息
+        if UserManager.shareManager.isLogin {
+            getSignInData()
+        }
     }
     
     func createDayLB() {
@@ -55,6 +57,8 @@ class SignInViewController: BaseViewController, StoryboardLoadable {
             dateLB.textColor = UIColor.RGB(with: 51, green: 51, blue: 51)
             dateLB.textAlignment = .center
             dateLB.font = UIFont.systemFont(ofSize: 10)
+            let date = Date(timeIntervalSinceNow: Date().timeIntervalSinceNow - Double((3 - index)*24*60*60))
+            dateLB.text = date.dateString(with: "MM.dd")
         }
     }
 
@@ -84,33 +88,96 @@ class SignInViewController: BaseViewController, StoryboardLoadable {
     
     //签到成功修改状态
     @IBAction func signInBtnClick(_ sender: UIButton) {
-        JSProgress.showSucessStatus(with: "签到成功")
-        
-        let dayLB = view.viewWithTag(3) as? UILabel
-        dayLB?.textColor = UIColor.white
-        dayLB?.layer.backgroundColor = UIColor.RGB(with: 223, green: 114, blue: 114).cgColor
-        contiSignInLB.isHidden = false
-        
-        signInBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        signInBtn.titleLabel?.textColor = kTitleColor
-        let myAttrString = NSMutableAttributedString(string: "1天")
-        let myAttribute = [ NSAttributedStringKey.foregroundColor: UIColor.RGB(with: 223, green: 114, blue: 114),NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40) ]
-        myAttrString.addAttributes(myAttribute, range: NSRange(location: 0, length: myAttrString.length - 1))
-        signInBtn.setAttributedTitle(myAttrString, for: .normal)
-        
-        todayintegralLB.text = "明日签到可领6积分"
-    }
+        //如果用户没有登录就跳转到登录界面
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            return
+        }
     
+        //如果用户没有认证则需要跳转到认证界面
+//        guard UserManager.shareManager.isLogin else {
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+//            return
+//        }
+        
+        userSignIn()
+        
+//        JSProgress.showSucessStatus(with: "签到成功")
+    }
 }
 
 extension SignInViewController {
     ///获取用户签到信息
     func getSignInData() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel?.token
         
+        JSProgress.showBusy()
+        
+        NetWorksManager.requst(with: kUrl_GetSignInfo, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                let signModel = HomePageModel(with: jsonData!["data"][0])
+                self?.resetSignState(with: signModel)
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
     }
     
     ///用户签到
     func userSignIn() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel?.token
         
+        JSProgress.showBusy()
+        
+        NetWorksManager.requst(with: kUrl_UserSignIn, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                let signModel = HomePageModel(with: jsonData!["data"][0])
+                self?.resetSignState(with: signModel)
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    
+    
+    /// 刷新签到状态
+    ///
+    /// - Parameter signModel: 签到数据
+    func resetSignState(with signModel: HomePageModel) {
+        integralLB.text = "积分: " + String(signModel.total_point) + "分"
+        
+        if signModel.is_sign {
+            let dayLB = view.viewWithTag(3) as? UILabel
+            dayLB?.textColor = UIColor.white
+            dayLB?.layer.backgroundColor = UIColor.RGB(with: 223, green: 114, blue: 114).cgColor
+            contiSignInLB.isHidden = false
+            
+            signInBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            signInBtn.titleLabel?.textColor = kTitleColor
+            let myAttrString = NSMutableAttributedString(string: String(signModel.sign_accumulate_days) + "天")
+            let myAttribute = [ NSAttributedStringKey.foregroundColor: UIColor.RGB(with: 223, green: 114, blue: 114),NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40) ]
+            myAttrString.addAttributes(myAttribute, range: NSRange(location: 0, length: myAttrString.length - 1))
+            signInBtn.setAttributedTitle(myAttrString, for: .normal)
+            signInBtn.isUserInteractionEnabled = false
+            todayintegralLB.text = "明日签到可领" + String(signModel.sign_accumulate_days + 5) + "积分"
+        }else {
+            todayintegralLB.text = "今日签到可领" + String(signModel.sign_accumulate_days + 5) + "积分"
+        }
     }
 }

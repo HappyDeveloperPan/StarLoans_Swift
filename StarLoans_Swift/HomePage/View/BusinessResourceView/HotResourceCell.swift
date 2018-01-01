@@ -20,6 +20,7 @@ class HotResourceCell: UICollectionViewCell, RegisterCellOrNib {
     @IBOutlet weak var accountLB: UILabel!          //  户口
     @IBOutlet weak var socialSecurityLB: UILabel!   //  社保
     @IBOutlet weak var providentFundLB: UILabel!    //  公积金
+    @IBOutlet weak var needDayLB: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,5 +47,22 @@ class HotResourceCell: UICollectionViewCell, RegisterCellOrNib {
     }
 
     @IBAction func priceBtnClick(_ sender: UIButton) {
+    }
+}
+
+extension HotResourceCell {
+    func setHotResourceCellData(with cellData: ClientInfoModel) {
+        userNameLB.text = cellData.client_name
+        userTypeImg.image = cellData.getTypeImage()
+        resourceType.text = cellData.getpledgeType()
+        loansNumLB.text = String(cellData.client_loan_need/10000) + "万"
+        houseInfoLB.text = cellData.getHouseInfo()
+        carInfoLB.text = cellData.getCarInfo()
+        incomeLB.text = cellData.getIncomePayType()
+        accountLB.isHidden = !cellData.client_is_shenzhen_census.getServiceBool()
+        socialSecurityLB.isHidden = !cellData.client_is_social_security.getServiceBool()
+        providentFundLB.isHidden = !cellData.client_is_accumulated_funds.getServiceBool()
+        needDayLB.text = "需求程度" + String(cellData.client_days_need) + "天"
+        priceBtn.setTitle(String(cellData.client_price) + "元抢单", for: .normal)
     }
 }

@@ -16,7 +16,7 @@ class AXDNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navBarHairlineImageView = findHairlineImageViewUnder(navigationBar)
-        navBarHairlineImageView?.isHidden = true
+//        navBarHairlineImageView?.isHidden = true
         
         let navBar = navigationBar
         navBar.isTranslucent = false

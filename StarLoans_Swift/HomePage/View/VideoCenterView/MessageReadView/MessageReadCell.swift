@@ -27,7 +27,6 @@ class MessageReadCell: UICollectionViewCell{
         addSubview(tableView)
         tableView.backgroundColor = kHomeBackColor
         tableView.pan_registerCell(cell: MessageTableViewCell.self)
-        tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self

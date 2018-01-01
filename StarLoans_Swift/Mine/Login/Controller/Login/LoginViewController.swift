@@ -13,12 +13,13 @@ private let kBoard = 37.5
 private let kHeight = 45
 
 // MARK: - 界面部分
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = ""
 //        setNavigationBarConfig()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(callback))
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: registerBtn)

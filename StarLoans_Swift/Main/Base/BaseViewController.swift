@@ -19,7 +19,11 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-//        setNavigationBarConfig()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        isNavLineHidden = true
     }
 
     override func didReceiveMemoryWarning() {

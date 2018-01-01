@@ -21,7 +21,7 @@ class LoansSegmentCell: UICollectionViewCell {
     //MARK: - 可操作数据
     weak var delegate: LoansSegmentCellDelegate?
     var loansProductType: LoansProductType = .selfSupport
-    var cellDataArr: [LoansModel] = [LoansModel]() {
+    var cellDataArr: [ProductModel] = [ProductModel]() {
         didSet {
             collectionView.reloadData()
         }
@@ -68,11 +68,12 @@ class LoansSegmentCell: UICollectionViewCell {
 
 extension LoansSegmentCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cellDataArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as ProductDetailCollectionViewCell
+        cell.loansProductType = loansProductType
         cell.setCellData(with: loansProductType.rawValue)
         return cell
     }

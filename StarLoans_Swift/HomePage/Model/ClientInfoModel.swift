@@ -18,9 +18,9 @@ import SwiftyJSON
 //client_car_type    tinyint(3)    车产类型,1无车2有全款车3有贷款车
 //client_month_income        decimal(10,2)    月收入
 //client_income_payment_type    tinyint(3)    发放形式,1代发工资
-//client_is_shenzhen_census    tinyint(3)    是否深户，1是0否
-//client_is_accumulated_funds    tinyint(3)    是否有公积金，1是0否
-//client_is_social_security    tinyint(3)    是否有社保，1是0否
+//client_is_shenzhen_census    tinyint(3)    是否深户，2是1否
+//client_is_accumulated_funds    tinyint(3)    是否有公积金，2是1否
+//client_is_social_security    tinyint(3)    是否有社保，2是1否
 //client_price    decimal(10,2)    客户信息售价
 //client_days_need    int(11)    需求程度（天数）
 
@@ -51,9 +51,9 @@ class ClientInfoModel: NSObject {
     public var client_car_type: Int = 0
     public var client_month_income: Int = 0
     public var client_income_payment_type: Int = 0
-    public var client_is_shenzhen_census: Bool = false
-    public var client_is_accumulated_funds: Bool = false
-    public var client_is_social_security: Bool = false
+    public var client_is_shenzhen_census: ServiceBool = .serviceFalse
+    public var client_is_accumulated_funds: ServiceBool = .serviceFalse
+    public var client_is_social_security: ServiceBool = .serviceFalse
     public var client_price: Int = 0
     public var client_days_need: Int = 0
     
@@ -68,9 +68,9 @@ class ClientInfoModel: NSObject {
         self.client_car_type = appInfo[Keys.client_car_type].intValue
         self.client_month_income = appInfo[Keys.client_month_income].intValue
         self.client_income_payment_type = appInfo[Keys.client_income_payment_type].intValue
-        self.client_is_shenzhen_census = appInfo[Keys.client_is_shenzhen_census].boolValue
-        self.client_is_accumulated_funds = appInfo[Keys.client_is_accumulated_funds].boolValue
-        self.client_is_social_security = appInfo[Keys.client_is_social_security].boolValue
+        self.client_is_shenzhen_census = ServiceBool(with: appInfo[Keys.client_is_shenzhen_census].intValue)
+        self.client_is_accumulated_funds = ServiceBool(with: appInfo[Keys.client_is_accumulated_funds].intValue)
+        self.client_is_social_security = ServiceBool(with: appInfo[Keys.client_is_social_security].intValue)
         self.client_price = appInfo[Keys.client_price].intValue
         self.client_days_need = appInfo[Keys.client_days_need].intValue
     }
@@ -89,6 +89,17 @@ extension ClientInfoModel {
             return #imageLiteral(resourceName: "ICON-youzhikehu")
         default:
             return UIImage()
+        }
+    }
+    
+    func getIncomePayType() ->String {
+        switch client_income_payment_type {
+        case 1:
+            return "银行代发"
+        case 2:
+            return "现金发放"
+        default:
+            return ""
         }
     }
     

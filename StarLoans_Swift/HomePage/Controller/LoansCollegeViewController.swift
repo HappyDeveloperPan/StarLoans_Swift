@@ -138,7 +138,6 @@ extension LoansCollegeViewController {
                     cellArr.append(LoansCollegeModel(with: dict))
                 }
                 cell.cellArr = cellArr
-                cell.collectionView.endHeaderRefresh()
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
@@ -146,6 +145,7 @@ extension LoansCollegeViewController {
                     JSProgress.showFailStatus(with: "请求失败")
                 }
             }
+            cell.collectionView.endHeaderRefresh()
         }
     }
 }

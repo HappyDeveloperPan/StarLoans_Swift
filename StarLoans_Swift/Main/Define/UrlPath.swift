@@ -34,7 +34,7 @@ public let kUrl_ForgetPWD = hostAdress + "/Home/MobileIndex/mobile_ajax_ag_fg"
 ///  首页广告图
 public let kUrl_HomePageTopBanner = hostAdress + "/Home/MobileAppBanner/index"
 ///  热门视频
-public let kUrl_HotVideo = hostAdress + "/Home/MobileVideo/getHotVideo"
+public let kUrl_HotVideo = hostAdress + "/Home/MobileVideo/videoHot"
 ///  热门产品
 public let kUrl_HotProduct = hostAdress + "/Home/MobileHotProduct/Third"
 ///  底部广告图
@@ -51,19 +51,33 @@ public let kUrl_PopularizeTool = hostAdress + ""
 ///  获取用户签到
 public let kUrl_GetSignInfo = hostAdress + "/Home/MobileSign/index"
 ///  用户签到
-public let kUrl_UserSignIn = hostAdress + "/Home/MobileSign/index"
+public let kUrl_UserSignIn = hostAdress + "/Home/MobileSign/point"
 ///  资讯研读
 public let kUrl_InfoStudying = hostAdress + "/Home/MobileInformationStudy/index"
 ///  视频中心
-public let kUrl_VideoCenter = hostAdress + "/Home/MobileVideo/index"
+public let kUrl_VideoCenter = hostAdress + "Home/MobileVideo/videoList"
 ///  视频详情
-public let kUrl_VideoDetail = hostAdress + "/Home/MobileVideo/getVideoInfo"
+public let kUrl_VideoDetail = hostAdress + "/Home/MobileVideo/videoInfo"
+
+//MARK: - 贷款接口
+///贷款产品列表
+public let kUrl_LoansProductList = hostAdress + "/Home/MobileAllLoanProducts/three"
+///贷款产品详情
+public let kUrl_LoansProductDetail = hostAdress + "/Home/MobileLoanProducts/detail"
+///自营产品信息录入
+public let kUrl_SelfSupportInput = hostAdress + "/Home/MobileHotProduct/self_entry_customer_information"
+///第三方产品录入
+public let kUrl_ThirdSupportInput = hostAdress + "/Home/MobileLoanProducts/Economicman_input_Customer_information"
 
 
 
-
-
-
+//MARK: - 消息接口
+///消息列表接口
+public let kUrl_InfoList = hostAdress + "/Home/MobileMessage/messageList"
+///消息详情接口
+public let kUrl_InfoDetail = hostAdress + "/Home/MobileMessage/messageInfo"
+///删除消息
+public let kUrl_removeInfo = hostAdress + "/Home/MobileMessage/messageInvalid"
 
 
 

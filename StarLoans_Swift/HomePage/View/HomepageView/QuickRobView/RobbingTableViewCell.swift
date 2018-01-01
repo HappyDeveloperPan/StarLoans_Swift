@@ -63,9 +63,9 @@ extension RobbingTableViewCell {
         houseInfoLB.text = cellData.getHouseInfo()
         carInfoLB.text = cellData.getCarInfo()
         incomeLB.text = "月收入" + String(cellData.client_month_income)
-        lbTypeBtn.isHidden = !cellData.client_is_shenzhen_census
-        cbTypeBtn.isHidden = !cellData.client_is_social_security
-        rbTypeBtn.isHidden = !cellData.client_is_accumulated_funds
+        lbTypeBtn.isHidden = !cellData.client_is_shenzhen_census.getServiceBool()
+        cbTypeBtn.isHidden = !cellData.client_is_social_security.getServiceBool()
+        rbTypeBtn.isHidden = !cellData.client_is_accumulated_funds.getServiceBool()
         needDayBtn.text = "需求程度" + String(cellData.client_days_need) + "天"
         robbingBtn.setTitle(String(cellData.client_price) + "元抢单", for: .normal)
     }

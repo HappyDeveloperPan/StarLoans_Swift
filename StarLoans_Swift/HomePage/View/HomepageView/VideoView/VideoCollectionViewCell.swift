@@ -121,3 +121,13 @@ class VideoCollectionViewCell: UICollectionViewCell {
         }
     }
 }
+
+extension VideoCollectionViewCell {
+    func setCellData(with cellData:HomePageModel) {
+        bottomLB.text = cellData.videoTitle
+        backImg.setImage(with: cellData.video_img)
+        backImg.image?.cornerImage(size: (backImg.image?.size)!, radius: 4, fillColor: kHomeBackColor, completion: { [weak self] (image) in
+            self?.backImg.image = image
+        })
+    }
+}

@@ -16,7 +16,6 @@ import SwiftyJSON
 //Data. reading_number    int    阅读数
 //Data. date_time    timestamp    日期
 
-
 class LoansCollegeModel: NSObject {
     struct Keys {
         static let id = "id"

@@ -16,21 +16,30 @@ class AXDTabBarViewController: ESTabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.isTranslucent = false
-//        delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(notifPresentLogin(notif:)), name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
-        
         addChildViewControllers()
         shouldHijackHandler = { tabbarController, viewController, index in
             if index == 2 {
                 return true
             }
+            if index == 3 && !UserManager.shareManager.isLogin {
+                return true
+            }
             return false
         }
         didHijackHandler = { [weak self] tabbarController, viewController, index in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                let pushNav = AXDNavigationController(rootViewController: PushViewController())
+//                self?.present(pushNav, animated: true, completion: nil)
+//            }
+            if index == 2 {
                 let pushNav = AXDNavigationController(rootViewController: PushViewController())
                 self?.present(pushNav, animated: true, completion: nil)
             }
+            if index == 3 {
+                self?.notifPresentLogin(notif: nil)
+            }
+            
         }
     }
     
@@ -84,17 +93,26 @@ class AXDTabBarViewController: ESTabBarController{
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
 
 }
 
 //extension AXDTabBarViewController: UITabBarControllerDelegate {
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        print(viewController)
+//        if (viewControllers?.contains(viewController))! && viewControllers!.index(of: viewController)! == 3 {
+//            notifPresentLogin(notif: nil)
+//
+//            return false
+//        }
+//        return true
+//    }
+//    
 //    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 //        print("\(viewController)")
 //        print("\(String(describing: viewControllers?.index(of: viewController)))")
-//        if (viewControllers?.contains(viewController))! && viewControllers!.index(of: viewController)! >= 4 {
-//            notifPresentLogin(notif: nil)
-//        }
 //    }
+//
 //}
 
 

@@ -75,7 +75,7 @@ extension LoansCollegeCollectionViewCell: UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! TeachDetailCollectionViewCell
         let cellModel = cellArr[indexPath.row]
-        cell.setCellData(with: cellModel)
+        cell.setTeachDetailCellData(with: cellModel)
         return cell
     }
     

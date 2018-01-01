@@ -32,10 +32,16 @@ class TeachDetailCollectionViewCell: UICollectionViewCell {
 }
 
 extension TeachDetailCollectionViewCell {
-    func setCellData(with cellData: LoansCollegeModel) {
+    func setTeachDetailCellData(with cellData: LoansCollegeModel) {
 //        contentLB.text = dataArr[index]["contentText"] as? String
 //        leftImg.image = dataArr[index]["image"] as? UIImage
 //        numberLB.text = dataArr[index]["number"] as? String
+        contentLB.text = cellData.title
+        leftImg.setImage(with: picAdress + cellData.image_video)
+        numberLB.text = String(cellData.reading_number)
+    }
+    
+    func setCourse(with cellData: ResourceModel) {
         contentLB.text = cellData.title
         leftImg.setImage(with: picAdress + cellData.image_video)
         numberLB.text = String(cellData.reading_number)

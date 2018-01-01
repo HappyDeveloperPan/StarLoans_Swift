@@ -10,7 +10,18 @@ import UIKit
 
 fileprivate let cellID = "ProductDetailCollectionViewCell"
 
+protocol ProductCellDelegate: class {
+    func reloadCellData(with cell: ProductCollectionViewCell)
+}
+
 class ProductCollectionViewCell: UICollectionViewCell {
+    //MARK: - 可操作数据
+    weak var delegate: ProductCellDelegate?
+    var cellDataArr: [ProductModel] = [ProductModel]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     //MARK: - 懒加载
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +44,10 @@ class ProductCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = kHomeBackColor
+        collectionView.addHeaderRefresh { [weak self] in
+            self?.delegate?.reloadCellData(with: self!)
+        }
+        collectionView.beginHeaderRefresh()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,11 +65,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
 extension ProductCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cellDataArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ProductDetailCollectionViewCell
+        cell.setProductListCellData(with: cellDataArr[indexPath.row])
         return cell
     }
 }

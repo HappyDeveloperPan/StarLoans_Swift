@@ -18,6 +18,8 @@ public let kHomeBackColor = UIColor(red: 247/255, green: 247/255, blue: 247/255,
 
 ///主窗口
 let kMainWindow  = UIApplication.shared.delegate?.window
+///主窗口frame
+let kMainScreenFrame = UIScreen.main.bounds
 /// 屏幕的宽
 let kScreenWidth = UIScreen.main.bounds.width
 /// 屏幕的高

@@ -12,20 +12,27 @@ fileprivate let cellID = "ClientListDetailCollectionViewCell"
 fileprivate let footerViewID = "ClientListFooterView"
 fileprivate let cellSpace = (kScreenWidth - 100 * 3) / 4
 
+protocol ClientListCellDelegate: class {
+    func reloadCellData(with cell: ClientListCollectionViewCell)
+}
+
 class ClientListCollectionViewCell: UICollectionViewCell {
+    //MARK: - 可操作数据
+    weak var delegate: ClientListCellDelegate?
+    var cellDataArr: [ClientInfoModel] = [ClientInfoModel]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     //MARK: - 懒加载
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: kScreenWidth - 32, height: 160)
         layout.minimumInteritemSpacing = cellSpace
         layout.sectionInset = UIEdgeInsets(top: cellSpace, left: cellSpace, bottom: cellSpace, right: cellSpace)
-//        layout.scrollDirection = .vertical
-//        layout.footerReferenceSize = CGSize(width: kScreenWidth, height: 165)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         self.contentView.addSubview(collectionView)
         collectionView.backgroundColor = kHomeBackColor
-//        collectionView.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
-//        collectionView.register(ClientListFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: footerViewID)
         collectionView.pan_registerCell(cell: HotResourceCell.self)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -38,6 +45,10 @@ class ClientListCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = kHomeBackColor
+        collectionView.addHeaderRefresh { [weak self] in
+            self?.delegate?.reloadCellData(with: self!)
+        }
+        collectionView.beginHeaderRefresh()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,13 +66,12 @@ class ClientListCollectionViewCell: UICollectionViewCell {
 
 extension ClientListCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cellDataArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ClientListDetailCollectionViewCell
         let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as HotResourceCell
-//        cell.setCellData(with: indexPath.row)
+        cell.setHotResourceCellData(with: cellDataArr[indexPath.row])
         return cell
     }
     

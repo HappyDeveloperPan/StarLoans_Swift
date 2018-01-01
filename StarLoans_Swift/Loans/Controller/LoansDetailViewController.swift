@@ -19,12 +19,19 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
     @IBOutlet weak var lookMoreBtn: UIButton!
     ///利率详情
     @IBOutlet weak var interestRateView: UIView!
+    @IBOutlet weak var interestRateViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var interestRateViewTop: NSLayoutConstraint!
     ///费用计算
     @IBOutlet weak var costCountView: UIView!
     @IBOutlet weak var moneyTF: UITextField!
     @IBOutlet weak var costCountLB: UILabel!
+    @IBOutlet weak var costCountVIewTop: NSLayoutConstraint!
     ///办理流程
     @IBOutlet weak var flowView: UIView!
+    @IBOutlet weak var flowImg1: UIImageView!
+    @IBOutlet weak var flowJiantou1: UIImageView!
+    @IBOutlet weak var flowLB1: UILabel!
+    @IBOutlet weak var flowLB2: UILabel!
     ///申请条件
     @IBOutlet weak var conditionView: UIView!
     @IBOutlet weak var conditionContentLB: UILabel!
@@ -37,6 +44,8 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
     @IBOutlet weak var problemTableView: UITableView!
     @IBOutlet weak var problemTableViewHeight: NSLayoutConstraint!
     //MARK: - 可操作数据
+    ///页面类型
+    var loansProductType: LoansProductType = .selfSupport
     var cellHeightArr: [CGFloat] = [CGFloat]()
     //MARK: - 懒加载
     ///利率图标
@@ -64,6 +73,8 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
         moneyTF.keyboardType = .numberPad
         moneyTF.addTarget(self, action: #selector(costCount(_:)), for: .editingChanged)
         costCountLB.adjustsFontSizeToFitWidth = true
+        //办理流程
+        flowLB2.adjustsFontSizeToFitWidth = true
         //申请条件
         conditionContentLB.sizeToFit()
         conditionContentLB.numberOfLines = 0
@@ -77,6 +88,14 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
         problemTableView.dataSource = self
         problemTableView.estimatedRowHeight = 160
         problemTableView.rowHeight = UITableViewAutomaticDimension
+        if loansProductType == .thirdSupport  {
+            interestRateView.isHidden = true
+            interestRateViewHeight.constant = 0
+            interestRateViewTop.constant = 0
+            flowLB1.isHidden = true
+            flowImg1.isHidden = true
+            flowJiantou1.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +154,6 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
             advenContentLB.text = "as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉"
         }
         
-        
     }
     
     ///费用计算
@@ -157,10 +175,16 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
     }
     
     @IBAction func moreProblemClick(_ sender: UIButton) {
-        print("更多问题")
+        let vc = LoansMoreProblemViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func taskBtnClick(_ sender: UIButton) {
+        let vc = AuthorizationViewController.loadStoryboard()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
+//MARK: - UITableView代理
 extension LoansDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3

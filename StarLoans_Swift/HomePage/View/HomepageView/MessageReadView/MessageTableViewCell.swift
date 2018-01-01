@@ -26,13 +26,11 @@ class MessageTableViewCell: UITableViewCell, RegisterCellOrNib {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        
 //        let attribute = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
 //        let lableSize = contentLB.text?.boundingRect(with: CGSize(width: contentLB.frame.size.width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: attribute, context: nil).size
 //        contentLB.frame = CGRect(x: contentLB.frame.origin.x, y: contentLB.frame.origin.y, width: contentLB.frame.size.width, height: (lableSize?.height)!)
         contentLB.numberOfLines = 2
         contentLB.sizeToFit()
-//        contentLB.text = "时刻发挥闪电发货后开始疯狂就是放假了时间了房价栏数据发了时间了房价类似纠纷时间浪费经历是放假了螺蛳粉逻辑是否了解老司机"
     }
     
     override func layoutSubviews() {
@@ -51,6 +49,7 @@ class MessageTableViewCell: UITableViewCell, RegisterCellOrNib {
 
 extension MessageTableViewCell {
     func setMessageReadData(with cellData: MessageReadModel) {
+        //TODO: - 图片地址拼接要改
         messImageView.setImage(with: cellData.image_video)
         contentLB.text = cellData.title
         readNumber.text = String(cellData.reading_number)

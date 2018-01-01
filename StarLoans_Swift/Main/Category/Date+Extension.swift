@@ -33,28 +33,57 @@ extension Date {
     /// 是否是今天的时间
     ///
     /// - Returns: Bool
+//    public func isToday() -> Bool{
+//
+//        let currentTime = Date().timeIntervalSince1970
+//
+//        let selfTime = self.timeIntervalSince1970
+//
+//        return (currentTime - selfTime) <= (24 * 60 * 60)
+//    }
+//
     public func isToday() -> Bool{
-
-        let currentTime = Date().timeIntervalSince1970
-
-        let selfTime = self.timeIntervalSince1970
-
-        return (currentTime - selfTime) <= (24 * 60 * 60)
+        return Calendar.current.isDateInToday(self)
     }
+    
 
     /// 是否是昨天的时间
     ///
     /// - Returns: Bool
-    public func isYesToday() -> Bool {
+    public func isYesterday() -> Bool {
 
-        let currentTime = Date().timeIntervalSince1970
-
-        let selfTime = self.timeIntervalSince1970
-
-        return (currentTime - selfTime) > (24 * 60 * 60)
+//        let currentTime = Date().timeIntervalSince1970
+//
+//        let selfTime = self.timeIntervalSince1970
+//
+//        return (currentTime - selfTime) > (24 * 60 * 60)
+        return Calendar.current.isDateInYesterday(self)
     }
 
-
     
+    /// 是否是明天
+    ///
+    /// - Returns: Bool
+    public func isTomorrow() -> Bool {
+        return Calendar.current.isDateInTomorrow(self)
+    }
+    
+    
+    /// 返回这个礼拜日期
+    ///
+    /// - Returns: String
+    public func dateString(with dateFormat: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = dateFormat
+        if Calendar.current.isDateInToday(self) {
+            return "今天"
+        }else if Calendar.current.isDateInYesterday(self) {
+            return "昨天"
+        }else if Calendar.current.isDateInTomorrow(self) {
+            return "明天"
+        }else {
+            return formatter.string(from: self)
+        }
+    }
 
 }

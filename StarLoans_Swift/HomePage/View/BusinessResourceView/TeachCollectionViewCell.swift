@@ -10,7 +10,18 @@ import UIKit
 
 fileprivate let cellID = "TeachDetailCollectionViewCell"
 
+protocol TeachCellDelegate: class {
+    func reloadCellData(with cell: TeachCollectionViewCell)
+}
+
 class TeachCollectionViewCell: UICollectionViewCell {
+    //MARK: - 可操作数据
+    weak var delegate: TeachCellDelegate?
+    var cellDataArr: [ResourceModel] = [ResourceModel]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +44,10 @@ class TeachCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = kHomeBackColor
+        collectionView.addHeaderRefresh { [weak self] in
+            self?.delegate?.reloadCellData(with: self!)
+        }
+        collectionView.beginHeaderRefresh()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,12 +65,12 @@ class TeachCollectionViewCell: UICollectionViewCell {
 
 extension TeachCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cellDataArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! TeachDetailCollectionViewCell
-        cell.setCellData(with: indexPath.row)
+        cell.setCourse(with: cellDataArr[indexPath.row])
         return cell
     }
     

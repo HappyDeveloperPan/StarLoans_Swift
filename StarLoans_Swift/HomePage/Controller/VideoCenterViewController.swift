@@ -110,7 +110,6 @@ extension VideoCenterViewController {
                     cellDataArr.append(VideoModel(with: dict))
                 }
                 cell.cellDataArr = cellDataArr
-                cell.collectionView.endHeaderRefresh()
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
@@ -118,6 +117,7 @@ extension VideoCenterViewController {
                     JSProgress.showFailStatus(with: "请求失败")
                 }
             }
+            cell.collectionView.endHeaderRefresh()
         }
     }
 }

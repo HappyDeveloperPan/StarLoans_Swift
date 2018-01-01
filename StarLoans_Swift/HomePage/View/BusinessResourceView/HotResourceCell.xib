@@ -71,8 +71,8 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有贷款房" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inr-O8-nV4">
-                        <rect key="frame" x="210" y="70.5" width="100" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有贷款房" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inr-O8-nV4">
+                        <rect key="frame" x="230" y="70.5" width="100" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="EVV-Bi-6jY"/>
                             <constraint firstAttribute="width" constant="100" id="lb7-WA-KpQ"/>
@@ -81,8 +81,8 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有全款车" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlv-zt-IGE">
-                        <rect key="frame" x="210.5" y="90.5" width="100" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有全款车" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlv-zt-IGE">
+                        <rect key="frame" x="230.5" y="90.5" width="100" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="YVE-Df-Jbj"/>
                             <constraint firstAttribute="width" constant="100" id="uE3-xt-7bf"/>
@@ -121,8 +121,8 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月收入5000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNH-WH-7wH">
-                        <rect key="frame" x="210.5" y="110.5" width="100" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月收入5000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNH-WH-7wH">
+                        <rect key="frame" x="230.5" y="110.5" width="100" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="n5Y-Ss-GAr"/>
                             <constraint firstAttribute="height" constant="14" id="oDf-SK-NOY"/>
@@ -194,7 +194,7 @@
                 <constraint firstItem="ZUu-oe-jr9" firstAttribute="top" secondItem="ci1-h9-E5h" secondAttribute="bottom" constant="46" id="gXZ-qY-EYH"/>
                 <constraint firstItem="xMq-PN-e8W" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="glG-42-h3p"/>
                 <constraint firstItem="PaU-eo-T3a" firstAttribute="leading" secondItem="dto-hW-Pfx" secondAttribute="trailing" constant="6" id="iG4-wb-CHG"/>
-                <constraint firstItem="inr-O8-nV4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="-20" id="lXr-Co-ogY"/>
+                <constraint firstItem="inr-O8-nV4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="lXr-Co-ogY"/>
                 <constraint firstAttribute="trailing" secondItem="ZUu-oe-jr9" secondAttribute="trailing" constant="12" id="oYD-LE-qA7"/>
                 <constraint firstItem="xNH-WH-7wH" firstAttribute="top" secondItem="zlv-zt-IGE" secondAttribute="bottom" constant="6" id="qQh-3j-gSi"/>
                 <constraint firstItem="swK-zj-3NV" firstAttribute="centerY" secondItem="lm9-E7-XfH" secondAttribute="centerY" id="rSC-gi-4SZ"/>
@@ -209,6 +209,7 @@
                 <outlet property="houseInfoLB" destination="inr-O8-nV4" id="Azy-x5-8ZT"/>
                 <outlet property="incomeLB" destination="xNH-WH-7wH" id="Qun-HN-29i"/>
                 <outlet property="loansNumLB" destination="xMq-PN-e8W" id="2ym-cY-n3V"/>
+                <outlet property="needDayLB" destination="Xxl-CP-Ept" id="T5f-Ek-M3o"/>
                 <outlet property="priceBtn" destination="ZUu-oe-jr9" id="pwv-1N-JtC"/>
                 <outlet property="providentFundLB" destination="swK-zj-3NV" id="ssI-Af-cNl"/>
                 <outlet property="resourceType" destination="vfK-Ha-orM" id="cna-Ki-3SV"/>

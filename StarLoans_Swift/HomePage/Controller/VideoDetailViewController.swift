@@ -99,11 +99,18 @@ extension VideoDetailViewController {
             
             if jsonData?["status"] == 200 {
                 self?.videoModel = VideoModel(with: jsonData!["data"][0])
+                self?.videoImg.setImage(with: (self?.videoModel.video_img)!)
                 self?.titleLB.text = self?.videoModel.video_title
                 self?.videoTypeLB.text = self?.videoModel.getVideoType()
-                self?.readNumLB.text = String(describing: self?.videoModel.video_view_count)
-                self?.themeContent.text = self?.videoModel.video_title
+                self?.readNumLB.text = String((self?.videoModel.video_view_count)!)
+                self?.topTimeLB.text = self?.videoModel.video_duration
+                self?.themeContent.text = self?.videoModel.video_theme
+                self?.timeContent.text = Utils.getDateToYMD(with: (self?.videoModel.video_upload_time)!)
+                self?.sponsorContent.text = self?.videoModel.video_sponsor
+                self?.mainGuestContent.text = self?.videoModel.video_speakers
+                self?.durationContent.text = self?.videoModel.video_duration
                 self?.videoIntroContent.text = self?.videoModel.video_desc
+                self?.payPlayBtn.setTitle("支付" + String((self?.videoModel.video_price)!) + "元播放", for: .normal)
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)

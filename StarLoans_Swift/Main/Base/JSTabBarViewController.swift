@@ -69,13 +69,13 @@ class JSTabBarViewController: UITabBarController {
     
 }
 
-//extension JSTabBarViewController:UITabBarControllerDelegate {
-//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-//        if (viewControllers?.contains(viewController))! && viewControllers!.index(of: viewController)! >= 4 {
-//            notifPresentLogin(notif: nil)
-//            return false
-//        }
-//        return true
-//    }
-//}
+extension JSTabBarViewController:UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if (viewControllers?.contains(viewController))! && viewControllers!.index(of: viewController)! >= 4 {
+            notifPresentLogin(notif: nil)
+            return false
+        }
+        return true
+    }
+}
 

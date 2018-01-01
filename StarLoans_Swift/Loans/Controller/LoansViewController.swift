@@ -59,6 +59,9 @@ class LoansViewController: BaseViewController {
 //        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
         self.view.addSubview(collectionView)
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
         collectionView.backgroundColor = UIColor.white
         collectionView.register(LoansSegmentCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.isPagingEnabled = true
@@ -73,6 +76,8 @@ class LoansViewController: BaseViewController {
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = kHomeBackColor
+        automaticallyAdjustsScrollViewInsets = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleBtn)
     }
     
@@ -80,13 +85,13 @@ class LoansViewController: BaseViewController {
         super .viewWillLayoutSubviews()
         
         segmentView.snp.makeConstraints { (make) in
-            make.left.top.equalToSuperview()
+            make.left.top.right.equalToSuperview()
             make.size.equalTo(CGSize(width: kScreenWidth, height: 40))
         }
         
         collectionView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.top.equalTo(segmentView.snp.bottom).offset(8)
+            make.top.equalTo(segmentView.snp.bottom)
             make.bottom.equalToSuperview()
 //            make.size.equalTo(CGSize(width: kScreenWidth, height: kScreenHeight - kNavHeight - 48))
         }
@@ -107,11 +112,30 @@ class LoansViewController: BaseViewController {
 
 }
 
+//MARK: - 数据处理部分
 extension LoansViewController {
     ///获取cell数据
     func getLoansCollegeData(with type: LoansProductType ,cell: LoansSegmentCell) {
-        //TODO: - 处理json数据
-        cell.collectionView.endHeaderRefresh()
+//        cell.collectionView.endHeaderRefresh()
+        let parameters = ["hyid": type.rawValue,
+                          "page": 1] as [String: Any]
+        
+        NetWorksManager.requst(with: kUrl_LoansProductList, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                var cellDataArr = [ProductModel]()
+                for dict in (jsonData?["data"].array)! {
+                    cellDataArr.append(ProductModel(with: dict))
+                }
+                cell.cellDataArr = cellDataArr
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            cell.collectionView.endHeaderRefresh()
+        }
     }
 }
 

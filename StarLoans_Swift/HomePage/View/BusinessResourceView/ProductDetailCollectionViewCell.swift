@@ -29,6 +29,10 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
     @IBOutlet weak var rightTypeLB2: UILabel!
     
     @IBOutlet weak var commitBtn: UIButton!
+    
+    //MARK: - 可操作数据
+    var loansProductType: LoansProductType = .selfSupport
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.white
@@ -64,6 +68,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
         }
         //TODO: - 界面跳转以后修改
         let vc = LoansDetailViewController.loadStoryboard()
+        vc.loansProductType = loansProductType
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)
@@ -88,5 +93,16 @@ extension ProductDetailCollectionViewCell {
             centerTitleBottom.text = "交单人数"
             commitBtn.setTitle("申请交单", for: .normal)
         }
+    }
+    
+    func setProductListCellData(with cellData: ProductModel) {
+        titleLB.text = cellData.product
+        leftTopLB.text = cellData.card
+        loansNumLB.text = cellData.quota + "万"
+        centerContentTop.text = cellData.return_commission
+        centerContentCenter.text = cellData.claim_amount
+        centerContentBottom.text = String(cellData.leader_number) + "人"
+        rightTypeLB.isHidden = !cellData.fast_loan.getServiceBool()
+        rightTypeLB2.text = cellData.label
     }
 }

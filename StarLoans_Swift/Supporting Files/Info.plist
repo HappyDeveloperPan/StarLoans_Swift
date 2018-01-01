@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>申请前台定位权限</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>申请相册访问权限</string>
+	<key>NSCameraUsageDescription</key>
+	<string>申请相机访问权限</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>

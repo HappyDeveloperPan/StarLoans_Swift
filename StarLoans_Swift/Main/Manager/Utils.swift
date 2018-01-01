@@ -47,4 +47,15 @@ public class Utils {
     class func getAsynchronousWithKey(_ key: String) -> Any {
         return UserDefaults.standard.value(forKey: key) ?? 0
     }
+    
+    ///年月日转换
+    class func getDateToYMD(with time: TimeInterval) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        //        formatter.date(from: "sdfsdf")
+        //        let date = NSDate(timeIntervalSince1970: time)
+        let date = Date(timeIntervalSince1970: time)
+        return formatter.string(from: date)
+    }
+
 }

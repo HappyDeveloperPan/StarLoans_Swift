@@ -32,6 +32,7 @@ class HotResourceCell: UICollectionViewCell, RegisterCellOrNib {
         layer.shadowRadius = 2//阴影半径，默认3
         layer.masksToBounds = false
         
+        userNameLB.sizeToFit()
         resourceType.layer.backgroundColor = UIColor.RGB(with: 248, green: 225, blue: 225).cgColor
         resourceType.layer.cornerRadius = 10.5
         priceBtn.layer.cornerRadius = priceBtn.height/2

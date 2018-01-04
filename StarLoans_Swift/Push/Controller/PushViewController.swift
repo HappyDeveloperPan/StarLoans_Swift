@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate let cellID = "SegmentCollectionViewCell"
 
-class PushViewController: UIViewController {
+class PushViewController: BaseViewController {
     //MARK: - 懒加载
     lazy var titleBtn: UIButton = { [unowned self] in
         let titleBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 65, height: 30))
@@ -63,15 +63,15 @@ class PushViewController: UIViewController {
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = ""
         view.backgroundColor = kHomeBackColor
-        setNavigationBarConfig()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(callback))
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleBtn)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
+//        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewWillLayoutSubviews() {
@@ -117,6 +117,7 @@ extension PushViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! SegmentCollectionViewCell
+        cell.pushType = PushType(rawValue: indexPath.row)!
         cell.setCellData(with: indexPath.row)
         return cell
     }

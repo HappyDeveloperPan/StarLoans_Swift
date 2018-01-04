@@ -34,16 +34,11 @@ class MineTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         setupConfig()
         setupIndentCellUI()
         setupendShopCellUI()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadUserData), name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
+        reloadUserData()
     }
     
     //基本配置
@@ -53,6 +48,10 @@ class MineTableViewController: UITableViewController {
             tableView.contentInsetAdjustmentBehavior = .never
         }
         tableView.tableHeaderView?.height = kNavHeight + 45
+        
+//        userImg.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(userImgCli
+        userImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userImgClick(_:))))
+        userImg.isUserInteractionEnabled = true
         
         userNameBtn.contentHorizontalAlignment = .left
         userNameBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0 )
@@ -133,12 +132,13 @@ class MineTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super .viewWillAppear(animated)
-        if UserManager.shareManager.isLogin {
-            reloadUserData()
-        }
-    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super .viewWillAppear(animated)
+//        if UserManager.shareManager.isLogin {
+//            reloadUserData()
+//        }
+//    }
     
     override func viewWillLayoutSubviews() {
         super .viewWillLayoutSubviews()
@@ -176,8 +176,23 @@ class MineTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = AccountViewController.loadStoryboard()
-        navigationController?.pushViewController(vc, animated: true)
+        switch indexPath {
+        case [0, 0]:
+            let vc = AccountViewController.loadStoryboard()
+            navigationController?.pushViewController(vc, animated: true)
+        case [1, 1]:
+            let vc = SettingViewController.loadStoryboard()
+            navigationController?.pushViewController(vc, animated: true)
+        case [1, 2]:
+            let vc = CommonProblemViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case [1, 3]:
+            let vc = AboutViewController.loadStoryboard()
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            break
+        }
+        
     }
     
     //MARK: - Method
@@ -187,6 +202,11 @@ class MineTableViewController: UITableViewController {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
             return
         }
+    }
+    
+    @objc func userImgClick(_ sender: UIGestureRecognizer) {
+        let vc = UserDataViewController.loadStoryboard()
+        navigationController?.pushViewController(vc, animated: true)
     }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -248,6 +268,10 @@ class MineTableViewController: UITableViewController {
 //MARK: - 数据处理部分
 extension MineTableViewController {
     @objc func reloadUserData() {
-        userNameBtn.setTitle(UserManager.shareManager.userModel?.user, for: .normal)
+        if UserManager.shareManager.isLogin {
+            userNameBtn.setTitle(UserManager.shareManager.userModel?.user, for: .normal)
+        }else {
+            userNameBtn.setTitle("未登录", for: .normal)
+        }
     }
 }

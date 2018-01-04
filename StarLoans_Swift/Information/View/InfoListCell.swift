@@ -29,6 +29,14 @@ class InfoListCell: UITableViewCell, RegisterCellOrNib {
 
 extension InfoListCell {
     func setInfoListCellData(with cellData: InfoModel) {
+        switch cellData.message_type {
+        case 1:
+            infoImg.image = #imageLiteral(resourceName: "ICON-xitongxiaoxi")
+        case 2:
+            infoImg.image = #imageLiteral(resourceName: "ICON-xiaoxiwenzhang")
+        default:
+            infoImg.image = #imageLiteral(resourceName: "ICON-xitongxiaoxi")
+        }
         titleLB.text = cellData.message_title
         contentLB.text = cellData.message_desc
         timeLB.text = Utils.getDateToYMD(with: cellData.message_time)

@@ -20,7 +20,6 @@ class QuickRobView: UIView {
     //MARK: - 可操作数据
     var cellArr: [ClientInfoModel] = [ClientInfoModel]() {
         didSet {
-            
             tableView.reloadData()
         }
     }
@@ -75,7 +74,13 @@ class QuickRobView: UIView {
     }
     
     @objc func topMoreBtnClick(_ sender: UIButton) {
-        print("急速抢单")
+        let vc = QuickRobbingViewController()
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
 }
 

@@ -51,7 +51,7 @@ class LoginViewModel: NSObject {
         
         NetWorksManager.requst(with: kUrl_GetCode, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData!["status"] == 200 {
-               let userModel  = UserModel(with: jsonData!["Data"])
+//               let userModel  = UserModel(with: jsonData!["Data"])
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: jsonData!["msg"].stringValue)

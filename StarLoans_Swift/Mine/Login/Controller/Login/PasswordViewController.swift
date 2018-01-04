@@ -182,7 +182,7 @@ class PasswordViewController: UIViewController {
                     if let userDic = jsonData?["data"].dictionaryObject {
                         Utils.setAsynchronous(userDic, withKey: kSavedUser)
                     }
-//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
                     self?.navigationController?.dismiss(animated: true, completion: nil)
                 }else { //  修改密码
                     self?.navigationController?.popToRootViewController(animated: true)

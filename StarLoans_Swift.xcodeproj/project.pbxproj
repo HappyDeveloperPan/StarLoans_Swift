@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C06E4141FFB359C00B46A10 /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E4131FFB359C00B46A10 /* InfoDetailViewController.swift */; };
+		1C06E4161FFB35B400B46A10 /* InfoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C06E4151FFB35B400B46A10 /* InfoDetailViewController.storyboard */; };
+		1C06E4181FFB5A7200B46A10 /* InfoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E4171FFB5A7200B46A10 /* InfoSettingViewController.swift */; };
+		1C06E41A1FFB5A8600B46A10 /* InfoSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C06E4191FFB5A8600B46A10 /* InfoSettingViewController.storyboard */; };
+		1C06E41C1FFB5AB800B46A10 /* InfoSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E41B1FFB5AB800B46A10 /* InfoSettingTableViewController.swift */; };
+		1C06E4201FFB6B1900B46A10 /* PushClientResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E41F1FFB6B1900B46A10 /* PushClientResourceViewController.swift */; };
+		1C06E4221FFB6BC500B46A10 /* PushClientResourceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C06E4211FFB6BC500B46A10 /* PushClientResourceViewController.storyboard */; };
+		1C06E4241FFB6BFA00B46A10 /* PushClientResourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E4231FFB6BFA00B46A10 /* PushClientResourceTableViewController.swift */; };
+		1C06E4261FFB83B500B46A10 /* PushProductResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E4251FFB83B500B46A10 /* PushProductResourceViewController.swift */; };
+		1C06E4281FFB83C500B46A10 /* PushProductResourceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C06E4271FFB83C500B46A10 /* PushProductResourceViewController.storyboard */; };
+		1C06E42A1FFB842D00B46A10 /* PushProductResourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E4291FFB842D00B46A10 /* PushProductResourceTableViewController.swift */; };
 		1C0892201FC43D2500E2320E /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C08921F1FC43D2500E2320E /* ForgetViewController.swift */; };
 		1C0892221FC43E3B00E2320E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0892211FC43E3B00E2320E /* RegisterViewController.swift */; };
 		1C0F850C1FF620110062D1B8 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0F850B1FF620100062D1B8 /* PickerView.swift */; };
@@ -105,6 +116,14 @@
 		1C8442561FC96BB6005BE65C /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8442551FC96BB6005BE65C /* VerifyViewController.swift */; };
 		1C8442581FC96FAB005BE65C /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8442571FC96FAB005BE65C /* PasswordViewController.swift */; };
 		1C8531DB1FDBC7C7009713A7 /* SegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8531DA1FDBC7C7009713A7 /* SegmentCollectionViewCell.swift */; };
+		1C857C7C1FFDBD2F009F45EE /* OpinionFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C857C7B1FFDBD2F009F45EE /* OpinionFeedbackViewController.swift */; };
+		1C857C7E1FFDBD3E009F45EE /* OpinionFeedbackViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C857C7D1FFDBD3E009F45EE /* OpinionFeedbackViewController.storyboard */; };
+		1C857C801FFDBFAE009F45EE /* SettingInformAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C857C7F1FFDBFAE009F45EE /* SettingInformAdminViewController.swift */; };
+		1C857C821FFDBFBB009F45EE /* SettingInformAdminViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C857C811FFDBFBB009F45EE /* SettingInformAdminViewController.storyboard */; };
+		1C857C841FFDC06B009F45EE /* SettingInformAdminTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C857C831FFDC06B009F45EE /* SettingInformAdminTableViewController.swift */; };
+		1C857C871FFDD6C6009F45EE /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C857C861FFDD6C6009F45EE /* UserDataViewController.swift */; };
+		1C857C891FFDD6D5009F45EE /* UserDataViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C857C881FFDD6D5009F45EE /* UserDataViewController.storyboard */; };
+		1C857C8B1FFDD6FC009F45EE /* UserDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C857C8A1FFDD6FC009F45EE /* UserDataTableViewController.swift */; };
 		1C8B7E871FD28CCE008EA417 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B7E861FD28CCE008EA417 /* VideoView.swift */; };
 		1C91ED921FD6762500DB3FA4 /* HotAgencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C91ED911FD6762500DB3FA4 /* HotAgencyView.swift */; };
 		1C91ED941FD67FE700DB3FA4 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C91ED931FD67FE700DB3FA4 /* UIColor+Extension.swift */; };
@@ -152,6 +171,26 @@
 		1CDE80D91FC7AFB0005A69DB /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE80D81FC7AFB0005A69DB /* UserModel.swift */; };
 		1CDE80DC1FC7C021005A69DB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE80DB1FC7C021005A69DB /* LoginViewModel.swift */; };
 		1CDF1A091FC8094D00C29F43 /* UIViewController+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF1A081FC8094D00C29F43 /* UIViewController+Config.swift */; };
+		1CE3BEF41FFC74B5003D6629 /* QuickRobbingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BEF31FFC74B5003D6629 /* QuickRobbingViewController.swift */; };
+		1CE3BEF71FFC7758003D6629 /* QuickRobbingSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BEF61FFC7758003D6629 /* QuickRobbingSegmentCell.swift */; };
+		1CE3BEF91FFCA8D3003D6629 /* QuickBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BEF81FFCA8D3003D6629 /* QuickBillDetailViewController.swift */; };
+		1CE3BF071FFCB510003D6629 /* QuickBillDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3BF061FFCB510003D6629 /* QuickBillDetailViewController.storyboard */; };
+		1CE3BF091FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF081FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift */; };
+		1CE3BF0B1FFCC617003D6629 /* QBDPropertyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF0A1FFCC617003D6629 /* QBDPropertyTableViewController.swift */; };
+		1CE3BF0D1FFCCF9C003D6629 /* DBPayCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF0C1FFCCF9C003D6629 /* DBPayCompleteViewController.swift */; };
+		1CE3BF0F1FFCCFF8003D6629 /* DBPayCompleteViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3BF0E1FFCCFF8003D6629 /* DBPayCompleteViewController.storyboard */; };
+		1CE3BF111FFCDEEA003D6629 /* QBSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF101FFCDEEA003D6629 /* QBSettingViewController.swift */; };
+		1CE3BF131FFCE104003D6629 /* QBSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3BF121FFCE104003D6629 /* QBSettingViewController.storyboard */; };
+		1CE3BF151FFCE142003D6629 /* QBSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF141FFCE142003D6629 /* QBSettingTableViewController.swift */; };
+		1CE3BF181FFCF637003D6629 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF171FFCF637003D6629 /* AboutViewController.swift */; };
+		1CE3BF1A1FFCF660003D6629 /* AboutViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3BF191FFCF660003D6629 /* AboutViewController.storyboard */; };
+		1CE3BF1C1FFCF828003D6629 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF1B1FFCF828003D6629 /* AboutTableViewController.swift */; };
+		1CE3BF1E1FFCFA38003D6629 /* CommonProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF1D1FFCFA38003D6629 /* CommonProblemViewController.swift */; };
+		1CE3BF211FFCFBB5003D6629 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF201FFCFBB5003D6629 /* SettingViewController.swift */; };
+		1CE3BF231FFCFBE9003D6629 /* SettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3BF221FFCFBE9003D6629 /* SettingViewController.storyboard */; };
+		1CE3BF251FFCFC09003D6629 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF241FFCFC09003D6629 /* SettingTableViewController.swift */; };
+		1CE3BF271FFD02EC003D6629 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF261FFD02EC003D6629 /* ResetViewController.swift */; };
+		1CE3BF291FFD02FD003D6629 /* ResetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3BF281FFD02FD003D6629 /* ResetViewController.storyboard */; };
 		1CED7B551FDE798300AABDDE /* BusinessResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED7B541FDE798300AABDDE /* BusinessResourceViewController.swift */; };
 		1CED7B581FDE9DAC00AABDDE /* TeachCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED7B571FDE9DAC00AABDDE /* TeachCollectionViewCell.swift */; };
 		1CED7B5B1FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED7B591FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift */; };
@@ -192,6 +231,17 @@
 		0288A9E372FEDC157C4F3C6F /* Pods_StarLoans_SwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarLoans_SwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		093EF7603418866998285674 /* Pods-StarLoans_SwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarLoans_SwiftUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarLoans_SwiftUITests/Pods-StarLoans_SwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		09BE9AF022939D1D7168CCDE /* Pods_StarLoans_SwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarLoans_SwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C06E4131FFB359C00B46A10 /* InfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailViewController.swift; sourceTree = "<group>"; };
+		1C06E4151FFB35B400B46A10 /* InfoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InfoDetailViewController.storyboard; sourceTree = "<group>"; };
+		1C06E4171FFB5A7200B46A10 /* InfoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSettingViewController.swift; sourceTree = "<group>"; };
+		1C06E4191FFB5A8600B46A10 /* InfoSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InfoSettingViewController.storyboard; sourceTree = "<group>"; };
+		1C06E41B1FFB5AB800B46A10 /* InfoSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSettingTableViewController.swift; sourceTree = "<group>"; };
+		1C06E41F1FFB6B1900B46A10 /* PushClientResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushClientResourceViewController.swift; sourceTree = "<group>"; };
+		1C06E4211FFB6BC500B46A10 /* PushClientResourceViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PushClientResourceViewController.storyboard; sourceTree = "<group>"; };
+		1C06E4231FFB6BFA00B46A10 /* PushClientResourceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushClientResourceTableViewController.swift; sourceTree = "<group>"; };
+		1C06E4251FFB83B500B46A10 /* PushProductResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushProductResourceViewController.swift; sourceTree = "<group>"; };
+		1C06E4271FFB83C500B46A10 /* PushProductResourceViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PushProductResourceViewController.storyboard; sourceTree = "<group>"; };
+		1C06E4291FFB842D00B46A10 /* PushProductResourceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushProductResourceTableViewController.swift; sourceTree = "<group>"; };
 		1C08921F1FC43D2500E2320E /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		1C0892211FC43E3B00E2320E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1C0F850B1FF620100062D1B8 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -297,6 +347,14 @@
 		1C8442551FC96BB6005BE65C /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		1C8442571FC96FAB005BE65C /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		1C8531DA1FDBC7C7009713A7 /* SegmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C857C7B1FFDBD2F009F45EE /* OpinionFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpinionFeedbackViewController.swift; sourceTree = "<group>"; };
+		1C857C7D1FFDBD3E009F45EE /* OpinionFeedbackViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OpinionFeedbackViewController.storyboard; sourceTree = "<group>"; };
+		1C857C7F1FFDBFAE009F45EE /* SettingInformAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInformAdminViewController.swift; sourceTree = "<group>"; };
+		1C857C811FFDBFBB009F45EE /* SettingInformAdminViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingInformAdminViewController.storyboard; sourceTree = "<group>"; };
+		1C857C831FFDC06B009F45EE /* SettingInformAdminTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInformAdminTableViewController.swift; sourceTree = "<group>"; };
+		1C857C861FFDD6C6009F45EE /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
+		1C857C881FFDD6D5009F45EE /* UserDataViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataViewController.storyboard; sourceTree = "<group>"; };
+		1C857C8A1FFDD6FC009F45EE /* UserDataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataTableViewController.swift; sourceTree = "<group>"; };
 		1C8B7E861FD28CCE008EA417 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		1C91ED911FD6762500DB3FA4 /* HotAgencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotAgencyView.swift; sourceTree = "<group>"; };
 		1C91ED931FD67FE700DB3FA4 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -344,6 +402,26 @@
 		1CDE80D81FC7AFB0005A69DB /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1CDE80DB1FC7C021005A69DB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1CDF1A081FC8094D00C29F43 /* UIViewController+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Config.swift"; sourceTree = "<group>"; };
+		1CE3BEF31FFC74B5003D6629 /* QuickRobbingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRobbingViewController.swift; sourceTree = "<group>"; };
+		1CE3BEF61FFC7758003D6629 /* QuickRobbingSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRobbingSegmentCell.swift; sourceTree = "<group>"; };
+		1CE3BEF81FFCA8D3003D6629 /* QuickBillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickBillDetailViewController.swift; sourceTree = "<group>"; };
+		1CE3BF061FFCB510003D6629 /* QuickBillDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuickBillDetailViewController.storyboard; sourceTree = "<group>"; };
+		1CE3BF081FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBDUserInfoTableViewController.swift; sourceTree = "<group>"; };
+		1CE3BF0A1FFCC617003D6629 /* QBDPropertyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBDPropertyTableViewController.swift; sourceTree = "<group>"; };
+		1CE3BF0C1FFCCF9C003D6629 /* DBPayCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPayCompleteViewController.swift; sourceTree = "<group>"; };
+		1CE3BF0E1FFCCFF8003D6629 /* DBPayCompleteViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DBPayCompleteViewController.storyboard; sourceTree = "<group>"; };
+		1CE3BF101FFCDEEA003D6629 /* QBSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBSettingViewController.swift; sourceTree = "<group>"; };
+		1CE3BF121FFCE104003D6629 /* QBSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QBSettingViewController.storyboard; sourceTree = "<group>"; };
+		1CE3BF141FFCE142003D6629 /* QBSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBSettingTableViewController.swift; sourceTree = "<group>"; };
+		1CE3BF171FFCF637003D6629 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		1CE3BF191FFCF660003D6629 /* AboutViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutViewController.storyboard; sourceTree = "<group>"; };
+		1CE3BF1B1FFCF828003D6629 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
+		1CE3BF1D1FFCFA38003D6629 /* CommonProblemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProblemViewController.swift; sourceTree = "<group>"; };
+		1CE3BF201FFCFBB5003D6629 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		1CE3BF221FFCFBE9003D6629 /* SettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingViewController.storyboard; sourceTree = "<group>"; };
+		1CE3BF241FFCFC09003D6629 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		1CE3BF261FFD02EC003D6629 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		1CE3BF281FFD02FD003D6629 /* ResetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetViewController.storyboard; sourceTree = "<group>"; };
 		1CED7B541FDE798300AABDDE /* BusinessResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessResourceViewController.swift; sourceTree = "<group>"; };
 		1CED7B571FDE9DAC00AABDDE /* TeachCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachCollectionViewCell.swift; sourceTree = "<group>"; };
 		1CED7B591FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachDetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -524,11 +602,17 @@
 		1C0892161FC3F3E000E2320E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1C609DA21FE7AA24004D4E54 /* Login */,
-				1C609D9F1FE7A329004D4E54 /* Account */,
 				1CF9FCD91FE3BD7C003AE228 /* MineViewController.swift */,
 				1CBFFBAD1FE4EE4700E89B7E /* MineTableViewController.swift */,
 				1CBFFBAB1FE4EDB500E89B7E /* MineViewController.storyboard */,
+				1C609DA21FE7AA24004D4E54 /* Login */,
+				1C609D9F1FE7A329004D4E54 /* Account */,
+				1CE3BF1F1FFCFB3C003D6629 /* Setting */,
+				1C857C851FFDD687009F45EE /* UserData */,
+				1CE3BF171FFCF637003D6629 /* AboutViewController.swift */,
+				1CE3BF1B1FFCF828003D6629 /* AboutTableViewController.swift */,
+				1CE3BF191FFCF660003D6629 /* AboutViewController.storyboard */,
+				1CE3BF1D1FFCFA38003D6629 /* CommonProblemViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -610,7 +694,6 @@
 			children = (
 				1C1D94661FE2792E00F65049 /* VideoCenterCollectionViewCell.swift */,
 				1C1D94681FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.swift */,
-				1C10F6A11FECF4A800C3A62A /* MessageReadView */,
 				1C1D94691FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib */,
 			);
 			path = VideoCenterView;
@@ -640,6 +723,8 @@
 				1CED7B561FDE9CDC00AABDDE /* BusinessResourceView */,
 				1C363A361FE0B69F00D87014 /* LoansCollegeView */,
 				1C1D94611FE277D700F65049 /* VideoCenterView */,
+				1C10F6A11FECF4A800C3A62A /* MessageReadView */,
+				1CE3BEF51FFC7716003D6629 /* QuickRobbingView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -663,6 +748,7 @@
 				1C10F69F1FECE87E00C3A62A /* MessageReadViewController.swift */,
 				1C10F6A61FED0CA800C3A62A /* MessageDetailViewController.swift */,
 				1C10F6A81FED0CBA00C3A62A /* MessageDetailViewController.storyboard */,
+				1CE3BF161FFCF553003D6629 /* QuickBill */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -773,6 +859,11 @@
 			isa = PBXGroup;
 			children = (
 				1CF12AA21FCD62B500474AFB /* InformationViewController.swift */,
+				1C06E4131FFB359C00B46A10 /* InfoDetailViewController.swift */,
+				1C06E4151FFB35B400B46A10 /* InfoDetailViewController.storyboard */,
+				1C06E4171FFB5A7200B46A10 /* InfoSettingViewController.swift */,
+				1C06E41B1FFB5AB800B46A10 /* InfoSettingTableViewController.swift */,
+				1C06E4191FFB5A8600B46A10 /* InfoSettingViewController.storyboard */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -827,6 +918,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		1C857C851FFDD687009F45EE /* UserData */ = {
+			isa = PBXGroup;
+			children = (
+				1C857C861FFDD6C6009F45EE /* UserDataViewController.swift */,
+				1C857C8A1FFDD6FC009F45EE /* UserDataTableViewController.swift */,
+				1C857C881FFDD6D5009F45EE /* UserDataViewController.storyboard */,
+			);
+			path = UserData;
+			sourceTree = "<group>";
+		};
 		1C91ED951FD688A600DB3FA4 /* HotAgencyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +967,12 @@
 			isa = PBXGroup;
 			children = (
 				1C4066321FB1A9B9009A59FD /* PushViewController.swift */,
+				1C06E41F1FFB6B1900B46A10 /* PushClientResourceViewController.swift */,
+				1C06E4231FFB6BFA00B46A10 /* PushClientResourceTableViewController.swift */,
+				1C06E4211FFB6BC500B46A10 /* PushClientResourceViewController.storyboard */,
+				1C06E4251FFB83B500B46A10 /* PushProductResourceViewController.swift */,
+				1C06E4291FFB842D00B46A10 /* PushProductResourceTableViewController.swift */,
+				1C06E4271FFB83C500B46A10 /* PushProductResourceViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -907,6 +1014,48 @@
 				1CDE80DB1FC7C021005A69DB /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1CE3BEF51FFC7716003D6629 /* QuickRobbingView */ = {
+			isa = PBXGroup;
+			children = (
+				1CE3BEF61FFC7758003D6629 /* QuickRobbingSegmentCell.swift */,
+			);
+			path = QuickRobbingView;
+			sourceTree = "<group>";
+		};
+		1CE3BF161FFCF553003D6629 /* QuickBill */ = {
+			isa = PBXGroup;
+			children = (
+				1CE3BEF31FFC74B5003D6629 /* QuickRobbingViewController.swift */,
+				1CE3BEF81FFCA8D3003D6629 /* QuickBillDetailViewController.swift */,
+				1CE3BF081FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift */,
+				1CE3BF0A1FFCC617003D6629 /* QBDPropertyTableViewController.swift */,
+				1CE3BF061FFCB510003D6629 /* QuickBillDetailViewController.storyboard */,
+				1CE3BF0C1FFCCF9C003D6629 /* DBPayCompleteViewController.swift */,
+				1CE3BF0E1FFCCFF8003D6629 /* DBPayCompleteViewController.storyboard */,
+				1CE3BF101FFCDEEA003D6629 /* QBSettingViewController.swift */,
+				1CE3BF141FFCE142003D6629 /* QBSettingTableViewController.swift */,
+				1CE3BF121FFCE104003D6629 /* QBSettingViewController.storyboard */,
+			);
+			path = QuickBill;
+			sourceTree = "<group>";
+		};
+		1CE3BF1F1FFCFB3C003D6629 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				1CE3BF201FFCFBB5003D6629 /* SettingViewController.swift */,
+				1CE3BF241FFCFC09003D6629 /* SettingTableViewController.swift */,
+				1CE3BF221FFCFBE9003D6629 /* SettingViewController.storyboard */,
+				1CE3BF261FFD02EC003D6629 /* ResetViewController.swift */,
+				1CE3BF281FFD02FD003D6629 /* ResetViewController.storyboard */,
+				1C857C7B1FFDBD2F009F45EE /* OpinionFeedbackViewController.swift */,
+				1C857C7D1FFDBD3E009F45EE /* OpinionFeedbackViewController.storyboard */,
+				1C857C7F1FFDBFAE009F45EE /* SettingInformAdminViewController.swift */,
+				1C857C831FFDC06B009F45EE /* SettingInformAdminTableViewController.swift */,
+				1C857C811FFDBFBB009F45EE /* SettingInformAdminViewController.storyboard */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		1CED7B531FDE786500AABDDE /* HomepageView */ = {
@@ -1092,22 +1241,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C06E4161FFB35B400B46A10 /* InfoDetailViewController.storyboard in Resources */,
+				1CE3BF0F1FFCCFF8003D6629 /* DBPayCompleteViewController.storyboard in Resources */,
 				1C1376171FF27CBB003EC987 /* LoansProductView.xib in Resources */,
+				1C857C821FFDBFBB009F45EE /* SettingInformAdminViewController.storyboard in Resources */,
 				1C4066091FB190C8009A59FD /* LaunchScreen.storyboard in Resources */,
 				1C609DA61FE7ABDA004D4E54 /* AccountViewController.storyboard in Resources */,
+				1C06E41A1FFB5A8600B46A10 /* InfoSettingViewController.storyboard in Resources */,
 				1C1C1F971FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib in Resources */,
 				1C10F6A91FED0CBA00C3A62A /* MessageDetailViewController.storyboard in Resources */,
 				1C609DB01FE7E677004D4E54 /* WithdrawViewController.storyboard in Resources */,
 				1CDC915F1FF0DCFC0040434B /* HotResourceCell.xib in Resources */,
 				1C1C1FA31FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard in Resources */,
+				1CE3BF071FFCB510003D6629 /* QuickBillDetailViewController.storyboard in Resources */,
 				1C10504B1FD8E35E0050B187 /* MessageTableViewCell.xib in Resources */,
 				1C4B287A1FF3CD3B00FC32CA /* ProblemCell.xib in Resources */,
+				1C857C891FFDD6D5009F45EE /* UserDataViewController.storyboard in Resources */,
 				1CBFFBAC1FE4EDB500E89B7E /* MineViewController.storyboard in Resources */,
+				1CE3BF291FFD02FD003D6629 /* ResetViewController.storyboard in Resources */,
+				1C06E4281FFB83C500B46A10 /* PushProductResourceViewController.storyboard in Resources */,
 				1CDC91631FF0EA800040434B /* VideoDetailViewController.storyboard in Resources */,
 				1C1376131FF27A02003EC987 /* LoansDetailViewController.storyboard in Resources */,
 				1CD0B4211FE8B8AD00A4A796 /* BindingCardNextViewController.storyboard in Resources */,
 				1CED7B5C1FDEA73100AABDDE /* TeachDetailCollectionViewCell.xib in Resources */,
 				1C609DAC1FE7BE38004D4E54 /* BankCardCollectionViewCell.xib in Resources */,
+				1CE3BF231FFCFBE9003D6629 /* SettingViewController.storyboard in Resources */,
 				1C1D946B1FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib in Resources */,
 				1CF9FCD81FE3B9C8003AE228 /* MineHeaderView.xib in Resources */,
 				1C4066061FB190C8009A59FD /* Assets.xcassets in Resources */,
@@ -1116,8 +1274,12 @@
 				1C4066041FB190C8009A59FD /* Main.storyboard in Resources */,
 				1CA4FCF01FD7DE5A009ECD30 /* RobbingTableViewCell.xib in Resources */,
 				1C363A3E1FE0D53C00D87014 /* PayCompleteViewController.storyboard in Resources */,
+				1CE3BF1A1FFCF660003D6629 /* AboutViewController.storyboard in Resources */,
+				1C06E4221FFB6BC500B46A10 /* PushClientResourceViewController.storyboard in Resources */,
+				1CE3BF131FFCE104003D6629 /* QBSettingViewController.storyboard in Resources */,
 				1C9961A51FF4EDE700E4990C /* AuthorizationViewController.storyboard in Resources */,
 				1C363A421FE0FA4A00D87014 /* SignInViewController.storyboard in Resources */,
+				1C857C7E1FFDBD3E009F45EE /* OpinionFeedbackViewController.storyboard in Resources */,
 				1C3BD82F1FDF6E8800B660C4 /* ClientListDetailCollectionViewCell.xib in Resources */,
 				1C609DBA1FE7EA24004D4E54 /* MoneyDetailTableViewCell.xib in Resources */,
 				1C5AFD3D1FF7879B009E65FC /* CommitCompleteViewController.storyboard in Resources */,
@@ -1323,11 +1485,13 @@
 				1C81E4C21FD1389A006F7D00 /* VideoCollectionViewCell.swift in Sources */,
 				1C57AAF51FD636D600A7626A /* CustomLayout.swift in Sources */,
 				1CF12AA31FCD62B500474AFB /* InformationViewController.swift in Sources */,
+				1CE3BF151FFCE142003D6629 /* QBSettingTableViewController.swift in Sources */,
 				1C5AFD3B1FF78788009E65FC /* CommitCompleteViewController.swift in Sources */,
 				1C0F85101FF63C6B0062D1B8 /* RadioBtnView.swift in Sources */,
 				1C91ED971FD688E700DB3FA4 /* HotAgencyCollectionViewCell.swift in Sources */,
 				1C1C1F931FDFBBFF00C71D73 /* ProductCollectionViewCell.swift in Sources */,
 				1C8442581FC96FAB005BE65C /* PasswordViewController.swift in Sources */,
+				1C06E41C1FFB5AB800B46A10 /* InfoSettingTableViewController.swift in Sources */,
 				1C9961A11FF4E7D400E4990C /* InputUserInfoViewController.swift in Sources */,
 				1C468B891FFA4011004DD9DA /* InfoListCell.swift in Sources */,
 				1C1050441FD8D8C60050B187 /* PlanView.swift in Sources */,
@@ -1337,12 +1501,16 @@
 				1C4B28761FF39C4A00FC32CA /* GridView.swift in Sources */,
 				1CBFFBAE1FE4EE4700E89B7E /* MineTableViewController.swift in Sources */,
 				1C4066331FB1A9B9009A59FD /* PushViewController.swift in Sources */,
+				1CE3BEF41FFC74B5003D6629 /* QuickRobbingViewController.swift in Sources */,
 				1C4B28791FF3CD3B00FC32CA /* ProblemCell.swift in Sources */,
 				1C10F6A71FED0CA800C3A62A /* MessageDetailViewController.swift in Sources */,
 				1C2E2AED1FCECDBB005E48C3 /* WRCycleCell.swift in Sources */,
+				1C857C871FFDD6C6009F45EE /* UserDataViewController.swift in Sources */,
 				1C4066371FB1B0ED009A59FD /* LoginViewController.swift in Sources */,
+				1CE3BF181FFCF637003D6629 /* AboutViewController.swift in Sources */,
 				1C9961A31FF4EB4600E4990C /* AuthorizationViewController.swift in Sources */,
 				1CF8EC611FF8BE16000794A7 /* BaseModel.swift in Sources */,
+				1C06E4141FFB359C00B46A10 /* InfoDetailViewController.swift in Sources */,
 				1C468B8C1FFA4387004DD9DA /* InfoModel.swift in Sources */,
 				1C5AFD421FF79F70009E65FC /* InfoSegmentCell.swift in Sources */,
 				1C1D946A1FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.swift in Sources */,
@@ -1357,11 +1525,13 @@
 				1C3BD8311FDF752100B660C4 /* ClientListFooterView.swift in Sources */,
 				1CB728D81FDA2C5A006C1D2E /* String+Extension.swift in Sources */,
 				1CF12AAB1FCD7C8F00474AFB /* AXDTabBarViewController.swift in Sources */,
+				1CE3BF251FFCFC09003D6629 /* SettingTableViewController.swift in Sources */,
 				1CDE80DC1FC7C021005A69DB /* LoginViewModel.swift in Sources */,
 				1C13760F1FF26443003EC987 /* LoansModel.swift in Sources */,
 				1C10F69E1FECB1A300C3A62A /* UIScrollView+Extension.swift in Sources */,
 				1CED7B5E1FDEB19400AABDDE /* ClientListCollectionViewCell.swift in Sources */,
 				1CC9C0E81FCC3B2D00750C5E /* NetWorksManager.swift in Sources */,
+				1CE3BEF91FFCA8D3003D6629 /* QuickBillDetailViewController.swift in Sources */,
 				1C54A82F1FD00C2000CF4F9B /* FunctionView.swift in Sources */,
 				1CF9FCD61FE3B9BD003AE228 /* MineHeaderView.swift in Sources */,
 				1C1D945E1FE2724F00F65049 /* VideoCenterViewController.swift in Sources */,
@@ -1369,9 +1539,11 @@
 				1C3BD82E1FDF6E8800B660C4 /* ClientListDetailCollectionViewCell.swift in Sources */,
 				1CB08E0C1FDA9B0B007FCC31 /* SMSegmentAppearance.swift in Sources */,
 				1C2E2AF01FCECDBB005E48C3 /* WRProxy.swift in Sources */,
+				1CE3BF1E1FFCFA38003D6629 /* CommonProblemViewController.swift in Sources */,
 				1C1C1FA51FDFFCB000C71D73 /* Utils.swift in Sources */,
 				1C609DAB1FE7BE38004D4E54 /* BankCardCollectionViewCell.swift in Sources */,
 				1C91ED921FD6762500DB3FA4 /* HotAgencyView.swift in Sources */,
+				1C06E4201FFB6B1900B46A10 /* PushClientResourceViewController.swift in Sources */,
 				1C9961A91FF51C4900E4990C /* InputUserInfoTableViewController.swift in Sources */,
 				1CB728D21FDA22BD006C1D2E /* UIButton+Extension.swift in Sources */,
 				1C609DA11FE7A9F9004D4E54 /* AccountViewController.swift in Sources */,
@@ -1382,11 +1554,16 @@
 				1CDC91651FF1235E0040434B /* UILabel+Extension.swift in Sources */,
 				1C609DB91FE7EA24004D4E54 /* MoneyDetailTableViewCell.swift in Sources */,
 				1CD0B4231FE9148700A4A796 /* YHAlertView.swift in Sources */,
+				1CE3BF091FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift in Sources */,
 				1CED7B551FDE798300AABDDE /* BusinessResourceViewController.swift in Sources */,
 				1CD0B4171FE8AF9C00A4A796 /* BindingCardFirstViewController.swift in Sources */,
 				1C2E2AD61FCE5F4E005E48C3 /* AXDTabBarItemContentView.swift in Sources */,
 				1C2E2AEF1FCECDBB005E48C3 /* WRPageControl.swift in Sources */,
+				1CE3BF211FFCFBB5003D6629 /* SettingViewController.swift in Sources */,
 				1CB08E0E1FDA9B0B007FCC31 /* SMSegmentViewConstants.swift in Sources */,
+				1C857C801FFDBFAE009F45EE /* SettingInformAdminViewController.swift in Sources */,
+				1C06E4261FFB83B500B46A10 /* PushProductResourceViewController.swift in Sources */,
+				1CE3BF111FFCDEEA003D6629 /* QBSettingViewController.swift in Sources */,
 				1C363A3A1FE0BD8D00D87014 /* AXDNavigationController.swift in Sources */,
 				1C10F6A51FED04B700C3A62A /* MessageReadModel.swift in Sources */,
 				1C40E2A81FE2707D00A01D2D /* AppDelegate+System.swift in Sources */,
@@ -1398,13 +1575,16 @@
 				1C363A381FE0B6F200D87014 /* LoansCollegeCollectionViewCell.swift in Sources */,
 				1C8B7E871FD28CCE008EA417 /* VideoView.swift in Sources */,
 				1C1C1F961FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift in Sources */,
+				1C857C8B1FFDD6FC009F45EE /* UserDataTableViewController.swift in Sources */,
 				1C609DAE1FE7E47F004D4E54 /* WithdrawViewController.swift in Sources */,
 				1C4682921FEBDCAF002DA528 /* LoansCollegeModel.swift in Sources */,
 				1CCE1B421FC2C27F002EE6D9 /* UserManager.swift in Sources */,
+				1C857C841FFDC06B009F45EE /* SettingInformAdminTableViewController.swift in Sources */,
 				1C1D94601FE2732100F65049 /* BaseViewController.swift in Sources */,
 				1C1D946D1FE2A9DB00F65049 /* VideoPlayViewController.swift in Sources */,
 				1CD0B41B1FE8B10200A4A796 /* BindingCardFirstTableViewController.swift in Sources */,
 				1C1D94671FE2792E00F65049 /* VideoCenterCollectionViewCell.swift in Sources */,
+				1C06E42A1FFB842D00B46A10 /* PushProductResourceTableViewController.swift in Sources */,
 				1C54A82D1FCFAEF000CF4F9B /* TopAdverView.swift in Sources */,
 				1C363A401FE0F7E700D87014 /* SignInViewController.swift in Sources */,
 				1C1376111FF27893003EC987 /* LoansDetailViewController.swift in Sources */,
@@ -1413,13 +1593,18 @@
 				1CA4FCEB1FD7D9AC009ECD30 /* QuickRobView.swift in Sources */,
 				1C2E2ADA1FCE96FC005E48C3 /* UIImage+Extension.swift in Sources */,
 				1C99619D1FF4D46C00E4990C /* LoansQuestionsViewController.swift in Sources */,
+				1CE3BEF71FFC7758003D6629 /* QuickRobbingSegmentCell.swift in Sources */,
 				1C0892221FC43E3B00E2320E /* RegisterViewController.swift in Sources */,
+				1C06E4181FFB5A7200B46A10 /* InfoSettingViewController.swift in Sources */,
+				1CE3BF1C1FFCF828003D6629 /* AboutTableViewController.swift in Sources */,
 				1C609DA41FE7AB29004D4E54 /* AccountTableViewController.swift in Sources */,
 				1C13760D1FF23013003EC987 /* LoansSegmentCell.swift in Sources */,
+				1C06E4241FFB6BFA00B46A10 /* PushClientResourceTableViewController.swift in Sources */,
 				1CB728DA1FDA37A4006C1D2E /* SearchView.swift in Sources */,
 				1C2E2AEE1FCECDBB005E48C3 /* WRCycleScrollView.swift in Sources */,
 				1CED7B581FDE9DAC00AABDDE /* TeachCollectionViewCell.swift in Sources */,
 				1C99619F1FF4D78100E4990C /* MyTextView.swift in Sources */,
+				1CE3BF271FFD02EC003D6629 /* ResetViewController.swift in Sources */,
 				1CF9FCDA1FE3BD7C003AE228 /* MineViewController.swift in Sources */,
 				1C2E2AD81FCE96D1005E48C3 /* UIImageView+Extension.swift in Sources */,
 				1C10F6A01FECE87E00C3A62A /* MessageReadViewController.swift in Sources */,
@@ -1428,6 +1613,7 @@
 				1CF8EC671FF8D904000794A7 /* ProductModel.swift in Sources */,
 				1CC9C0E61FCC23CD00750C5E /* JSProgress.swift in Sources */,
 				1C4682901FEB9689002DA528 /* HomePageModel.swift in Sources */,
+				1C857C7C1FFDBD2F009F45EE /* OpinionFeedbackViewController.swift in Sources */,
 				1C6716BA1FEE4D5C0029E6DE /* BannerModel.swift in Sources */,
 				1C363A3C1FE0D51B00D87014 /* PayCompleteViewController.swift in Sources */,
 				1C6716BE1FEE50520029E6DE /* ClientInfoModel.swift in Sources */,
@@ -1441,12 +1627,14 @@
 				1C0892201FC43D2500E2320E /* ForgetViewController.swift in Sources */,
 				1C609DA81FE7B905004D4E54 /* BankCardViewController.swift in Sources */,
 				1C609DB61FE7E9A1004D4E54 /* MoneyDetailViewController.swift in Sources */,
+				1CE3BF0D1FFCCF9C003D6629 /* DBPayCompleteViewController.swift in Sources */,
 				1C1376061FF1E7B4003EC987 /* VideoModel.swift in Sources */,
 				1CB728D61FDA2C4C006C1D2E /* Date+Extension.swift in Sources */,
 				1CF8EC651FF8D886000794A7 /* ResourceModel.swift in Sources */,
 				1C8442541FC91B0D005BE65C /* LoginInputView.swift in Sources */,
 				1CED7B5B1FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift in Sources */,
 				1CDC915E1FF0DCFC0040434B /* HotResourceCell.swift in Sources */,
+				1CE3BF0B1FFCC617003D6629 /* QBDPropertyTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1641,7 +1829,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "StarLoans_Swift/Supporting Files/StarLoans_Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1676,7 +1864,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "StarLoans_Swift/Supporting Files/StarLoans_Swift-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

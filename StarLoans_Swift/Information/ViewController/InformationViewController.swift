@@ -20,6 +20,13 @@ class InformationViewController: BaseViewController {
         return titleBtn
         }()
     
+    lazy var settingBtn: UIButton = { [unowned self] in
+        let settingBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        settingBtn.setImage(#imageLiteral(resourceName: "ICON-xiaoxishezh"), for: .normal)
+        settingBtn.addTarget(self, action: #selector(settingBtnClick(_:)), for: .touchUpInside)
+        return settingBtn
+        }()
+    
     lazy var segmentView: SMSegmentView = { [unowned self] in
         let appearance = SMSegmentAppearance()
         appearance.segmentOnSelectionColour = UIColor.white
@@ -63,6 +70,7 @@ class InformationViewController: BaseViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = false
         return collectionView
         }()
     //MARK: - 生命周期
@@ -70,6 +78,7 @@ class InformationViewController: BaseViewController {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleBtn)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingBtn)
     }
     
     override func viewWillLayoutSubviews() {
@@ -98,6 +107,11 @@ class InformationViewController: BaseViewController {
         let index = IndexPath(item: segmentView.selectedSegmentIndex, section: 0)
         collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
     }
+    
+    @objc func settingBtnClick(_ sender: UIButton) {
+        let vc = InfoSettingViewController.loadStoryboard()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
 
@@ -113,11 +127,14 @@ extension InformationViewController {
         
         NetWorksManager.requst(with: kUrl_InfoList, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellDataArr = [InfoModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellDataArr.append(InfoModel(with: dict))
+                if let data = jsonData?["data"].array {
+                    var cellDataArr = [InfoModel]()
+                    for dict in data {
+                        cellDataArr.append(InfoModel(with: dict))
+                    }
+                    cell.cellDataArr = cellDataArr
+                    cell.tableView.reloadData()
                 }
-                cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
@@ -126,6 +143,25 @@ extension InformationViewController {
                 }
             }
             cell.tableView.endHeaderRefresh()
+        }
+    }
+    
+    ///删除某一条消息
+    func removeInformationData(at index: Int) {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel?.token
+        parameters["message_id"] = index
+        
+        NetWorksManager.requst(with: kUrl_removeInfo, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                print("删除成功")
+            }else {
+                if error == nil {
+                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
         }
     }
 }
@@ -157,6 +193,10 @@ extension InformationViewController: UIScrollViewDelegate {
 
 //MARK: - InfoSegmentCell代理
 extension InformationViewController: InfoSegmentCellDelegate {
+    func removeCell(at index: Int) {
+        removeInformationData(at: index)
+    }
+    
     func reloadCellData(with cell: InfoSegmentCell) {
         getInformationData(with: cell.infoType, cell: cell)
     }

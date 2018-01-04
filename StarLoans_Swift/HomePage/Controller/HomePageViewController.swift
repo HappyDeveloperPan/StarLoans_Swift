@@ -318,11 +318,17 @@ extension HomePageViewController {
     func getVideoData() {
         NetWorksManager.requst(with: kUrl_HotVideo, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var videoArr = [HomePageModel]()
-                for dict in (jsonData?["data"].array)! {
-                    videoArr.append(HomePageModel(with: dict))
+                
+//                for dict in (jsonData?["data"].array)! {
+//                    videoArr.append(HomePageModel(with: dict))
+//                }
+                if let data = jsonData?["data"].array {
+                    var videoArr = [HomePageModel]()
+                    for dict in data {
+                        videoArr.append(HomePageModel(with: dict))
+                    }
+                    self?.videoView.videoArr = videoArr
                 }
-                self?.videoView.videoArr = videoArr
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
@@ -337,11 +343,15 @@ extension HomePageViewController {
     func getHotProductData() {
         NetWorksManager.requst(with: kUrl_HotProduct, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellArr = [ProductAgencyModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellArr.append(ProductAgencyModel(with: dict))
+                
+                if let data = jsonData?["data"].array {
+                    var cellArr = [ProductAgencyModel]()
+                    for dict in data {
+                        cellArr.append(ProductAgencyModel(with: dict))
+                    }
+                    self?.hotAgencyView.cellDataArr = cellArr
                 }
-                self?.hotAgencyView.cellDataArr = cellArr
+                
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
@@ -370,11 +380,18 @@ extension HomePageViewController {
     func getHotQuickRobData() {
         NetWorksManager.requst(with: kUrl_HotQuickRob, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellArr = [ClientInfoModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellArr.append(ClientInfoModel(with: dict))
+                
+//                for dict in (jsonData?["data"].array)! {
+//                    cellArr.append(ClientInfoModel(with: dict))
+//                }
+                if let data = jsonData?["data"].array {
+                    var cellArr = [ClientInfoModel]()
+                    for dict in data {
+                        cellArr.append(ClientInfoModel(with: dict))
+                    }
+                    self?.quickRobView.cellArr = cellArr
                 }
-                self?.quickRobView.cellArr = cellArr
+                
             }else {
                 if error == nil {
                     JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)

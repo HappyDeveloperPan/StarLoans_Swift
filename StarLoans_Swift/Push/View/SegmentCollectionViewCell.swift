@@ -9,10 +9,17 @@
 import UIKit
 
 fileprivate let dataArr:Array<Dictionary<String, Any>> = [
-                                                          ["text":"收到付款节食减肥就是垃圾类似的纠纷就是独立房姐流水了房姐历史记录经理说的熟练度废旧塑料市劳动纠纷说了积分失落的房间是独立房姐司法鉴定记录是否类似纠纷", "image": #imageLiteral(resourceName: "kehuziyuan"), "commitText":"立即发布"],
-                                                          ["text":"这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试这是测试", "image": #imageLiteral(resourceName: "jinrongcanpin"), "commitText":"立即推单"]]
+    ["text":"在这里您可以发布有偿的客户资源，通过编辑客户的基本资料、贷款需求等信息，提交至客户端。在通过审核后，平台会将您发布的客户资源展示在“极速抢单”的列表，供其他经纪人购买，从中您可要获得一定的收益。", "image": #imageLiteral(resourceName: "kehuziyuan"), "commitText":"立即发布"],
+    ["text":"在这里可以发布您所在公司的金融产品，经平台在线审核后，可以通过平台获取更多的客户办理您的产品。", "image": #imageLiteral(resourceName: "jinrongcanpin"), "commitText":"立即推单"]]
+
+enum PushType: Int{
+    case clientResource = 0 //客户资源
+    case financeProduct = 1 //金融产品
+}
 
 class SegmentCollectionViewCell: UICollectionViewCell {
+    
+    var pushType: PushType = .clientResource
     
     lazy var scrollView: UIScrollView = { [unowned self] in
         let scrollView = UIScrollView()
@@ -81,6 +88,7 @@ class SegmentCollectionViewCell: UICollectionViewCell {
         commitBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         commitBtn.layer.cornerRadius = 22.5
         commitBtn.backgroundColor = kMainColor
+        commitBtn.addTarget(self, action: #selector(commitBtnClick(_:)), for: .touchUpInside)
         return commitBtn
     }()
     
@@ -155,11 +163,31 @@ class SegmentCollectionViewCell: UICollectionViewCell {
 //        scrollView.contentSize = CGSize(width: kScreenWidth, height: kScreenHeight * 2)
     }
     
+    @objc func commitBtnClick(_ sender: UIButton) {
+        if pushType == .clientResource {
+            let vc = PushClientResourceViewController.loadStoryboard()
+            let topViewController = Utils.currentTopViewController()
+            if topViewController?.navigationController != nil{
+                topViewController?.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                topViewController?.present(vc, animated: true , completion: nil)
+            }
+        }
+        if pushType == .financeProduct {
+            let vc = PushProductResourceViewController.loadStoryboard()
+            let topViewController = Utils.currentTopViewController()
+            if topViewController?.navigationController != nil{
+                topViewController?.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                topViewController?.present(vc, animated: true , completion: nil)
+            }
+        }
+    }
+    
 }
 
 extension SegmentCollectionViewCell {
     func setCellData(with index: Int) {
-        
 //        contentLB.text = "收到付款节食减肥就是垃圾类似的纠纷就是独立房姐流水了房姐历史记录经理说的熟练度废旧塑料市劳动纠纷说了积分失落的房间是独立房姐司法鉴定记录是否类似纠纷"
         contentLB.text = dataArr[index]["text"] as? String
         contentImg.image = dataArr[index]["image"] as? UIImage

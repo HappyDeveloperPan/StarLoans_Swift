@@ -48,7 +48,11 @@ class MyTextView: UITextView {
     
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+//        fatalError("init(coder:) has not been implemented")
+        super .init(coder: aDecoder)
+        placeholder = ""
+        placeholderColor = UIColor.lightGray
+        NotificationCenter.default.addObserver(self, selector: #selector(self.textChanged), name: .UITextViewTextDidChange, object: nil)
     }
     
     @objc func textChanged(_ notification: Notification?) {
@@ -73,7 +77,7 @@ class MyTextView: UITextView {
     override func draw(_ rect: CGRect) {
         if placeholder.lengthOfBytes(using: .utf8) > 0 {
             if placeHolderLabel == nil {
-                placeHolderLabel = UILabel(frame: CGRect(x: 8, y: 8, width: bounds.size.width, height: 10))
+                placeHolderLabel = UILabel(frame: CGRect(x: 8, y: 8, width: bounds.size.width - 8, height: 10))
                 placeHolderLabel?.lineBreakMode = .byWordWrapping
                 placeHolderLabel?.numberOfLines = 0
                 placeHolderLabel?.font = font

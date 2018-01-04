@@ -30,7 +30,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李丽琳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dto-hW-Pfx">
                         <rect key="frame" x="24" y="8" width="60" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="Kud-vj-Htn"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Kud-vj-Htn"/>
                             <constraint firstAttribute="height" constant="15" id="Vai-id-EqS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>

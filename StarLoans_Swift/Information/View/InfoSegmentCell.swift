@@ -15,17 +15,14 @@ enum InformationType: Int {
 
 protocol InfoSegmentCellDelegate: class {
     func reloadCellData(with cell: InfoSegmentCell)
+    func removeCell(at index: Int)
 }
 
 class InfoSegmentCell: UICollectionViewCell {
     //MARK: - 可操作数据
     weak var delegate: InfoSegmentCellDelegate?
     var infoType: InformationType = .systemInfo
-    var cellDataArr: [InfoModel] = [InfoModel]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var cellDataArr: [InfoModel] = [InfoModel]()
     //MARK: - 懒加载
     lazy var tableView: UITableView = { [unowned self] in
         let tableView = UITableView()
@@ -72,6 +69,19 @@ extension InfoSegmentCell: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if infoType == .systemInfo {
+            let vc = InfoDetailViewController.loadStoryboard()
+            let topViewController = Utils.currentTopViewController()
+            if topViewController?.navigationController != nil{
+                topViewController?.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                topViewController?.present(vc, animated: true , completion: nil)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
     }
@@ -82,6 +92,8 @@ extension InfoSegmentCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            delegate?.removeCell(at: cellDataArr[indexPath.row].message_id)
+            cellDataArr.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

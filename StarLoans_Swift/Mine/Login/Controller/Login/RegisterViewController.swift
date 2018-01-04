@@ -25,7 +25,7 @@ class RegisterViewController: UIViewController {
         let verCodeView = LoginInputView()
         self.view.addSubview(verCodeView)
         verCodeView.leftImageView.image = #imageLiteral(resourceName: "ICON-mima")
-        verCodeView.selectImage = #imageLiteral(resourceName: "ICON-mima")
+        verCodeView.selectImage = #imageLiteral(resourceName: "ICON-mima-1")
         verCodeView.textField.placeholder = "请输入验证码"
         verCodeView.textField.keyboardType = .numberPad
         verCodeView.rightImage = .verCode

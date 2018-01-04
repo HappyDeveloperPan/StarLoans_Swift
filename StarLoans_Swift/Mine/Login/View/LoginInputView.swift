@@ -76,7 +76,7 @@ class LoginInputView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super .init(coder: aDecoder)
     }
     
     override func layoutSubviews() {
@@ -90,7 +90,8 @@ class LoginInputView: UIView {
         
         bottomLine.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(1)
+            make.bottom.equalTo(-0.5)
+            make.height.equalTo(0.5)
         }
         
         switch rightImage {
@@ -100,7 +101,8 @@ class LoginInputView: UIView {
                 make.size.equalTo(CGSize(width: 80, height: 30))
             }
             textField.snp.makeConstraints { (make) in
-                make.top.bottom.equalToSuperview()
+                make.top.equalToSuperview()
+                make.bottom.equalTo(bottomLine.snp.top)
                 make.right.equalTo(verCodeBtn.snp.left)
                 make.left.equalTo(leftImageView.snp.right).offset(10)
             }
@@ -110,13 +112,15 @@ class LoginInputView: UIView {
                 make.size.equalTo(CGSize(width: 21, height: 13))
             }
             textField.snp.makeConstraints { (make) in
-                make.top.bottom.equalToSuperview()
+                make.top.equalToSuperview()
+                make.bottom.equalTo(bottomLine.snp.top)
                 make.right.equalTo(eyeBtn.snp.left)
                 make.left.equalTo(leftImageView.snp.right).offset(10)
             }
         default:
             textField.snp.makeConstraints { (make) in
-                make.top.bottom.equalToSuperview()
+                make.top.equalToSuperview()
+                make.bottom.equalTo(bottomLine.snp.top)
                 make.right.right.equalToSuperview()
                 make.left.equalTo(leftImageView.snp.right).offset(10)
             }

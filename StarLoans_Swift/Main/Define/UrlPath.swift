@@ -36,7 +36,7 @@ public let kUrl_HomePageTopBanner = hostAdress + "/Home/MobileAppBanner/index"
 ///  热门视频
 public let kUrl_HotVideo = hostAdress + "/Home/MobileVideo/videoHot"
 ///  热门产品
-public let kUrl_HotProduct = hostAdress + "/Home/MobileHotProduct/Third"
+public let kUrl_HotProduct = hostAdress + "/Home/MobileHotProduct/three"
 ///  底部广告图
 public let kUrl_BottomBanner = hostAdress + "/Home/mobileFooterAdvertisement/footer_advertisement_image"
 ///  热门抢单
@@ -59,9 +59,17 @@ public let kUrl_VideoCenter = hostAdress + "Home/MobileVideo/videoList"
 ///  视频详情
 public let kUrl_VideoDetail = hostAdress + "/Home/MobileVideo/videoInfo"
 
+//MARK: - 急速抢单
+///  抢单客户信息列表
+public let kUrl_QuickBillList = hostAdress + "/Home/MobileQuickBill/billList"
+///  获取推送设置
+public let kUrl_GetQuickBillPushSetting = hostAdress + "/Home/MobileQuickBill/pushSettingsInfo"
+///  修改推送设置
+public let kUrl_QuickBillPushSetting = hostAdress + "/Home/MobileQuickBill/pushSettings"
+
 //MARK: - 贷款接口
 ///贷款产品列表
-public let kUrl_LoansProductList = hostAdress + "/Home/MobileAllLoanProducts/three"
+public let kUrl_LoansProductList = hostAdress + "/Home/MobileLoanProducts/three"
 ///贷款产品详情
 public let kUrl_LoansProductDetail = hostAdress + "/Home/MobileLoanProducts/detail"
 ///自营产品信息录入

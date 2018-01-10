@@ -33,8 +33,20 @@ class AXDTabBarViewController: ESTabBarController{
 //                self?.present(pushNav, animated: true, completion: nil)
 //            }
             if index == 2 {
-                let pushNav = AXDNavigationController(rootViewController: PushViewController())
-                self?.present(pushNav, animated: true, completion: nil)
+//                let pushNav = AXDNavigationController(rootViewController: PushViewController())
+//                self?.present(pushNav, animated: true, completion: nil)
+                let blurEffect = UIBlurEffect(style: .light)
+                //接着创建一个承载模糊效果的视图
+                let blurView = PushBillView(effect: blurEffect)
+                //设置模糊视图的大小（全屏）
+                blurView.frame.size = (self?.view.size)!
+                //添加模糊视图到页面view上（模糊视图下方都会有模糊效果)
+                self?.view.addSubview(blurView)
+                blurView.alpha = 0
+                UIView.animate(withDuration: 0.5, animations: {
+                    blurView.alpha = 1
+                }) { (finish) in
+                }
             }
             if index == 3 {
                 self?.notifPresentLogin(notif: nil)

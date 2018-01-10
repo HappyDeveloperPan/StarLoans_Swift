@@ -31,3 +31,15 @@ class BaseViewController: UIViewController {
     }
     
 }
+
+extension BaseViewController {
+    func popToUpperViewController<T :UIViewController>(with upperController: T) {
+        //跳转回银行卡界面并且刷新
+        for controller: UIViewController in (navigationController?.viewControllers)! {
+            if (controller is T) {
+                let vc = controller as? T
+                navigationController?.popToViewController(vc ?? UIViewController(), animated: true)
+            }
+        }
+    }
+}

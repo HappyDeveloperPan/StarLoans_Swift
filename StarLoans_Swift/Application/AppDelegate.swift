@@ -28,9 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if jsonData?["status"] == 200 {
                     UserManager.shareManager.isLogin = true
                     UserManager.shareManager.userModel = UserModel(with: jsonData!["data"])
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
                 }else {
                     if error == nil {
-                        JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                        if let msg = jsonData?["msg_zhcn"].stringValue {
+                            JSProgress.showFailStatus(with: msg)
+                        }
                     }else {
                         JSProgress.showFailStatus(with: "请求失败")
                     }

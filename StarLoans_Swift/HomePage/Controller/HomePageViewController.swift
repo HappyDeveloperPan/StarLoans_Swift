@@ -292,10 +292,6 @@ extension HomePageViewController {
         NetWorksManager.requst(with: kUrl_HomePageTopBanner, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
                 var bannerArr = [String]()
-//                for dict in (jsonData?["data"].array)! {
-//                    let bannerModel = BannerModel(with: dict)
-//                    bannerArr.append(bannerModel.image)
-//                }
                 for index in 0...2 {
                     if !(jsonData!["data"][index].isEmpty) {
                         let bannerModel = BannerModel(with: jsonData!["data"][index])
@@ -307,9 +303,11 @@ extension HomePageViewController {
                 self?.topAdBannerView.serverImgArray = bannerArr
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
-                    JSProgress.showFailStatus(with: "请求失败")
+                    JSProgress.showFailStatus(with: "网络请求失败")
                 }
             }
         }
@@ -331,7 +329,9 @@ extension HomePageViewController {
                 }
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
                     JSProgress.showFailStatus(with: "请求失败")
                 }
@@ -354,7 +354,9 @@ extension HomePageViewController {
                 
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
                     JSProgress.showFailStatus(with: "请求失败")
                 }
@@ -369,7 +371,9 @@ extension HomePageViewController {
                 self?.centerAdverView.setImage(with: bannerModel.image)
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
                     JSProgress.showFailStatus(with: "请求失败")
                 }
@@ -394,7 +398,9 @@ extension HomePageViewController {
                 
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
                     JSProgress.showFailStatus(with: "请求失败")
                 }

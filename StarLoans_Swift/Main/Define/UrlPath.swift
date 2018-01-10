@@ -40,7 +40,7 @@ public let kUrl_HotProduct = hostAdress + "/Home/MobileHotProduct/three"
 ///  底部广告图
 public let kUrl_BottomBanner = hostAdress + "/Home/mobileFooterAdvertisement/footer_advertisement_image"
 ///  热门抢单
-public let kUrl_HotQuickRob = hostAdress + "/Home/QuickBill/getHotBill"
+public let kUrl_HotQuickRob = hostAdress + "/Home/MobileQuickBill/Billhot"
 
 ///  行业资源
 public let kUrl_IndustryResources = hostAdress + "/Home/MobileIndustryResources/index"
@@ -76,8 +76,6 @@ public let kUrl_LoansProductDetail = hostAdress + "/Home/MobileLoanProducts/deta
 public let kUrl_SelfSupportInput = hostAdress + "/Home/MobileHotProduct/self_entry_customer_information"
 ///第三方产品录入
 public let kUrl_ThirdSupportInput = hostAdress + "/Home/MobileLoanProducts/Economicman_input_Customer_information"
-
-
 
 //MARK: - 消息接口
 ///消息列表接口

@@ -24,6 +24,11 @@
                                     <constraint firstAttribute="height" constant="130" id="JsJ-SH-Ru5"/>
                                     <constraint firstAttribute="width" constant="130" id="LSo-Cq-EaE"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本号: V1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2d-OV-3aG">
                                 <rect key="frame" x="50" y="177" width="275" height="21"/>

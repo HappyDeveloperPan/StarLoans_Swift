@@ -180,4 +180,25 @@ extension UIView {
         let isIntersects = frame.intersects(keyWindow.bounds)
         return isIntersects && !self.isHidden && self.alpha > 0 && self.window == keyWindow
     }
+    
+    public func addLine(with startPoint: CGPoint, endPoint: CGPoint) {
+        let imageView = UIImageView(frame: self.frame)
+        self.addSubview(imageView)
+//        self.setNeedsDisplay()
+//        self.setNeedsDisplay(self.frame)
+        var scaledImage = UIImage()
+        UIGraphicsBeginImageContext(self.frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setAllowsAntialiasing(true)
+        context?.setLineCap(.round)
+        context?.setStrokeColor(UIColor.RGB(with: 234, green: 234, blue: 234).cgColor)
+        context?.setLineWidth(1)
+        context?.move(to: CGPoint(x: startPoint.x, y: startPoint.y))
+        context?.addLine(to: CGPoint(x: endPoint.x, y: endPoint.y))
+        context?.strokePath()
+        scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        imageView.image = scaledImage
+    }
+    
 }

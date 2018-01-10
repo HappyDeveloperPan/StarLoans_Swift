@@ -113,7 +113,9 @@ extension VideoDetailViewController {
                 self?.payPlayBtn.setTitle("支付" + String((self?.videoModel.video_price)!) + "元播放", for: .normal)
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
                     JSProgress.showFailStatus(with: "请求失败")
                 }

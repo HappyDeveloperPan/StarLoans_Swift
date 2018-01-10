@@ -44,11 +44,18 @@ class LoginViewController: BaseViewController {
     }
     
     //MARK: - 顶部标题
+    lazy var logoImg: UIImageView = { [unowned self] in
+        let logoImg = UIImageView()
+        self.view.addSubview(logoImg)
+        logoImg.image = #imageLiteral(resourceName: "Login-Logo-3")
+        return logoImg
+    }()
+    
     lazy var topLab: UILabel = { [unowned self] in
         let topLab = UILabel()
         self.view.addSubview(topLab)
         topLab.text = "欢迎您!"
-        topLab.font = UIFont.systemFont(ofSize: 30)
+        topLab.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         return topLab
         }()
     
@@ -107,9 +114,14 @@ class LoginViewController: BaseViewController {
     }()
     
     func setupUI() {
+        logoImg.snp.makeConstraints { (make) in
+            make.top.equalTo(20)
+            make.left.equalTo(36)
+        }
+        
         //顶部标题
         topLab.snp.makeConstraints { (make) in
-            make.top.equalTo(kBoard)
+            make.top.equalTo(logoImg.snp.bottom).offset(24)
             make.left.equalTo(kBoard)
             make.right.equalTo(-kBoard)
             make.height.equalTo(kHeight)
@@ -183,7 +195,9 @@ extension LoginViewController {
                 self?.navigationController?.dismiss(animated: true, completion: nil)
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
                     JSProgress.showFailStatus(with: "请求失败")
                 }

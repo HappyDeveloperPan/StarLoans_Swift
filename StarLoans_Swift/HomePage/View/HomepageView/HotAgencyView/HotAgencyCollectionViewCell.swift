@@ -295,7 +295,13 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func taskBtnClick(_ sender: UIButton) {
-        print("领取任务被点击了")
+        let vc = LoansDetailViewController.loadStoryboard()
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
     
 }

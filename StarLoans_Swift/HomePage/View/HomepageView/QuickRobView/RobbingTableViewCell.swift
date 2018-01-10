@@ -32,6 +32,7 @@ class RobbingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         
+        moneyLB.adjustsFontSizeToFitWidth = true
         pledgeTypeLB.layer.backgroundColor = UIColor.RGB(with: 248, green: 225, blue: 225).cgColor
         pledgeTypeLB.layer.cornerRadius = 10.5
         robbingBtn.layer.cornerRadius = robbingBtn.height/2
@@ -52,6 +53,15 @@ class RobbingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func commitBtnClick(_ sender: UIButton) {
+        let vc = QuickBillDetailViewController.loadStoryboard()
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
+    }
 }
 
 extension RobbingTableViewCell {

@@ -129,7 +129,9 @@ extension LoansViewController {
                 cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
-                    JSProgress.showFailStatus(with: (jsonData?["msg"].stringValue)!)
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
                 }else {
                     JSProgress.showFailStatus(with: "请求失败")
                 }

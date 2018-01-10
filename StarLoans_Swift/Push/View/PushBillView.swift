@@ -119,6 +119,10 @@ class PushBillView: UIVisualEffectView{
         closeBtn.addTarget(self, action: #selector(closeView(_sender:)), for: .touchUpInside)
         return closeBtn
         }()
+    
+    //MARK: - 可操作数据
+    var transView:TranslucenceView?
+    
     //MARK: - 生命周期
     override init(effect: UIVisualEffect?) {
         super .init(effect: effect)
@@ -127,21 +131,6 @@ class PushBillView: UIVisualEffectView{
     required init?(coder aDecoder: NSCoder) {
         super .init(coder: aDecoder)
     }
-    
-    //加载xib
-//    func loadViewFromNib() -> UIView {
-//        let className = type(of: self)
-//        let bundle = Bundle(for: className)
-//        let name = NSStringFromClass(className).components(separatedBy: ".").last
-//        let nib = UINib(nibName: name!, bundle: bundle)
-//        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-//        return view
-//    }
-    
-//    func setupContentView() {
-//        let contentV = UIView()
-//
-//    }
     
     
     override func layoutSubviews() {
@@ -228,7 +217,10 @@ class PushBillView: UIVisualEffectView{
     
     ///发布资源
     @objc func publishResourceBtnClick(_sender: UIButton) {
-        
+        let pushView = PushResourceView()
+        pushView.delegate = self
+        transView = TranslucenceView(with: pushView, size: CGSize(width: 325, height: 280))
+        transView?.show()
     }
     
     func closeView() {
@@ -241,7 +233,42 @@ class PushBillView: UIVisualEffectView{
     }
 }
 
-///中间文字部分
+//MARK: - PushResourceView代理
+extension PushBillView: PushResourceViewDelegate {
+    func closePushView() {
+        transView?.dismiss()
+    }
+    
+    ///发布客户资源
+    func pushcClientResource() {
+        transView?.dismiss()
+        closeView()
+        let vc = PushClientResourceViewController.loadStoryboard()
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
+    }
+    
+    ///发布贷款产品
+    func pushLoansResource() {
+        transView?.dismiss()
+        closeView()
+        let vc = PushProductResourceViewController.loadStoryboard()
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
+    }
+    
+    
+}
+
+//MARK: - 中间文字部分视图
 class PushContentView: UIView {
     lazy var imageView: UIImageView = { [unowned self] in
         let imageView = UIImageView()

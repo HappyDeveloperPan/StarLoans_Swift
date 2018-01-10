@@ -14,19 +14,20 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
     lazy var topBackView: UIView = { [unowned self] in
         let topBackView = UIView()
         contentView.addSubview(topBackView)
+//        topBackView.backgroundColor = kMainColor
         return topBackView
     }()
     
     lazy var topImgView: UIImageView = { [unowned self] in
         let topImgView = UIImageView()
         topBackView.addSubview(topImgView)
-        topImgView.image = #imageLiteral(resourceName: "ICON-jianbianban")
+        topImgView.image = #imageLiteral(resourceName: "ICON-topRedImg")
         return topImgView
     }()
     
     lazy var topCenterLB: UILabel = { [unowned self] in
         let topCenterLB = UILabel()
-        topBackView.addSubview(topCenterLB)
+        topImgView.addSubview(topCenterLB)
         topCenterLB.text = "宅e贷"
         topCenterLB.textColor = UIColor.white
         topCenterLB.textAlignment = .center
@@ -188,7 +189,27 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
         layer.shadowColor = kLineColor.cgColor//shadowColor阴影颜色
         layer.shadowOffset = CGSize(width: 0, height: 0)//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
         layer.shadowOpacity = 0.5//阴影透明度，默认0
-        layer.shadowRadius = 2//阴影半径，默认3
+        layer.shadowRadius = 4//阴影半径，默认3
+        layer.masksToBounds = false
+
+//        contentView.layer.cornerRadius = 6
+//        contentView.layer.masksToBounds = true
+        
+//        let maskLayer = CAShapeLayer()
+//        maskLayer.frame = self.frame
+        
+//        let borderLayer = CAShapeLayer()
+//        borderLayer.frame = self.frame
+//        borderLayer.lineWidth = 1
+//        borderLayer.strokeColor = kMainColor.cgColor
+//        borderLayer.fillColor = UIColor.clear.cgColor
+        
+//        let bezierPath = UIBezierPath(roundedRect: self.frame, cornerRadius: 6)
+//        maskLayer.path = bezierPath.cgPath
+//        borderLayer.path = bezierPath.cgPath
+        
+//        contentView.layer.insertSublayer(borderLayer, at: 0)
+//        layer.mask = maskLayer
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -211,6 +232,7 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 80, height: 18))
         }
+        
         leftTopLB.snp.makeConstraints { (make) in
             make.left.equalTo(6.5)
             make.centerY.equalToSuperview()
@@ -295,7 +317,7 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func taskBtnClick(_ sender: UIButton) {
-        let vc = LoansDetailViewController.loadStoryboard()
+        let vc = AuthorizationViewController.loadStoryboard()
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

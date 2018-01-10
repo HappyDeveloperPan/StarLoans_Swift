@@ -35,7 +35,7 @@ class AXDTabBarViewController: ESTabBarController{
             if index == 2 {
 //                let pushNav = AXDNavigationController(rootViewController: PushViewController())
 //                self?.present(pushNav, animated: true, completion: nil)
-                let blurEffect = UIBlurEffect(style: .light)
+                let blurEffect = UIBlurEffect(style: .extraLight)
                 //接着创建一个承载模糊效果的视图
                 let blurView = PushBillView(effect: blurEffect)
                 //设置模糊视图的大小（全屏）

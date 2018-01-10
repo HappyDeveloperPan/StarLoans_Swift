@@ -138,7 +138,13 @@ extension HotAgencyView: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("被点击了")
+        let vc = LoansDetailViewController.loadStoryboard()
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
     
     //跳转到第一个cell

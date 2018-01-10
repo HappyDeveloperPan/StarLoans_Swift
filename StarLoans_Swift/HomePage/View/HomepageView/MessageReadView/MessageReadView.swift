@@ -16,7 +16,7 @@ class MessageReadView: UIView {
     lazy var topMoreBtn: UIButton = { [unowned self] in
         let topMoreBtn = UIButton()
         addSubview(topMoreBtn)
-        topMoreBtn.setTitle("资讯研读>", for: .normal)
+        topMoreBtn.setTitle("热门新闻", for: .normal)
         topMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         topMoreBtn.setTitleColor(UIColor.RGB(with: 51, green: 51, blue: 51), for: .normal)
         topMoreBtn.setImage(#imageLiteral(resourceName: "ICON-hot"), for: .normal)

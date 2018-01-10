@@ -110,11 +110,6 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         }else {
             videoModel = videoArr[indexPath.item % videoArr.count]
         }
-//        cell.bottomLB.text = videoModel.videoTitle
-//        cell.backImg.image = #imageLiteral(resourceName: "banner-hangyeziyuan")
-//        cell.backImg.image?.cornerImage(size: (cell.backImg.image?.size)!, radius: 4, fillColor: kHomeBackColor, completion: { (image) in
-//            cell.backImg.image = image
-//        })
         cell.setCellData(with: videoModel)
         return cell
     }

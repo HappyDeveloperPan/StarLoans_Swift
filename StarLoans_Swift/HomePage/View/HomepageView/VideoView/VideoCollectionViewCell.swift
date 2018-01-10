@@ -76,7 +76,11 @@ class VideoCollectionViewCell: UICollectionViewCell {
         layer.shadowColor = kLineColor.cgColor//shadowColor阴影颜色
         layer.shadowOffset = CGSize(width: 2, height: 2)//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
         layer.shadowOpacity = 0.5//阴影透明度，默认0
-        layer.shadowRadius = 2//阴影半径，默认3
+        layer.shadowRadius = 3//阴影半径，默认3
+        layer.masksToBounds = false
+        
+        contentView.layer.cornerRadius = 4
+        contentView.layer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -126,8 +130,8 @@ extension VideoCollectionViewCell {
     func setCellData(with cellData:HomePageModel) {
         bottomLB.text = cellData.videoTitle
         backImg.setImage(with: cellData.video_img)
-        backImg.image?.cornerImage(size: (backImg.image?.size)!, radius: 4, fillColor: kHomeBackColor, completion: { [weak self] (image) in
-            self?.backImg.image = image
-        })
+//        backImg.image?.cornerImage(size: (backImg.image?.size)!, radius: 4, fillColor: kHomeBackColor, completion: { [weak self] (image) in
+//            self?.backImg.image = image
+//        })
     }
 }

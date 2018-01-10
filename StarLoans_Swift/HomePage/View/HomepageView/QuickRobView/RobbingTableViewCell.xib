@@ -28,10 +28,9 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李丽琳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ER1-Y5-LP3">
-                        <rect key="frame" x="24.5" y="8" width="60" height="14"/>
+                        <rect key="frame" x="24.5" y="6" width="52" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="14" id="Bs3-V1-OFW"/>
-                            <constraint firstAttribute="width" constant="60" id="OG1-cD-s3D"/>
+                            <constraint firstAttribute="height" constant="18" id="Bs3-V1-OFW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -48,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ICON-youzhikehu" translatesAutoresizingMaskIntoConstraints="NO" id="mGI-B9-LZd">
-                        <rect key="frame" x="89.5" y="7" width="16" height="16"/>
+                        <rect key="frame" x="81.5" y="7" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="Eg6-8O-pLX"/>
                             <constraint firstAttribute="width" constant="16" id="OoC-KA-3CX"/>
@@ -174,7 +173,7 @@
                     <constraint firstItem="ER1-Y5-LP3" firstAttribute="leading" secondItem="W4h-Pw-R9q" secondAttribute="trailing" constant="6.5" id="3fm-si-9Iz"/>
                     <constraint firstItem="mGI-B9-LZd" firstAttribute="leading" secondItem="ER1-Y5-LP3" secondAttribute="trailing" constant="5" id="8KQ-tx-M3f"/>
                     <constraint firstItem="uFK-7U-Cba" firstAttribute="leading" secondItem="31s-h4-Kv7" secondAttribute="leading" id="9nk-VY-eOE"/>
-                    <constraint firstItem="ER1-Y5-LP3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Aob-1v-ng6"/>
+                    <constraint firstItem="ER1-Y5-LP3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Aob-1v-ng6"/>
                     <constraint firstItem="DRC-0Z-f6b" firstAttribute="centerY" secondItem="aTy-Dc-5gP" secondAttribute="centerY" id="Crp-xn-0U8"/>
                     <constraint firstAttribute="trailing" secondItem="n2z-g3-SfG" secondAttribute="trailing" constant="16" id="O4m-xm-BSw"/>
                     <constraint firstItem="W4h-Pw-R9q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="O7M-Ks-Wfw"/>

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="501" height="174"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ICON-jianbianbeibang2" translatesAutoresizingMaskIntoConstraints="NO" id="XRL-Yz-tV9">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ICON-topRedImg" translatesAutoresizingMaskIntoConstraints="NO" id="XRL-Yz-tV9">
                         <rect key="frame" x="0.0" y="0.0" width="501" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="S62-cE-Qum"/>
@@ -224,7 +224,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="ICON-jianbianbeibang2" width="343" height="35"/>
+        <image name="ICON-topRedImg" width="343" height="40"/>
         <image name="WechatIMG16" width="78" height="27"/>
     </resources>
 </document>

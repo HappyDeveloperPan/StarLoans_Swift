@@ -51,6 +51,7 @@ class QuickBillDetailViewController: BaseViewController, StoryboardLoadable{
     }
     
     func setupBasic() {
+        view.backgroundColor = kHomeBackColor
         scrollView.backgroundColor = UIColor.white
         scrollView.delegate = self
         commitBtn.layer.cornerRadius = commitBtn.height/2
@@ -79,7 +80,31 @@ class QuickBillDetailViewController: BaseViewController, StoryboardLoadable{
     
     //抢单按钮点击
     @IBAction func commitBtnClick(_ sender: UIButton) {
-        let vc = DBPayCompleteViewController.loadStoryboard()
+//        let vc = DBPayCompleteViewController.loadStoryboard()
+//        navigationController?.pushViewController(vc, animated: true)
+        //调起微信支付
+//        let req = PayReq()
+//        /** 商家向财付通申请的商家id */
+//        @property (nonatomic, retain) NSString *partnerId;
+//        /** 预支付订单 */
+//        @property (nonatomic, retain) NSString *prepayId;
+//        /** 随机串，防重发 */
+//        @property (nonatomic, retain) NSString *nonceStr;
+//        /** 时间戳，防重发 */
+//        @property (nonatomic, assign) UInt32 timeStamp;
+//        /** 商家根据财付通文档填写的数据和签名 */
+//        @property (nonatomic, retain) NSString *package;
+//        /** 商家根据微信开放平台文档对数据做的签名 */
+//        @property (nonatomic, retain) NSString *sign;
+//        req.partnerId = WXAppID
+//        req.prepayId = "23424524342"
+//        req.nonceStr = "sdfhskjfsjf"
+//        req.timeStamp = 2342343
+//        req.package = WXAPI
+//        req.sign = WXAPI
+//        WXApi.send(req)
+        
+        let vc = PayViewController.loadStoryboard()
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var allowRotation: Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        ///     第三方注册
+        WXApi.registerApp(WXAppID, enableMTA: true)
         
         ///     自动登录
         if let userDic = Utils.getAsynchronousWithKey(kSavedUser) as? Dictionary<String, Any>{
@@ -45,8 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = AXDTabBarViewController()
         window?.makeKeyAndVisible()
         setupGlobalConfig()
+        
         return true
 
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("openURL:\(url.absoluteString)")
+        if url.scheme == WXAppID {
+            return WXApi.handleOpen(url, delegate: self)
+        }
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -78,6 +89,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIInterfaceOrientationMask.portrait
     }
 
+}
+
+//MARK: - WXApiDelegate代理
+extension AppDelegate: WXApiDelegate {
+    ///
+    func onResp(_ resp: BaseResp!) {
+        
+    }
 }
 
 

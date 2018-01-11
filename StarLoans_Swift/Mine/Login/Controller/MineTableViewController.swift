@@ -28,7 +28,7 @@ class MineTableViewController: UITableViewController {
     @IBOutlet weak var approveLB: UILabel!
     
     fileprivate let indentArr:Array<Any> = ["已推订单", "已发资源", "已发产品", "急速抢单"]
-    fileprivate let endShopArr:Array<Any> = ["视频", "推广工具", "客户名单", "文案教程"]
+    fileprivate let endShopArr:Array<Any> = ["视频", "推广工具", "文案教程"]
     
     //MARK: - 生命周期
     override func viewDidLoad() {
@@ -101,7 +101,7 @@ class MineTableViewController: UITableViewController {
         
         let labWidth = (endShopCell.contentView.width-30) / 4
         
-        for index in 0...3 {
+        for index in 0...endShopArr.count-1 {
             let numberLB = UILabel()
             numberLB.textColor = kMainColor
             numberLB.textAlignment = .center

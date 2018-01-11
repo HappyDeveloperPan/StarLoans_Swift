@@ -21,6 +21,7 @@ target 'StarLoans_Swift' do
   pod 'IQKeyboardManagerSwift'        # 键盘监听框架 https://github.com/hackiftekhar/IQKeyboardManager
   pod 'ESTabBarController-swift'      # 自定义TabBarController组件 https://github.com/eggswift/ESTabBarController
   pod 'pop'                           # facebook的动效库 https://github.com/facebook/pop
+  pod 'WechatOpenSDK'                 # 微信支付
 
   target 'StarLoans_SwiftTests' do
     inherit! :search_paths

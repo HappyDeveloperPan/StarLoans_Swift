@@ -38,3 +38,8 @@ let systemVersion = UIDevice.current.systemVersion
 //存储字段
 let kSavedUser = "savedUser" ///用户数据
 
+//MARK: - 微信支付
+let WXAppID = "wxcc538ba142746aa1"
+let WXAppSecret = "6d4f4cb06e50868587800b4a708987f9"
+let WXAPI = "27592HEIRHA09WR8W93982Y982342098"  ///密钥
+

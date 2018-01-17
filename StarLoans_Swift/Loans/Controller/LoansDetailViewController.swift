@@ -9,6 +9,7 @@
 import UIKit
 
 class LoansDetailViewController: BaseViewController, StoryboardLoadable {
+    //MARK: - storyboard连线
     @IBOutlet weak var mainView: UIView!
     ///产品介绍
     @IBOutlet weak var productView: LoansProductView!
@@ -18,6 +19,7 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
     @IBOutlet weak var advenContentTransView: UIView!
     @IBOutlet weak var lookMoreBtn: UIButton!
     ///利率详情
+    @IBOutlet weak var deadlineLB: UILabel!
     @IBOutlet weak var interestRateView: UIView!
     @IBOutlet weak var interestRateViewHeight: NSLayoutConstraint!
     @IBOutlet weak var interestRateViewTop: NSLayoutConstraint!
@@ -43,10 +45,13 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
     @IBOutlet weak var problemView: UIView!
     @IBOutlet weak var problemTableView: UITableView!
     @IBOutlet weak var problemTableViewHeight: NSLayoutConstraint!
+    
     //MARK: - 可操作数据
-    ///页面类型
+    ///产品类型
     var loansProductType: LoansProductType = .selfSupport
-    var cellHeightArr: [CGFloat] = [CGFloat]()
+    var productModel: ProductModel = ProductModel()
+    
+    fileprivate var cellHeightArr: [CGFloat] = [CGFloat]()
     //MARK: - 懒加载
     ///利率图标
     lazy var gridView: GridView = { [unowned self] in
@@ -56,19 +61,27 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
         self.interestRateView.addSubview(gridView)
         return gridView
     }()
+    
+    lazy var formatter: DateFormatter = { [unowned self] in
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+        }()
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "宅e贷"
-        setupBasic()
+        setupBaseConfig()
+        setupBaseData()
+//        getLoansDetailData()
     }
     
     ///控件基本配置
-    func setupBasic() {
+    func setupBaseConfig() {
+        //产品介绍
+        productView.loansNum.adjustsFontSizeToFitWidth = true
         //产品优势
         advenContentLB.sizeToFit()
         advenContentLB.numberOfLines = 5
-        advenContentLB.text = "as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉"
         //费用计算
         moneyTF.keyboardType = .numberPad
         moneyTF.addTarget(self, action: #selector(costCount(_:)), for: .editingChanged)
@@ -88,7 +101,10 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
         problemTableView.dataSource = self
         problemTableView.estimatedRowHeight = 160
         problemTableView.rowHeight = UITableViewAutomaticDimension
+        problemTableViewHeight.constant = CGFloat(productModel.product_question.count * 160)
+        
         if loansProductType == .thirdSupport  {
+            productView.rtTitle2.isHidden = true
             interestRateView.isHidden = true
             interestRateViewHeight.constant = 0
             interestRateViewTop.constant = 0
@@ -98,9 +114,21 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
         }
     }
     
+    ///基本数据配置
+    func setupBaseData() {
+        title = productModel.product
+        productView.logoImg.setImage(with: productModel.logo)
+        productView.loansNum.text = String(productModel.quota)
+        productView.rtTitle1.text = productModel.label
+        productView.lbContentLb.text = String(productModel.return_commission) + "%"
+        productView.cbContentLb.text = String(productModel.claim_amount) + "万"
+        productView.rbContentLb.text = String(productModel.leader_number) + "人"
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         isNavLineHidden = false
+        getLoansDetailData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -115,14 +143,6 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
             make.left.equalTo(48)
             make.right.equalTo(-48)
             make.height.equalTo(71)
-        }
-        
-        if cellHeightArr.count != 0  {
-            var tableViewHeight: CGFloat = 0
-            for height in cellHeightArr {
-                tableViewHeight += height
-            }
-            problemTableViewHeight.constant = tableViewHeight
         }
         
     }
@@ -144,14 +164,12 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
             
             advenContentTransView.isHidden = true
             advenContentLB.numberOfLines = 0
-            advenContentLB.text = "as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉克丝解放路就是了房价栏数据分类就是浪费就栏数据分类就是了房价历史记录发尽量as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉克丝解放路就是了房价栏数据分类就是浪费就栏数据分类就是了房价历史记录发尽量as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉克丝解放路就是了房价栏数据分类就是浪费就栏数据分类就是了房价历史记录发尽量as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉克丝解放路就是了房价栏数据分类就是浪费就栏数据分类就是了房价历史记录发尽量as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉克丝解放路就是了房价栏数据分类就是浪费就栏数据分类就是了房价历史记录发尽量"
             
         }else {
             sender.isSelected = false
     
             advenContentTransView.isHidden = false
             advenContentLB.numberOfLines = 5
-            advenContentLB.text = "as款到发货开始的恢复还是快递费开始的疯狂舒服点发了就类似的纠纷就历史记录发就栏数据分类经历是地方加逻辑酸辣粉就类似的纠纷了就是了房价历史记录发就是离开房间拉"
         }
         
     }
@@ -176,26 +194,80 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
     
     @IBAction func moreProblemClick(_ sender: UIButton) {
         let vc = LoansMoreProblemViewController()
+        vc.productId = productModel.product_id
         navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func taskBtnClick(_ sender: UIButton) {
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            return
+        }
         let vc = AuthorizationViewController.loadStoryboard()
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//MARK: - 数据处理部分
+extension LoansDetailViewController {
+    ///请求页面数据
+    func getLoansDetailData() {
+        
+        JSProgress.showBusy()
+        
+        var parameters = [String: Any]()
+        parameters["product_id"] = productModel.product_id
+        NetWorksManager.requst(with: kUrl_LoansProductDetail, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"][0] {
+                    self?.productModel = ProductModel(with: data)
+                    self?.updateLoansDetailData()
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            JSProgress.hidden()
+        }
+    }
+    
+    ///刷新页面数据
+    func updateLoansDetailData() {
+        advenContentLB.text = productModel.desc
+        deadlineLB.text = String(productModel.min_term) + "-" + String(productModel.max_term) + "年"
+        conditionContentLB.text = productModel.require
+        materialsContentLB.text = productModel.info
+        problemTableViewHeight.constant = CGFloat(productModel.product_question.count * 2000)
+        cellHeightArr.removeAll()
+        problemTableView.reloadData()
     }
 }
 
 //MARK: - UITableView代理
 extension LoansDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return productModel.product_question.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.pan_dequeueReusableCell(indexPath: indexPath) as ProblemCell
+        cell.setProblemCellData(QuestionModel(with: productModel.product_question[indexPath.row]), formatter: formatter)
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellHeightArr.append(cell.height)
+        if indexPath.row == productModel.product_question.count - 1 {
+            var tableViewHeight: CGFloat = 0
+            for height in cellHeightArr {
+                tableViewHeight += height
+            }
+            problemTableViewHeight.constant = tableViewHeight
+        }
     }
+    
 }

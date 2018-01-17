@@ -130,10 +130,14 @@ class LoginInputView: UIView {
     
     //监听textField值的变化
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if textField == textField && textLength > 0{
-            if (textField.text?.lengthOfBytes(using: .utf8))! > textLength {
-                textField.text = (textField.text as NSString?)?.substring(to: textLength)
-            }
+//        if textField == textField && textLength > 0{
+//            if (textField.text?.lengthOfBytes(using: .utf8))! > textLength {
+//                textField.text = (textField.text as NSString?)?.substring(to: textLength)
+//            }
+//        }
+        
+        if textField == textField && textLength > 0 && (textField.text?.lengthOfBytes(using: .utf8))! > textLength {
+            textField.text = (textField.text as NSString?)?.substring(to: textLength)
         }
     }
     

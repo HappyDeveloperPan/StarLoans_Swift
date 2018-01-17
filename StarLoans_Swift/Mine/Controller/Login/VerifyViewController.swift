@@ -42,6 +42,7 @@ class VerifyViewController: UIViewController {
         verCodeView.textField.keyboardType = .numberPad
         verCodeView.rightImage = .verCode
         verCodeView.delegate = self
+        verCodeView.textLength = 6
         return verCodeView
         }()
     
@@ -114,7 +115,7 @@ extension VerifyViewController {
             return
         }
         guard verCodeView.textField.text?.lengthOfBytes(using: .utf8) != 0 else {
-            JSProgress.showFailStatus(with: "请输入密码")
+            JSProgress.showFailStatus(with: "请输入验证码")
             return
         }
         

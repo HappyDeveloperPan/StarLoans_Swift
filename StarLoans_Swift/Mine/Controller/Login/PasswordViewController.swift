@@ -35,6 +35,7 @@ class PasswordViewController: UIViewController {
         pwdView.textField.placeholder = "请输入密码"
         pwdView.textField.isSecureTextEntry = true
         pwdView.rightImage = .eye
+        pwdView.textLength = 16
         return pwdView
         }()
     

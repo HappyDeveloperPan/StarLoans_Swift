@@ -122,11 +122,13 @@ extension LoansViewController {
         
         NetWorksManager.requst(with: kUrl_LoansProductList, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellDataArr = [ProductModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellDataArr.append(ProductModel(with: dict))
+                if let data = jsonData?["data"].array {
+                    var cellDataArr = [ProductModel]()
+                    for dict in data {
+                        cellDataArr.append(ProductModel(with: dict))
+                    }
+                    cell.cellDataArr = cellDataArr
                 }
-                cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {

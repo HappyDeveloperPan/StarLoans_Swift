@@ -72,10 +72,24 @@ public let kUrl_QuickBillPushSetting = hostAdress + "/Home/MobileQuickBill/pushS
 public let kUrl_LoansProductList = hostAdress + "/Home/MobileLoanProducts/three"
 ///贷款产品详情
 public let kUrl_LoansProductDetail = hostAdress + "/Home/MobileLoanProducts/detail"
+///问题列表接口
+public let kUrl_ProductQuestionList = hostAdress + "/Home/MobileProductQuestion/productQuestionList"
+///提问接口
+public let kUrl_QuestionAsk = hostAdress + "/Home/MobileProductQuestion/productQuestion"
+///回答问题
+public let kUrl_QuestionAnswer = hostAdress + "/Home/MobileProductQuestion/productAnswer"
 ///自营产品信息录入
 public let kUrl_SelfSupportInput = hostAdress + "/Home/MobileHotProduct/self_entry_customer_information"
 ///第三方产品录入
 public let kUrl_ThirdSupportInput = hostAdress + "/Home/MobileLoanProducts/Economicman_input_Customer_information"
+///获取下拉框数据
+public let kUrl_ComboBox = hostAdress + "/Home/MobileCommon/commonConfig"
+
+//MARK: - 推单
+///发布客户资源
+public let kUrl_PublishClientResources = hostAdress + "/Home/MobileSinglePush/publishing_customer_resources"
+///发布产品资源
+public let kUrl_PublishProductResources = hostAdress + "/Home/MobileSinglePush/publishing_product_resources"
 
 //MARK: - 消息接口
 ///消息列表接口
@@ -84,6 +98,17 @@ public let kUrl_InfoList = hostAdress + "/Home/MobileMessage/messageList"
 public let kUrl_InfoDetail = hostAdress + "/Home/MobileMessage/messageInfo"
 ///删除消息
 public let kUrl_removeInfo = hostAdress + "/Home/MobileMessage/messageInvalid"
+
+//MARK: - 个人中心
+///添加认证
+public let kUrl_AddApprove = hostAdress + "/Home/MobileCenter/centerAuthInfo"
+///所属门店
+public let kUrl_ApproveStore = hostAdress + "/Home/MobileCenter/centerBelongStore"
+
+//MARK: - 支付接口
+///调取微信支付
+public let kUrl_WeChatPay = hostAdress + "/Home/MobileWxPreorder/index"
+///完成支付回调
 
 
 

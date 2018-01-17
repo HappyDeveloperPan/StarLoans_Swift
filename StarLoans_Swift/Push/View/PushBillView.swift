@@ -87,7 +87,7 @@ class PushBillView: UIVisualEffectView{
     lazy var quickBillBtnLB: UILabel = { [unowned self] in
         let quickBillBtnLB = UILabel()
         self.contentView.addSubview(quickBillBtnLB)
-        quickBillBtnLB.text = "急速抢单"
+        quickBillBtnLB.text = "急速推单"
         quickBillBtnLB.textColor = kTitleColor
         quickBillBtnLB.textAlignment = .center
         quickBillBtnLB.font = UIFont.systemFont(ofSize: 17)
@@ -217,6 +217,11 @@ class PushBillView: UIVisualEffectView{
     
     ///发布资源
     @objc func publishResourceBtnClick(_sender: UIButton) {
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            closeView()
+            return
+        }
         let pushView = PushResourceView()
         pushView.delegate = self
         transView = TranslucenceView(with: pushView, size: CGSize(width: 325, height: 280))
@@ -235,6 +240,7 @@ class PushBillView: UIVisualEffectView{
 
 //MARK: - PushResourceView代理
 extension PushBillView: PushResourceViewDelegate {
+    ///关闭视图
     func closePushView() {
         transView?.dismiss()
     }

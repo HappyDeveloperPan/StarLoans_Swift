@@ -26,9 +26,10 @@ extension UIImageView {
         // 关闭上下文
         UIGraphicsEndImageContext()
         // 异步执行，防止阻塞主线程
-        DispatchQueue.global().async {
-            self.image = image
-        }
+        self.image = image
+//        DispatchQueue.global().async {
+//            self.image = image
+//        }
     }
     
     ///绘制虚线
@@ -59,5 +60,12 @@ extension UIImageView {
     func setImage(with url: String) {
 //        kf.setImage(with: URL(string: url)!)
         kf.setImage(with: URL(string: url))
+    }
+    
+    ///获取网络图片
+    func setImage(_ url: String, placeholder: UIImage?, completionHandler: @escaping CompletionHandler) {
+        kf.setImage(with: URL(string: url), placeholder: placeholder, options: nil, progressBlock: nil) { (image, error, cacheType, url) in
+            completionHandler(image, error, cacheType, url)
+        }
     }
 }

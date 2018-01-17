@@ -14,40 +14,65 @@ class UserModel: NSObject {
     struct Keys {
         static let phoneNumber = "phoneNumber"
         static let password = "password"
-        static let cause = "cause"
-        static let resultnumber = "resultnumber"
         static let token = "token"
         static let yzm = "yzm"
-        static let keys11 = "keys11"
-        static let shouji = "shouji"
-        static let user = "user"
+        static let user = "user"                    //用户名
+        static let tx = "tx"                        //头像
+        static let is_audit = "is_audit"       //是否认证经纪人，1未认证2审核中3认证不成功4认证成功
+        static let type = "type"                    //用户类型，1第三方经纪人，2机构经理，3平台信贷经理
     }
     
     public var phoneNumber: String = ""
     public var password: String = ""
-    public var cause: String = ""
-    public var resultnumber: Int = 0
     public var token: String = ""
     public var yzm: String = ""
-    public var keys11: String = ""
-    public var shouji: String = ""
     public var user: String = ""
+    public var tx: String = ""
+    public var is_audit: Int = 0
+    public var type: Int = 0
     
     public init(with json:JSON) {
         let appInfo = json
         self.phoneNumber = appInfo[Keys.phoneNumber].stringValue
         self.password = appInfo[Keys.password].stringValue
-        self.cause = appInfo[Keys.cause].stringValue
-        self.resultnumber = appInfo[Keys.resultnumber].intValue
         self.token = appInfo[Keys.token].stringValue
         self.yzm = appInfo[Keys.yzm].stringValue
-        self.keys11 = appInfo[Keys.keys11].stringValue
-        self.shouji = appInfo[Keys.shouji].stringValue
         self.user = appInfo[Keys.user].stringValue
+        self.tx = appInfo[Keys.tx].stringValue
+        self.is_audit = appInfo[Keys.is_audit].intValue
+        self.type = appInfo[Keys.type].intValue
     }
 
     override init() {
         super .init()
+    }
+    
+    func getAuditStatus() -> String {
+        switch is_audit {
+        case 1:
+            return "未认证"
+        case 2:
+            return "审核中"
+//        case 3:
+//            return "认证失败"
+//        case 4:
+//            return "认证成功"
+        default:
+            return "未认证"
+        }
+    }
+    
+    func getApproveType() ->String {
+        switch type {
+        case 1:
+            return "经纪人"
+        case 2:
+            return "机构经理"
+        case 3:
+            return "信贷经理"
+        default:
+            return "未认证"
+        }
     }
     
 }

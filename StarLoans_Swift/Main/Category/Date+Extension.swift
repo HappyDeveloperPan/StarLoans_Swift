@@ -85,5 +85,11 @@ extension Date {
             return formatter.string(from: self)
         }
     }
+}
 
+extension DateFormatter {
+    public func getDateToYMD(with time: TimeInterval) -> String{
+        self.dateFormat = "yyyy-MM-dd"
+        return string(from: Date(timeIntervalSince1970: time))
+    }
 }

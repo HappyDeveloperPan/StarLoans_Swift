@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import SVProgressHUD
+import SwiftyJSON
 
 private let kBoard = 37.5
 private let kHeight = 45
@@ -79,6 +79,7 @@ class LoginViewController: BaseViewController {
         pwdView.selectImage = #imageLiteral(resourceName: "ICON-mima-1")
         pwdView.textField.placeholder = "请输入密码"
         pwdView.textField.isSecureTextEntry = true
+        pwdView.textLength = 16
         return pwdView
     }()
     
@@ -186,11 +187,23 @@ extension LoginViewController {
             JSProgress.hidden()
             
             if jsonData?["status"] == 200 {
-                UserManager.shareManager.userModel = UserModel(with: (jsonData?["data"])!)
-                UserManager.shareManager.isLogin = true
-                if let userDic = jsonData?["data"].dictionaryObject {
+                if let data = jsonData?["data"] {
+                    let userModel = UserModel(with: data)
+                    UserManager.shareManager.userModel = userModel
+                    UserManager.shareManager.isLogin = true
+                    var userDic = [String: Any]()
+                    userDic["token"] = userModel.token
+                    userDic["is_audit"] = userModel.is_audit
+                    userDic["tx"] = userModel.tx
+                    userDic["type"] = userModel.type
+                    userDic["user"] = userModel.user
                     Utils.setAsynchronous(userDic, withKey: kSavedUser)
                 }
+//                UserManager.shareManager.userModel = UserModel(with: (jsonData?["data"])!)
+//                UserManager.shareManager.isLogin = true
+//                if let userDic = jsonData?["data"].dictionaryObject {
+//                    Utils.setAsynchronous(userDic, withKey: kSavedUser)
+//                }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
                 self?.navigationController?.dismiss(animated: true, completion: nil)
             }else {

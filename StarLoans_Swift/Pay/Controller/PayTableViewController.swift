@@ -9,6 +9,8 @@
 import UIKit
 import IBAnimatable
 
+public let kWechatPayResult = "WechatPayResult"
+
 class PayTableViewController: UITableViewController {
     @IBOutlet weak var moneyLB: UILabel!
     @IBOutlet weak var countDownLB: UILabel!
@@ -30,6 +32,8 @@ class PayTableViewController: UITableViewController {
         view.backgroundColor = kHomeBackColor
         selectImgArr.append(selectImgOne)
         selectImgArr.append(selectImgTwo)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(WechatPayResult(notif:)), name: NSNotification.Name(rawValue: kWechatPayResult), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,35 +68,52 @@ class PayTableViewController: UITableViewController {
         case .balance:
             break
         case .Wechat:
-            let req = PayReq()
-            req.partnerId = WXAppID
-            req.prepayId = "23424524342"
-            req.nonceStr = "sdfhskjfsjf"
-            req.timeStamp = 2342343
-            req.package = WXAPI
-            req.sign = WXAPI
-            WXApi.send(req)
+            WechatPay()
         }
-        //调起微信支付
-//                let req = PayReq()
-        //        /** 商家向财付通申请的商家id */
-        //        @property (nonatomic, retain) NSString *partnerId;
-        //        /** 预支付订单 */
-        //        @property (nonatomic, retain) NSString *prepayId;
-        //        /** 随机串，防重发 */
-        //        @property (nonatomic, retain) NSString *nonceStr;
-        //        /** 时间戳，防重发 */
-        //        @property (nonatomic, assign) UInt32 timeStamp;
-        //        /** 商家根据财付通文档填写的数据和签名 */
-        //        @property (nonatomic, retain) NSString *package;
-        //        /** 商家根据微信开放平台文档对数据做的签名 */
-        //        @property (nonatomic, retain) NSString *sign;
-//                req.partnerId = WXAppID
-//                req.prepayId = "23424524342"
-//                req.nonceStr = "sdfhskjfsjf"
-//                req.timeStamp = 2342343
-//                req.package = WXAPI
-//                req.sign = WXAPI
-//                WXApi.send(req)
+    }
+}
+
+extension PayTableViewController {
+    ///调起微信支付
+    func WechatPay() {
+        
+        JSProgress.showBusy()
+        
+        var parameters = [String: Any]()
+        parameters["goods_id"] = 35
+        parameters["appid"] = WXAppID
+        parameters["total_fee"] = 0.1
+        
+        NetWorksManager.requst(with: kUrl_WeChatPay, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"]{
+                    let payModel = PayModel(with: data)
+                    let req = PayReq()
+                    req.openID = payModel.appid
+                    req.partnerId = payModel.partnerid
+                    req.prepayId = payModel.prepayid
+                    req.nonceStr = payModel.noncestr
+                    req.timeStamp = payModel.timestamp
+                    req.package = payModel.package
+                    req.sign = payModel.sign
+                    WXApi.send(req)
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            JSProgress.hidden()
+        }
+    }
+    
+    ///微信支付成功回调服务器
+    @objc func WechatPayResult(notif:NSNotification?) {
+//        let notiInfo = notif?.object
+        
     }
 }

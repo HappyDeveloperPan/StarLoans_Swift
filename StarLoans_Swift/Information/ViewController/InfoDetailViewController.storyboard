@@ -18,12 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ICON-MORENTOUXIANG" translatesAutoresizingMaskIntoConstraints="NO" id="hO7-Su-S41">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ICON-MORENTOUXIANG" translatesAutoresizingMaskIntoConstraints="NO" id="hO7-Su-S41" customClass="AnimatableImageView" customModule="IBAnimatable">
                                 <rect key="frame" x="16" y="16" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="LT4-Dx-QTC"/>
                                     <constraint firstAttribute="height" constant="30" id="Lss-Jn-mnQ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="路易斯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVh-Np-Bta">
                                 <rect key="frame" x="51" y="24" width="228" height="14"/>
@@ -99,7 +104,7 @@
                         <outlet property="answerTV" destination="e17-HX-g48" id="dtb-L6-xMA"/>
                         <outlet property="questionLB" destination="6JR-bQ-KC5" id="xRx-aa-UWq"/>
                         <outlet property="timeLB" destination="yFE-Ev-Dzx" id="AfS-6b-Q5d"/>
-                        <outlet property="userImg" destination="hO7-Su-S41" id="g1B-IH-1u0"/>
+                        <outlet property="userImg" destination="hO7-Su-S41" id="dTB-te-sD8"/>
                         <outlet property="userNameLB" destination="VVh-Np-Bta" id="5hj-O4-Lof"/>
                     </connections>
                 </viewController>

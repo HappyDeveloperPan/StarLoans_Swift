@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol RadioBtnViewDelegate: class {
+    func selectRadioBtn(_ radioBtnView: RadioBtnView, index: Int)
+}
+
 class RadioBtnView: UIView {
+    
+    weak var delegate: RadioBtnViewDelegate?
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -110,6 +116,8 @@ class RadioBtnView: UIView {
                 btn.isSelected = false
             }
         }
+//        delegate?.selectRadioBtn(with: sender.tag - 10000)
+        delegate?.selectRadioBtn(self, index: sender.tag - 10000)
     }
 
 }

@@ -133,7 +133,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="qtP-L7-0pM">
-                            <rect key="frame" x="0.0" y="242" width="375" height="300"/>
+                            <rect key="frame" x="0.0" y="286" width="375" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="证件信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qT4-Ha-XnF">
@@ -258,8 +258,42 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="YFp-J2-HNl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="pve-Rv-wqp">
                                         <rect key="frame" x="0.0" y="154" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pve-Rv-wqp" id="qR1-CG-lQ0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d88-xm-KoA">
+                                                    <rect key="frame" x="16" y="12" width="100" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="4Ie-12-Apr"/>
+                                                        <constraint firstAttribute="height" constant="21" id="f47-pM-2ZZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgi-VB-av5" customClass="RadioBtnView" customModule="StarLoans_Swift" customModuleProvider="target">
+                                                    <rect key="frame" x="116" y="6" width="140" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="OXO-UN-2mz"/>
+                                                        <constraint firstAttribute="width" constant="140" id="ejT-eI-RC1"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="d88-xm-KoA" firstAttribute="leading" secondItem="qR1-CG-lQ0" secondAttribute="leading" constant="16" id="1bY-aX-CMT"/>
+                                                <constraint firstItem="pgi-VB-av5" firstAttribute="leading" secondItem="d88-xm-KoA" secondAttribute="trailing" id="LwT-kx-7Zz"/>
+                                                <constraint firstItem="pgi-VB-av5" firstAttribute="centerY" secondItem="qR1-CG-lQ0" secondAttribute="centerY" id="oe6-lB-4gs"/>
+                                                <constraint firstItem="d88-xm-KoA" firstAttribute="centerY" secondItem="qR1-CG-lQ0" secondAttribute="centerY" id="xt3-dD-dTa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="YFp-J2-HNl">
+                                        <rect key="frame" x="0.0" y="198" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YFp-J2-HNl" id="FOU-Tl-exd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -307,7 +341,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="mcR-UO-oos">
-                                        <rect key="frame" x="0.0" y="198" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="242" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mcR-UO-oos" id="iJq-1M-of4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -365,6 +399,8 @@
                         <outlet property="commitBtn" destination="BzB-Qk-eME" id="ZLg-bl-AIV"/>
                         <outlet property="jobFlowImg" destination="MI5-nm-7kG" id="6di-sA-QTH"/>
                         <outlet property="jobFlowLB" destination="Cx8-TL-9oD" id="AmX-gD-R5h"/>
+                        <outlet property="sexCell" destination="pve-Rv-wqp" id="PeX-mD-cpM"/>
+                        <outlet property="sexView" destination="pgi-VB-av5" id="2OX-oR-c7d"/>
                         <outlet property="uploadLeftBtn" destination="H7y-PD-DuI" id="7hy-eW-7Xm"/>
                         <outlet property="uploadLeftLB" destination="Hbb-LR-1De" id="0hY-n2-q47"/>
                         <outlet property="uploadRightBtn" destination="I1j-mm-o5C" id="kQ3-Ge-k9M"/>
@@ -373,7 +409,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCZ-R8-1Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="149"/>
+            <point key="canvasLocation" x="829.60000000000002" y="148.87556221889056"/>
         </scene>
     </scenes>
     <resources>

@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             UserManager.shareManager.userModel = UserModel(with: JSON(userDic))
             
-            let parameters = ["token": UserManager.shareManager.userModel?.token] as [String : AnyObject]
+            let parameters = ["token": UserManager.shareManager.userModel.token] as [String : AnyObject]
             
             NetWorksManager.requst(with: kUrl_AutoLogin, type: .post, parameters: parameters, completionHandler: { (jsonData, error) in
                 if jsonData?["status"] == 200 {
@@ -93,9 +93,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //MARK: - WXApiDelegate代理
 extension AppDelegate: WXApiDelegate {
-    ///
+    ///微信支付回调结果
     func onResp(_ resp: BaseResp!) {
-        
+        if resp .isKind(of: PayResp.self) {
+            switch resp.errCode {
+            case WXErrCodeUnsupport.rawValue...WXSuccess.rawValue:            /*支付成功*/
+                ///支付成功需要回调服务器
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kWechatPayResult), object: resp.errCode)
+//            case WXErrCodeCommon.rawValue:      /*普通错误类型*/
+//                break
+//            case WXErrCodeUserCancel.rawValue:  /*用户点击取消*/
+//                break
+//            case WXErrCodeSentFail.rawValue:    /*发送失败*/
+//                break
+//            case WXErrCodeAuthDeny.rawValue:    /*授权失败*/
+//                break
+//            case WXErrCodeUnsupport.rawValue:   /*微信不支持*/
+//                break
+            default: break
+            }
+        }
     }
 }
 

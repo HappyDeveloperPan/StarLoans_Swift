@@ -12,6 +12,9 @@ class IDApproveViewController: BaseViewController, StoryboardLoadable {
     
     //MARK: - 可操作数据
     var approveType: ApproveType = .managerIdentity
+    var approveModel: ApproveModel = ApproveModel()
+    var cardFront: UIImageView = UIImageView()
+    var cardBackend: UIImageView = UIImageView()
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,9 @@ class IDApproveViewController: BaseViewController, StoryboardLoadable {
         // Pass the selected object to the new view controller.
         let vc = segue.destination as! IDApproveTableViewController
         vc.approveType = approveType
+        vc.approveModel = approveModel
+        vc.cardFront = cardFront
+        vc.cardBackend = cardBackend
     }
 
 }

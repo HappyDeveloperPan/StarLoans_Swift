@@ -16,73 +16,142 @@ fileprivate enum UploadsType {
 }
 
 class InputUserInfoTableViewController: UITableViewController {
-    //服务费
+    ///服务费
     @IBOutlet weak var serviceChargeCell: UITableViewCell!
     @IBOutlet weak var ServiceChargeTF: UITextField!
-    //贷款需求
+    ///贷款需求
     @IBOutlet weak var LoansNeedTF: UITextField!
-    //企业名称
+    ///企业名称
     @IBOutlet weak var CompanyNameCell: UITableViewCell!
     @IBOutlet weak var CompanyNameTF: UITextField!
-    //企业法人
+    ///企业法人
     @IBOutlet weak var CompanyLegalPersonCell: UITableViewCell!
     @IBOutlet weak var CompanyLegalPersonTF: UITextField!
-    //客户姓名
+    ///客户姓名
     @IBOutlet weak var userNameCell: UITableViewCell!
     @IBOutlet weak var userNameTF: UITextField!
-    //联系电话
+    ///性别
+    @IBOutlet weak var sexRadioBtnView: RadioBtnView!
+    ///联系电话
     @IBOutlet weak var telephoneCell: UITableViewCell!
     @IBOutlet weak var telephoneTF: UITextField!
-    //身份证号
+    ///身份证号
     @IBOutlet weak var IDCardsCell: UITableViewCell!
     @IBOutlet weak var IDCardsTF: UITextField!
-    //职业
+    ///职业
     @IBOutlet weak var professionCell: UITableViewCell!
     @IBOutlet weak var professionLB: UILabel!
-    //月收入
+    ///月收入
     @IBOutlet weak var incomeCell: UITableViewCell!
     @IBOutlet weak var incomeTF: UITextField!
-    //工资发放形式
+    ///工资发放形式
     @IBOutlet weak var salaryTypeCell: UITableViewCell!
     @IBOutlet weak var salaryTypeLB: UILabel!
     //员工人数
     @IBOutlet weak var employeeNumCell: UITableViewCell!
     @IBOutlet weak var employeeTF: UITextField!
-    //社保情况
+    ///社保情况
     @IBOutlet weak var socialSecurityCell: UITableViewCell!
     @IBOutlet weak var socialSecurityRadioBtnView: RadioBtnView!
-    //公积金情况
+    ///社保购买情况
+    @IBOutlet weak var socialSecurityBuyTF: UITextField!
+    ///公积金情况
     @IBOutlet weak var providentFundCell: UITableViewCell!
     @IBOutlet weak var providentFundRadioBtnView: RadioBtnView!
-    //房产类型
+    ///公积金购买情况
+    @IBOutlet weak var providentFundBuyTF: UITextField!
+    ///房产类型
     @IBOutlet weak var houseTypeLB: UILabel!
-    //车产类型
+    ///房产估值
+    @IBOutlet weak var houseValuationTF: UITextField!
+    ///车产类型
     @IBOutlet weak var carTypeLB: UILabel!
-    //信用情况
+    ///车产估值
+    @IBOutlet weak var carValuationTF: UITextField!
+    ///信用情况
     @IBOutlet weak var creditTypeLB: UILabel!
-    //其他资产
+    ///其他资产
     @IBOutlet weak var otherPropertyCell: UITableViewCell!
     @IBOutlet weak var otherPropertyTF: UITextField!
-    //上传身份证正面
+    ///近一年总收入
+    @IBOutlet weak var totalIncomeTF: UITextField!
+    ///近一年总支出
+    @IBOutlet weak var totalExpenditureTF: UITextField!
+    ///上传身份证正面
     @IBOutlet weak var IDCardsFrontBtn: UIButton!
-    //上传身份证反面
+    ///上传身份证反面
     @IBOutlet weak var IDCardsBackBtn: UIButton!
-    //上传手持身份证或者营业执照
+    ///上传手持身份证或者营业执照
     @IBOutlet weak var uploadIDCardsOrBLBtn: UIButton!
     @IBOutlet weak var uploadIDCardsOrBLLB: UILabel!
-    //上传其他资产证明
+    ///上传其他资产证明
     @IBOutlet weak var uploadOtherPropertyBtn: UIButton!
+    ///上传资金用途图片
+    @IBOutlet weak var uploadPurposeBtn: UIButton!
+    
     
     //MARK: - 可操作数据
     fileprivate let sectionHeaderArr:[String] = ["基本信息", "资产信息"]
-    fileprivate var uploadsType: UploadsType?
+    fileprivate var uploadsType: UploadsType?   //上传类型
+    fileprivate var comboBoxModel = ComboBoxModel() //下拉框数据
+    fileprivate var sex: Int = 0    //性别
+    fileprivate var providentFund: Int = 0 {    //社保
+        didSet {
+            if providentFund == 1 {
+                providentFundBuyHeight = 42
+            }else {
+                providentFundBuyHeight = 0
+            }
+        }
+    }
+    fileprivate var socialSecurity: Int = 0 {   //公积金
+        didSet {
+            if socialSecurity == 1 {
+                socialSecurityBuyHeight = 42
+            }else {
+                socialSecurityBuyHeight = 0
+            }
+        }
+    }
+    ///社保购买cell高度
+    fileprivate var socialSecurityBuyHeight: CGFloat = 0 {
+        didSet {
+            tableView.reloadRows(at: [[1, 4]], with: .none)
+        }
+    }
+    ///公积金购买cell高度
+    fileprivate var providentFundBuyHeight: CGFloat = 0 {
+        didSet {
+            tableView.reloadRows(at: [[1, 6]], with: .none)
+        }
+    }
+    ///房产估值cell高度
+    fileprivate var houseValuationHeight: CGFloat = 0 {
+        didSet {
+            tableView.reloadRows(at: [[1, 8]], with: .none)
+        }
+    }
+    ///车产估值cell高度
+    fileprivate var carValuationHeight: CGFloat = 0 {
+        didSet {
+            tableView.reloadRows(at: [[1, 10]], with: .none)
+        }
+    }
+    
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        serviceChargeCell.isHidden = true
+        setupBasic()
+        getComboBoxData()
+    }
+    
+    func setupBasic() {
         socialSecurityRadioBtnView.hSingleSelBtn(titleArray: ["有社保", "无社保"], typeE: 1)
+        socialSecurityRadioBtnView.delegate = self
         providentFundRadioBtnView.hSingleSelBtn(titleArray: ["有公积金", "无公积金"], typeE: 1)
+        providentFundRadioBtnView.delegate = self
+        sexRadioBtnView.hSingleSelBtn(titleArray: ["男","女"], typeE: 1)
+        sexRadioBtnView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,9 +164,9 @@ class InputUserInfoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 8
-        }else {
             return 9
+        }else {
+            return 13
         }
     }
     
@@ -110,10 +179,18 @@ class InputUserInfoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 && indexPath.section == 0 {
-            return 0
+        switch indexPath {
+        case [1, 4]:
+            return socialSecurityBuyHeight
+        case [1, 6]:
+            return providentFundBuyHeight
+        case [1, 8]:
+            return houseValuationHeight
+        case [1, 10]:
+            return carValuationHeight
+        default:
+            return super .tableView(tableView, heightForRowAt: indexPath)
         }
-        return super .tableView(tableView, heightForRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -128,7 +205,7 @@ class InputUserInfoTableViewController: UITableViewController {
         pickerView.changeTitleAndClosure = { [weak self] (title:String , num : Int)  in
             self?.professionLB.text = title
         }
-        pickerView.nameArr = ["上班族", "个体户", "学生", "企业主", "无固定职业"]
+        pickerView.nameArr = comboBoxModel.occupation
         kMainWindow??.addSubview(pickerView)
     }
     ///工资发放形式
@@ -137,7 +214,7 @@ class InputUserInfoTableViewController: UITableViewController {
         pickerView.changeTitleAndClosure = { [weak self] (title:String , num : Int)  in
             self?.salaryTypeLB.text = title
         }
-        pickerView.nameArr = ["现金发放","银行代发","现金和银行代发结合"]
+        pickerView.nameArr = comboBoxModel.payment_type
         kMainWindow??.addSubview(pickerView)
     }
     ///房产类型
@@ -145,8 +222,13 @@ class InputUserInfoTableViewController: UITableViewController {
         let pickerView = PickerView()
         pickerView.changeTitleAndClosure = { [weak self] (title:String , num : Int)  in
             self?.houseTypeLB.text = title
+            if num != 0 {
+                self?.houseValuationHeight = 42
+            }else {
+                self?.houseValuationHeight = 0
+            }
         }
-        pickerView.nameArr = ["无房产","贷款房","红本房","商铺","小产权房"]
+        pickerView.nameArr = comboBoxModel.house_type
         kMainWindow??.addSubview(pickerView)
     }
     ///车产类型
@@ -154,8 +236,13 @@ class InputUserInfoTableViewController: UITableViewController {
         let pickerView = PickerView()
         pickerView.changeTitleAndClosure = { [weak self] (title:String , num : Int)  in
             self?.carTypeLB.text = title
+            if num != 0 {
+                self?.carValuationHeight = 42
+            }else {
+                self?.carValuationHeight = 0
+            }
         }
-        pickerView.nameArr = ["无车","有贷款车","有全款车"]
+        pickerView.nameArr = comboBoxModel.car_type
         kMainWindow??.addSubview(pickerView)
     }
     ///信用情况
@@ -164,7 +251,7 @@ class InputUserInfoTableViewController: UITableViewController {
         pickerView.changeTitleAndClosure = { [weak self] (title:String , num : Int)  in
             self?.creditTypeLB.text = title
         }
-        pickerView.nameArr = ["信用良好", "无逾期", "一年内超过3次逾期", "一年内少于3次逾期"]
+        pickerView.nameArr = comboBoxModel.credit
         kMainWindow??.addSubview(pickerView)
     }
     ///上传身份证正面
@@ -186,6 +273,11 @@ class InputUserInfoTableViewController: UITableViewController {
     @IBAction func uploadOtherProperty(_ sender: UIButton) {
         uploadsType = UploadsType.OtherProperty
         uploadsPic()
+    }
+    
+    ///上传资金用途文件
+    @IBAction func uploadPurposeBtnClick(_ sender: UIButton) {
+        
     }
     ///提交资料
     @IBAction func commitBtnClick(_ sender: UIButton) {
@@ -246,6 +338,29 @@ class InputUserInfoTableViewController: UITableViewController {
     }
 }
 
+extension InputUserInfoTableViewController {
+    ///获取下拉框数据
+    func getComboBoxData() {
+        var parameters = [String: Any]()
+        parameters["fields"] = "occupation,payment_type,house_type,car_type,credit,loan_type"
+        NetWorksManager.requst(with: kUrl_ComboBox, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"] {
+                    self?.comboBoxModel = ComboBoxModel(with: data)
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+}
+
 extension InputUserInfoTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //查看info对象
@@ -270,6 +385,21 @@ extension InputUserInfoTableViewController: UIImagePickerControllerDelegate, UIN
             () -> Void in
         })
     }
+}
+
+extension InputUserInfoTableViewController: RadioBtnViewDelegate {
+    func selectRadioBtn(_ radioBtnView: RadioBtnView, index: Int) {
+        if radioBtnView == sexRadioBtnView {
+            sex = index + 1
+        }
+        if radioBtnView == socialSecurityRadioBtnView{
+            socialSecurity = index + 1
+        }
+        if radioBtnView == providentFundRadioBtnView {
+            providentFund = index + 1
+        }
+    }
+
 }
 
 //MARK: - TableViewSection头视图
@@ -303,7 +433,6 @@ class SectionHeaderView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
     }
     
     override func layoutSubviews() {

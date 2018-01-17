@@ -18,7 +18,8 @@ class PickerView: UIView ,UIPickerViewDelegate,UIPickerViewDataSource{
 
     //定义一个闭包
     var changeTitleAndClosure:((_ title:String,_ num:Int) -> Void)?
-    var nameArr : NSMutableArray!
+//    var nameArr : NSMutableArray!
+    var nameArr: [Any] = [Any]()
     //MARK: - 懒加载
     fileprivate lazy var bgView: UIView = {
         let view = UIView()
@@ -109,8 +110,12 @@ class PickerView: UIView ,UIPickerViewDelegate,UIPickerViewDataSource{
     //确定按钮
     @objc func sureBtnClick()  {
         let value = pickerView.selectedRow(inComponent: 0)
-        print(nameArr[value])
-        changeTitleAndClosure?(String(describing: nameArr[value]),value)
+//        print(nameArr[value])
+//        changeTitleAndClosure?(String(describing: nameArr[value]),value)
+        if nameArr.count != 0 {
+            changeTitleAndClosure?(String(stringInterpolationSegment: nameArr[value]),value)
+        }
+//        changeTitleAndClosure?(String(stringInterpolationSegment: nameArr[value]),value)
         self.hidePickerView()
     }
   
@@ -121,7 +126,8 @@ class PickerView: UIView ,UIPickerViewDelegate,UIPickerViewDataSource{
         return nameArr.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return nameArr[row] as? String
+//        return nameArr[row] as? String
+        return String(stringInterpolationSegment: nameArr[row])
     }
     override func  touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.hidePickerView()

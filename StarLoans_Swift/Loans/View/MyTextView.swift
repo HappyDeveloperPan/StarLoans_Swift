@@ -10,7 +10,7 @@ import UIKit
 
 class MyTextView: UITextView {
 
-    let UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION: CGFloat = 0.25
+    let UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION: Double = 0.25
     var placeholder:String = ""
     var placeholderColor:UIColor?
     var placeHolderLabel:UILabel?
@@ -59,7 +59,7 @@ class MyTextView: UITextView {
         if placeholder.lengthOfBytes(using: .utf8) == 0 {
             return
         }
-        UIView.animate(withDuration: UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION as? TimeInterval ?? 0.0, animations: {() -> Void in
+        UIView.animate(withDuration: UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION, animations: {() -> Void in
             if self.text.lengthOfBytes(using: .utf8) == 0 {
                 self.viewWithTag(999)?.alpha = 1
             }

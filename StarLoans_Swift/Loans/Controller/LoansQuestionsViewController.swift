@@ -10,6 +10,7 @@ import UIKit
 
 class LoansQuestionsViewController: BaseViewController {
     
+    //MARK: - 懒加载
     lazy var textView: MyTextView = { [unowned self] in
         let textView = MyTextView()
         self.view.addSubview(textView)
@@ -30,7 +31,10 @@ class LoansQuestionsViewController: BaseViewController {
         commitBtn.addTarget(self, action: #selector(commitBtnClick(_:)), for: .touchUpInside)
         return commitBtn
     }()
-
+    
+    //MARK: - 可操作数据
+    var productId: Int = 0
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "提问"
@@ -68,8 +72,36 @@ class LoansQuestionsViewController: BaseViewController {
     }
     
     @objc func commitBtnClick(_ sender: UIButton) {
-        ///等下写提交接口
-        navigationController?.popViewController(animated: true)
+        guard textView.text.lengthOfBytes(using: .utf8) > 0 else {
+            JSProgress.showFailStatus(with: "请输入问题")
+            return
+        }
+        guard textView.text.lengthOfBytes(using: .utf8) <= 200 else {
+            JSProgress.showFailStatus(with: "字数超过200")
+            return
+        }
+        
+        JSProgress.showBusy()
+        
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["product_id"] = productId
+        parameters["question"] = textView.text
+        NetWorksManager.requst(with: kUrl_QuestionAsk, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                self?.navigationController?.popViewController(animated: true)
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
     }
-    
 }

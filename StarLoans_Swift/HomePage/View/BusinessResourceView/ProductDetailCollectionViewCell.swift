@@ -13,6 +13,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
     @IBOutlet weak var topBackImg: UIImageView!
     @IBOutlet weak var titleLB: UILabel!
     @IBOutlet weak var leftTopLB: UILabel!
+    @IBOutlet weak var leftTopLBWidth: NSLayoutConstraint!
     
     @IBOutlet weak var logoImg: UIImageView!
     @IBOutlet weak var loansNumLB: UILabel!
@@ -31,7 +32,11 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
     @IBOutlet weak var commitBtn: UIButton!
     
     //MARK: - 可操作数据
-    var loansProductType: LoansProductType = .selfSupport
+    var loansProductType: LoansProductType = .selfSupport {
+        didSet {
+            uploadCellType(loansProductType.rawValue)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,6 +62,8 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
         rightTypeLB2.layer.borderColor = kMainColor.cgColor
         rightTypeLB2.layer.cornerRadius = 5
         
+        loansNumLB.adjustsFontSizeToFitWidth = true
+        
         commitBtn.layer.cornerRadius = commitBtn.height/2
     }
 
@@ -67,8 +74,15 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
             return
         }
         //TODO: - 界面跳转以后修改
-        let vc = LoansDetailViewController.loadStoryboard()
-        vc.loansProductType = loansProductType
+//        let vc = LoansDetailViewController.loadStoryboard()
+//        vc.loansProductType = loansProductType
+//        let topViewController = Utils.currentTopViewController()
+//        if topViewController?.navigationController != nil{
+//            topViewController?.navigationController?.pushViewController(vc, animated: true)
+//        }else{
+//            topViewController?.present(vc, animated: true , completion: nil)
+//        }
+        let vc = AuthorizationViewController.loadStoryboard()
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)
@@ -79,15 +93,13 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
 }
 
 extension ProductDetailCollectionViewCell {
-    func setCellData(with index: Int) {
+    func uploadCellType(_ index: Int) {
         if index == 0 {
-            topBackImg.image = #imageLiteral(resourceName: "ICON-jianbianban")
             centerTitleTop.text = "返佣"
             centerTitleCenter.text = "领取金额"
             centerTitleBottom.text = "已领人数"
             commitBtn.setTitle("领取任务", for: .normal)
         }else {
-            topBackImg.image = #imageLiteral(resourceName: "ICON-disanfangkapian-")
             centerTitleTop.text = "利率"
             centerTitleCenter.text = "贷款期限"
             centerTitleBottom.text = "交单人数"
@@ -95,14 +107,39 @@ extension ProductDetailCollectionViewCell {
         }
     }
     
+    func setCellData(_ cellData: Int) {
+//        if index == 0 {
+////            topBackImg.image = #imageLiteral(resourceName: "ICON-topRedImg")
+//            centerTitleTop.text = "返佣"
+//            centerTitleCenter.text = "领取金额"
+//            centerTitleBottom.text = "已领人数"
+//            commitBtn.setTitle("领取任务", for: .normal)
+//        }else {
+////            topBackImg.image = #imageLiteral(resourceName: "ICON-topRedImg")
+//            centerTitleTop.text = "利率"
+//            centerTitleCenter.text = "贷款期限"
+//            centerTitleBottom.text = "交单人数"
+//            commitBtn.setTitle("申请交单", for: .normal)
+//        }
+    }
+    
     func setProductListCellData(with cellData: ProductModel) {
         titleLB.text = cellData.product
-        leftTopLB.text = cellData.card
+        leftTopLBWidth.constant = cellData.card_name.width(CGSize(width: 2000, height: 21), nil) + 12
+        leftTopLB.text = cellData.card_name
+        logoImg.setImage(with: cellData.cooperation_bank)
         loansNumLB.text = cellData.quota + "万"
-        centerContentTop.text = cellData.return_commission
-        centerContentCenter.text = cellData.claim_amount
-        centerContentBottom.text = String(cellData.leader_number) + "人"
+        if loansProductType == .selfSupport {
+            centerContentTop.text = String(cellData.return_commission) + "%"
+            centerContentCenter.text = String(cellData.claim_amount) + "万"
+            centerContentBottom.text = String(cellData.leader_number) + "人"
+        }else {
+            centerContentTop.text = String(cellData.return_commission) + "%"
+            centerContentCenter.text = String(cellData.claim_amount) + "年"
+            centerContentBottom.text = String(cellData.leader_number) + "人"
+        }
         rightTypeLB.isHidden = !cellData.fast_loan.getServiceBool()
+        rightTypeLB2.isHidden = cellData.label.isEmpty
         rightTypeLB2.text = cellData.label
     }
 }

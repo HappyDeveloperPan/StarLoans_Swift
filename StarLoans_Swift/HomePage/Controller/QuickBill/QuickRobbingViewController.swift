@@ -115,7 +115,7 @@ extension QuickRobbingViewController {
     func getQuickBillListData(with type: QuickRobbingType ,cell: QuickRobbingSegmentCell) {
         
         var parameters = [String: Any]()
-        parameters["token"] = UserManager.shareManager.userModel?.token
+        parameters["token"] = UserManager.shareManager.userModel.token
         parameters["client_type"] = type.rawValue
         parameters["page"] = 1
         

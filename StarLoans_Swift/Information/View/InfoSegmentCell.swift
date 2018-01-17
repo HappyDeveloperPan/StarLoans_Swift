@@ -73,6 +73,7 @@ extension InfoSegmentCell: UITableViewDelegate, UITableViewDataSource {
         
         if infoType == .systemInfo {
             let vc = InfoDetailViewController.loadStoryboard()
+            vc.messageId = cellDataArr[indexPath.row].message_id
             let topViewController = Utils.currentTopViewController()
             if topViewController?.navigationController != nil{
                 topViewController?.navigationController?.pushViewController(vc, animated: true)

@@ -146,10 +146,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5-20年" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eu-cO-XUj">
-                                                        <rect key="frame" x="104" y="40" width="84" height="14"/>
+                                                        <rect key="frame" x="104" y="40" width="120" height="14"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="6ig-k3-D7P"/>
-                                                            <constraint firstAttribute="width" constant="84" id="XBN-dH-62U"/>
+                                                            <constraint firstAttribute="width" constant="120" id="XBN-dH-62U"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -465,7 +465,7 @@
                                                             <action selector="moreProblemClick:" destination="9Cl-HI-1yD" eventType="touchUpInside" id="iVv-oP-NjY"/>
                                                         </connections>
                                                     </button>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SvV-j0-XxC">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SvV-j0-XxC">
                                                         <rect key="frame" x="0.0" y="38" width="330" height="320"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -548,6 +548,7 @@
                         <outlet property="costCountLB" destination="Poq-jT-c23" id="eVN-0p-npm"/>
                         <outlet property="costCountVIewTop" destination="MAv-Gr-Gmg" id="5CY-kR-H3t"/>
                         <outlet property="costCountView" destination="SYX-DW-H4I" id="t2d-Ea-YJT"/>
+                        <outlet property="deadlineLB" destination="2eu-cO-XUj" id="qP0-T7-afr"/>
                         <outlet property="flowImg1" destination="vcR-ir-08N" id="n7Q-Ro-L28"/>
                         <outlet property="flowJiantou1" destination="02K-cE-xCO" id="ssb-HS-jp8"/>
                         <outlet property="flowLB1" destination="BfJ-9x-VqB" id="sss-Uv-VtM"/>

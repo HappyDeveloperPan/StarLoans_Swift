@@ -317,6 +317,11 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func taskBtnClick(_ sender: UIButton) {
+        //如果用户没有登录就跳转到登录界面
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            return
+        }
         let vc = AuthorizationViewController.loadStoryboard()
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{

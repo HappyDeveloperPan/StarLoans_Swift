@@ -10,7 +10,7 @@ import UIKit
 
 final class UserManager: NSObject {
     
-    var userModel: UserModel?
+    var userModel: UserModel = UserModel()
     var isLogin: Bool = false
     
     static let shareManager = UserManager()
@@ -20,7 +20,7 @@ final class UserManager: NSObject {
     
     //退出登录
     func logOut() {
-        UserManager.shareManager.userModel = nil
+        UserManager.shareManager.userModel = UserModel()
         UserManager.shareManager.isLogin = false
         Utils.clearAsynchronous(withKey: kSavedUser)
     }

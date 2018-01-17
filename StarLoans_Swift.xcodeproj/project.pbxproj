@@ -31,6 +31,7 @@
 		1C06E42A1FFB842D00B46A10 /* PushProductResourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C06E4291FFB842D00B46A10 /* PushProductResourceTableViewController.swift */; };
 		1C0892201FC43D2500E2320E /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C08921F1FC43D2500E2320E /* ForgetViewController.swift */; };
 		1C0892221FC43E3B00E2320E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0892211FC43E3B00E2320E /* RegisterViewController.swift */; };
+		1C0D6D352007519B00066BBB /* ApproveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0D6D342007519B00066BBB /* ApproveModel.swift */; };
 		1C0F850C1FF620110062D1B8 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0F850B1FF620100062D1B8 /* PickerView.swift */; };
 		1C0F85101FF63C6B0062D1B8 /* RadioBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0F850F1FF63C6B0062D1B8 /* RadioBtnView.swift */; };
 		1C1050441FD8D8C60050B187 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1050431FD8D8C60050B187 /* PlanView.swift */; };
@@ -87,6 +88,8 @@
 		1C2E3799200345950023065B /* ManagerBillApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E3798200345950023065B /* ManagerBillApprovalViewController.swift */; };
 		1C2E379B2003482E0023065B /* ManagerBillApprovalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C2E379A2003482E0023065B /* ManagerBillApprovalViewController.storyboard */; };
 		1C2E37B2200396A10023065B /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E37B1200396A10023065B /* SegmentViewController.swift */; };
+		1C3111BE200C591000F86400 /* ApproveCommitedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3111BD200C591000F86400 /* ApproveCommitedViewController.swift */; };
+		1C3111C0200C591C00F86400 /* ApproveCommitedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C3111BF200C591C00F86400 /* ApproveCommitedViewController.storyboard */; };
 		1C33C3ED1FFF0A640081996A /* PurchasedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33C3EC1FFF0A640081996A /* PurchasedViewController.swift */; };
 		1C363A381FE0B6F200D87014 /* LoansCollegeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C363A371FE0B6F200D87014 /* LoansCollegeCollectionViewCell.swift */; };
 		1C363A3A1FE0BD8D00D87014 /* AXDNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C363A391FE0BD8D00D87014 /* AXDNavigationController.swift */; };
@@ -120,6 +123,7 @@
 		1C4B287A1FF3CD3B00FC32CA /* ProblemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C4B28781FF3CD3B00FC32CA /* ProblemCell.xib */; };
 		1C54A82D1FCFAEF000CF4F9B /* TopAdverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C54A82C1FCFAEF000CF4F9B /* TopAdverView.swift */; };
 		1C54A82F1FD00C2000CF4F9B /* FunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C54A82E1FD00C2000CF4F9B /* FunctionView.swift */; };
+		1C551D4C2009BAF500742066 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C551D4B2009BAF500742066 /* QuestionModel.swift */; };
 		1C57AAF51FD636D600A7626A /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AAF41FD636D600A7626A /* CustomLayout.swift */; };
 		1C5AFD3B1FF78788009E65FC /* CommitCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5AFD3A1FF78788009E65FC /* CommitCompleteViewController.swift */; };
 		1C5AFD3D1FF7879B009E65FC /* CommitCompleteViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5AFD3C1FF7879B009E65FC /* CommitCompleteViewController.storyboard */; };
@@ -138,6 +142,9 @@
 		1C6716BA1FEE4D5C0029E6DE /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6716B91FEE4D5C0029E6DE /* BannerModel.swift */; };
 		1C6716BC1FEE4F1D0029E6DE /* ProductAgencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6716BB1FEE4F1D0029E6DE /* ProductAgencyModel.swift */; };
 		1C6716BE1FEE50520029E6DE /* ClientInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6716BD1FEE50520029E6DE /* ClientInfoModel.swift */; };
+		1C6D2BE8200C90D9003E4501 /* LoanManagerApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6D2BE7200C90D9003E4501 /* LoanManagerApproveViewController.swift */; };
+		1C6D2BEA200C90E2003E4501 /* LoanManagerApproveViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6D2BE9200C90E2003E4501 /* LoanManagerApproveViewController.storyboard */; };
+		1C6D2BEC200C9233003E4501 /* LoanManagerApproveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6D2BEB200C9233003E4501 /* LoanManagerApproveTableViewController.swift */; };
 		1C81E4C21FD1389A006F7D00 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C81E4C11FD1389A006F7D00 /* VideoCollectionViewCell.swift */; };
 		1C8442541FC91B0D005BE65C /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8442531FC91B0D005BE65C /* LoginInputView.swift */; };
 		1C8442561FC96BB6005BE65C /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8442551FC96BB6005BE65C /* VerifyViewController.swift */; };
@@ -169,6 +176,18 @@
 		1C9961A51FF4EDE700E4990C /* AuthorizationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C9961A41FF4EDE700E4990C /* AuthorizationViewController.storyboard */; };
 		1C9961A71FF51BC000E4990C /* InputUserInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C9961A61FF51BC000E4990C /* InputUserInfoViewController.storyboard */; };
 		1C9961A91FF51C4900E4990C /* InputUserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9961A81FF51C4900E4990C /* InputUserInfoTableViewController.swift */; };
+		1C9EBBAD200D945B0022259A /* ComboBoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBAC200D945B0022259A /* ComboBoxModel.swift */; };
+		1C9EBBAF200DD7240022259A /* PushCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBAE200DD7240022259A /* PushCompleteViewController.swift */; };
+		1C9EBBB1200DD7320022259A /* PushCompleteViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C9EBBB0200DD7320022259A /* PushCompleteViewController.storyboard */; };
+		1C9EBBB3200DF2160022259A /* MessageCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBB2200DF2160022259A /* MessageCenterViewController.swift */; };
+		1C9EBBB6200DFB890022259A /* MessageCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBB4200DFB890022259A /* MessageCenterCell.swift */; };
+		1C9EBBB7200DFB890022259A /* MessageCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C9EBBB5200DFB890022259A /* MessageCenterCell.xib */; };
+		1C9EBBB9200E04BC0022259A /* SystemMessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBB8200E04BC0022259A /* SystemMessageListViewController.swift */; };
+		1C9EBBBC200E04F60022259A /* SystemMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBBA200E04F60022259A /* SystemMessageCell.swift */; };
+		1C9EBBBD200E04F60022259A /* SystemMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C9EBBBB200E04F60022259A /* SystemMessageCell.xib */; };
+		1C9EBBBF200E14040022259A /* CommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBBE200E14040022259A /* CommentListViewController.swift */; };
+		1C9EBBC2200E148F0022259A /* CommentMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBC0200E148F0022259A /* CommentMessageCell.swift */; };
+		1C9EBBC3200E148F0022259A /* CommentMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C9EBBC1200E148F0022259A /* CommentMessageCell.xib */; };
 		1CA1D8502005A69900F51337 /* PushResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1D84F2005A69900F51337 /* PushResourceView.swift */; };
 		1CA1D8522005A6A600F51337 /* PushResourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CA1D8512005A6A600F51337 /* PushResourceView.xib */; };
 		1CA1D8542005B03500F51337 /* TranslucenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1D8532005B03500F51337 /* TranslucenceView.swift */; };
@@ -298,6 +317,7 @@
 		1C06E4291FFB842D00B46A10 /* PushProductResourceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushProductResourceTableViewController.swift; sourceTree = "<group>"; };
 		1C08921F1FC43D2500E2320E /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		1C0892211FC43E3B00E2320E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		1C0D6D342007519B00066BBB /* ApproveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveModel.swift; sourceTree = "<group>"; };
 		1C0F850B1FF620100062D1B8 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		1C0F850F1FF63C6B0062D1B8 /* RadioBtnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioBtnView.swift; sourceTree = "<group>"; };
 		1C1050431FD8D8C60050B187 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
@@ -355,6 +375,8 @@
 		1C2E3798200345950023065B /* ManagerBillApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerBillApprovalViewController.swift; sourceTree = "<group>"; };
 		1C2E379A2003482E0023065B /* ManagerBillApprovalViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManagerBillApprovalViewController.storyboard; sourceTree = "<group>"; };
 		1C2E37B1200396A10023065B /* SegmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
+		1C3111BD200C591000F86400 /* ApproveCommitedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveCommitedViewController.swift; sourceTree = "<group>"; };
+		1C3111BF200C591C00F86400 /* ApproveCommitedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ApproveCommitedViewController.storyboard; sourceTree = "<group>"; };
 		1C33C3EC1FFF0A640081996A /* PurchasedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedViewController.swift; sourceTree = "<group>"; };
 		1C363A371FE0B6F200D87014 /* LoansCollegeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansCollegeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C363A391FE0BD8D00D87014 /* AXDNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AXDNavigationController.swift; sourceTree = "<group>"; };
@@ -394,6 +416,7 @@
 		1C4B28781FF3CD3B00FC32CA /* ProblemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProblemCell.xib; sourceTree = "<group>"; };
 		1C54A82C1FCFAEF000CF4F9B /* TopAdverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAdverView.swift; sourceTree = "<group>"; };
 		1C54A82E1FD00C2000CF4F9B /* FunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionView.swift; sourceTree = "<group>"; };
+		1C551D4B2009BAF500742066 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		1C57AAF41FD636D600A7626A /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		1C5AFD3A1FF78788009E65FC /* CommitCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitCompleteViewController.swift; sourceTree = "<group>"; };
 		1C5AFD3C1FF7879B009E65FC /* CommitCompleteViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommitCompleteViewController.storyboard; sourceTree = "<group>"; };
@@ -412,6 +435,9 @@
 		1C6716B91FEE4D5C0029E6DE /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		1C6716BB1FEE4F1D0029E6DE /* ProductAgencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAgencyModel.swift; sourceTree = "<group>"; };
 		1C6716BD1FEE50520029E6DE /* ClientInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoModel.swift; sourceTree = "<group>"; };
+		1C6D2BE7200C90D9003E4501 /* LoanManagerApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanManagerApproveViewController.swift; sourceTree = "<group>"; };
+		1C6D2BE9200C90E2003E4501 /* LoanManagerApproveViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoanManagerApproveViewController.storyboard; sourceTree = "<group>"; };
+		1C6D2BEB200C9233003E4501 /* LoanManagerApproveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanManagerApproveTableViewController.swift; sourceTree = "<group>"; };
 		1C81E4C11FD1389A006F7D00 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C8442531FC91B0D005BE65C /* LoginInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
 		1C8442551FC96BB6005BE65C /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
@@ -443,6 +469,18 @@
 		1C9961A41FF4EDE700E4990C /* AuthorizationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthorizationViewController.storyboard; sourceTree = "<group>"; };
 		1C9961A61FF51BC000E4990C /* InputUserInfoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InputUserInfoViewController.storyboard; sourceTree = "<group>"; };
 		1C9961A81FF51C4900E4990C /* InputUserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoTableViewController.swift; sourceTree = "<group>"; };
+		1C9EBBAC200D945B0022259A /* ComboBoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboBoxModel.swift; sourceTree = "<group>"; };
+		1C9EBBAE200DD7240022259A /* PushCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCompleteViewController.swift; sourceTree = "<group>"; };
+		1C9EBBB0200DD7320022259A /* PushCompleteViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PushCompleteViewController.storyboard; sourceTree = "<group>"; };
+		1C9EBBB2200DF2160022259A /* MessageCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCenterViewController.swift; sourceTree = "<group>"; };
+		1C9EBBB4200DFB890022259A /* MessageCenterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCenterCell.swift; sourceTree = "<group>"; };
+		1C9EBBB5200DFB890022259A /* MessageCenterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCenterCell.xib; sourceTree = "<group>"; };
+		1C9EBBB8200E04BC0022259A /* SystemMessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageListViewController.swift; sourceTree = "<group>"; };
+		1C9EBBBA200E04F60022259A /* SystemMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageCell.swift; sourceTree = "<group>"; };
+		1C9EBBBB200E04F60022259A /* SystemMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SystemMessageCell.xib; sourceTree = "<group>"; };
+		1C9EBBBE200E14040022259A /* CommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
+		1C9EBBC0200E148F0022259A /* CommentMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMessageCell.swift; sourceTree = "<group>"; };
+		1C9EBBC1200E148F0022259A /* CommentMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentMessageCell.xib; sourceTree = "<group>"; };
 		1CA1D84F2005A69900F51337 /* PushResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushResourceView.swift; sourceTree = "<group>"; };
 		1CA1D8512005A6A600F51337 /* PushResourceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PushResourceView.xib; sourceTree = "<group>"; };
 		1CA1D8532005B03500F51337 /* TranslucenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucenceView.swift; sourceTree = "<group>"; };
@@ -615,7 +653,9 @@
 			isa = PBXGroup;
 			children = (
 				1C0892141FC3F3D500E2320E /* Model */,
-				1C0892131FC3F3B600E2320E /* Login */,
+				1C0892151FC3F3DA00E2320E /* View */,
+				1CDE80DA1FC7BFD1005A69DB /* ViewModel */,
+				1C0892161FC3F3E000E2320E /* Controller */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -651,20 +691,11 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		1C0892131FC3F3B600E2320E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				1C0892151FC3F3DA00E2320E /* View */,
-				1CDE80DA1FC7BFD1005A69DB /* ViewModel */,
-				1C0892161FC3F3E000E2320E /* Controller */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		1C0892141FC3F3D500E2320E /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1CDE80D81FC7AFB0005A69DB /* UserModel.swift */,
+				1C0D6D342007519B00066BBB /* ApproveModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -751,6 +782,8 @@
 			isa = PBXGroup;
 			children = (
 				1C13760E1FF26443003EC987 /* LoansModel.swift */,
+				1C551D4B2009BAF500742066 /* QuestionModel.swift */,
+				1C9EBBAC200D945B0022259A /* ComboBoxModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -979,6 +1012,9 @@
 				1C06E4171FFB5A7200B46A10 /* InfoSettingViewController.swift */,
 				1C06E41B1FFB5AB800B46A10 /* InfoSettingTableViewController.swift */,
 				1C06E4191FFB5A8600B46A10 /* InfoSettingViewController.storyboard */,
+				1C9EBBB2200DF2160022259A /* MessageCenterViewController.swift */,
+				1C9EBBB8200E04BC0022259A /* SystemMessageListViewController.swift */,
+				1C9EBBBE200E14040022259A /* CommentListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -989,6 +1025,12 @@
 				1C5AFD411FF79F70009E65FC /* InfoSegmentCell.swift */,
 				1C468B871FFA4011004DD9DA /* InfoListCell.swift */,
 				1C468B881FFA4011004DD9DA /* InfoListCell.xib */,
+				1C9EBBB4200DFB890022259A /* MessageCenterCell.swift */,
+				1C9EBBB5200DFB890022259A /* MessageCenterCell.xib */,
+				1C9EBBBA200E04F60022259A /* SystemMessageCell.swift */,
+				1C9EBBBB200E04F60022259A /* SystemMessageCell.xib */,
+				1C9EBBC0200E148F0022259A /* CommentMessageCell.swift */,
+				1C9EBBC1200E148F0022259A /* CommentMessageCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1066,6 +1108,11 @@
 				1C0666081FFF76CA002FA501 /* IDApproveViewController.swift */,
 				1C06660C1FFF796F002FA501 /* IDApproveTableViewController.swift */,
 				1C06660A1FFF78FB002FA501 /* IDApproveViewController.storyboard */,
+				1C6D2BE7200C90D9003E4501 /* LoanManagerApproveViewController.swift */,
+				1C6D2BEB200C9233003E4501 /* LoanManagerApproveTableViewController.swift */,
+				1C6D2BE9200C90E2003E4501 /* LoanManagerApproveViewController.storyboard */,
+				1C3111BD200C591000F86400 /* ApproveCommitedViewController.swift */,
+				1C3111BF200C591C00F86400 /* ApproveCommitedViewController.storyboard */,
 			);
 			path = Approve;
 			sourceTree = "<group>";
@@ -1133,6 +1180,8 @@
 				1C06E4251FFB83B500B46A10 /* PushProductResourceViewController.swift */,
 				1C06E4291FFB842D00B46A10 /* PushProductResourceTableViewController.swift */,
 				1C06E4271FFB83C500B46A10 /* PushProductResourceViewController.storyboard */,
+				1C9EBBAE200DD7240022259A /* PushCompleteViewController.swift */,
+				1C9EBBB0200DD7320022259A /* PushCompleteViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1439,6 +1488,7 @@
 				1C10F6A91FED0CBA00C3A62A /* MessageDetailViewController.storyboard in Resources */,
 				1C609DB01FE7E677004D4E54 /* WithdrawViewController.storyboard in Resources */,
 				1C06660B1FFF78FB002FA501 /* IDApproveViewController.storyboard in Resources */,
+				1C9EBBC3200E148F0022259A /* CommentMessageCell.xib in Resources */,
 				1CDC915F1FF0DCFC0040434B /* HotResourceCell.xib in Resources */,
 				1C1C1FA31FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard in Resources */,
 				1CE3BF071FFCB510003D6629 /* QuickBillDetailViewController.storyboard in Resources */,
@@ -1455,14 +1505,18 @@
 				1C1376131FF27A02003EC987 /* LoansDetailViewController.storyboard in Resources */,
 				1CD0B4211FE8B8AD00A4A796 /* BindingCardNextViewController.storyboard in Resources */,
 				1CED7B5C1FDEA73100AABDDE /* TeachDetailCollectionViewCell.xib in Resources */,
+				1C6D2BEA200C90E2003E4501 /* LoanManagerApproveViewController.storyboard in Resources */,
+				1C9EBBBD200E04F60022259A /* SystemMessageCell.xib in Resources */,
 				1C609DAC1FE7BE38004D4E54 /* BankCardCollectionViewCell.xib in Resources */,
 				1C857C901FFE0835009F45EE /* VStoreViewController.storyboard in Resources */,
+				1C9EBBB7200DFB890022259A /* MessageCenterCell.xib in Resources */,
 				1CE3BF231FFCFBE9003D6629 /* SettingViewController.storyboard in Resources */,
 				1C1D946B1FE2798C00F65049 /* VideoCenterDetailCollectionViewCell.xib in Resources */,
 				1CF9FCD81FE3B9C8003AE228 /* MineHeaderView.xib in Resources */,
 				1C4066061FB190C8009A59FD /* Assets.xcassets in Resources */,
 				1C468B8A1FFA4011004DD9DA /* InfoListCell.xib in Resources */,
 				1CC2F5732006112A00801181 /* PayViewController.storyboard in Resources */,
+				1C3111C0200C591C00F86400 /* ApproveCommitedViewController.storyboard in Resources */,
 				1CD0B4191FE8B08B00A4A796 /* BindingCardFirstViewController.storyboard in Resources */,
 				1C4066041FB190C8009A59FD /* Main.storyboard in Resources */,
 				1CA4FCF01FD7DE5A009ECD30 /* RobbingTableViewCell.xib in Resources */,
@@ -1479,6 +1533,7 @@
 				1C3BD82F1FDF6E8800B660C4 /* ClientListDetailCollectionViewCell.xib in Resources */,
 				1C609DBA1FE7EA24004D4E54 /* MoneyDetailTableViewCell.xib in Resources */,
 				1C5AFD3D1FF7879B009E65FC /* CommitCompleteViewController.storyboard in Resources */,
+				1C9EBBB1200DD7320022259A /* PushCompleteViewController.storyboard in Resources */,
 				1C857C961FFE1421009F45EE /* VStoreFuncCollectionViewCell.xib in Resources */,
 				1CBAC4172000851E002FB1C9 /* PurchasedCourseDetailViewController.storyboard in Resources */,
 				1C9961A71FF51BC000E4990C /* InputUserInfoViewController.storyboard in Resources */,
@@ -1747,7 +1802,9 @@
 				1C3BD82E1FDF6E8800B660C4 /* ClientListDetailCollectionViewCell.swift in Sources */,
 				1CB08E0C1FDA9B0B007FCC31 /* SMSegmentAppearance.swift in Sources */,
 				1C2E2AF01FCECDBB005E48C3 /* WRProxy.swift in Sources */,
+				1C9EBBC2200E148F0022259A /* CommentMessageCell.swift in Sources */,
 				1C0665FB1FFF1C96002FA501 /* PurchasedSelectViewController.swift in Sources */,
+				1C9EBBBC200E04F60022259A /* SystemMessageCell.swift in Sources */,
 				1CE3BF1E1FFCFA38003D6629 /* CommonProblemViewController.swift in Sources */,
 				1C1C1FA51FDFFCB000C71D73 /* Utils.swift in Sources */,
 				1C609DAB1FE7BE38004D4E54 /* BankCardCollectionViewCell.swift in Sources */,
@@ -1760,10 +1817,12 @@
 				1C609DA11FE7A9F9004D4E54 /* AccountViewController.swift in Sources */,
 				1C1376151FF27C87003EC987 /* LoansProductView.swift in Sources */,
 				1C2E2ADC1FCE9704005E48C3 /* UIView+Extension.swift in Sources */,
+				1C9EBBB9200E04BC0022259A /* SystemMessageListViewController.swift in Sources */,
 				1CD0B4151FE8AB1400A4A796 /* UrlPath.swift in Sources */,
 				1C6716BC1FEE4F1D0029E6DE /* ProductAgencyModel.swift in Sources */,
 				1C2E37B2200396A10023065B /* SegmentViewController.swift in Sources */,
 				1CDC91651FF1235E0040434B /* UILabel+Extension.swift in Sources */,
+				1C6D2BE8200C90D9003E4501 /* LoanManagerApproveViewController.swift in Sources */,
 				1C609DB91FE7EA24004D4E54 /* MoneyDetailTableViewCell.swift in Sources */,
 				1CD0B4231FE9148700A4A796 /* YHAlertView.swift in Sources */,
 				1CE3BF091FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift in Sources */,
@@ -1789,11 +1848,13 @@
 				1C40662D1FB1A7EB009A59FD /* JSTabBarViewController.swift in Sources */,
 				1C1376081FF22025003EC987 /* SignInModel.swift in Sources */,
 				1C363A381FE0B6F200D87014 /* LoansCollegeCollectionViewCell.swift in Sources */,
+				1C9EBBBF200E14040022259A /* CommentListViewController.swift in Sources */,
 				1C8B7E871FD28CCE008EA417 /* VideoView.swift in Sources */,
 				1C857C9B1FFE6198009F45EE /* ApproveSelectViewController.swift in Sources */,
 				1C1C1F961FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift in Sources */,
 				1C857C8B1FFDD6FC009F45EE /* UserDataTableViewController.swift in Sources */,
 				1C609DAE1FE7E47F004D4E54 /* WithdrawViewController.swift in Sources */,
+				1C6D2BEC200C9233003E4501 /* LoanManagerApproveTableViewController.swift in Sources */,
 				1C4682921FEBDCAF002DA528 /* LoansCollegeModel.swift in Sources */,
 				1CCE1B421FC2C27F002EE6D9 /* UserManager.swift in Sources */,
 				1C2E3799200345950023065B /* ManagerBillApprovalViewController.swift in Sources */,
@@ -1803,6 +1864,7 @@
 				1CD0B41B1FE8B10200A4A796 /* BindingCardFirstTableViewController.swift in Sources */,
 				1C1D94671FE2792E00F65049 /* VideoCenterCollectionViewCell.swift in Sources */,
 				1C06E42A1FFB842D00B46A10 /* PushProductResourceTableViewController.swift in Sources */,
+				1C0D6D352007519B00066BBB /* ApproveModel.swift in Sources */,
 				1C54A82D1FCFAEF000CF4F9B /* TopAdverView.swift in Sources */,
 				1C0666091FFF76CA002FA501 /* IDApproveViewController.swift in Sources */,
 				1C363A401FE0F7E700D87014 /* SignInViewController.swift in Sources */,
@@ -1811,6 +1873,7 @@
 				1C99619B1FF4D0D600E4990C /* LoansMoreProblemViewController.swift in Sources */,
 				1C10A9C92004E9390042C0EB /* SwiftPopMenu.swift in Sources */,
 				1CA4FCEB1FD7D9AC009ECD30 /* QuickRobView.swift in Sources */,
+				1C9EBBAF200DD7240022259A /* PushCompleteViewController.swift in Sources */,
 				1C2E2ADA1FCE96FC005E48C3 /* UIImage+Extension.swift in Sources */,
 				1C99619D1FF4D46C00E4990C /* LoansQuestionsViewController.swift in Sources */,
 				1CE3BEF71FFC7758003D6629 /* QuickRobbingSegmentCell.swift in Sources */,
@@ -1823,10 +1886,12 @@
 				1CB728DA1FDA37A4006C1D2E /* SearchView.swift in Sources */,
 				1C2E2AEE1FCECDBB005E48C3 /* WRCycleScrollView.swift in Sources */,
 				1CA1D8542005B03500F51337 /* TranslucenceView.swift in Sources */,
+				1C9EBBB3200DF2160022259A /* MessageCenterViewController.swift in Sources */,
 				1CED7B581FDE9DAC00AABDDE /* TeachCollectionViewCell.swift in Sources */,
 				1C33C3ED1FFF0A640081996A /* PurchasedViewController.swift in Sources */,
 				1C10A9C62004C1DD0042C0EB /* PushBillProductCell.swift in Sources */,
 				1C99619F1FF4D78100E4990C /* MyTextView.swift in Sources */,
+				1C9EBBB6200DFB890022259A /* MessageCenterCell.swift in Sources */,
 				1CE3BF271FFD02EC003D6629 /* ResetViewController.swift in Sources */,
 				1CF9FCDA1FE3BD7C003AE228 /* MineViewController.swift in Sources */,
 				1C2E2AD81FCE96D1005E48C3 /* UIImageView+Extension.swift in Sources */,
@@ -1850,6 +1915,7 @@
 				1CBFFBA81FE4ED1B00E89B7E /* UICollectionView+Extension.swift in Sources */,
 				1C8442561FC96BB6005BE65C /* VerifyViewController.swift in Sources */,
 				1C8531DB1FDBC7C7009713A7 /* SegmentCollectionViewCell.swift in Sources */,
+				1C9EBBAD200D945B0022259A /* ComboBoxModel.swift in Sources */,
 				1C0892201FC43D2500E2320E /* ForgetViewController.swift in Sources */,
 				1C609DA81FE7B905004D4E54 /* BankCardViewController.swift in Sources */,
 				1C609DB61FE7E9A1004D4E54 /* MoneyDetailViewController.swift in Sources */,
@@ -1857,12 +1923,14 @@
 				1C1376061FF1E7B4003EC987 /* VideoModel.swift in Sources */,
 				1CB728D61FDA2C4C006C1D2E /* Date+Extension.swift in Sources */,
 				1C0666001FFF4A81002FA501 /* PurchasedCell.swift in Sources */,
+				1C3111BE200C591000F86400 /* ApproveCommitedViewController.swift in Sources */,
 				1CF8EC651FF8D886000794A7 /* ResourceModel.swift in Sources */,
 				1C8442541FC91B0D005BE65C /* LoginInputView.swift in Sources */,
 				1CED7B5B1FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift in Sources */,
 				1CDC915E1FF0DCFC0040434B /* HotResourceCell.swift in Sources */,
 				1C857C981FFE2EAA009F45EE /* VStoreCustomFlowLayout.swift in Sources */,
 				1CE3BF0B1FFCC617003D6629 /* QBDPropertyTableViewController.swift in Sources */,
+				1C551D4C2009BAF500742066 /* QuestionModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

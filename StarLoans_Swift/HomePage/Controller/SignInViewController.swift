@@ -110,7 +110,7 @@ extension SignInViewController {
     ///获取用户签到信息
     func getSignInData() {
         var parameters = [String: Any]()
-        parameters["token"] = UserManager.shareManager.userModel?.token
+        parameters["token"] = UserManager.shareManager.userModel.token
         
         JSProgress.showBusy()
         
@@ -136,7 +136,7 @@ extension SignInViewController {
     ///用户签到
     func userSignIn() {
         var parameters = [String: Any]()
-        parameters["token"] = UserManager.shareManager.userModel?.token
+        parameters["token"] = UserManager.shareManager.userModel.token
         
         JSProgress.showBusy()
         

@@ -38,7 +38,7 @@ class MineTableViewController: UITableViewController {
         setupIndentCellUI()
         setupendShopCellUI()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadUserData), name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
-        reloadUserData()
+//        reloadUserData()
     }
     
     //基本配置
@@ -60,6 +60,7 @@ class MineTableViewController: UITableViewController {
         userImgTop.constant = kStatusHeight + 8
         let corners: UIRectCorner = [.topLeft,.bottomLeft]
         approveBackView.corner(with: approveBackView.bounds, corners: corners, radii: 15)
+        approveLB.adjustsFontSizeToFitWidth = true
     }
     
     func setupIndentCellUI() {
@@ -133,12 +134,10 @@ class MineTableViewController: UITableViewController {
     }
     
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super .viewWillAppear(animated)
-//        if UserManager.shareManager.isLogin {
-//            reloadUserData()
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        reloadUserData()
+    }
     
     override func viewWillLayoutSubviews() {
         super .viewWillLayoutSubviews()
@@ -177,25 +176,29 @@ class MineTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
-        case [0, 0]:
+        case [0, 0]:    //账户
             let vc = AccountViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
-        case [0, 1]:
+        case [0, 1]:    //微店订单
             let vc = VStoreViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
-        case [0, 2]:
+        case [0, 2]:    //已购
             let vc = PurchasedViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case [1, 0]:
+        case [1, 0]:    //认证
+            guard UserManager.shareManager.isLogin else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+                return
+            }
             let vc = ApproveSelectViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case [1, 1]:
+        case [1, 1]:    //设置
             let vc = SettingViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
-        case [1, 2]:
+        case [1, 2]:    //常见问题
             let vc = CommonProblemViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case [1, 3]:
+        case [1, 3]:    //关于我们
             let vc = AboutViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
         default:
@@ -224,9 +227,23 @@ class MineTableViewController: UITableViewController {
 extension MineTableViewController {
     @objc func reloadUserData() {
         if UserManager.shareManager.isLogin {
-            userNameBtn.setTitle(UserManager.shareManager.userModel?.user, for: .normal)
+            userNameBtn.setTitle(UserManager.shareManager.userModel.user, for: .normal)
+            if !(UserManager.shareManager.userModel.tx.isEmpty) {
+                userImg.setImage((UserManager.shareManager.userModel.tx), placeholder: nil, completionHandler: { [weak self] (image, error, cacheType, url) in
+                    self?.userImg.circleImage()
+                })
+            }
+            if UserManager.shareManager.userModel.is_audit == 4 {
+                approveLB.text = UserManager.shareManager.userModel.getApproveType()
+                approveImg.image = #imageLiteral(resourceName: "ICON-yirenzhen")
+            }else {
+                approveLB.text = UserManager.shareManager.userModel.getAuditStatus()
+            }
         }else {
             userNameBtn.setTitle("未登录", for: .normal)
+            userImg.image = #imageLiteral(resourceName: "ICON-MORENTOUXIANG")
+            approveImg.image = #imageLiteral(resourceName: "ICON-weirenzhen")
+            approveLB.text = "未认证"
         }
     }
 }

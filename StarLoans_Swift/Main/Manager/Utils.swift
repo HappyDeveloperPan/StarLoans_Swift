@@ -57,5 +57,17 @@ public class Utils {
         let date = Date(timeIntervalSince1970: time)
         return formatter.string(from: date)
     }
+    
+    ///model转json
+    class func dataToDictionary(_ data: Data) -> Dictionary<String, Any>? {
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+            let dic = json as! Dictionary<String, Any>
+            return dic
+        } catch _ {
+            print("转换失败")
+            return nil
+        }
+    }
 
 }

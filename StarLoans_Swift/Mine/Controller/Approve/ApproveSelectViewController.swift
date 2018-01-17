@@ -98,12 +98,19 @@ extension ApproveSelectViewController: UICollectionViewDelegate, UICollectionVie
             UIView.animate(withDuration: 0.1, animations: {
                 cell?.transform = CGAffineTransform(scaleX: 1, y: 1)
             }) { [weak self] (finish) in
+                if UserManager.shareManager.userModel.is_audit == 2 {
+                    JSProgress.showInfoWithStatus(with: "正在审核中")
+                    return
+                }
+                
                 switch indexPath.row {
                 case 0:
                     let vc = IDApproveViewController.loadStoryboard()
                     vc.approveType = .brokerIdentity
                     self?.navigationController?.pushViewController(vc, animated: true)
-                case 1: break
+                case 1:
+                    let vc = LoanManagerApproveViewController.loadStoryboard()
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 case 2:
                     let vc = IDApproveViewController.loadStoryboard()
                     vc.approveType = .managerIdentity

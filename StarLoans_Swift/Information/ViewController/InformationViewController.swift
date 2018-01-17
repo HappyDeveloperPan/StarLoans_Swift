@@ -123,7 +123,7 @@ extension InformationViewController {
         var parameters = [String: Any]()
         parameters["message_type"] = type.rawValue + 1
         parameters["page"] = 1
-        parameters["token"] = UserManager.shareManager.userModel?.token
+        parameters["token"] = UserManager.shareManager.userModel.token
         
         NetWorksManager.requst(with: kUrl_InfoList, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
@@ -151,7 +151,7 @@ extension InformationViewController {
     ///删除某一条消息
     func removeInformationData(at index: Int) {
         var parameters = [String: Any]()
-        parameters["token"] = UserManager.shareManager.userModel?.token
+        parameters["token"] = UserManager.shareManager.userModel.token
         parameters["message_id"] = index
         
         NetWorksManager.requst(with: kUrl_removeInfo, type: .post, parameters: parameters) { (jsonData, error) in

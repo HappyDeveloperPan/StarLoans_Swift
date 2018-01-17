@@ -80,4 +80,5 @@ extension String {
         return scan.scanInt(&val) && scan.isAtEnd
         
     }
+    
 }

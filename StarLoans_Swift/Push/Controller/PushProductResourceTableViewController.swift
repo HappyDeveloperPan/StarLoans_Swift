@@ -9,6 +9,7 @@
 import UIKit
 
 class PushProductResourceTableViewController: UITableViewController {
+    //MARK: - storyboard连线
     //公司LOGO
     @IBOutlet weak var logoLB: UILabel!
     @IBOutlet weak var logoBtn: UIButton!
@@ -25,6 +26,8 @@ class PushProductResourceTableViewController: UITableViewController {
     @IBOutlet weak var returnMoneyTF: UITextField!
     //月利率
     @IBOutlet weak var monthInterestRateTF: UITextField!
+    //贷款期限
+    @IBOutlet weak var loanDeadlineTF: UITextField!
     //产品优势
     @IBOutlet weak var productAdvenTV: MyTextView!
     //办理流程
@@ -37,13 +40,18 @@ class PushProductResourceTableViewController: UITableViewController {
     //所需材料
     @IBOutlet weak var needMaterialsTV: MyTextView!
     
-    //MARK: - 可操作数据
+    //MARK: - 静态数据
     fileprivate let sectionHeaderArr:[String] = ["基本信息", "产品优势", "办理流程", "申请条件", "所需材料"]
+    
+    //MARK: - 可操作数据
+    fileprivate var loansType: Int = 0
+    fileprivate var comboBoxModel = ComboBoxModel() ///下拉框数据
     
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBasic()
+        getComboBoxData()
     }
     
     func setupBasic() {
@@ -75,7 +83,7 @@ class PushProductResourceTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 7
+            return 8
         }else {
             return 1
         }
@@ -95,6 +103,7 @@ class PushProductResourceTableViewController: UITableViewController {
         return view
     }
     
+    //MARK: - 点击事件
     ///上传公司logo
     @IBAction func uploadOtherProperty(_ sender: UIButton) {
         uploadsPic()
@@ -102,11 +111,13 @@ class PushProductResourceTableViewController: UITableViewController {
     
     ///选择贷款类别
     @IBAction func loansTypeBtnClick(_ sender: UIButton) {
+        view.endEditing(true)
         let pickerView = PickerView()
         pickerView.changeTitleAndClosure = { [weak self] (title:String , num : Int)  in
             self?.loansTypeLB.text = title
+            self?.loansType = num + 1
         }
-        pickerView.nameArr = ["个人抵押", "企业抵押", "个人信用", "企业信用"]
+        pickerView.nameArr = comboBoxModel.loan_type
         kMainWindow??.addSubview(pickerView)
     }
     
@@ -115,8 +126,7 @@ class PushProductResourceTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "提交审核", message: "请确认信息准确无误后提交", preferredStyle: .alert)
         let selectOne = UIAlertAction(title: "返回修改", style: .cancel, handler: nil)
         let selectTwo = UIAlertAction(title: "确认", style: .destructive) { [weak self] (action) in
-            let vc = CommitCompleteViewController.loadStoryboard()
-            self?.navigationController?.pushViewController(vc, animated: true)
+            self?.uploadProduct()
         }
         alertController.addAction(selectOne)
         alertController.addAction(selectTwo)
@@ -169,10 +179,76 @@ class PushProductResourceTableViewController: UITableViewController {
     }
 }
 
+//MARK: - 数据处理
+extension PushProductResourceTableViewController {
+    ///发布客户产品
+    func uploadProduct() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["company_logo"] = UIImageJPEGRepresentation((logoBtn.imageView?.image)!, 0.5)
+        parameters["company_name"] = CompanyNameTF.text
+        parameters["product"] = productNameTF.text
+        parameters["quota_min"] = loansRange1TF.text
+        parameters["quota"] = loansRange2TF.text
+        parameters["card"] = loansType
+        parameters["return_commission"] = returnMoneyTF.text
+        parameters["interest"] = monthInterestRateTF.text
+        parameters["desc"] = productAdvenTV.text
+        parameters["process_step_one"] = flow1TF.text
+        parameters["process_step_two"] = flow2TF.text
+        parameters["process_step_three"] = flow3TF.text
+        parameters["process_step_four"] = flow4TF.text
+        parameters["require"] = conditionTV.text
+        parameters["info"] = needMaterialsTV.text
+        parameters["min_term"] = loanDeadlineTF.text
+        
+        JSProgress.showBusy()
+        
+        NetWorksManager.uploadImages(with: kUrl_PublishProductResources, parameters: parameters, success: { [weak self] (jsonData) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                let vc = PushCompleteViewController.loadStoryboard()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                if let msg = jsonData?["msg_zhcn"].stringValue {
+                    JSProgress.showFailStatus(with: msg)
+                }
+            }
+        }) { (error) in
+            JSProgress.hidden()
+            JSProgress.showFailStatus(with: "请求失败")
+        }
+    }
+    
+    ///获取下拉框数据
+    func getComboBoxData() {
+        var parameters = [String: Any]()
+        parameters["fields"] = "loan_type"
+        NetWorksManager.requst(with: kUrl_ComboBox, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"] {
+                    self?.comboBoxModel = ComboBoxModel(with: data)
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+}
+
+//MARK: - 相册代理
 extension PushProductResourceTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //查看info对象
-        print(info)
+//        print(info)
         //显示的图片
         let image:UIImage!
         image = info[UIImagePickerControllerEditedImage] as! UIImage

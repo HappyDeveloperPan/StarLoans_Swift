@@ -16,11 +16,23 @@ fileprivate let NAVBAR_COLORCHANGE_POINT:CGFloat = IMAGE_HEIGHT - CGFloat(64 * 2
 class HomePageViewController: UIViewController {
     weak var navController: UINavigationController?
     //记录顶部状态栏颜色
-    var statusBarColor:UIStatusBarStyle = .default {
+//    var statusBarColor: UIStatusBarStyle = .default {
+//        didSet {
+//            UIApplication.shared.statusBarStyle = statusBarColor
+//        }
+//    }
+    var statusBarColor: UIStatusBarStyle = .default {
         didSet {
-            UIApplication.shared.statusBarStyle = statusBarColor
+            setNeedsStatusBarAppearanceUpdate()
         }
     }
+    //记录是否显示顶部状态栏
+    var isHiddenStatus: Bool = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
     //MARK: - 主界面部分
     lazy var mainView: UIScrollView = { [unowned self] in
         let mainView = UIScrollView()
@@ -144,10 +156,27 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         automaticallyAdjustsScrollViewInsets = false
-//        edgesForExtendedLayout = .top
         topAdBannerView.localImgArray = topBannerLocalArr
         
-        //刷新主界面数据
+        //给界面添加下拉刷新
+        mainView.addHeaderRefresh { [weak self] in
+            self?.getHomePageData()
+        }
+//        setNeedsStatusBarAppearanceUpdate()
+        
+        getHomePageData()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return isHiddenStatus
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarColor
+    }
+    
+    ///刷新主界面数据
+    func getHomePageData() {
         getTopBannerData()
         getVideoData()
         getHotProductData()
@@ -158,7 +187,7 @@ class HomePageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         topAdBannerView.isAutoScroll = true
-        UIApplication.shared.statusBarStyle = statusBarColor
+//        UIApplication.shared.statusBarStyle = statusBarColor
         
         navigationController?.delegate = self
         navController = navigationController
@@ -276,7 +305,7 @@ class HomePageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
         topAdBannerView.isAutoScroll = false
-        UIApplication.shared.statusBarStyle = .default
+//        UIApplication.shared.statusBarStyle = .default
     }
     
     override func didReceiveMemoryWarning() {
@@ -310,6 +339,7 @@ extension HomePageViewController {
                     JSProgress.showFailStatus(with: "网络请求失败")
                 }
             }
+            self?.mainView.endHeaderRefresh()
         }
     }
     ///获取热门视频
@@ -367,8 +397,12 @@ extension HomePageViewController {
     func getBottomBannerData() {
         NetWorksManager.requst(with: kUrl_BottomBanner, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-                let bannerModel = BannerModel(with: jsonData!["data"][0])
-                self?.centerAdverView.setImage(with: bannerModel.image)
+                if let data = jsonData?["data"][0] {
+                    let bannerModel = BannerModel(with: data)
+                    self?.centerAdverView.setImage(with: bannerModel.image)
+                }
+//                let bannerModel = BannerModel(with: jsonData!["data"][0])
+//                self?.centerAdverView.setImage(with: bannerModel.image)
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -420,11 +454,20 @@ extension HomePageViewController: UIScrollViewDelegate {
             let alpha = (offsetY - NAVBAR_COLORCHANGE_POINT) / CGFloat(64)
             navView.alpha = alpha
             statusBarColor = .lightContent
+            isHiddenStatus = false
+        }else if offsetY < 0 {
+            navView.alpha = 0
+            isHiddenStatus = true
+            searchView.alpha = (offsetY + 32) / 32
+            addressBtn.alpha = (offsetY + 32) / 32
         }
         else
         {
+            addressBtn.alpha = 1
+            searchView.alpha = 1
             navView.alpha = 0
             statusBarColor = .default
+            isHiddenStatus = false
         }
     }
 }

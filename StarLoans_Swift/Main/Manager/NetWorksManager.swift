@@ -80,6 +80,8 @@ class NetWorksManager: NSObject {
             case .success(let value):
                 if let responseObject = value as? [String: Any] {
                     completionHandler(JSON(responseObject), nil)
+                }else {
+                    completionHandler(nil,nil)
                 }
             case .failure(let error):
                 completionHandler(nil, error)
@@ -96,7 +98,7 @@ class NetWorksManager: NSObject {
     ///   - parameters: 传送参数
     ///   - success: 成功回调
     ///   - failture: 失败回调
-    class func uploadImages(with url: String, parameters: Dictionary<String , Any>, success: @escaping (_ response : [String : AnyObject]?) -> (), failture: @escaping (_ error: Error)->()) {
+    class func uploadImages(with url: String, parameters: Dictionary<String , Any>, success: @escaping (_ response : JSON?) -> (), failture: @escaping (_ error: Error)->()) {
         
         let headers: HTTPHeaders = ["Accept": "application/json"]
 //                                    "Accept": "text/javascript",
@@ -107,6 +109,7 @@ class NetWorksManager: NSObject {
         manager.session.configuration.timeoutIntervalForRequest = 15
         
         print("url:\n\(url)")
+        print("parameters:\n\(String(describing: parameters))\n")
         
         manager.upload(multipartFormData: { (multipartFormData) in
             for (key, value) in parameters {
@@ -114,11 +117,11 @@ class NetWorksManager: NSObject {
                     let imageName = String(describing: NSData()).appending(".png")
                     multipartFormData.append(value as! Data, withName: key , fileName: imageName, mimeType: "image/png")
                 }else {
-                    
-                    print("parameters:\n\(key, value)")
-                    
-                    let str: String = value as! String
-                    multipartFormData.append(str.data(using: .utf8)!, withName: key )
+//                    print("parameters:\n\(key, value)")
+//                    let str = (value as AnyObject).data(String.Encoding.utf8.rawValue)!
+//                    let str: String = value as! String
+                    let str = String(stringInterpolationSegment: value)
+                    multipartFormData.append(str.data(using: .utf8)!, withName: key)
                 }
             }
         }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: url, method: .post, headers: headers) { (encodingResult) in
@@ -126,21 +129,17 @@ class NetWorksManager: NSObject {
             case .success(request: let request, streamingFromDisk: _, streamFileURL: _):
                 request.responseJSON(completionHandler: { (response) in
                     
-                    print("response: \n\(String(describing: response.result.value as? [String: AnyObject]))")
+                    print("response: \n\(String(describing: response.result.value as? [String: Any]))")
                     
-                    if let myJson = response.result.value {
-                        success(myJson as? [String : AnyObject])
-                        if (myJson as! NSObject) as! Decimal == 0 {
-                            print("上传成功")
-                        }else {
-                            print("上传失败")
-                        }
+                    if let myJson = response.result.value as? [String : Any]{
+                        success(JSON(myJson))
+                    }else {
+                        success(nil)
                     }
                 })
             case .failure(let error):
                 print("error:\(error)")
                 failture(error)
-                
             }
         }
     }

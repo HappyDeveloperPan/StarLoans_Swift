@@ -115,4 +115,9 @@ extension PushProductSelectViewController: UICollectionViewDelegate, UICollectio
         let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as PushBillProductCell
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = LoansDetailViewController.loadStoryboard()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -16,7 +16,7 @@ class PushProductSelectViewController: BaseViewController {
         typeBtn.addTarget(self, action: #selector(selectType(_:)), for: .touchUpInside)
         return typeBtn
         }()
-    
+    ///右上角弹出菜单
     lazy var popMenu: SwiftPopMenu = { [unowned self] in
         let popMenu =  SwiftPopMenu(frame: CGRect(x: kScreenWidth - 105 - 16, y: kStatusHeight + 44, width: 105, height: 230))
         popMenu.popData = [(icon:"",title:"全部"),
@@ -25,13 +25,12 @@ class PushProductSelectViewController: BaseViewController {
                            (icon:"",title:"个人信用"),
                            (icon:"",title:"个人抵押")]
         //点击菜单
-        popMenu.didSelectMenuBlock = { [weak self](index:Int)->Void in
+        popMenu.didSelectMenuBlock = { [weak self] (index:Int)-> Void in
             self?.popMenu.dismiss()
-            print("block select \(index)")
+            self?.productType = index
         }
         return popMenu
     }()
-    
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: kScreenWidth-32, height: 240)
@@ -51,12 +50,24 @@ class PushProductSelectViewController: BaseViewController {
         return collectionView
         }()
     
+    //MARK: - 可操作数据
+    fileprivate var productType: Int = 0 {
+        didSet {
+            collectionView.beginHeaderRefresh()
+        }
+    }
+    fileprivate var productDataArr = [ProductModel]()
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "选择推单产品"
         view.backgroundColor = kHomeBackColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: typeBtn)
+        collectionView.addHeaderRefresh { [weak self] in
+            self?.getProductListData()
+        }
+        collectionView.beginHeaderRefresh()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,20 +115,53 @@ class PushProductSelectViewController: BaseViewController {
 
 }
 
+//MARK: - 数据处理
+extension PushProductSelectViewController {
+    ///获取产品列表数据
+    func getProductListData() {
+        var parameters = [String: Any]()
+        parameters["product_loan_type"] = productType
+        parameters["page"] = 1
+        NetWorksManager.requst(with: kUrl_PublishProductList, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"].array {
+                    var dataArr = [ProductModel]()
+                    for dict in data {
+                        dataArr.append(ProductModel(with: dict))
+                    }
+                    self?.productDataArr = dataArr
+                    self?.collectionView.reloadData()
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            self?.collectionView.endHeaderRefresh()
+        }
+    }
+}
+
 //MARK: - UICollectionView代理
 extension PushProductSelectViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return productDataArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as PushBillProductCell
+        cell.setBillProductCell(productDataArr[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = LoansDetailViewController.loadStoryboard()
+        vc.productModel = productDataArr[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
 }

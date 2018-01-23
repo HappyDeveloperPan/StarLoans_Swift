@@ -11,12 +11,12 @@ import UIKit
 fileprivate let robbingCell: String = "RobbingTableViewCell"
 fileprivate let ceshiCell: String = "CheshiTableViewCell"
 
-//protocol QuickRobViewDelegate: class {
-//    func reloadCellData()
-//}
+protocol QuickRobViewDelegate: class {
+    func moreQuickBill()
+}
 
 class QuickRobView: UIView {
-//    weak var delegate: QuickRobViewDelegate?
+    weak var delegate: QuickRobViewDelegate?
     //MARK: - 可操作数据
     var cellArr: [ClientInfoModel] = [ClientInfoModel]() {
         didSet {
@@ -74,13 +74,14 @@ class QuickRobView: UIView {
     }
     
     @objc func topMoreBtnClick(_ sender: UIButton) {
-        let vc = QuickRobbingViewController()
-        let topViewController = Utils.currentTopViewController()
-        if topViewController?.navigationController != nil{
-            topViewController?.navigationController?.pushViewController(vc, animated: true)
-        }else{
-            topViewController?.present(vc, animated: true , completion: nil)
-        }
+        delegate?.moreQuickBill()
+//        let vc = QuickRobbingViewController()
+//        let topViewController = Utils.currentTopViewController()
+//        if topViewController?.navigationController != nil{
+//            topViewController?.navigationController?.pushViewController(vc, animated: true)
+//        }else{
+//            topViewController?.present(vc, animated: true , completion: nil)
+//        }
     }
 }
 
@@ -112,5 +113,16 @@ extension QuickRobView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: robbingCell, for: indexPath) as! RobbingTableViewCell
         cell.setQuickRobData(with: cellArr[indexPath.section])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = QuickBillDetailViewController.loadStoryboard()
+        vc.clientModel = cellArr[indexPath.row]
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
 }

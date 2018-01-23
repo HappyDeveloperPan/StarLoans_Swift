@@ -66,6 +66,9 @@ class HomePageModel: NSObject {
         static let is_sign = "is_sign"
         static let sign_accumulate_days = "sign_accumulate_days"
         static let sign_date = "sign_date"
+        //活动中心
+        static let title = "title"   //标题
+        static let img = "img"       //图片地址
     }
     
     public var id: Int = 0
@@ -86,6 +89,8 @@ class HomePageModel: NSObject {
     public var is_sign: Bool = false
     public var sign_accumulate_days: Int = 0
     public var sign_date: String = ""
+    public var title: String = ""
+    public var img: String = ""
     
     
     public init(with json:JSON) {
@@ -108,6 +113,8 @@ class HomePageModel: NSObject {
         self.is_sign = appInfo[Keys.is_sign].boolValue
         self.sign_accumulate_days = appInfo[Keys.sign_accumulate_days].intValue
         self.sign_date = appInfo[Keys.sign_date].stringValue
+        self.title = appInfo[Keys.title].stringValue
+        self.img = appInfo[Keys.img].stringValue
     }
     
     override init() {

@@ -178,9 +178,21 @@ class PasswordViewController: UIViewController {
             
             if jsonData?["status"] == 200 {
                 if self?.vcType == .register {  //  登录
-                    UserManager.shareManager.userModel = UserModel(with: (jsonData?["data"])!)
-                    UserManager.shareManager.isLogin = true
-                    if let userDic = jsonData?["data"].dictionaryObject {
+//                    UserManager.shareManager.userModel = UserModel(with: (jsonData?["data"])!)
+//                    UserManager.shareManager.isLogin = true
+//                    if let userDic = jsonData?["data"].dictionaryObject {
+//                        Utils.setAsynchronous(userDic, withKey: kSavedUser)
+//                    }
+                    if let data = jsonData?["data"] {
+                        let userModel = UserModel(with: data)
+                        UserManager.shareManager.userModel = userModel
+                        UserManager.shareManager.isLogin = true
+                        var userDic = [String: Any]()
+                        userDic["token"] = userModel.token
+                        userDic["is_audit"] = userModel.is_audit
+                        userDic["tx"] = userModel.tx
+                        userDic["type"] = userModel.type
+                        userDic["user"] = userModel.user
                         Utils.setAsynchronous(userDic, withKey: kSavedUser)
                     }
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)

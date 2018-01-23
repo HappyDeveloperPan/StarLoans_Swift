@@ -10,6 +10,10 @@ import UIKit
 
 class PayViewController: BaseViewController, StoryboardLoadable {
 
+    //MARK: - 外部属性
+    var price: Float = 0
+    var goodsId: Int = 0
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "待支付"
@@ -30,14 +34,11 @@ class PayViewController: BaseViewController, StoryboardLoadable {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let vc = segue.destination as! PayTableViewController
+        vc.goodsId = goodsId
+        vc.price = price
     }
-    */
-
 }

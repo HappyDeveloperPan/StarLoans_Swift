@@ -1405,6 +1405,7 @@
                         <outlet property="creditTypeLB" destination="LJX-Ff-sKK" id="c8C-IT-Owl"/>
                         <outlet property="employeeNumCell" destination="gK9-dP-gL4" id="EC5-cT-hAo"/>
                         <outlet property="employeeTF" destination="73F-yi-ca9" id="wMS-fY-LoO"/>
+                        <outlet property="flowTwoLB" destination="xYK-7V-Arc" id="2xb-Bh-ohC"/>
                         <outlet property="houseTypeLB" destination="UvU-Uo-ZG9" id="MbN-19-VwQ"/>
                         <outlet property="houseValuationTF" destination="jtI-J4-qzE" id="HXi-uY-fKt"/>
                         <outlet property="incomeCell" destination="ZYD-58-PNn" id="Wmk-ez-uqb"/>

@@ -43,11 +43,24 @@ let systemVersion = UIDevice.current.systemVersion
 
 //存储字段
 let kSavedUser = "savedUser" ///用户数据
+let kRegistrationID = "registrationID" //极光推送registrationID
 
 //MARK: - 微信支付
 let WXAppID = "wxcc538ba142746aa1"
 let WXAppSecret = "6d4f4cb06e50868587800b4a708987f9"
 let WXAPI = "a98a79shdiajsh89qdoisuoiu8u9889w"  ///密钥
 //商户号：1496622762
+
+//MARK: - 极光推送
+let JPushAppKey = "0aaea1f7a9bd5073b9ac60e4"
+let JPushSecret = "a4cc968ecea437421ca7c8df"
+
+//MARK: - 聚合数据
+///热点新闻
+let NewsAppKey = "3e06f0507a5f920d7c7697a9527fd019"
+///银行卡四元素
+let FourElementsAppKey = "0f9830bf55386508ce8f778cd3098edf"
+///银行卡校验
+let BankCardAppKey = "d0c9179c432d3378339d8db011bcea8a"
 
 

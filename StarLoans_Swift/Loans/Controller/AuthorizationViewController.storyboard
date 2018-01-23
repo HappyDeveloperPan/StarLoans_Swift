@@ -177,6 +177,7 @@
                     </view>
                     <connections>
                         <outlet property="commitBtn" destination="rD7-Yf-AWp" id="aE1-5L-p2k"/>
+                        <outlet property="flowTwoLB" destination="cGM-L1-95F" id="Ylm-8F-LBQ"/>
                         <outlet property="hintContentLB" destination="jKD-TC-rRh" id="CDA-uH-m8U"/>
                         <outlet property="leftLine" destination="g8Q-Pe-2tF" id="hH2-ne-lHQ"/>
                         <outlet property="privacyContentLB" destination="CqM-jg-2Lu" id="LIE-XM-NNY"/>

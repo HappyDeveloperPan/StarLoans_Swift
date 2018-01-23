@@ -22,6 +22,7 @@ class VideoPlayViewController: UIViewController {
         return player
     }()
 
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black
@@ -31,9 +32,15 @@ class VideoPlayViewController: UIViewController {
             let _ = self.navigationController?.popViewController(animated: true)
         }
 //        let asset = BMPlayerResource(url: URL(string: "http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4")!,name: "原来你我相爱")
-        let asset = BMPlayerResource(url: URL(string: "http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4")!, name: "原来你我相爱", cover: nil, subtitle: nil)
+//        let asset = BMPlayerResource(url: URL(string: "http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4")!, name: "原来你我相爱", cover: nil, subtitle: nil)
+        let url = videoModel.video_address
+        if !url.isEmpty {
+            let asset = BMPlayerResource(url: URL(string: url)!, name: videoModel.video_title, cover: nil, subtitle: nil)
+            player.setVideo(resource: asset)
+        }
+//        let asset = BMPlayerResource(url: URL(string: "")!, name: "原来你我相爱", cover: nil, subtitle: nil)
 //        let asset = BMPlayerResource(url: URL(string: videoModel.video_address)!, name: "原来你我相爱", cover: nil, subtitle: nil)
-        player.setVideo(resource: asset)
+//        player.setVideo(resource: asset)
     }
     
     override func viewWillAppear(_ animated: Bool) {

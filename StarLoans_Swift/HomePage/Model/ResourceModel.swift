@@ -22,11 +22,17 @@ class ResourceModel: NSObject {
         //进件教程
         static let type = "type"
         static let image_video = "image_video"
-        static let title = "title"
-        static let reading_number = "reading_number"
+        static let title = "title"                                  //标题
+        static let reading_number = "reading_number"                //阅读数
         static let date_time = "date_time"
-        
-//        static let <#String#> = "<#String#>"
+        static let uniquekey = "uniquekey"                          //确认值
+        static let date = "date"                                    //日期
+        static let category = "category"                            //分类
+        static let author_name = "author_name"                      //作者姓名
+        static let url = "url"                                      //文章网址
+        static let thumbnail_pic_s = "thumbnail_pic_s"              //小图
+        static let thumbnail_pic_s02 = "thumbnail_pic_s02"          //图片1
+        static let thumbnail_pic_s03 = "thumbnail_pic_s03"          //图片2
     }
     
     public var id: Int = 0
@@ -35,8 +41,14 @@ class ResourceModel: NSObject {
     public var title: String = ""
     public var reading_number: Int = 0
     public var date_time: String = ""
-    
-//    public var <#String#>: <#Type#> = <#Value#>
+    public var uniquekey: String = ""
+    public var date: String = ""
+    public var category: String = ""
+    public var author_name: String = ""
+    public var url: String = ""
+    public var thumbnail_pic_s: String = ""
+    public var thumbnail_pic_s02: String = ""
+    public var thumbnail_pic_s03: String = ""
     
     public init(with json:JSON) {
         let appInfo = json
@@ -46,8 +58,14 @@ class ResourceModel: NSObject {
         self.title = appInfo[Keys.title].stringValue
         self.reading_number = appInfo[Keys.reading_number].intValue
         self.date_time = appInfo[Keys.date_time].stringValue
-        
-//        self.<#String#> = appInfo[Keys.<#String#>].<#Type#>
+        self.uniquekey = appInfo[Keys.uniquekey].stringValue
+        self.date = appInfo[Keys.date].stringValue
+        self.category = appInfo[Keys.category].stringValue
+        self.author_name = appInfo[Keys.author_name].stringValue
+        self.url = appInfo[Keys.url].stringValue
+        self.thumbnail_pic_s = appInfo[Keys.thumbnail_pic_s].stringValue
+        self.thumbnail_pic_s02 = appInfo[Keys.thumbnail_pic_s02].stringValue
+        self.thumbnail_pic_s03 = appInfo[Keys.thumbnail_pic_s03].stringValue
     }
     
     override init() {

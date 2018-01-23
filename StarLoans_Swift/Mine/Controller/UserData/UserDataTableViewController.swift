@@ -9,12 +9,24 @@
 import UIKit
 
 class UserDataTableViewController: UITableViewController {
+    //MARK: - Storyboard连线
     @IBOutlet weak var headImg: UIImageView!
     @IBOutlet weak var phoneNumLB: UILabel!
     
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: .zero)
+        setupBasicData()
+    }
+    
+    func setupBasicData() {
+        if !(UserManager.shareManager.userModel.tx.isEmpty) {
+            headImg.setImage((UserManager.shareManager.userModel.tx), placeholder: nil, completionHandler: { [weak self] (image, error, cacheType, url) in
+                self?.headImg.circleImage()
+            })
+        }
+        phoneNumLB.text = UserManager.shareManager.userModel.phoneNumber
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +51,8 @@ class UserDataTableViewController: UITableViewController {
         }
     }
     
+    //MARK: - 控件点击事件
+    ///选择头像
     func uploadsPic() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let selectOne = UIAlertAction(title: "拍照", style: .default) { [weak self] (action) in
@@ -86,6 +100,37 @@ class UserDataTableViewController: UITableViewController {
 
 }
 
+extension UserDataTableViewController {
+    ///修改头像
+    func modifyHeadImg(_ img: UIImage) {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["img"] = UIImageJPEGRepresentation(img, 0.5)
+        
+        JSProgress.showBusy()
+        
+        NetWorksManager.uploadImages(with: kUrl_ModifyHeadImg, parameters: parameters, success: { [weak self] (jsonData) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                self?.headImg.image = img
+                self?.headImg.circleImage()
+//                JSProgress.showSucessStatus(with: "修改成功")
+            }else {
+                if let msg = jsonData?["msg_zhcn"].stringValue {
+                    JSProgress.showFailStatus(with: msg)
+                }
+            }
+        }) { (error) in
+            JSProgress.hidden()
+            JSProgress.showFailStatus(with: "上传失败")
+        }
+        
+    }
+}
+
+//MARK: - 相册代理
 extension UserDataTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //查看info对象
@@ -93,7 +138,8 @@ extension UserDataTableViewController: UIImagePickerControllerDelegate, UINaviga
         //显示的图片
         let image:UIImage!
         image = info[UIImagePickerControllerEditedImage] as! UIImage
-        headImg.image = image
+        modifyHeadImg(image)
+//        headImg.image = image
         //图片控制器退出
         picker.dismiss(animated: true, completion: {
             () -> Void in

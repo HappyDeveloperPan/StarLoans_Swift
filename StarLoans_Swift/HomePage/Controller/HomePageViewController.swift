@@ -8,14 +8,25 @@
 
 import UIKit
 import SwiftyJSON
+import CoreLocation
 
 fileprivate let IMAGE_HEIGHT:CGFloat = 200
 fileprivate let NAVBAR_COLORCHANGE_POINT:CGFloat = IMAGE_HEIGHT - CGFloat(64 * 2)
 
-//MARK: - 界面部分
 class HomePageViewController: UIViewController {
+    //MARK: - 可操作数据
+    ///广告栏数据
+    var adverList: Array<String> = ["http://p.lrlz.com/data/upload/mobile/special/s252/s252_05471521705899113.png",
+                                    "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
+                                    "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
+    
+    var topBannerLocalArr: Array<String> = ["WechatIMG49", "WechatIMG49", "WechatIMG49"]
+    //    var topBannerArr: [BannerModel] = [BannerModel]()
+    ///视频栏数据
+    var hotVideoArr: [HomePageModel]?
+    ///nav栏
     weak var navController: UINavigationController?
-    //记录顶部状态栏颜色
+    ///记录顶部状态栏颜色
 //    var statusBarColor: UIStatusBarStyle = .default {
 //        didSet {
 //            UIApplication.shared.statusBarStyle = statusBarColor
@@ -26,12 +37,22 @@ class HomePageViewController: UIViewController {
             setNeedsStatusBarAppearanceUpdate()
         }
     }
-    //记录是否显示顶部状态栏
+    ///记录是否显示顶部状态栏
     var isHiddenStatus: Bool = false {
         didSet {
             setNeedsStatusBarAppearanceUpdate()
         }
     }
+    lazy var locationManager: CLLocationManager = { [unowned self] in
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+//        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+//            locationManager.requestWhenInUseAuthorization()
+//        }
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.distanceFilter = kCLLocationAccuracyKilometer
+        return locationManager
+    }()
     
     //MARK: - 主界面部分
     lazy var mainView: UIScrollView = { [unowned self] in
@@ -62,6 +83,7 @@ class HomePageViewController: UIViewController {
         addressBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         addressBtn.setTitleColor(UIColor.white, for: .normal)
         addressBtn.set(image: #imageLiteral(resourceName: "ICON-xiala"), title: "定位", titlePosition: .left, additionalSpacing: 2, state: .normal)
+        addressBtn.addTarget(self, action: #selector(locationBtnClick(_:)), for: .touchUpInside)
         return addressBtn
     }()
     
@@ -115,6 +137,7 @@ class HomePageViewController: UIViewController {
     lazy var quickRobView: QuickRobView = { [unowned self] in
         let quickRobView = QuickRobView()
         self.mainView.addSubview(quickRobView)
+        quickRobView.delegate = self
         return quickRobView
     }()
     
@@ -139,32 +162,23 @@ class HomePageViewController: UIViewController {
         return messageReadView
     }()
     
-    //MARK: - 可操作数据
-    ///广告栏数据
-    var adverList: Array<String> = ["http://p.lrlz.com/data/upload/mobile/special/s252/s252_05471521705899113.png",
-                                    "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
-                                    "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
-    
-//    var topBannerLocalArr: Array<String> = ["WechatIMG20", "WechatIMG20", "WechatIMG20"]
-    var topBannerLocalArr: Array<String> = ["WechatIMG49", "WechatIMG49", "WechatIMG49"]
-//    var topBannerArr: [BannerModel] = [BannerModel]()
-    ///视频栏数据
-    var hotVideoArr: [HomePageModel]?
-    
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBasic()
+        locationManager.startUpdatingLocation()
+        getHomePageData()
+    }
+    
+    func setupBasic() {
         view.backgroundColor = UIColor.white
         automaticallyAdjustsScrollViewInsets = false
         topAdBannerView.localImgArray = topBannerLocalArr
-        
-        //给界面添加下拉刷新
+        //  给界面添加下拉刷新
         mainView.addHeaderRefresh { [weak self] in
             self?.getHomePageData()
         }
-//        setNeedsStatusBarAppearanceUpdate()
-        
-        getHomePageData()
+        //  setNeedsStatusBarAppearanceUpdate()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -182,6 +196,8 @@ class HomePageViewController: UIViewController {
         getHotProductData()
         getBottomBannerData()
         getHotQuickRobData()
+        getActivityCenterData()
+        getHotNewsData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -311,6 +327,25 @@ class HomePageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //MARK: - 控件点击事件
+    @objc func locationBtnClick(_ sender: UIButton) {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }else {
+            let alertController = UIAlertController(title: "温馨提示", message: "请到设置->隐私->定位服务中开启!", preferredStyle: .alert)
+            let selectOne = UIAlertAction(title: "返回", style: .cancel, handler: nil)
+            let selectTwo = UIAlertAction(title: "去设置", style: .destructive) { (action) in
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                if UIApplication.shared.canOpenURL(url!) {
+                    UIApplication.shared.openURL(url!)
+                }
+            }
+            alertController.addAction(selectOne)
+            alertController.addAction(selectTwo)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
 
 }
 
@@ -320,16 +355,29 @@ extension HomePageViewController {
     func getTopBannerData() {
         NetWorksManager.requst(with: kUrl_HomePageTopBanner, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var bannerArr = [String]()
-                for index in 0...2 {
-                    if !(jsonData!["data"][index].isEmpty) {
-                        let bannerModel = BannerModel(with: jsonData!["data"][index])
-                        bannerArr.append(bannerModel.image)
-                    }else {
-                        bannerArr.append("")
+//                var bannerArr = [String]()
+//                for index in 0...2 {
+//                    if !(jsonData!["data"][index].isEmpty) {
+//                        let bannerModel = BannerModel(with: jsonData!["data"][index])
+//                        bannerArr.append(bannerModel.image)
+//                    }else {
+//                        bannerArr.append("")
+//                    }
+//                }
+//                self?.topAdBannerView.serverImgArray = bannerArr
+                
+                if let data = jsonData?["data"].array {
+                    var bannerArr = [String]()
+                    for index in 0...2 {
+                        if !(data[index].isEmpty) {
+                            let bannerModel = BannerModel(with: data[index])
+                            bannerArr.append(bannerModel.image)
+                        }else {
+                            bannerArr.append("")
+                        }
                     }
+                    self?.topAdBannerView.serverImgArray = bannerArr
                 }
-                self?.topAdBannerView.serverImgArray = bannerArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -346,10 +394,6 @@ extension HomePageViewController {
     func getVideoData() {
         NetWorksManager.requst(with: kUrl_HotVideo, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-                
-//                for dict in (jsonData?["data"].array)! {
-//                    videoArr.append(HomePageModel(with: dict))
-//                }
                 if let data = jsonData?["data"].array {
                     var videoArr = [HomePageModel]()
                     for dict in data {
@@ -401,8 +445,6 @@ extension HomePageViewController {
                     let bannerModel = BannerModel(with: data)
                     self?.centerAdverView.setImage(with: bannerModel.image)
                 }
-//                let bannerModel = BannerModel(with: jsonData!["data"][0])
-//                self?.centerAdverView.setImage(with: bannerModel.image)
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -418,10 +460,6 @@ extension HomePageViewController {
     func getHotQuickRobData() {
         NetWorksManager.requst(with: kUrl_HotQuickRob, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-                
-//                for dict in (jsonData?["data"].array)! {
-//                    cellArr.append(ClientInfoModel(with: dict))
-//                }
                 if let data = jsonData?["data"].array {
                     var cellArr = [ClientInfoModel]()
                     for dict in data {
@@ -429,10 +467,63 @@ extension HomePageViewController {
                     }
                     self?.quickRobView.cellArr = cellArr
                 }
-                
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    
+    ///活动中心
+    func getActivityCenterData() {
+        NetWorksManager.requst(with: kUrl_ActivityCenter, type: .post, parameters: nil) { [weak self](jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let activity = jsonData?["data"]["activity"].array {
+                    var dataArr = [HomePageModel]()
+                    for data in activity {
+                        dataArr.append(HomePageModel(with: data))
+                    }
+                    self?.partnerPlanView.dataArr = dataArr
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    
+    ///获取热点新闻
+    func getHotNewsData() {
+        var parameters = [String: Any]()
+        parameters["key"] = NewsAppKey
+        parameters["type"] = "caijing"
+        NetWorksManager.requst(with: kUrl_HotNews, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["result"]["stat"].intValue == 1 {
+                if let dataArr = jsonData?["result"]["data"].array {
+                    var newsArr = [ResourceModel]()
+                    for index in 0...2 {
+                        if !(dataArr[index].isEmpty) {
+                            newsArr.append(ResourceModel(with: dataArr[index]))
+                        }else {
+                            newsArr.append(ResourceModel())
+                        }
+                    }
+                    self?.messageReadView.messageDataArr = newsArr
+                    self?.messageReadView.tableView.reloadData()
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["reason"].stringValue {
                         JSProgress.showFailStatus(with: msg)
                     }
                 }else {
@@ -509,6 +600,19 @@ extension HomePageViewController: FunctionViewDelegate {
     }
 }
 
+//MARK: - 急速抢单代理
+extension HomePageViewController: QuickRobViewDelegate {
+    func moreQuickBill() {
+        //如果用户没有登录就跳转到登录界面
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            return
+        }
+        let vc = QuickRobbingViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 //MARK: - UINavigationController代理
 extension HomePageViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -525,6 +629,41 @@ extension HomePageViewController: UINavigationControllerDelegate {
                 navController?.delegate = nil
             }
         }
+    }
+}
+
+//MARK: - CLLocationManager代理
+extension HomePageViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let currLocation = locations.last {
+            print(currLocation.coordinate.longitude)
+            print(currLocation.coordinate.latitude)
+            UserManager.shareManager.userModel.lat = currLocation.coordinate.latitude
+            UserManager.shareManager.userModel.lng = currLocation.coordinate.longitude
+            
+            let geocoder: CLGeocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(currLocation, completionHandler: { [weak self] (placemarks, error) in
+                
+                self?.locationManager.stopUpdatingLocation()
+                
+                if (error == nil) {//转换成功，解析获取到的各个信息
+                    guard let placemark = placemarks?.first else{
+                        return
+                    }
+//                    print(placemark.name ?? "")
+//                    print(placemark.locality ?? "")
+                    let address = placemark.locality?.replacingOccurrences(of: "市", with: "") ?? "定位"
+                    self?.addressBtn.set(image: #imageLiteral(resourceName: "ICON-xiala"), title: address, titlePosition: .left, additionalSpacing: 2, state: .normal)
+                }else {
+                    print("转换失败")
+                }
+            })
+        }
+
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }
 

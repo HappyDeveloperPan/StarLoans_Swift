@@ -9,10 +9,6 @@
 import UIKit
 
 class RobbingTableViewCell: UITableViewCell {
-
-    //FIXME: -
-    //MARK: -
-    //TODO: -
     
     @IBOutlet weak var userNameLB: UILabel!
     @IBOutlet weak var userTypeImg: UIImageView!
@@ -26,6 +22,9 @@ class RobbingTableViewCell: UITableViewCell {
     @IBOutlet weak var houseInfoLB: UILabel!
     @IBOutlet weak var carInfoLB: UILabel!
     @IBOutlet weak var incomeLB: UILabel!
+    
+    //MARK: - 内部数据
+    fileprivate var clientInfoModel = ClientInfoModel()
     
     //MARK: - 生命周期
     override func awakeFromNib() {
@@ -54,7 +53,9 @@ class RobbingTableViewCell: UITableViewCell {
     }
     
     @IBAction func commitBtnClick(_ sender: UIButton) {
-        let vc = QuickBillDetailViewController.loadStoryboard()
+        let vc = PayViewController.loadStoryboard()
+        vc.price = Float(clientInfoModel.client_price)
+        vc.goodsId = clientInfoModel.client_id
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)
@@ -66,10 +67,16 @@ class RobbingTableViewCell: UITableViewCell {
 
 extension RobbingTableViewCell {
     func setQuickRobData(with cellData: ClientInfoModel) {
+        clientInfoModel = cellData
         userNameLB.text = cellData.client_name
         userTypeImg.image = cellData.getTypeImage()
         pledgeTypeLB.text = cellData.getpledgeType()
-        moneyLB.text = String(cellData.client_loan_need/10000) + "万"
+//        moneyLB.text = String(cellData.client_loan_need/10000) + "万"
+        if cellData.client_loan_need >= 10000 {
+            moneyLB.text = String(cellData.client_loan_need/10000) + "万"
+        }else {
+            moneyLB.text = String(cellData.client_loan_need) + "元"
+        }
         houseInfoLB.text = cellData.getHouseInfo()
         carInfoLB.text = cellData.getCarInfo()
         incomeLB.text = "月收入" + String(cellData.client_month_income)

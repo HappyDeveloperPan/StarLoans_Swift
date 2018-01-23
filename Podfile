@@ -22,6 +22,7 @@ target 'StarLoans_Swift' do
   pod 'ESTabBarController-swift'      # 自定义TabBarController组件 https://github.com/eggswift/ESTabBarController
   pod 'pop'                           # facebook的动效库 https://github.com/facebook/pop
   pod 'WechatOpenSDK'                 # 微信支付
+  pod 'JPush'                         # 极光推送
 
   target 'StarLoans_SwiftTests' do
     inherit! :search_paths

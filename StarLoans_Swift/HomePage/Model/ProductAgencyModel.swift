@@ -36,7 +36,7 @@ class ProductAgencyModel: NSObject {
     public var quota: String = ""
     public var producttype: String = ""
     public var return_commission: String = ""
-    public var claim_amount: String = ""
+    public var claim_amount: Float = 0
     public var leader_number: Int = 0
     public var card: String = ""
     public var cooperation_bank: String = ""
@@ -48,7 +48,7 @@ class ProductAgencyModel: NSObject {
         self.quota = appInfo[Keys.quota].stringValue
         self.producttype = appInfo[Keys.producttype].stringValue
         self.return_commission = appInfo[Keys.return_commission].stringValue
-        self.claim_amount = appInfo[Keys.claim_amount].stringValue
+        self.claim_amount = appInfo[Keys.claim_amount].floatValue
         self.leader_number = appInfo[Keys.leader_number].intValue
         self.card = appInfo[Keys.card].stringValue
         self.cooperation_bank = appInfo[Keys.cooperation_bank].stringValue

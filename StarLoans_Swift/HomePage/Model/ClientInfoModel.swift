@@ -29,24 +29,34 @@ class ClientInfoModel: NSObject {
         static let client_id = "client_id"
         static let client_name = "client_name"
         static let client_type = "client_type"
+        static let client_type_name = "client_type_name"
         static let client_mortgage_asset = "client_mortgage_asset"
         static let client_loan_need = "client_loan_need"
         static let client_house_type = "client_house_type"
+        static let client_house_type_name = "client_house_type_name"
         static let client_car_type = "client_car_type"
+        static let client_car_type_name = "client_car_type_name"
         static let client_month_income = "client_month_income"
         static let client_income_payment_type = "client_income_payment_type"
+        static let client_income_payment_type_name = "client_income_payment_type_name"
         static let client_is_shenzhen_census = "client_is_shenzhen_census"
-        static let client_is_accumulated_funds = "client_is_accumulated_funds"
+        static let client_is_accumulated_funds = "client_is_accumulated_funds"      //公积金
         static let client_is_social_security = "client_is_social_security"
         static let client_price = "client_price"
         static let client_days_need = "client_days_need"
+        static let client_loan_period = "client_loan_period"                //贷款周期
+        static let client_phone = "client_phone"                            //客户电话
+        static let client_occupation = "client_occupation"                  //职业类型
+        static let client_occupation_name = "client_occupation_name"        //职业名称
+        static let client_other_assets = "client_other_assets"              //其他资产
+    
     }
     
     public var client_id: Int = 0
     public var client_name: String = ""
     public var client_type: Int = 0
     public var client_mortgage_asset: Int = 0
-    public var client_loan_need: Float = 0
+    public var client_loan_need: Int = 0
     public var client_house_type: Int = 0
     public var client_car_type: Int = 0
     public var client_month_income: Int = 0
@@ -56,6 +66,16 @@ class ClientInfoModel: NSObject {
     public var client_is_social_security: ServiceBool = .serviceFalse
     public var client_price: Int = 0
     public var client_days_need: Int = 0
+    public var client_loan_period: Int = 0
+    public var client_phone: String = ""
+    public var client_occupation: String = ""
+    
+    public var client_type_name: String = ""
+    public var client_house_type_name: String = ""
+    public var client_car_type_name: String = ""
+    public var client_occupation_name: String = ""
+    public var client_income_payment_type_name: String = ""
+    public var client_other_assets: String = ""
     
     public init(with json:JSON) {
         let appInfo = json
@@ -63,7 +83,7 @@ class ClientInfoModel: NSObject {
         self.client_name = appInfo[Keys.client_name].stringValue
         self.client_type = appInfo[Keys.client_type].intValue
         self.client_mortgage_asset = appInfo[Keys.client_mortgage_asset].intValue
-        self.client_loan_need = appInfo[Keys.client_loan_need].floatValue
+        self.client_loan_need = appInfo[Keys.client_loan_need].intValue
         self.client_house_type = appInfo[Keys.client_house_type].intValue
         self.client_car_type = appInfo[Keys.client_car_type].intValue
         self.client_month_income = appInfo[Keys.client_month_income].intValue
@@ -73,6 +93,15 @@ class ClientInfoModel: NSObject {
         self.client_is_social_security = ServiceBool(with: appInfo[Keys.client_is_social_security].intValue)
         self.client_price = appInfo[Keys.client_price].intValue
         self.client_days_need = appInfo[Keys.client_days_need].intValue
+        self.client_loan_period = appInfo[Keys.client_loan_period].intValue
+        self.client_phone = appInfo[Keys.client_phone].stringValue
+        self.client_occupation = appInfo[Keys.client_occupation].stringValue
+        self.client_type_name = appInfo[Keys.client_type_name].stringValue
+        self.client_house_type_name = appInfo[Keys.client_house_type_name].stringValue
+        self.client_car_type_name = appInfo[Keys.client_car_type_name].stringValue
+        self.client_occupation_name = appInfo[Keys.client_occupation_name].stringValue
+        self.client_income_payment_type_name = appInfo[Keys.client_income_payment_type_name].stringValue
+        self.client_other_assets = appInfo[Keys.client_other_assets].stringValue
     }
     
     override init() {
@@ -81,7 +110,7 @@ class ClientInfoModel: NSObject {
 }
 
 extension ClientInfoModel {
-    func getTypeImage() -> UIImage{
+    func getTypeImage() -> UIImage {
         switch client_type {
         case 1:
             return #imageLiteral(resourceName: "ICON-jinzhunkehu")
@@ -89,6 +118,17 @@ extension ClientInfoModel {
             return #imageLiteral(resourceName: "ICON-youzhikehu")
         default:
             return UIImage()
+        }
+    }
+    
+    func getClientType() -> String {
+        switch client_type {
+        case 1:
+            return "精准客户"
+        case 2:
+            return "优质客户"
+        default:
+            return ""
         }
     }
     

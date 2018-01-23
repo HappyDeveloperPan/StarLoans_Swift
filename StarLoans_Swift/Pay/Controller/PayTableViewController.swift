@@ -12,26 +12,33 @@ import IBAnimatable
 public let kWechatPayResult = "WechatPayResult"
 
 class PayTableViewController: UITableViewController {
+    //MARK: - storyboard连线
     @IBOutlet weak var moneyLB: UILabel!
     @IBOutlet weak var countDownLB: UILabel!
     @IBOutlet weak var selectImgOne: UIImageView!
     @IBOutlet weak var selectImgTwo: UIImageView!
     
+    //MARK: - 外部属性
+    var price: Float = 0
+    var goodsId: Int = 0
+    //MARK: - 内部属性
     ///支付类型
     fileprivate enum PayType: Int{
         case balance = 0    //余额
         case Wechat = 1     //微信支付
     }
-    
     fileprivate var payType: PayType = .balance
+    fileprivate var selectImgArr = [UIImageView]()
     
-    var selectImgArr = [UIImageView]()
-    
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = kHomeBackColor
         selectImgArr.append(selectImgOne)
         selectImgArr.append(selectImgTwo)
+        
+        moneyLB.adjustsFontSizeToFitWidth = true
+        moneyLB.text = String(price)
         
         NotificationCenter.default.addObserver(self, selector: #selector(WechatPayResult(notif:)), name: NSNotification.Name(rawValue: kWechatPayResult), object: nil)
     }
@@ -41,7 +48,6 @@ class PayTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -62,7 +68,8 @@ class PayTableViewController: UITableViewController {
         }
     }
     
-
+    //MARK: - 控件点击事件
+    ///支付按钮点击
     @IBAction func payBtnClick(_ sender: AnimatableButton) {
         switch payType {
         case .balance:
@@ -73,6 +80,7 @@ class PayTableViewController: UITableViewController {
     }
 }
 
+//MARK: - 数据处理
 extension PayTableViewController {
     ///调起微信支付
     func WechatPay() {
@@ -80,11 +88,15 @@ extension PayTableViewController {
         JSProgress.showBusy()
         
         var parameters = [String: Any]()
-        parameters["goods_id"] = 35
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["goods_id"] = goodsId
         parameters["appid"] = WXAppID
-        parameters["total_fee"] = 0.1
+        parameters["total_fee"] = price
         
         NetWorksManager.requst(with: kUrl_WeChatPay, type: .post, parameters: parameters) { (jsonData, error) in
+            
+            JSProgress.hidden()
+            
             if jsonData?["status"] == 200 {
                 if let data = jsonData?["data"]{
                     let payModel = PayModel(with: data)
@@ -107,7 +119,6 @@ extension PayTableViewController {
                     JSProgress.showFailStatus(with: "请求失败")
                 }
             }
-            JSProgress.hidden()
         }
     }
     

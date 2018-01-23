@@ -21,7 +21,9 @@ class HotResourceCell: UICollectionViewCell, RegisterCellOrNib {
     @IBOutlet weak var socialSecurityLB: UILabel!   //  社保
     @IBOutlet weak var providentFundLB: UILabel!    //  公积金
     @IBOutlet weak var needDayLB: UILabel!
-    
+    //MARK: - 内部数据
+    fileprivate var clientInfoModel = ClientInfoModel()
+    //MARK: - 生命周期
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.white
@@ -33,6 +35,7 @@ class HotResourceCell: UICollectionViewCell, RegisterCellOrNib {
         layer.masksToBounds = false
         
         userNameLB.sizeToFit()
+        loansNumLB.adjustsFontSizeToFitWidth = true
         resourceType.layer.backgroundColor = UIColor.RGB(with: 248, green: 225, blue: 225).cgColor
         resourceType.layer.cornerRadius = 10.5
         priceBtn.layer.cornerRadius = priceBtn.height/2
@@ -48,15 +51,31 @@ class HotResourceCell: UICollectionViewCell, RegisterCellOrNib {
     }
 
     @IBAction func priceBtnClick(_ sender: UIButton) {
+        let vc = PayViewController.loadStoryboard()
+        vc.price = Float(clientInfoModel.client_price)
+        vc.goodsId = clientInfoModel.client_id
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
 }
 
 extension HotResourceCell {
     func setHotResourceCellData(with cellData: ClientInfoModel) {
+        clientInfoModel = cellData
         userNameLB.text = cellData.client_name
         userTypeImg.image = cellData.getTypeImage()
         resourceType.text = cellData.getpledgeType()
-        loansNumLB.text = String(cellData.client_loan_need/10000) + "万"
+//        loansNumLB.text = String(cellData.client_loan_need/10000) + "万"
+        if cellData.client_loan_need >= 10000 {
+            loansNumLB.text = String(cellData.client_loan_need/10000) + "万"
+        }else {
+            loansNumLB.text = String(cellData.client_loan_need) + "元"
+        }
+        
         houseInfoLB.text = cellData.getHouseInfo()
         carInfoLB.text = cellData.getCarInfo()
         incomeLB.text = cellData.getIncomePayType()

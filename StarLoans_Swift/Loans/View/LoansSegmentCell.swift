@@ -74,7 +74,6 @@ extension LoansSegmentCell: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as ProductDetailCollectionViewCell
         cell.loansProductType = loansProductType
-//        cell.setCellData(with: loansProductType.rawValue)
         cell.setProductListCellData(with: cellDataArr[indexPath.row])
         return cell
     }

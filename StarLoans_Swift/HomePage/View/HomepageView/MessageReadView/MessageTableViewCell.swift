@@ -55,4 +55,14 @@ extension MessageTableViewCell {
         readNumber.text = String(cellData.reading_number)
         timeLB.text = cellData.date_time
     }
+    ///设置热点新闻数据
+    func setHotNewsData(_ cellData: ResourceModel) {
+        messImageView.setImage(with: cellData.thumbnail_pic_s)
+        contentLB.text = cellData.title
+        let max: UInt32 = 99999
+        let min: UInt32 = 9999
+        let number = arc4random_uniform(max - min) + min
+        readNumber.text = String(number)
+        timeLB.text = cellData.date
+    }
 }

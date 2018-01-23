@@ -456,7 +456,7 @@
                         <outlet property="phoneNumLB" destination="j0L-NZ-bFi" id="8ok-4B-Mzk"/>
                         <outlet property="professionLB" destination="uVO-3f-OFs" id="EUU-L8-wur"/>
                         <outlet property="providentFundLB" destination="2Zy-pA-pvm" id="N6q-Ha-mIo"/>
-                        <outlet property="salaryTypeLB" destination="ogm-Wc-s8N" id="cQF-cb-bP7"/>
+                        <outlet property="salaryTypeLB" destination="Rwb-4a-gfO" id="xig-VR-YwF"/>
                         <outlet property="socialSecurityLB" destination="ixD-x8-PY0" id="iFM-GC-rvM"/>
                         <outlet property="userNameLB" destination="gXw-as-T5T" id="sii-Zm-q0Z"/>
                         <outlet property="userTypeLB" destination="Et9-S0-4tE" id="Hqi-EN-17b"/>

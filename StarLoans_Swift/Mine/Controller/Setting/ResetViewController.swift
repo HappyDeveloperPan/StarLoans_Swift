@@ -19,16 +19,22 @@ enum ResetType {
 }
 
 class ResetViewController: BaseViewController, StoryboardLoadable{
+    //MARK: - Storyboard连线
     @IBOutlet weak var titleLB: UILabel!
     @IBOutlet weak var importView: LoginInputView!
     @IBOutlet weak var explainLB: UILabel!
     @IBOutlet weak var nextBtn: UIButton!
     
-    var resetType:ResetType = .newPhoneNum
-    
+    //MARK: - 外部属性
+    var resetType: ResetType = .newPhoneNum
+    var userModel = UserModel()
+    var phoneNumber: String = ""
+    var transactionPass: String = ""
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBasic()
+        setBasicData()
     }
     
     func setupBasic() {
@@ -95,39 +101,59 @@ class ResetViewController: BaseViewController, StoryboardLoadable{
         }
         nextBtn.layer.cornerRadius = nextBtn.height/2
     }
+    
+    func setBasicData() {
+        if resetType == .verCode {
+            getVercode()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: - 控件点击事件
+    
     @IBAction func nextBtnClick(_ sender: UIButton) {
         switch resetType {
         case .newPhoneNum:
+            guard (importView.textField.text?.judgeMobileNumber())! else {
+                JSProgress.showFailStatus(with: "请输入正确的手机号")
+                return
+            }
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .verCode
+            vc.phoneNumber = importView.textField.text!
             navigationController?.pushViewController(vc, animated: true)
         case .verCode:
-            JSProgress.showSucessStatus(with: "修改成功")
-            //跳转回设置界面并且刷新
-            for controller: UIViewController in (navigationController?.viewControllers)! {
-                if (controller is SettingViewController) {
-                    let revise = controller as? SettingViewController
-                    navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
-                }
+            guard judgeVerCode() else {
+                JSProgress.showFailStatus(with: "请输入正确验证码")
+                return
             }
+            modifyPhoneNumber()
         case .transactionPass:
+            guard !((importView.textField.text?.isEmpty)!) else {
+                JSProgress.showFailStatus(with: "请输入密码")
+                return
+            }
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .confirmTransactionPass
+            vc.transactionPass = importView.textField.text!
             navigationController?.pushViewController(vc, animated: true)
         case .confirmTransactionPass:
-            JSProgress.showSucessStatus(with: "修改成功")
-            //跳转回设置界面并且刷新
-            for controller: UIViewController in (navigationController?.viewControllers)! {
-                if (controller is SettingViewController) {
-                    let revise = controller as? SettingViewController
-                    navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
-                }
+            guard judgeTransactionPass() else {
+                JSProgress.showFailStatus(with: "两次密码输入不一致")
+                return
             }
+            setTransactionPass()
+//            JSProgress.showSucessStatus(with: "修改成功")
+//            //跳转回设置界面并且刷新
+//            for controller: UIViewController in (navigationController?.viewControllers)! {
+//                if (controller is SettingViewController) {
+//                    let revise = controller as? SettingViewController
+//                    navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
+//                }
+//            }
         case .oldLoginPass:
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .newLoginPass
@@ -148,4 +174,104 @@ class ResetViewController: BaseViewController, StoryboardLoadable{
         }
     }
     
+}
+
+//MARK: - 数据处理
+extension ResetViewController {
+    ///判断验证码是否输入正确
+    func judgeVerCode() -> Bool {
+        return (importView.textField.text == userModel.yzm) ? true : false
+    }
+    
+    ///判断交易密码是否一致
+    func judgeTransactionPass() -> Bool {
+        return (importView.textField.text == transactionPass) ? true : false
+    }
+    
+    ///获取验证码
+    func getVercode() {
+        var parameters = [String: Any]()
+        parameters["user"] = phoneNumber
+        NetWorksManager.requst(with: kUrl_GetCode, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"] {
+                    self?.userModel = UserModel(with: data)
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    
+    ///修改手机号
+    func modifyPhoneNumber() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["phone"] = phoneNumber
+        
+        JSProgress.showBusy()
+        
+        NetWorksManager.requst(with: kUrl_ChangePhone, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                JSProgress.showSucessStatus(with: "修改成功")
+                //跳转回设置界面并且刷新
+                for controller: UIViewController in (self?.navigationController?.viewControllers)! {
+                    if (controller is SettingViewController) {
+                        let revise = controller as? SettingViewController
+                        self?.navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
+                    }
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    
+    ///设置交易密码
+    func setTransactionPass() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["pwd"] = importView.textField.text?.md5
+        
+        JSProgress.showBusy()
+        
+        NetWorksManager.requst(with: kUrl_SetDealPWD, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                JSProgress.showSucessStatus(with: "设置成功")
+                //跳转回设置界面并且刷新
+                for controller: UIViewController in (self?.navigationController?.viewControllers)! {
+                    if (controller is SettingViewController) {
+                        let revise = controller as? SettingViewController
+                        self?.navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
+                    }
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
 }

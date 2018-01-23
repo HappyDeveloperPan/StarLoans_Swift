@@ -41,6 +41,10 @@ public let kUrl_HotProduct = hostAdress + "/Home/MobileHotProduct/three"
 public let kUrl_BottomBanner = hostAdress + "/Home/mobileFooterAdvertisement/footer_advertisement_image"
 ///  热门抢单
 public let kUrl_HotQuickRob = hostAdress + "/Home/MobileQuickBill/Billhot"
+///  活动中心
+//public let kUrl_ActivityCenter = hostAdress + "/Home/MobileActivity/centerActivityImg"
+public let kUrl_ActivityCenterDetail = hostAdress + "/Home/MobileActivity/centerActivityDetailPage"
+public let kUrl_ActivityCenter = hostAdress + "/Home/MobileCommon/centerIndexImgs"
 
 ///  行业资源
 public let kUrl_IndustryResources = hostAdress + "/Home/MobileIndustryResources/index"
@@ -62,6 +66,8 @@ public let kUrl_VideoDetail = hostAdress + "/Home/MobileVideo/videoInfo"
 //MARK: - 急速抢单
 ///  抢单客户信息列表
 public let kUrl_QuickBillList = hostAdress + "/Home/MobileQuickBill/billList"
+///  抢单客户信息详情
+public let kUrl_QuickBillDetail = hostAdress + "/Home/MobileQuickBill/billInfo"
 ///  获取推送设置
 public let kUrl_GetQuickBillPushSetting = hostAdress + "/Home/MobileQuickBill/pushSettingsInfo"
 ///  修改推送设置
@@ -86,6 +92,8 @@ public let kUrl_ThirdSupportInput = hostAdress + "/Home/MobileLoanProducts/Econo
 public let kUrl_ComboBox = hostAdress + "/Home/MobileCommon/commonConfig"
 
 //MARK: - 推单
+///急速推单产品列表
+public let kUrl_PublishProductList = hostAdress + "/Home/MobileLoanProducts/pushProductList"
 ///发布客户资源
 public let kUrl_PublishClientResources = hostAdress + "/Home/MobileSinglePush/publishing_customer_resources"
 ///发布产品资源
@@ -100,6 +108,28 @@ public let kUrl_InfoDetail = hostAdress + "/Home/MobileMessage/messageInfo"
 public let kUrl_removeInfo = hostAdress + "/Home/MobileMessage/messageInvalid"
 
 //MARK: - 个人中心
+///个人信息获取
+public let kUrl_UserData = hostAdress + "/Home/MobileCenter/centerInfo"
+
+///修改头像
+public let kUrl_ModifyHeadImg = hostAdress + "/Home/MobileCenter/centerImgChange"
+///手机号码修改
+public let kUrl_ChangePhone = hostAdress + "/Home/MobileCenter/centerPhoneChange"
+
+///设置交易密码
+public let kUrl_SetDealPWD = hostAdress + "/Home/MobileCenter/centerExchangePwd"
+
+///交易明细
+public let kUrl_DealRecord = hostAdress + "/Home/MobileCenter/centerExchangeInfo"
+///银行卡列表
+public let kUrl_BankCardList = hostAdress + "/Home/MobileBankCard/centerBankCardList"
+///银行卡添加
+public let kUrl_BankCardAdd = hostAdress + "/Home/MobileCenter/centerBankCardAdd"
+///银行卡删除
+public let kUrl_BankCardRemove = hostAdress + "/Home/MobileCenter/centerBankCardInvalid"
+///提现
+public let kUrl_Withdraw = hostAdress + "/Home/MobileCenter/centerWithdraw"
+
 ///添加认证
 public let kUrl_AddApprove = hostAdress + "/Home/MobileCenter/centerAuthInfo"
 ///所属门店
@@ -110,8 +140,13 @@ public let kUrl_ApproveStore = hostAdress + "/Home/MobileCenter/centerBelongStor
 public let kUrl_WeChatPay = hostAdress + "/Home/MobileWxPreorder/index"
 ///完成支付回调
 
-
-
+//MARK: - 聚合数据
+///银行卡真伪
+public let kUrl_BankCardVerify = "http://detectionBankCard.api.juhe.cn/bankCard"
+///银行卡四元素
+public let kUrl_FourElementsVerify = "http://v.juhe.cn/verifybankcard4/query"
+///热点新闻
+public let kUrl_HotNews = "http://v.juhe.cn/toutiao/index"
 
 
 

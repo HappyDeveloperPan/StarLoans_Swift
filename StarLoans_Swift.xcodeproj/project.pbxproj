@@ -112,6 +112,7 @@
 		1C4066371FB1B0ED009A59FD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4066361FB1B0ED009A59FD /* LoginViewController.swift */; };
 		1C40663C1FB2B569009A59FD /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40663B1FB2B569009A59FD /* Const.swift */; };
 		1C40E2A81FE2707D00A01D2D /* AppDelegate+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40E2A71FE2707D00A01D2D /* AppDelegate+System.swift */; };
+		1C4388542014688000E73C85 /* ActivityCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4388532014688000E73C85 /* ActivityCenterViewController.swift */; };
 		1C4682901FEB9689002DA528 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C46828F1FEB9689002DA528 /* HomePageModel.swift */; };
 		1C4682921FEBDCAF002DA528 /* LoansCollegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4682911FEBDCAF002DA528 /* LoansCollegeModel.swift */; };
 		1C468B891FFA4011004DD9DA /* InfoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C468B871FFA4011004DD9DA /* InfoListCell.swift */; };
@@ -211,6 +212,7 @@
 		1CBFFBAA1FE4ED2900E89B7E /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFFBA91FE4ED2900E89B7E /* UITableView+Extension.swift */; };
 		1CBFFBAC1FE4EDB500E89B7E /* MineViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CBFFBAB1FE4EDB500E89B7E /* MineViewController.storyboard */; };
 		1CBFFBAE1FE4EE4700E89B7E /* MineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFFBAD1FE4EE4700E89B7E /* MineTableViewController.swift */; };
+		1CC1CFE32010C3C400B2046C /* AnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC1CFE22010C3C400B2046C /* AnimationButton.swift */; };
 		1CC2F56D2005FFA500801181 /* PayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2F56C2005FFA500801181 /* PayModel.swift */; };
 		1CC2F5712006111A00801181 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2F5702006111A00801181 /* PayViewController.swift */; };
 		1CC2F5732006112A00801181 /* PayViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CC2F5722006112A00801181 /* PayViewController.storyboard */; };
@@ -405,6 +407,7 @@
 		1C4066361FB1B0ED009A59FD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C40663B1FB2B569009A59FD /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		1C40E2A71FE2707D00A01D2D /* AppDelegate+System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+System.swift"; sourceTree = "<group>"; };
+		1C4388532014688000E73C85 /* ActivityCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCenterViewController.swift; sourceTree = "<group>"; };
 		1C46828F1FEB9689002DA528 /* HomePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		1C4682911FEBDCAF002DA528 /* LoansCollegeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansCollegeModel.swift; sourceTree = "<group>"; };
 		1C468B871FFA4011004DD9DA /* InfoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListCell.swift; sourceTree = "<group>"; };
@@ -504,6 +507,8 @@
 		1CBFFBA91FE4ED2900E89B7E /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		1CBFFBAB1FE4EDB500E89B7E /* MineViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MineViewController.storyboard; sourceTree = "<group>"; };
 		1CBFFBAD1FE4EE4700E89B7E /* MineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTableViewController.swift; sourceTree = "<group>"; };
+		1CC1CFE12010889700B2046C /* StarLoans_Swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StarLoans_Swift.entitlements; sourceTree = "<group>"; };
+		1CC1CFE22010C3C400B2046C /* AnimationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationButton.swift; sourceTree = "<group>"; };
 		1CC2F56C2005FFA500801181 /* PayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayModel.swift; sourceTree = "<group>"; };
 		1CC2F5702006111A00801181 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		1CC2F5722006112A00801181 /* PayViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PayViewController.storyboard; sourceTree = "<group>"; };
@@ -884,6 +889,7 @@
 				1C10F6A61FED0CA800C3A62A /* MessageDetailViewController.swift */,
 				1C10F6A81FED0CBA00C3A62A /* MessageDetailViewController.storyboard */,
 				1CE3BF161FFCF553003D6629 /* QuickBill */,
+				1C4388522014664100E73C85 /* ActivityCenter */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -943,6 +949,7 @@
 		1C4065FD1FB190C8009A59FD /* StarLoans_Swift */ = {
 			isa = PBXGroup;
 			children = (
+				1CC1CFE12010889700B2046C /* StarLoans_Swift.entitlements */,
 				1C00E3401FBED6FA0030AD6D /* Application */,
 				1C08920A1FC3D2FF00E2320E /* HomePage */,
 				1CF12A9E1FCD625A00474AFB /* Loans */,
@@ -991,6 +998,14 @@
 				1C2E37B1200396A10023065B /* SegmentViewController.swift */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		1C4388522014664100E73C85 /* ActivityCenter */ = {
+			isa = PBXGroup;
+			children = (
+				1C4388532014688000E73C85 /* ActivityCenterViewController.swift */,
+			);
+			path = ActivityCenter;
 			sourceTree = "<group>";
 		};
 		1C57AAF31FD636C400A7626A /* VideoView */ = {
@@ -1296,6 +1311,7 @@
 			isa = PBXGroup;
 			children = (
 				1CB728D91FDA37A4006C1D2E /* SearchView.swift */,
+				1CC1CFE22010C3C400B2046C /* AnimationButton.swift */,
 				1C2E2AE01FCEB88C005E48C3 /* WRCycleScrollView */,
 				1C54A82C1FCFAEF000CF4F9B /* TopAdverView.swift */,
 				1C54A82E1FD00C2000CF4F9B /* FunctionView.swift */,
@@ -1437,6 +1453,11 @@
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					1C40660E1FB190C8009A59FD = {
 						CreatedOnToolsVersion = 9.1;
@@ -1785,6 +1806,7 @@
 				1CF12AAB1FCD7C8F00474AFB /* AXDTabBarViewController.swift in Sources */,
 				1CE3BF251FFCFC09003D6629 /* SettingTableViewController.swift in Sources */,
 				1CDE80DC1FC7C021005A69DB /* LoginViewModel.swift in Sources */,
+				1C4388542014688000E73C85 /* ActivityCenterViewController.swift in Sources */,
 				1C0665F91FFF18EA002FA501 /* SelectScrollview.swift in Sources */,
 				1C13760F1FF26443003EC987 /* LoansModel.swift in Sources */,
 				1CC2F5752006165800801181 /* PayTableViewController.swift in Sources */,
@@ -1825,6 +1847,7 @@
 				1C6D2BE8200C90D9003E4501 /* LoanManagerApproveViewController.swift in Sources */,
 				1C609DB91FE7EA24004D4E54 /* MoneyDetailTableViewCell.swift in Sources */,
 				1CD0B4231FE9148700A4A796 /* YHAlertView.swift in Sources */,
+				1CC1CFE32010C3C400B2046C /* AnimationButton.swift in Sources */,
 				1CE3BF091FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift in Sources */,
 				1CED7B551FDE798300AABDDE /* BusinessResourceViewController.swift in Sources */,
 				1CD0B4171FE8AF9C00A4A796 /* BindingCardFirstViewController.swift in Sources */,
@@ -2098,7 +2121,9 @@
 			baseConfigurationReference = F6636447F465928A4708079E /* Pods-StarLoans_Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = StarLoans_Swift/StarLoans_Swift.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VBC68XES2L;
@@ -2137,7 +2162,9 @@
 			baseConfigurationReference = F7E7CEC91BEFCB22254064FE /* Pods-StarLoans_Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = StarLoans_Swift/StarLoans_Swift.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VBC68XES2L;

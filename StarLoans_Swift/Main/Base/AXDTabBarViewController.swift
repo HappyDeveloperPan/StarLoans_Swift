@@ -94,9 +94,10 @@ class AXDTabBarViewController: ESTabBarController{
         let loginVC = LoginViewController()
 //        let navVC = AXDNavigationController(rootViewController: loginVC as? UIViewController ?? UIViewController())
         let navVC = AXDNavigationController(rootViewController: loginVC)
-        selectNavVC?.present(navVC, animated: true, completion: {
-
-        })
+//        selectNavVC?.present(navVC, animated: true, completion: {
+//
+//        })
+        selectNavVC?.present(navVC, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

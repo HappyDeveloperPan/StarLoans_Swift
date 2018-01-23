@@ -8,21 +8,41 @@
 
 import UIKit
 
+///贷款客户类别
+enum LoanClientType: Int {
+    case personage = 0 //个人
+    case company = 1   //企业
+}
+
 class AuthorizationViewController: BaseViewController, StoryboardLoadable {
+    //MARK: - storyboard连线
+    @IBOutlet weak var flowTwoLB: UILabel!
     @IBOutlet weak var leftLine: UIImageView!
     @IBOutlet weak var rightLine: UIImageView!
     @IBOutlet weak var privacyContentLB: UILabel!
     @IBOutlet weak var commitBtn: UIButton!
     @IBOutlet weak var hintContentLB: UILabel!
     
+    //MARK: - 对外属性
+    var productId: Int = 0
+    var loansProductType: LoansProductType = .selfSupport //产品类别
+    var loanClientType: LoanClientType = .personage //用户类别
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "授权确认"
-        view.backgroundColor = kHomeBackColor
         setupBasic()
     }
     
     func setupBasic() {
+        title = "授权确认"
+        view.backgroundColor = kHomeBackColor
+        
+        if loanClientType == .personage {
+            title = "客户信息录入"
+        }else {
+            title = "企业信息录入"
+        }
+        
         leftLine.drawImaginaryLine(with: UIColor.RGB(with: 210, green: 210, blue: 210))
         rightLine.drawImaginaryLine(with: UIColor.RGB(with: 210, green: 210, blue: 210))
         
@@ -54,7 +74,9 @@ class AuthorizationViewController: BaseViewController, StoryboardLoadable {
     @IBAction func commitBtnClick(_ sender: UIButton) {
         //跳转到录入信息界面
         let vc = InputUserInfoViewController.loadStoryboard()
-        vc.title = "客户信息录入"
+        vc.productId = productId
+        vc.loansProductType = loansProductType
+        vc.loanClientType = loanClientType
         navigationController?.pushViewController(vc, animated: true)
     }
 }

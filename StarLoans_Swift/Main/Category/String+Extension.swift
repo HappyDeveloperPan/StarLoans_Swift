@@ -51,6 +51,13 @@ extension String {
         return regextestmobile.evaluate(with: self)
     }
     
+    ///判断网址
+    public func judgeURL() -> Bool {
+        let MOBILE = "^(http|https)://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$"
+        let regextestmobile = NSPredicate(format: "SELF MATCHES %@", MOBILE)
+        return regextestmobile.evaluate(with: self)
+    }
+    
     /// MD5加密
     var md5 : String{
         let str = self.cString(using: String.Encoding.utf8)

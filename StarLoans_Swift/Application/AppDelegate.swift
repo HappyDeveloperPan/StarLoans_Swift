@@ -12,13 +12,29 @@ import SwiftyJSON
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //MARK: - 可操作数据
     var window: UIWindow?
     var allowRotation: Bool = false
 
+    //MARK: - 生命周期
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        ///     第三方注册
+        ///     微信注册
         WXApi.registerApp(WXAppID, enableMTA: true)
-        
+        ///     极光注册
+        //注册通知实体
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(JPAuthorizationOptions.alert.rawValue) |  Int(JPAuthorizationOptions.sound.rawValue) |  Int(JPAuthorizationOptions.badge.rawValue)
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        //注册极光推送
+        JPUSHService.setup(withOption: launchOptions, appKey: JPushAppKey, channel: "YinHao channel", apsForProduction: false)
+        JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
+            if resCode == 0{
+                print("registrationID获取成功：\(String(describing: registrationID))")
+                Utils.setAsynchronous(String(describing: registrationID), withKey: kRegistrationID)
+            }else {
+                print("registrationID获取失败：\(resCode)")
+            }
+        }
         ///     自动登录
         if let userDic = Utils.getAsynchronousWithKey(kSavedUser) as? Dictionary<String, Any>{
             
@@ -88,6 +104,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return UIInterfaceOrientationMask.portrait
     }
+    
+    //MARK: - 推送相关
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("\("极光DeviceToken: \(deviceToken.hashValue)")")
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        JPUSHService.handleRemoteNotification(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        NotificationCenter.defaultCenter().postNotificationName(JuPushNotificationName, object: nil, userInfo: userInfo)
+        JPUSHService.handleRemoteNotification(userInfo)
+//        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("did Fail To Register For Remote Notifications With Error: \(error)")
+    }
 
 }
 
@@ -114,6 +150,33 @@ extension AppDelegate: WXApiDelegate {
             }
         }
     }
+}
+
+//MARK: - 极光推送代理
+extension AppDelegate: JPUSHRegisterDelegate {
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        
+        let userInfo = notification.request.content.userInfo
+        if notification.request.trigger is UNPushNotificationTrigger {
+            JPUSHService.handleRemoteNotification(userInfo);
+        }
+        completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue))
+    }
+    
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        if response.notification.request.trigger is UNPushNotificationTrigger {
+            JPUSHService.handleRemoteNotification(userInfo);
+        }
+        completionHandler();
+        // 应用打开的时候收到推送消息
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName_ReceivePush), object: NotificationObject_Sueecess, userInfo: userInfo)
+    }
+    
+    
 }
 
 

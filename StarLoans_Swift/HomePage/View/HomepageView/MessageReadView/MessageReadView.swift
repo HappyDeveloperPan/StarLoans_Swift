@@ -42,7 +42,9 @@ class MessageReadView: UIView {
         tableView.dataSource = self
         return tableView
         }()
-
+    
+    //MARK: - 外部属性
+    var messageDataArr = [ResourceModel]()
     //MARK: - 生命周期
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -82,7 +84,7 @@ class MessageReadView: UIView {
 
 extension MessageReadView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return messageDataArr.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -92,7 +94,20 @@ extension MessageReadView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: messageReadCellID, for: indexPath) as! MessageTableViewCell
+        cell.setHotNewsData(messageDataArr[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ActivityCenterViewController()
+        vc.url = messageDataArr[indexPath.row].url
+        vc.title = "热点新闻"
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
 }
 

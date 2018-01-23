@@ -14,8 +14,8 @@ class QuickRobbingViewController: BaseViewController {
     
     //MARK: - 懒加载
     lazy var settingBtn: UIButton = { [unowned self] in
-        let settingBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
-        settingBtn.setTitle("推动设置", for: .normal)
+        let settingBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 30))
+        settingBtn.setTitle("推送设置", for: .normal)
         settingBtn.setTitleColor(UIColor.RGB(with: 51, green: 51, blue: 51), for: .normal)
         settingBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         settingBtn.addTarget(self, action: #selector(settingBtnClick(_:)), for: .touchUpInside)
@@ -116,7 +116,7 @@ extension QuickRobbingViewController {
         
         var parameters = [String: Any]()
         parameters["token"] = UserManager.shareManager.userModel.token
-        parameters["client_type"] = type.rawValue
+        parameters["client_type"] = type.rawValue + 1
         parameters["page"] = 1
         
         NetWorksManager.requst(with: kUrl_QuickBillList, type: .post, parameters: parameters) {(jsonData, error) in
@@ -158,6 +158,7 @@ extension QuickRobbingViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
+//MARK: - QuickRobbingSegmentCell代理
 extension QuickRobbingViewController: QuickRobbingSegmentCellDelegate {
     func reloadCellData(with cell: QuickRobbingSegmentCell) {
         getQuickBillListData(with: cell.quickRobbingType, cell: cell)

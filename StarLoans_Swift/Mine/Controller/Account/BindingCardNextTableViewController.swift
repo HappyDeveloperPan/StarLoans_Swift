@@ -10,16 +10,20 @@ import UIKit
 
 class BindingCardNextTableViewController: UITableViewController {
 
+    //MARK: - Storyboard连线
     @IBOutlet weak var commitBtn: UIButton!
     @IBOutlet weak var verCodeBtn: VerCodeButton!
+    @IBOutlet weak var verCodeTF: UITextField!
+    
+    //MARK: - 外部属性
+    var userName: String = ""
+    var bankCardNumber: String = ""
+    var phoneNumber: String = ""
+    
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func setupUI() {
@@ -37,6 +41,11 @@ class BindingCardNextTableViewController: UITableViewController {
     //MARK: - Method
 
     @IBAction func commitBtnClick(_ sender: UIButton) {
+        guard !((verCodeTF.text?.isEmpty)!) else {
+            JSProgress.showFailStatus(with: "请填写验证码")
+            return
+        }
+        
         //跳转回银行卡界面并且刷新
         for controller: UIViewController in (navigationController?.viewControllers)! {
             if (controller is BankCardViewController) {
@@ -57,59 +66,31 @@ class BindingCardNextTableViewController: UITableViewController {
         return 2
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+}
 
-        // Configure the cell...
-
-        return cell
+extension BindingCardNextTableViewController {
+    ///提交数据
+    func commitCardbankData() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        NetWorksManager.requst(with: kUrl_BankCardAdd, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                //跳转回银行卡界面并且刷新
+                for controller: UIViewController in (self?.navigationController?.viewControllers)! {
+                    if (controller is BankCardViewController) {
+                        let revise = controller as? BankCardViewController
+                        self?.navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
+                    }
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

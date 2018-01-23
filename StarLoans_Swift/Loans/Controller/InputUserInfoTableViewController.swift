@@ -16,6 +16,8 @@ fileprivate enum UploadsType {
 }
 
 class InputUserInfoTableViewController: UITableViewController {
+    //MARK: - Storyboard连线
+    @IBOutlet weak var flowTwoLB: UILabel!
     ///服务费
     @IBOutlet weak var serviceChargeCell: UITableViewCell!
     @IBOutlet weak var ServiceChargeTF: UITextField!
@@ -47,7 +49,7 @@ class InputUserInfoTableViewController: UITableViewController {
     ///工资发放形式
     @IBOutlet weak var salaryTypeCell: UITableViewCell!
     @IBOutlet weak var salaryTypeLB: UILabel!
-    //员工人数
+    ///员工人数
     @IBOutlet weak var employeeNumCell: UITableViewCell!
     @IBOutlet weak var employeeTF: UITextField!
     ///社保情况
@@ -89,8 +91,12 @@ class InputUserInfoTableViewController: UITableViewController {
     ///上传资金用途图片
     @IBOutlet weak var uploadPurposeBtn: UIButton!
     
+    //MARK: - 外部属性
+    var productId: Int = 0
+    var loansProductType: LoansProductType = .selfSupport //产品类别
+    var loanClientType: LoanClientType = .personage //用户类别
     
-    //MARK: - 可操作数据
+    //MARK: - 内部属性
     fileprivate let sectionHeaderArr:[String] = ["基本信息", "资产信息"]
     fileprivate var uploadsType: UploadsType?   //上传类型
     fileprivate var comboBoxModel = ComboBoxModel() //下拉框数据
@@ -146,6 +152,11 @@ class InputUserInfoTableViewController: UITableViewController {
     }
     
     func setupBasic() {
+        if loanClientType == .company {
+            flowTwoLB.text = "录入企业信息"
+        }else {
+            flowTwoLB.text = "录入客户信息"
+        }
         socialSecurityRadioBtnView.hSingleSelBtn(titleArray: ["有社保", "无社保"], typeE: 1)
         socialSecurityRadioBtnView.delegate = self
         providentFundRadioBtnView.hSingleSelBtn(titleArray: ["有公积金", "无公积金"], typeE: 1)
@@ -158,6 +169,7 @@ class InputUserInfoTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
+    //MARK: - TableView代理
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -199,6 +211,7 @@ class InputUserInfoTableViewController: UITableViewController {
         return view
     }
     
+    //MARK: - 控件点击事件
     ///职业选择
     @IBAction func professionBtnClick(_ sender: UIButton) {
         let pickerView = PickerView()
@@ -338,6 +351,7 @@ class InputUserInfoTableViewController: UITableViewController {
     }
 }
 
+//MARK: - 数据处理
 extension InputUserInfoTableViewController {
     ///获取下拉框数据
     func getComboBoxData() {
@@ -361,6 +375,7 @@ extension InputUserInfoTableViewController {
     }
 }
 
+//MARK: - 系统相册代理
 extension InputUserInfoTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //查看info对象
@@ -387,6 +402,7 @@ extension InputUserInfoTableViewController: UIImagePickerControllerDelegate, UIN
     }
 }
 
+//MARK: - 单选框按钮
 extension InputUserInfoTableViewController: RadioBtnViewDelegate {
     func selectRadioBtn(_ radioBtnView: RadioBtnView, index: Int) {
         if radioBtnView == sexRadioBtnView {

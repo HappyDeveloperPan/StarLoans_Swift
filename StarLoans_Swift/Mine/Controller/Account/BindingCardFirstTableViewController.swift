@@ -14,6 +14,7 @@ class BindingCardFirstTableViewController: UITableViewController {
     @IBOutlet weak var phoneNumberTF: UITextField!
     @IBOutlet weak var nextBtn: UIButton!
     
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -39,7 +40,28 @@ class BindingCardFirstTableViewController: UITableViewController {
     //MARK: - Method
     
     @IBAction func nextBtnClick(_ sender: UIButton) {
-       let vc = BindingCardNextViewController.loadStoryboard()
+        guard !((userNameTF.text?.isEmpty)!) else {
+            JSProgress.showFailStatus(with: "请填写姓名")
+            return
+        }
+        guard !((bankCardNumberTF.text?.isEmpty)!) else {
+            JSProgress.showFailStatus(with: "请填写银行卡号")
+            return
+        }
+        guard !((phoneNumberTF.text?.isEmpty)!) else {
+            JSProgress.showFailStatus(with: "请填写手机号")
+            return
+        }
+        
+        guard (phoneNumberTF.text?.judgeMobileNumber())! else {
+            JSProgress.showFailStatus(with: "请填写正确的手机号")
+            return
+        }
+        
+        let vc = BindingCardNextViewController.loadStoryboard()
+        vc.userName = userNameTF.text!
+        vc.bankCardNumber = bankCardNumberTF.text!
+        vc.phoneNumber = phoneNumberTF.text!
         navigationController?.pushViewController(vc, animated: true)
     }
     

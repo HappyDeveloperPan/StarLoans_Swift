@@ -26,6 +26,8 @@ class MineTableViewController: UITableViewController {
     @IBOutlet weak var approveBackView: UIView!
     @IBOutlet weak var approveImg: UIImageView!
     @IBOutlet weak var approveLB: UILabel!
+    //账户
+    
     
     fileprivate let indentArr:Array<Any> = ["已推订单", "已发资源", "已发产品", "急速抢单"]
     fileprivate let endShopArr:Array<Any> = ["视频", "推广工具", "文案教程"]
@@ -39,6 +41,7 @@ class MineTableViewController: UITableViewController {
         setupendShopCellUI()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadUserData), name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
 //        reloadUserData()
+//        getUserData()
     }
     
     //基本配置
@@ -48,8 +51,6 @@ class MineTableViewController: UITableViewController {
             tableView.contentInsetAdjustmentBehavior = .never
         }
         tableView.tableHeaderView?.height = kNavHeight + 45
-        
-//        userImg.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(userImgCli
         userImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userImgClick(_:))))
         userImg.isUserInteractionEnabled = true
         
@@ -67,7 +68,7 @@ class MineTableViewController: UITableViewController {
         
         let labWidth = (indentCell.contentView.width-30) / 4
         
-        for index in 0...3 {
+        for index in 0...indentArr.count-1 {
             let numberLB = UILabel()
             numberLB.textColor = kMainColor
             numberLB.textAlignment = .center
@@ -107,7 +108,7 @@ class MineTableViewController: UITableViewController {
             numberLB.textColor = kMainColor
             numberLB.textAlignment = .center
             numberLB.font = UIFont.systemFont(ofSize: 16)
-            numberLB.tag = index + 1
+            numberLB.tag = index + 10
             numberLB.text = "0"
             endShopCell.contentView.addSubview(numberLB)
             
@@ -136,7 +137,8 @@ class MineTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        reloadUserData()
+//        reloadUserData()
+        getUserData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -177,12 +179,24 @@ class MineTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
         case [0, 0]:    //账户
+            guard UserManager.shareManager.isLogin else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+                return
+            }
             let vc = AccountViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
         case [0, 1]:    //微店订单
+            guard UserManager.shareManager.isLogin else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+                return
+            }
             let vc = VStoreViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
         case [0, 2]:    //已购
+            guard UserManager.shareManager.isLogin else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+                return
+            }
             let vc = PurchasedViewController()
             navigationController?.pushViewController(vc, animated: true)
         case [1, 0]:    //认证
@@ -217,6 +231,10 @@ class MineTableViewController: UITableViewController {
     }
     
     @objc func userImgClick(_ sender: UIGestureRecognizer) {
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            return
+        }
         let vc = UserDataViewController.loadStoryboard()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -225,6 +243,42 @@ class MineTableViewController: UITableViewController {
 
 //MARK: - 数据处理部分
 extension MineTableViewController {
+    ///获取用户数据
+    @objc func getUserData() {
+        guard UserManager.shareManager.isLogin else {
+            return
+        }
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        NetWorksManager.requst(with: kUrl_UserData, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"][0] {
+                    let userModel = UserModel(with: data)
+                    UserManager.shareManager.userModel.is_audit = userModel.is_audit
+                    UserManager.shareManager.userModel.tx = userModel.tx
+                    UserManager.shareManager.userModel.account = userModel.account
+                    UserManager.shareManager.userModel.wd_push_order = userModel.wd_push_order
+                    UserManager.shareManager.userModel.wd_publish_resource = userModel.wd_publish_resource
+                    UserManager.shareManager.userModel.wd_publish_product = userModel.wd_publish_product
+                    UserManager.shareManager.userModel.wd_quick_bill = userModel.wd_quick_bill
+                    UserManager.shareManager.userModel.buy_video = userModel.buy_video
+                    UserManager.shareManager.userModel.buy_tools = userModel.buy_tools
+                    UserManager.shareManager.userModel.buy_list = userModel.buy_list
+                    UserManager.shareManager.userModel.buy_course = userModel.buy_course
+                    self?.reloadUserData()
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    ///刷新用户数据
     @objc func reloadUserData() {
         if UserManager.shareManager.isLogin {
             userNameBtn.setTitle(UserManager.shareManager.userModel.user, for: .normal)
@@ -245,5 +299,26 @@ extension MineTableViewController {
             approveImg.image = #imageLiteral(resourceName: "ICON-weirenzhen")
             approveLB.text = "未认证"
         }
+        accountNumberLB.text = String(UserManager.shareManager.userModel.account)
+        for index in 0...indentArr.count-1 {
+            let label = view.viewWithTag(index + 1) as? UILabel
+            switch index {
+            case 0: label?.text = String(UserManager.shareManager.userModel.wd_push_order)
+            case 1: label?.text = String(UserManager.shareManager.userModel.wd_publish_resource)
+            case 2: label?.text = String(UserManager.shareManager.userModel.wd_publish_product)
+            case 3: label?.text = String(UserManager.shareManager.userModel.wd_quick_bill)
+            default:break
+            }
+        }
+        for index in 0...endShopArr.count-1 {
+            let label = view.viewWithTag(index + 10) as? UILabel
+            switch index {
+            case 0: label?.text = String(UserManager.shareManager.userModel.buy_video)
+            case 1: label?.text = String(UserManager.shareManager.userModel.buy_tools)
+            case 2: label?.text = String(UserManager.shareManager.userModel.buy_course)
+            default:break
+            }
+        }
     }
+    
 }

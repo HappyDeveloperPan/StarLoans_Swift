@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BankCardViewController: UIViewController {
+class BankCardViewController: BaseViewController {
 
     //MARK: - 懒加载
     lazy var administrationBtn: UIButton = { [unowned self] in
@@ -36,18 +36,32 @@ class BankCardViewController: UIViewController {
         return collectionView
         }()
     
+    //内部属性
+    fileprivate var bankCardArr = [UserModel]()
+    
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "银行卡"
         view.backgroundColor = UIColor.white
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: administrationBtn)
+        collectionView.addHeaderRefresh { [weak self] in
+            self?.getBankCardData()
+        }
+        collectionView.beginHeaderRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        (navigationController as? AXDNavigationController)?.navBarHairlineImageView?.isHidden = false
+        isNavLineHidden = false
     }
+    
+    
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super .viewWillAppear(animated)
+//        (navigationController as? AXDNavigationController)?.navBarHairlineImageView?.isHidden = false
+//    }
     
     override func viewWillLayoutSubviews() {
         super .viewWillLayoutSubviews()
@@ -59,8 +73,12 @@ class BankCardViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
-        (navigationController as? AXDNavigationController)?.navBarHairlineImageView?.isHidden = true
+        isNavLineHidden = true
     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super .viewWillDisappear(animated)
+//        (navigationController as? AXDNavigationController)?.navBarHairlineImageView?.isHidden = true
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -68,6 +86,35 @@ class BankCardViewController: UIViewController {
 
 }
 
+//MARK: - 数据处理
+extension BankCardViewController {
+    func getBankCardData() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        NetWorksManager.requst(with: kUrl_BankCardList, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let dataArr = jsonData?["data"].array {
+                    var bankDataArr = [UserModel]()
+                    for data in dataArr {
+                        bankDataArr.append(UserModel(with: data))
+                    }
+                    self?.bankCardArr = bankDataArr
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+            self?.collectionView.endHeaderRefresh()
+        }
+    }
+}
+
+//MARK: - CollectionView代理
 extension BankCardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1

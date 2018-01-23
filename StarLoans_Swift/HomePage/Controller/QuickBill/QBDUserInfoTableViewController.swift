@@ -22,21 +22,46 @@ class QBDUserInfoTableViewController: UITableViewController {
     //公积金
     @IBOutlet weak var providentFundLB: UILabel!
     //工资发放形式
-    @IBOutlet weak var salaryTypeLB: NSLayoutConstraint!
+    @IBOutlet weak var salaryTypeLB: UILabel!
     //手机号码
     @IBOutlet weak var phoneNumLB: UILabel!
     
+    //MARK: - 外部属性
+//    var clientModel = ClientInfoModel()
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBasic()
+//        setBasicData()
     }
     
     func setupBasic() {
         tableView.tableFooterView = UIView(frame: .zero)
-        
         userTypeLB.layer.backgroundColor = kMainColor.cgColor
         userTypeLB.layer.cornerRadius = userTypeLB.height/2
+    }
+    
+    func setBasicData(_ clientModel: ClientInfoModel) {
+//        if !clientModel..isEmpty {
+//            userImg.setImage(infoModel.questioner_tx, placeholder: nil, completionHandler: { [weak self] (image, error, cacheType, url) in
+//                self?.userImg.circleImage()
+//            })
+//        }
+        userNameLB.text = clientModel.client_name
+        userTypeLB.text = clientModel.client_type_name
+        professionLB.text = clientModel.client_occupation_name
+        if clientModel.client_is_social_security.getServiceBool() {
+           socialSecurityLB.text = "有社保"
+        }else {
+           socialSecurityLB.text = "无社保"
+        }
+        if clientModel.client_is_accumulated_funds.getServiceBool() {
+            providentFundLB.text = "有公积金"
+        }else {
+            providentFundLB.text = "无公积金"
+        }
+        salaryTypeLB.text = clientModel.client_income_payment_type_name
+        phoneNumLB.text = clientModel.client_phone
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +79,13 @@ class QBDUserInfoTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 6
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        //        let vc1 = segue.destination as! QBDUserInfoTableViewController
+//        //        vc1.clientModel = clientModel
+//        let vc2 = segue.destination as! QBDPropertyTableViewController
+//        vc2.clientModel = clientModel
+//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

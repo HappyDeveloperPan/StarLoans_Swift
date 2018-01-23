@@ -73,6 +73,7 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
         centerPriceLB.text = "99"
         centerPriceLB.textColor = kMainColor
         centerPriceLB.textAlignment = .center
+        centerPriceLB.adjustsFontSizeToFitWidth = true
         centerPriceLB.font = UIFont.systemFont(ofSize: 65)
         return centerPriceLB
     }()
@@ -337,8 +338,8 @@ extension HotAgencyCollectionViewCell {
     func setHotAgencyData(with cellModel: ProductAgencyModel) {
         topCenterLB.text = cellModel.product
         centerPriceLB.text = cellModel.quota
-        lbContentLb.text = cellModel.return_commission
-        cbContentLb.text = cellModel.claim_amount
-        rbContentLb.text = String(cellModel.leader_number)
+        lbContentLb.text = cellModel.return_commission + "%"
+        cbContentLb.text = String(cellModel.claim_amount) + "万"
+        rbContentLb.text = String(cellModel.leader_number) + "人"
     }
 }

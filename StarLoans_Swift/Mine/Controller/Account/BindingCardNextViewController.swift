@@ -9,7 +9,11 @@
 import UIKit
 
 class BindingCardNextViewController: UIViewController, StoryboardLoadable {
-
+    //MARK: - 外部属性
+    var userName: String = ""
+    var bankCardNumber: String = ""
+    var phoneNumber: String = ""
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "绑定银行卡"
@@ -21,6 +25,12 @@ class BindingCardNextViewController: UIViewController, StoryboardLoadable {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! BindingCardNextTableViewController
+        vc.userName = userName
+        vc.bankCardNumber = bankCardNumber
+        vc.phoneNumber = phoneNumber
+    }
 
     /*
     // MARK: - Navigation

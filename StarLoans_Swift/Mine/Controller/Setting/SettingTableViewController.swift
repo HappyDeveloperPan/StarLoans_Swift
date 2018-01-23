@@ -39,14 +39,29 @@ class SettingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
         case [0, 0]:
+            //如果用户没有登录就跳转到登录界面
+            guard UserManager.shareManager.isLogin else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+                return
+            }
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .oldLoginPass
             navigationController?.pushViewController(vc, animated: true)
         case [0, 1]:
+            //如果用户没有登录就跳转到登录界面
+            guard UserManager.shareManager.isLogin else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+                return
+            }
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .transactionPass
             navigationController?.pushViewController(vc, animated: true)
         case [0, 2]:
+            //如果用户没有登录就跳转到登录界面
+            guard UserManager.shareManager.isLogin else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+                return
+            }
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .newPhoneNum
             navigationController?.pushViewController(vc, animated: true)

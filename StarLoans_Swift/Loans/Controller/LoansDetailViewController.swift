@@ -203,6 +203,14 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
             return
         }
         let vc = AuthorizationViewController.loadStoryboard()
+        vc.productId = productModel.product_id
+        vc.loansProductType = loansProductType
+        if productModel.card == 1 || productModel.card == 3{
+            vc.loanClientType = .personage
+        }
+        if productModel.card == 2 || productModel.card == 4{
+            vc.loanClientType = .company
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -237,6 +245,7 @@ extension LoansDetailViewController {
     
     ///刷新页面数据
     func updateLoansDetailData() {
+        setupBaseData()
         advenContentLB.text = productModel.desc
         deadlineLB.text = String(productModel.min_term) + "-" + String(productModel.max_term) + "年"
         conditionContentLB.text = productModel.require

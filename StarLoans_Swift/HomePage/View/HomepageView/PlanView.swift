@@ -33,6 +33,8 @@ class PlanView: UIView {
         let leftImage = UIImageView()
         addSubview(leftImage)
         leftImage.backgroundColor = kHomeBackColor
+        leftImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imgClick(_:))))
+        leftImage.isUserInteractionEnabled = true
         return leftImage
     }()
     
@@ -49,7 +51,13 @@ class PlanView: UIView {
         bottomRightImage.backgroundColor = kHomeBackColor
         return bottomRightImage
         }()
-    
+    //MARK: - 外部属性
+//    var imgUrl: String = ""
+    var dataArr = [HomePageModel]() {
+        didSet {
+            setPlanViewData(dataArr)
+        }
+    }
     //MARK: - 生命周期
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -96,5 +104,34 @@ class PlanView: UIView {
     
     @objc func topMoreBtnClick(_ sender: UIButton) {
         print("信用卡专区")
+    }
+    
+    @objc func imgClick(_ sender: UIGestureRecognizer) {
+        let vc = ActivityCenterViewController()
+        vc.url = dataArr[0].url
+        vc.title = dataArr[0].title
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
+    }
+}
+
+extension PlanView {
+    func setPlanViewData(_ dataArr: [HomePageModel]) {
+        for i in 0...dataArr.count - 1 {
+            let data = dataArr[i]
+            switch i {
+            case 0:
+                leftImage.setImage(with: data.img)
+            case 1:
+                topRightImage.setImage(with: data.img)
+            case 2:
+                bottomRightImage.setImage(with: data.img)
+            default:break
+            }
+        }
     }
 }

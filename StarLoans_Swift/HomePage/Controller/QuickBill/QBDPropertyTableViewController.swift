@@ -18,13 +18,21 @@ class QBDPropertyTableViewController: UITableViewController {
     //其他
     @IBOutlet weak var otherPropertyLB: UILabel!
     
-    //MARK: - 懒加载
+    //MARK: - 外部属性
+//    var clientModel = ClientInfoModel()
     
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.tableFooterView = UIView(frame: .zero)
+//        setBasicData()
+    }
+    
+    func setBasicData(_ clientModel: ClientInfoModel) {
+        houseLB.text = clientModel.client_house_type_name
+        carLB.text = clientModel.client_car_type_name
+        incomeLB.text = String(clientModel.client_month_income) + "元"
+        otherPropertyLB.text = clientModel.client_other_assets
     }
 
     override func didReceiveMemoryWarning() {

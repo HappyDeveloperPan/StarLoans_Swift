@@ -21,6 +21,9 @@ class PushBillProductCell: UICollectionViewCell, RegisterCellOrNib {
     @IBOutlet weak var numberContentLB: UILabel!
     @IBOutlet weak var commitBtn: AnimatableButton!
     
+    //MARK: - 可操作数据
+    var productModel = ProductModel()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.white
@@ -30,15 +33,35 @@ class PushBillProductCell: UICollectionViewCell, RegisterCellOrNib {
         layer.shadowOpacity = 1//阴影透明度，默认0
         layer.shadowRadius = 2//阴影半径，默认3
         layer.masksToBounds = false//   不设置显示不出阴影
+        
+        contentView.layer.cornerRadius = 6
+        contentView.layer.masksToBounds = true
     }
 
     @IBAction func commitBtnClick(_ sender: AnimatableButton) {
         let vc = AuthorizationViewController.loadStoryboard()
+        vc.productId = productModel.product_id
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)
         }else{
             topViewController?.present(vc, animated: true , completion: nil)
         }
+    }
+}
+
+extension PushBillProductCell {
+    func setBillProductCell(_ celldata: ProductModel) {
+        productModel = celldata
+        if celldata.img.isEmpty {
+            backImg.image = #imageLiteral(resourceName: "ICON-diban1")
+        }else {
+            backImg.setImage(with: celldata.img)
+        }
+        titleLB.text = celldata.product
+        introLB.text = celldata.desc
+        rebateContentLB.text = String(celldata.return_commission) + "%"
+        moneyContentLB.text = String(celldata.quota) + "万"
+        numberContentLB.text = String(celldata.leader_number) + "人"
     }
 }

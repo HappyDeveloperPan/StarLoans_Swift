@@ -9,7 +9,7 @@
 import UIKit
 
 class UserDataViewController: BaseViewController, StoryboardLoadable{
-
+    //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "个人中心"

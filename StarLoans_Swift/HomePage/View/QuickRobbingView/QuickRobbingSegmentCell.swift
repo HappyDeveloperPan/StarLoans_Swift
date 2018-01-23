@@ -63,18 +63,18 @@ class QuickRobbingSegmentCell: UICollectionViewCell {
 
 extension QuickRobbingSegmentCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return cellDataArr.count
-        return 5
+        return cellDataArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as HotResourceCell
-//        cell.setCellData(with: loansProductType.rawValue)
+        cell.setHotResourceCellData(with: cellDataArr[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = QuickBillDetailViewController.loadStoryboard()
+        vc.clientModel = cellDataArr[indexPath.row]
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

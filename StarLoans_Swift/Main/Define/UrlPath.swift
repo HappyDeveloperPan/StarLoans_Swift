@@ -139,6 +139,7 @@ public let kUrl_ApproveStore = hostAdress + "/Home/MobileCenter/centerBelongStor
 ///调取微信支付
 public let kUrl_WeChatPay = hostAdress + "/Home/MobileWxPreorder/index"
 ///完成支付回调
+public let kUrl_PayCallback = hostAdress + "/Home/MobileWxPayResult/index"
 
 //MARK: - 聚合数据
 ///银行卡真伪

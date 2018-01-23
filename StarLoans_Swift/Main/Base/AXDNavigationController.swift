@@ -16,15 +16,12 @@ class AXDNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navBarHairlineImageView = findHairlineImageViewUnder(navigationBar)
-//        navBarHairlineImageView?.isHidden = true
         
         let navBar = navigationBar
         navBar.isTranslucent = false
         navBar.barStyle = .default
         navBar.barTintColor = .white
         navBar.tintColor = kTitleColor
-//        navBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        navBar.shadowImage = UIImage()
         navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:kTitleColor]
         
     }

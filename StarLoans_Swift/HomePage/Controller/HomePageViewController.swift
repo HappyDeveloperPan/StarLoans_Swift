@@ -92,6 +92,7 @@ class HomePageViewController: UIViewController {
         self.view.addSubview(searchView)
         searchView.layer.cornerRadius = 17
         searchView.alpha = 0.7
+        searchView.textField.delegate = self
         return searchView
     }()
     
@@ -664,6 +665,17 @@ extension HomePageViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+}
+
+//MARK: - TextFiled代理
+extension HomePageViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let vc = SearchViewController()
+        let navVC = AXDNavigationController(rootViewController: vc)
+//        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.present(navVC, animated: true, completion: nil)
+        return false
     }
 }
 

@@ -143,6 +143,8 @@
 		1C6716BA1FEE4D5C0029E6DE /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6716B91FEE4D5C0029E6DE /* BannerModel.swift */; };
 		1C6716BC1FEE4F1D0029E6DE /* ProductAgencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6716BB1FEE4F1D0029E6DE /* ProductAgencyModel.swift */; };
 		1C6716BE1FEE50520029E6DE /* ClientInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6716BD1FEE50520029E6DE /* ClientInfoModel.swift */; };
+		1C6AD3A32016D1080022696A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6AD3A22016D1080022696A /* WelcomeViewController.swift */; };
+		1C6AD3A72017119E0022696A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6AD3A62017119E0022696A /* SearchViewController.swift */; };
 		1C6D2BE8200C90D9003E4501 /* LoanManagerApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6D2BE7200C90D9003E4501 /* LoanManagerApproveViewController.swift */; };
 		1C6D2BEA200C90E2003E4501 /* LoanManagerApproveViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6D2BE9200C90E2003E4501 /* LoanManagerApproveViewController.storyboard */; };
 		1C6D2BEC200C9233003E4501 /* LoanManagerApproveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6D2BEB200C9233003E4501 /* LoanManagerApproveTableViewController.swift */; };
@@ -438,6 +440,8 @@
 		1C6716B91FEE4D5C0029E6DE /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		1C6716BB1FEE4F1D0029E6DE /* ProductAgencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAgencyModel.swift; sourceTree = "<group>"; };
 		1C6716BD1FEE50520029E6DE /* ClientInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoModel.swift; sourceTree = "<group>"; };
+		1C6AD3A22016D1080022696A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		1C6AD3A62017119E0022696A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1C6D2BE7200C90D9003E4501 /* LoanManagerApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanManagerApproveViewController.swift; sourceTree = "<group>"; };
 		1C6D2BE9200C90E2003E4501 /* LoanManagerApproveViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoanManagerApproveViewController.storyboard; sourceTree = "<group>"; };
 		1C6D2BEB200C9233003E4501 /* LoanManagerApproveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanManagerApproveTableViewController.swift; sourceTree = "<group>"; };
@@ -627,6 +631,7 @@
 			children = (
 				1C40662C1FB1A7EB009A59FD /* JSTabBarViewController.swift */,
 				1C1D945F1FE2732100F65049 /* BaseViewController.swift */,
+				1C6AD3A22016D1080022696A /* WelcomeViewController.swift */,
 				1C363A391FE0BD8D00D87014 /* AXDNavigationController.swift */,
 				1CF12AAA1FCD7C8F00474AFB /* AXDTabBarViewController.swift */,
 				1C2E2AD51FCE5F4E005E48C3 /* AXDTabBarItemContentView.swift */,
@@ -888,6 +893,7 @@
 				1C10F69F1FECE87E00C3A62A /* MessageReadViewController.swift */,
 				1C10F6A61FED0CA800C3A62A /* MessageDetailViewController.swift */,
 				1C10F6A81FED0CBA00C3A62A /* MessageDetailViewController.storyboard */,
+				1C6AD3A62017119E0022696A /* SearchViewController.swift */,
 				1CE3BF161FFCF553003D6629 /* QuickBill */,
 				1C4388522014664100E73C85 /* ActivityCenter */,
 			);
@@ -1786,6 +1792,7 @@
 				1C2E2AED1FCECDBB005E48C3 /* WRCycleCell.swift in Sources */,
 				1C857C871FFDD6C6009F45EE /* UserDataViewController.swift in Sources */,
 				1C4066371FB1B0ED009A59FD /* LoginViewController.swift in Sources */,
+				1C6AD3A32016D1080022696A /* WelcomeViewController.swift in Sources */,
 				1CE3BF181FFCF637003D6629 /* AboutViewController.swift in Sources */,
 				1C9961A31FF4EB4600E4990C /* AuthorizationViewController.swift in Sources */,
 				1C06E4141FFB359C00B46A10 /* InfoDetailViewController.swift in Sources */,
@@ -1845,6 +1852,7 @@
 				1C2E37B2200396A10023065B /* SegmentViewController.swift in Sources */,
 				1CDC91651FF1235E0040434B /* UILabel+Extension.swift in Sources */,
 				1C6D2BE8200C90D9003E4501 /* LoanManagerApproveViewController.swift in Sources */,
+				1C6AD3A72017119E0022696A /* SearchViewController.swift in Sources */,
 				1C609DB91FE7EA24004D4E54 /* MoneyDetailTableViewCell.swift in Sources */,
 				1CD0B4231FE9148700A4A796 /* YHAlertView.swift in Sources */,
 				1CC1CFE32010C3C400B2046C /* AnimationButton.swift in Sources */,

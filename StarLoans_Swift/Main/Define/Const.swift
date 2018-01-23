@@ -42,7 +42,8 @@ let versionCode = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! 
 let systemVersion = UIDevice.current.systemVersion
 
 //存储字段
-let kSavedUser = "savedUser" ///用户数据
+let kRunVersion = "runVersion"  //版本号
+let kSavedUser = "savedUser" //用户数据
 let kRegistrationID = "registrationID" //极光推送registrationID
 
 //MARK: - 微信支付

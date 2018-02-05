@@ -41,6 +41,7 @@ class PushBillProductCell: UICollectionViewCell, RegisterCellOrNib {
     @IBAction func commitBtnClick(_ sender: AnimatableButton) {
         let vc = AuthorizationViewController.loadStoryboard()
         vc.productId = productModel.product_id
+        vc.url = productModel.url
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

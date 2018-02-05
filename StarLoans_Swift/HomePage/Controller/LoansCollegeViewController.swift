@@ -133,11 +133,19 @@ extension LoansCollegeViewController {
         
         NetWorksManager.requst(with: kUrl_LoanCollege, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellArr = [LoansCollegeModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellArr.append(LoansCollegeModel(with: dict))
+                if let dataArr = jsonData?["data"].array {
+                    var cellDataArr = [LoansCollegeModel]()
+                    for dict in dataArr {
+                        cellDataArr.append(LoansCollegeModel(with: dict))
+                    }
+                    cell.cellArr = cellDataArr
                 }
-                cell.cellArr = cellArr
+                
+//                var cellArr = [LoansCollegeModel]()
+//                for dict in (jsonData?["data"].array)! {
+//                    cellArr.append(LoansCollegeModel(with: dict))
+//                }
+//                cell.cellArr = cellArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {

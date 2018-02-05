@@ -18,11 +18,6 @@ class BindingCardFirstTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func setupUI() {
@@ -58,11 +53,13 @@ class BindingCardFirstTableViewController: UITableViewController {
             return
         }
         
-        let vc = BindingCardNextViewController.loadStoryboard()
-        vc.userName = userNameTF.text!
-        vc.bankCardNumber = bankCardNumberTF.text!
-        vc.phoneNumber = phoneNumberTF.text!
-        navigationController?.pushViewController(vc, animated: true)
+        getBankCardInfo()
+        
+//        let vc = BindingCardNextViewController.loadStoryboard()
+//        vc.userName = userNameTF.text!
+//        vc.bankCardNumber = bankCardNumberTF.text!
+//        vc.phoneNumber = phoneNumberTF.text!
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Table view data source
@@ -80,60 +77,40 @@ class BindingCardFirstTableViewController: UITableViewController {
             return 1
         }
     }
+}
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+extension BindingCardFirstTableViewController {
+    ///获取银行卡信息
+    func getBankCardInfo() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["card_id"] = bankCardNumberTF.text
+        
+        JSProgress.showBusy()
+        
+        NetWorksManager.requst(with: kUrl_BankCardInfo, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"] {
+                    let bankCardModel = UserModel(with: data)
+                    let vc = BindingCardNextViewController.loadStoryboard()
+                    vc.userName = (self?.userNameTF.text)!
+                    vc.bankCardNumber = (self?.bankCardNumberTF.text)!
+                    vc.phoneNumber = (self?.phoneNumberTF.text)!
+                    vc.bankCardModel = bankCardModel
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

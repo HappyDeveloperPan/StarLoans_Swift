@@ -9,7 +9,7 @@
 import UIKit
 
 fileprivate let managerFuncArr: [String] = ["待受理", "待反馈", "待审批", "待放款", "未通过", "已完成"]
-fileprivate let brokerFuncArr: [String] = ["已代理客户", "已发产品", "收到订单", "已购资源", "已发资源", "已完成"]
+fileprivate let brokerFuncArr: [String] = ["已代理客户", "已发产品", "收到交单", "已购资源", "已发资源", "已完成"]
 
 enum VStoreType {
     case manager
@@ -55,11 +55,27 @@ class VStoreViewController: BaseViewController, StoryboardLoadable {
         super.viewDidLoad()
         title = "微店订单"
         setupBasic()
+        setupBasicData()
     }
     
     func setupBasic() {
         userTypeLB.layer.backgroundColor = kMainColor.cgColor
         userTypeLB.layer.cornerRadius = userTypeLB.height/2
+    }
+    
+    func setupBasicData() {
+        if UserManager.shareManager.userModel.type == 1 {
+            storeType = .broker
+            userTypeLB.text = "经纪人"
+        }
+        if UserManager.shareManager.userModel.type == 2 {
+            storeType = .manager
+            userTypeLB.text = "机构经理"
+        }
+        if UserManager.shareManager.userModel.type == 3 {
+            storeType = .broker
+            userTypeLB.text = "信贷经理"
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -76,6 +92,8 @@ class VStoreViewController: BaseViewController, StoryboardLoadable {
 
     @IBAction func moreBtnClick(_ sender: UIButton) {
         let vc = VStoreSegmentViewController()
+        vc.storeType = storeType
+        vc.selectedSegmentIndex = 0
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -99,6 +117,8 @@ extension VStoreViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = VStoreSegmentViewController()
+        vc.storeType = storeType
+        vc.segmentIndex = indexPath.row + 1
         navigationController?.pushViewController(vc, animated: true)
     }
 }

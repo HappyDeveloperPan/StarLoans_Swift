@@ -105,11 +105,20 @@ extension VideoCenterViewController {
         
         NetWorksManager.requst(with: kUrl_VideoCenter, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellDataArr = [VideoModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellDataArr.append(VideoModel(with: dict))
+                
+                if let dataArr = jsonData?["data"].array {
+                    var cellDataArr = [VideoModel]()
+                    for dict in dataArr {
+                        cellDataArr.append(VideoModel(with: dict))
+                    }
+                    cell.cellDataArr = cellDataArr
                 }
-                cell.cellDataArr = cellDataArr
+                
+//                var cellDataArr = [VideoModel]()
+//                for dict in (jsonData?["data"].array)! {
+//                    cellDataArr.append(VideoModel(with: dict))
+//                }
+//                cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {

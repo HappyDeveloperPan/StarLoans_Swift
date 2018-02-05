@@ -61,6 +61,7 @@ class ProductModel: NSObject {
         static let sh = "sh"                                //管理员审核
         static let num = "num"                              //查看次数
         static let product_question = "product_question"    //问题讨论(数组)
+        static let url = "url"                              //跳转网址
     }
     
     public var id: Int = 0
@@ -99,6 +100,7 @@ class ProductModel: NSObject {
     public var hyid: Int = 0
     public var sh: Int = 0
     public var num: Int = 0
+    public var url: String = ""
     public var product_question: Array = [JSON]()
     
     
@@ -140,6 +142,7 @@ class ProductModel: NSObject {
         self.hyid = appInfo[Keys.hyid].intValue
         self.sh = appInfo[Keys.sh].intValue
         self.num = appInfo[Keys.num].intValue
+        self.url = appInfo[Keys.url].stringValue
         self.product_question = appInfo[Keys.product_question].arrayValue
     }
     

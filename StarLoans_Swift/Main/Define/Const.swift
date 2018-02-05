@@ -53,8 +53,8 @@ let WXAPI = "a98a79shdiajsh89qdoisuoiu8u9889w"  ///密钥
 //商户号：1496622762
 
 //MARK: - 极光推送
-let JPushAppKey = "0aaea1f7a9bd5073b9ac60e4"
-let JPushSecret = "a4cc968ecea437421ca7c8df"
+let JPushAppKey = "18d22f26901b457be3c5733b"
+let JPushSecret = "4774e04fe0336272c1e18e7e"
 
 //MARK: - 聚合数据
 ///热点新闻

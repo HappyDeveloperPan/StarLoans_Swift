@@ -104,10 +104,9 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="****6879" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-Eg-Tp0">
-                                                    <rect key="frame" x="105" y="13" width="80" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="****" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-Eg-Tp0">
+                                                    <rect key="frame" x="105" y="13" width="27" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="mPr-Il-7Ys"/>
                                                         <constraint firstAttribute="height" constant="18" id="wWO-Mj-pEr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -115,14 +114,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pmY-ua-94H">
-                                                    <rect key="frame" x="276.5" y="10" width="24" height="24"/>
+                                                    <rect key="frame" x="338" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Hko-5P-epf"/>
                                                         <constraint firstAttribute="width" constant="24" id="YdG-jr-0Sv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工商银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uon-PQ-uNd">
-                                                    <rect key="frame" x="305.5" y="13" width="61.5" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uon-PQ-uNd">
+                                                    <rect key="frame" x="367" y="13" width="0.0" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="su6-nc-grb"/>
                                                     </constraints>
@@ -201,6 +200,9 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="bankCarNum" destination="Bqb-Eg-Tp0" id="vuj-vw-7kF"/>
+                        <outlet property="bankCardName" destination="uon-PQ-uNd" id="oAp-tZ-CMt"/>
+                        <outlet property="bankImg" destination="pmY-ua-94H" id="yjw-2X-Rc2"/>
                         <outlet property="commitBtn" destination="BW5-wB-naH" id="5tG-Gy-ThX"/>
                         <outlet property="verCodeBtn" destination="pBw-h2-lmg" id="yHT-7W-b30"/>
                         <outlet property="verCodeTF" destination="CPo-nm-3Tc" id="Vuy-gP-vHJ"/>

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>申请用户定位权限</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -45,11 +43,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>申请相机访问权限</string>
+	<string>App需要您的同意,才能访问相机</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>申请前台定位权限</string>
+	<string>App需要您的同意,才能在使用期间访问位置</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>申请相册访问权限</string>
+	<string>App需要您的同意,才能访问相册</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

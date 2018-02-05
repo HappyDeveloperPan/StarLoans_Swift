@@ -8,36 +8,41 @@
 
 import UIKit
 
-fileprivate let titleArr: [String] = ["全部", "待受理", "待反馈", "待审批", "待抵押", "未通过", "已完成"]
-
 class VStoreSegmentViewController: SegmentViewController {
     //MARK: - 懒加载
-    lazy var segmentView: SelectScrollview = { [unowned self] in
-        let segmentView = SelectScrollview()
-        segmentView.arrTitle = ["全部", "待受理", "待反馈", "待审批", "待抵押", "未通过", "已完成"]
-        var arr:[UIViewController] = []
-        for index in 0..<segmentView.arrTitle!.count {
-            let vc = VStoreListViewController()
-            arr.append(vc)
-        }
-        segmentView.viewControllers = arr
-        self.view.addSubview(segmentView)
-        return segmentView
-        }()
+    
+    //MARK: - 外部属性
+    var storeType: VStoreType = .broker
+    var segmentIndex: Int = 0
+    //MARK: - 内部属性
+    fileprivate let managerTitleArr: [String] = ["全部", "待受理", "待反馈", "待审批", "待放款", "未通过", "已完成"]
+    fileprivate let brokerTitleArr: [String] = ["全部", "已代理客户", "已发产品", "收到交单", "已购资源", "已发资源", "已完成"]
     
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "微店订单"
-//        segmentView.createUI()
-        selectedSegmentIndex = 1
-        for i in 0...titleArr.count-1 {
-            let vc = VStoreListViewController()
-            vc.title = titleArr[i]
-//            vc.view.backgroundColor = UIColor.RGB(with: CGFloat(arc4random()/255), green: CGFloat(arc4random()/255), blue: CGFloat(arc4random()/255))
-//            vc.collectionView.backgroundColor = UIColor.RGB(with: CGFloat(arc4random()/255), green: CGFloat(arc4random()/255), blue: CGFloat(arc4random()/255))
-            addChildViewController(vc)
+        if self.storeType == .broker {
+            for i in 0...brokerTitleArr.count-1 {
+                let vc = VStoreListViewController()
+                vc.title = brokerTitleArr[i]
+                vc.storeType = storeType
+                addChildViewController(vc)
+            }
+        }else {
+            for i in 0...managerTitleArr.count-1 {
+                let vc = VStoreListViewController()
+                vc.title = managerTitleArr[i]
+                vc.storeType = storeType
+                addChildViewController(vc)
+            }
         }
+        selectedSegmentIndex = segmentIndex
+//        for i in 0...managerTitleArr.count-1 {
+//            let vc = VStoreListViewController()
+//            vc.title = managerTitleArr[i]
+//            addChildViewController(vc)
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +52,6 @@ class VStoreSegmentViewController: SegmentViewController {
     
     override func viewWillLayoutSubviews() {
         super .viewWillLayoutSubviews()
-//        segmentView.snp.makeConstraints { (make) in
-//            make.edges.equalToSuperview()
-//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,7 +61,6 @@ class VStoreSegmentViewController: SegmentViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

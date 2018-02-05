@@ -39,7 +39,8 @@ class ManagerBillCell: UICollectionViewCell, RegisterCellOrNib {
     
     ///处理按钮
     @IBAction func disposeBtnClick(_ sender: UIButton) {
-        let vc = ManagerBillDetailViewController.loadStoryboard()
+//        let vc = ManagerBillDetailViewController.loadStoryboard()
+        let vc = ManagerBillApprovalOneViewController.loadStoryboard()
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

@@ -50,7 +50,6 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
     ///产品类型
     var loansProductType: LoansProductType = .selfSupport
     var productModel: ProductModel = ProductModel()
-    
     fileprivate var cellHeightArr: [CGFloat] = [CGFloat]()
     //MARK: - 懒加载
     ///利率图标
@@ -205,6 +204,7 @@ class LoansDetailViewController: BaseViewController, StoryboardLoadable {
         let vc = AuthorizationViewController.loadStoryboard()
         vc.productId = productModel.product_id
         vc.loansProductType = loansProductType
+        vc.url = productModel.url
         if productModel.card == 1 || productModel.card == 3{
             vc.loanClientType = .personage
         }

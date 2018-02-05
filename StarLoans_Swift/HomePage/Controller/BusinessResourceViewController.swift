@@ -127,11 +127,18 @@ extension BusinessResourceViewController {
         
         NetWorksManager.requst(with: kUrl_IndustryResources, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellDataArr = [ResourceModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellDataArr.append(ResourceModel(with: dict))
+                if let dataArr = jsonData?["data"].array {
+                    var cellDataArr = [ResourceModel]()
+                    for dict in dataArr {
+                        cellDataArr.append(ResourceModel(with: dict))
+                    }
+                    cell.cellDataArr = cellDataArr
                 }
-                cell.cellDataArr = cellDataArr
+//                var cellDataArr = [ResourceModel]()
+//                for dict in (jsonData?["data"].array)! {
+//                    cellDataArr.append(ResourceModel(with: dict))
+//                }
+//                cell.cellDataArr = cellDataArr
                 
             }else {
                 if error == nil {
@@ -153,11 +160,18 @@ extension BusinessResourceViewController {
         
         NetWorksManager.requst(with: kUrl_IndustryResources, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellDataArr = [ClientInfoModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellDataArr.append(ClientInfoModel(with: dict))
+                if let dataArr = jsonData?["data"].array {
+                    var cellDataArr = [ClientInfoModel]()
+                    for dict in dataArr {
+                        cellDataArr.append(ClientInfoModel(with: dict))
+                    }
+                    cell.cellDataArr = cellDataArr
                 }
-                cell.cellDataArr = cellDataArr
+//                var cellDataArr = [ClientInfoModel]()
+//                for dict in (jsonData?["data"].array)! {
+//                    cellDataArr.append(ClientInfoModel(with: dict))
+//                }
+//                cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -177,11 +191,19 @@ extension BusinessResourceViewController {
         
         NetWorksManager.requst(with: kUrl_IndustryResources, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
-                var cellDataArr = [ProductModel]()
-                for dict in (jsonData?["data"].array)! {
-                    cellDataArr.append(ProductModel(with: dict))
+                if let dataArr = jsonData?["data"].array {
+                    var cellDataArr = [ProductModel]()
+                    for dict in dataArr {
+                        cellDataArr.append(ProductModel(with: dict))
+                    }
+                    cell.cellDataArr = cellDataArr
                 }
-                cell.cellDataArr = cellDataArr
+                
+//                var cellDataArr = [ProductModel]()
+//                for dict in (jsonData?["data"].array)! {
+//                    cellDataArr.append(ProductModel(with: dict))
+//                }
+//                cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {

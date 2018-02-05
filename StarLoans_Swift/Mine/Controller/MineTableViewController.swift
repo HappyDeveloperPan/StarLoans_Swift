@@ -28,7 +28,6 @@ class MineTableViewController: UITableViewController {
     @IBOutlet weak var approveLB: UILabel!
     //账户
     
-    
     fileprivate let indentArr:Array<Any> = ["已推订单", "已发资源", "已发产品", "急速抢单"]
     fileprivate let endShopArr:Array<Any> = ["视频", "推广工具", "文案教程"]
     
@@ -190,6 +189,10 @@ class MineTableViewController: UITableViewController {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
                 return
             }
+            guard UserManager.shareManager.userModel.is_audit == 4 else {
+                JSProgress.showFailStatus(with: "还未认证成功")
+                return
+            }
             let vc = VStoreViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)
         case [0, 2]:    //已购
@@ -281,7 +284,7 @@ extension MineTableViewController {
     ///刷新用户数据
     @objc func reloadUserData() {
         if UserManager.shareManager.isLogin {
-            userNameBtn.setTitle(UserManager.shareManager.userModel.user, for: .normal)
+            userNameBtn.setTitle(UserManager.shareManager.userModel.name, for: .normal)
             if !(UserManager.shareManager.userModel.tx.isEmpty) {
                 userImg.setImage((UserManager.shareManager.userModel.tx), placeholder: nil, completionHandler: { [weak self] (image, error, cacheType, url) in
                     self?.userImg.circleImage()

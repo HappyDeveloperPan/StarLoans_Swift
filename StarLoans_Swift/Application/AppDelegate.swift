@@ -30,7 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
             if resCode == 0{
                 print("registrationID获取成功：\(String(describing: registrationID))")
-                Utils.setAsynchronous(String(describing: registrationID), withKey: kRegistrationID)
+                if let registrationID = registrationID {
+                    Utils.setAsynchronous(registrationID, withKey: kRegistrationID)
+                }
+//                Utils.setAsynchronous(String(describing: registrationID), withKey: kRegistrationID)
             }else {
                 print("registrationID获取失败：\(resCode)")
             }
@@ -45,7 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NetWorksManager.requst(with: kUrl_AutoLogin, type: .post, parameters: parameters, completionHandler: { (jsonData, error) in
                 if jsonData?["status"] == 200 {
                     UserManager.shareManager.isLogin = true
-                    UserManager.shareManager.userModel = UserModel(with: jsonData!["data"])
+                    if let data = jsonData?["data"] {
+                        UserManager.shareManager.userModel = UserModel(with: data)
+                    }
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadUserData), object: nil)
                 }else {
                     if error == nil {

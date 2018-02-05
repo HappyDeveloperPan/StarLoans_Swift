@@ -119,8 +119,11 @@ extension SignInViewController {
             JSProgress.hidden()
             
             if jsonData?["status"] == 200 {
-                let signModel = HomePageModel(with: jsonData!["data"][0])
-                self?.resetSignState(with: signModel)
+                if let data = jsonData?["data"][0] {
+                    let signModel = HomePageModel(with: data)
+                    self?.resetSignState(with: signModel)
+                }
+                
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -145,8 +148,12 @@ extension SignInViewController {
             JSProgress.hidden()
             
             if jsonData?["status"] == 200 {
-                let signModel = HomePageModel(with: jsonData!["data"][0])
-                self?.resetSignState(with: signModel)
+                if let data = jsonData?["data"][0] {
+                    let signModel = HomePageModel(with: data)
+                    self?.resetSignState(with: signModel)
+                }
+//                let signModel = HomePageModel(with: jsonData!["data"][0])
+//                self?.resetSignState(with: signModel)
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {

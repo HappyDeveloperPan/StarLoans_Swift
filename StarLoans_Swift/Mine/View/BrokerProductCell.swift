@@ -1,14 +1,14 @@
 //
-//  BrokerBillCell.swift
+//  BrokerProductCell.swift
 //  StarLoans_Swift
 //
-//  Created by iOS Pan on 2018/1/7.
+//  Created by iOS Pan on 2018/1/26.
 //  Copyright © 2018年 iOS Pan. All rights reserved.
 //
 
 import UIKit
 
-class BrokerBillCell: UICollectionViewCell, RegisterCellOrNib {
+class BrokerProductCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

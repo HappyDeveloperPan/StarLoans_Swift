@@ -115,20 +115,29 @@ public let kUrl_UserData = hostAdress + "/Home/MobileCenter/centerInfo"
 public let kUrl_ModifyHeadImg = hostAdress + "/Home/MobileCenter/centerImgChange"
 ///手机号码修改
 public let kUrl_ChangePhone = hostAdress + "/Home/MobileCenter/centerPhoneChange"
-
 ///设置交易密码
 public let kUrl_SetDealPWD = hostAdress + "/Home/MobileCenter/centerExchangePwd"
+///修改登录密码
+public let kUrl_ResetLoginPass = hostAdress + "/Home/MobileCenter/centerLoginPwdReset"
+///意见反馈
+public let kUrl_OpinionFeedback = hostAdress + "/Home/MobileCenter/centerFeedbackQuestion"
+///常见问题列表
+public let kUrl_QuestionList = hostAdress + "/Home/MobileQuestions/questionList"
+///常见问题答案
+public let kUrl_QuestionInfo = hostAdress + "/Home/MobileQuestions/questionInfo"
 
 ///交易明细
 public let kUrl_DealRecord = hostAdress + "/Home/MobileCenter/centerExchangeInfo"
 ///银行卡列表
 public let kUrl_BankCardList = hostAdress + "/Home/MobileBankCard/centerBankCardList"
+///获取银行卡信息
+public let kUrl_BankCardInfo = hostAdress + "/Home/MobileBankCard/centerBankInfo"
 ///银行卡添加
-public let kUrl_BankCardAdd = hostAdress + "/Home/MobileCenter/centerBankCardAdd"
+public let kUrl_BankCardAdd = hostAdress + "/Home/MobileBankCard/centerBankCardAdd"
 ///银行卡删除
-public let kUrl_BankCardRemove = hostAdress + "/Home/MobileCenter/centerBankCardInvalid"
+public let kUrl_BankCardRemove = hostAdress + "/Home/MobileBankCard/centerBankCardInvalid"
 ///提现
-public let kUrl_Withdraw = hostAdress + "/Home/MobileCenter/centerWithdraw"
+public let kUrl_Withdraw = hostAdress + "/Home/MobileWxWithdrawals/index"
 
 ///添加认证
 public let kUrl_AddApprove = hostAdress + "/Home/MobileCenter/centerAuthInfo"

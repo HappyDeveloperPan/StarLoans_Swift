@@ -655,6 +655,7 @@ extension HomePageViewController: CLLocationManagerDelegate {
 //                    print(placemark.locality ?? "")
                     let address = placemark.locality?.replacingOccurrences(of: "市", with: "") ?? "定位"
                     self?.addressBtn.set(image: #imageLiteral(resourceName: "ICON-xiala"), title: address, titlePosition: .left, additionalSpacing: 2, state: .normal)
+                    UserManager.shareManager.userModel.location = address
                 }else {
                     print("转换失败")
                 }

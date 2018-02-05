@@ -14,6 +14,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
     @IBOutlet weak var titleLB: UILabel!
     @IBOutlet weak var leftTopLB: UILabel!
     @IBOutlet weak var leftTopLBWidth: NSLayoutConstraint!
+    @IBOutlet weak var auditTypeLB: UILabel!
     
     @IBOutlet weak var logoImg: UIImageView!
     @IBOutlet weak var loansNumLB: UILabel!
@@ -37,6 +38,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
             uploadCellType(loansProductType.rawValue)
         }
     }
+    var productModel = ProductModel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -83,6 +85,8 @@ class ProductDetailCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
 //            topViewController?.present(vc, animated: true , completion: nil)
 //        }
         let vc = AuthorizationViewController.loadStoryboard()
+        vc.loansProductType = loansProductType
+        vc.url = productModel.url
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)
@@ -124,8 +128,13 @@ extension ProductDetailCollectionViewCell {
     }
     
     func setProductListCellData(with cellData: ProductModel) {
+        productModel = cellData
         titleLB.text = cellData.product
-        leftTopLBWidth.constant = cellData.card_name.width(CGSize(width: 2000, height: 21), nil) + 12
+        if cellData.card_name.isEmpty {
+            leftTopLBWidth.constant = 0
+        }else {
+            leftTopLBWidth.constant = cellData.card_name.width(CGSize(width: 2000, height: 21), nil) + 12
+        }
         leftTopLB.text = cellData.card_name
         logoImg.setImage(with: cellData.cooperation_bank)
         loansNumLB.text = cellData.quota + "万"

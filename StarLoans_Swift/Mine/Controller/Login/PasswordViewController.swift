@@ -159,10 +159,18 @@ class PasswordViewController: UIViewController {
             return
         }
         
-        let parameters = ["user": user,
-                          "pass": pwdView.textField.text!.md5,
-                          "token": userModel.token,
-                          "yzm": userModel.yzm] as [String : Any]
+//        let parameters = ["user": user,
+//                          "pass": pwdView.textField.text!.md5,
+//                          "token": userModel.token,
+//                          "yzm": userModel.yzm] as [String : Any]
+        var parameters = [String: Any]()
+        parameters["user"] = user
+        parameters["pass"] = pwdView.textField.text?.md5
+        parameters["token"] = userModel.token
+        parameters["yzm"] = userModel.yzm
+        parameters["platform"] = "ios"
+        parameters["registration"] = Utils.getAsynchronousWithKey(kRegistrationID)
+        
         let urlPath: String?
         if vcType == .register {
             urlPath = kUrl_Register

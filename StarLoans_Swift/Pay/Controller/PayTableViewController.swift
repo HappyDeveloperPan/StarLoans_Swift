@@ -89,9 +89,11 @@ extension PayTableViewController {
         
         var parameters = [String: Any]()
         parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["id"] = UserManager.shareManager.userModel.id
         parameters["goods_id"] = goodsId
         parameters["appid"] = WXAppID
         parameters["total_fee"] = price
+        parameters["goods_type"] = 1
         
         NetWorksManager.requst(with: kUrl_WeChatPay, type: .post, parameters: parameters) { (jsonData, error) in
             

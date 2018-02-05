@@ -27,6 +27,8 @@ class AuthorizationViewController: BaseViewController, StoryboardLoadable {
     var productId: Int = 0
     var loansProductType: LoansProductType = .selfSupport //产品类别
     var loanClientType: LoanClientType = .personage //用户类别
+    var url: String = ""
+    
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,10 +75,19 @@ class AuthorizationViewController: BaseViewController, StoryboardLoadable {
 
     @IBAction func commitBtnClick(_ sender: UIButton) {
         //跳转到录入信息界面
-        let vc = InputUserInfoViewController.loadStoryboard()
-        vc.productId = productId
-        vc.loansProductType = loansProductType
-        vc.loanClientType = loanClientType
-        navigationController?.pushViewController(vc, animated: true)
+        if loansProductType == .thirdSupport {
+            let vc = InputUserInfoViewController.loadStoryboard()
+            vc.productId = productId
+            vc.loansProductType = loansProductType
+            vc.loanClientType = loanClientType
+            navigationController?.pushViewController(vc, animated: true)
+        }else {
+            //自营产品需要跳转网页
+            let vc = InputUserInfoWebViewController()
+            vc.productId = productId
+            vc.url = url
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
 }

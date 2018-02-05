@@ -82,6 +82,8 @@ class SegmentViewController: BaseViewController {
 //            }
         }
     }
+    
+    
 }
 
 //MARK:-  设置UI
@@ -101,13 +103,15 @@ extension SegmentViewController:UIScrollViewDelegate{
             titleBtn.titleLabel?.font = UIFont.systemFont(ofSize: titleFont)
 //            titleBtn.frame = CGRect.init(x: btnX, y: 0, width: btnW, height: btnH)
             titleBtn.addTarget(self, action: #selector(titleBtnClick), for: UIControlEvents.touchUpInside)
-            self.titleBtns.add(titleBtn)
+//            self.titleBtns.add(titleBtn)
             titleScrollView.addSubview(titleBtn)
             titleBtn.snp.makeConstraints({ (make) in
                 make.left.equalTo(btnX)
                 make.top.equalToSuperview()
                 make.size.equalTo(CGSize(width: btnW, height: btnH))
             })
+            titleBtn.layoutIfNeeded()
+            self.titleBtns.add(titleBtn)
             titleScrollView.contentSize = CGSize.init(width: CGFloat(count) * btnW, height: 0)
             titleScrollView.showsHorizontalScrollIndicator = false;
             contentScrollView.contentSize = CGSize.init(width: CGFloat(count) * kScreenWidth, height: 0)
@@ -162,7 +166,8 @@ extension SegmentViewController{
     }
     func setupTitleCenter(btn: UIButton){
         var offsetPoint : CGPoint = titleScrollView.contentOffset
-        offsetPoint.x =  btn.center.x -  kScreenWidth / 2
+//        offsetPoint.x =  btn.center.x -  kScreenWidth / 2
+        offsetPoint.x =  titleWidth * (CGFloat(btn.tag) + 0.5) -  kScreenWidth / 2
         //左边超出处理
         if offsetPoint.x < 0{
             offsetPoint.x = 0
@@ -215,8 +220,8 @@ extension SegmentViewController{
         scaleR -= CGFloat(leftI)
         let scaleL :CGFloat  = 1 - scaleR;
         //缩放按钮
-        leftBtn.transform = CGAffineTransform.init(scaleX: scaleL * 0.3 + 1, y: scaleL * 0.3 + 1)
-        rightBtn.transform = CGAffineTransform.init(scaleX: scaleR * 0.3 + 1, y: scaleR * 0.3 + 1)
+        leftBtn.transform = CGAffineTransform.init(scaleX: scaleL * 0.15 + 1, y: scaleL * 0.15 + 1)
+        rightBtn.transform = CGAffineTransform.init(scaleX: scaleR * 0.15 + 1, y: scaleR * 0.15 + 1)
         //颜色渐变
 //        let rightColor:UIColor = UIColor.init(red: scaleR, green: 0, blue: 0, alpha: 1)
 //        let leftColor:UIColor = UIColor.init(red: scaleL, green: 0, blue: 0, alpha: 1)

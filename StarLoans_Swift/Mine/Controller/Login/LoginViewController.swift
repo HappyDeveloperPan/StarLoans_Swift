@@ -177,8 +177,13 @@ extension LoginViewController {
             JSProgress.showFailStatus(with: "请输入密码")
             return
         }
-        let parameters = ["user": phoneView.textField.text!,
-                          "pass": pwdView.textField.text!.md5,] as [String : Any]
+//        let parameters = ["user": phoneView.textField.text!,
+//                          "pass": pwdView.textField.text!.md5,] as [String : Any]
+        var parameters = [String: Any]()
+        parameters["user"] = phoneView.textField.text
+        parameters["pass"] = pwdView.textField.text?.md5
+        parameters["platform"] = "ios"
+        parameters["registration"] = Utils.getAsynchronousWithKey(kRegistrationID)
         
         JSProgress.showBusy()
         

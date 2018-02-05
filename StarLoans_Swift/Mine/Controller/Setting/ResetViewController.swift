@@ -30,6 +30,8 @@ class ResetViewController: BaseViewController, StoryboardLoadable{
     var userModel = UserModel()
     var phoneNumber: String = ""
     var transactionPass: String = ""
+    var oldLoginPass: String = ""
+    var loginPass: String = ""
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,22 +157,38 @@ class ResetViewController: BaseViewController, StoryboardLoadable{
 //                }
 //            }
         case .oldLoginPass:
+            guard !((importView.textField.text?.isEmpty)!) else {
+                JSProgress.showFailStatus(with: "请输入旧密码")
+                return
+            }
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .newLoginPass
+            vc.oldLoginPass = importView.textField.text!
             navigationController?.pushViewController(vc, animated: true)
         case .newLoginPass:
+            guard !((importView.textField.text?.isEmpty)!) else {
+                JSProgress.showFailStatus(with: "请输入新密码")
+                return
+            }
             let vc = ResetViewController.loadStoryboard()
             vc.resetType = .confirmNewLoginPass
+            vc.oldLoginPass = oldLoginPass
+            vc.loginPass = importView.textField.text!
             navigationController?.pushViewController(vc, animated: true)
         case .confirmNewLoginPass:
-            JSProgress.showSucessStatus(with: "修改成功")
-            //跳转回设置界面并且刷新
-            for controller: UIViewController in (navigationController?.viewControllers)! {
-                if (controller is SettingViewController) {
-                    let revise = controller as? SettingViewController
-                    navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
-                }
+            guard judgeLoginPass() else {
+                JSProgress.showFailStatus(with: "两次密码输入不一致")
+                return
             }
+            resetLoginPass()
+//            JSProgress.showSucessStatus(with: "修改成功")
+//            //跳转回设置界面并且刷新
+//            for controller: UIViewController in (navigationController?.viewControllers)! {
+//                if (controller is SettingViewController) {
+//                    let revise = controller as? SettingViewController
+//                    navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
+//                }
+//            }
         }
     }
     
@@ -186,6 +204,11 @@ extension ResetViewController {
     ///判断交易密码是否一致
     func judgeTransactionPass() -> Bool {
         return (importView.textField.text == transactionPass) ? true : false
+    }
+    
+    ///判断登录密码是否一致
+    func judgeLoginPass() -> Bool {
+        return (importView.textField.text == loginPass) ? true : false
     }
     
     ///获取验证码
@@ -251,6 +274,40 @@ extension ResetViewController {
         JSProgress.showBusy()
         
         NetWorksManager.requst(with: kUrl_SetDealPWD, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                JSProgress.showSucessStatus(with: "设置成功")
+                //跳转回设置界面并且刷新
+                for controller: UIViewController in (self?.navigationController?.viewControllers)! {
+                    if (controller is SettingViewController) {
+                        let revise = controller as? SettingViewController
+                        self?.navigationController?.popToViewController(revise ?? UIViewController(), animated: true)
+                    }
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+    
+    ///修改登录密码
+    func resetLoginPass() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["old_pwd"] = oldLoginPass.md5
+        parameters["pwd"] = importView.textField.text?.md5
+        
+        JSProgress.hidden()
+        
+        NetWorksManager.requst(with: kUrl_ResetLoginPass, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
             
             JSProgress.hidden()
             

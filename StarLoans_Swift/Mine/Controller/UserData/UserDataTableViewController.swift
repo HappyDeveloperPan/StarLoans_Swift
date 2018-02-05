@@ -26,7 +26,7 @@ class UserDataTableViewController: UITableViewController {
                 self?.headImg.circleImage()
             })
         }
-        phoneNumLB.text = UserManager.shareManager.userModel.phoneNumber
+        phoneNumLB.text = UserManager.shareManager.userModel.phone
     }
 
     override func didReceiveMemoryWarning() {

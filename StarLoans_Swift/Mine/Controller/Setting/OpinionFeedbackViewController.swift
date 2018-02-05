@@ -30,7 +30,39 @@ class OpinionFeedbackViewController: BaseViewController, StoryboardLoadable {
     }
     
     @IBAction func commitBtnClick(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        guard !opinionTV.text.isEmpty else {
+            JSProgress.showFailStatus(with: "请输入您宝贵的意见")
+            return
+        }
+        commitOpinion()
+//        navigationController?.popViewController(animated: true)
     }
     
+}
+
+extension OpinionFeedbackViewController {
+    func commitOpinion() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["question"] = opinionTV.text
+        
+        JSProgress.showBusy()
+        
+        NetWorksManager.requst(with: kUrl_OpinionFeedback, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            
+            JSProgress.hidden()
+            
+            if jsonData?["status"] == 200 {
+                self?.navigationController?.popViewController(animated: true)
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
 }

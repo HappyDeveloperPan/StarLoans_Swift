@@ -91,14 +91,14 @@ class PlanView: UIView {
         topRightImage.snp.makeConstraints { (make) in
             make.top.equalTo(centerLine.snp.bottom).offset(7.5)
             make.right.equalTo(-16)
-            make.size.equalTo(CGSize(width: 165, height: 70))
+            make.size.equalTo(CGSize(width: 165, height: 150))
         }
         
-        bottomRightImage.snp.makeConstraints { (make) in
-            make.bottom.equalTo(-7.5)
-            make.right.equalTo(-16)
-            make.size.equalTo(CGSize(width: 165, height: 70))
-        }
+//        bottomRightImage.snp.makeConstraints { (make) in
+//            make.bottom.equalTo(-7.5)
+//            make.right.equalTo(-16)
+//            make.size.equalTo(CGSize(width: 165, height: 70))
+//        }
         
     }
     
@@ -128,8 +128,8 @@ extension PlanView {
                 leftImage.setImage(with: data.img)
             case 1:
                 topRightImage.setImage(with: data.img)
-            case 2:
-                bottomRightImage.setImage(with: data.img)
+//            case 2:
+//                bottomRightImage.setImage(with: data.img)
             default:break
             }
         }

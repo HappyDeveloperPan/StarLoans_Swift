@@ -13,6 +13,7 @@ class BindingCardNextViewController: UIViewController, StoryboardLoadable {
     var userName: String = ""
     var bankCardNumber: String = ""
     var phoneNumber: String = ""
+    var bankCardModel = UserModel()
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class BindingCardNextViewController: UIViewController, StoryboardLoadable {
         vc.userName = userName
         vc.bankCardNumber = bankCardNumber
         vc.phoneNumber = phoneNumber
+        vc.bankCardModel = bankCardModel
     }
 
     /*

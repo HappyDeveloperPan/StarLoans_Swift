@@ -27,5 +27,7 @@ extension AppDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        //
+        IQKeyboardManager.sharedManager().canAdjustAdditionalSafeAreaInsets = true
     }
 }

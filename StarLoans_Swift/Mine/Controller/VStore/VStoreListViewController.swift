@@ -9,6 +9,8 @@
 import UIKit
 
 class VStoreListViewController: UIViewController {
+    //MARK: - 外部属性
+    var storeType: VStoreType = .broker
     //MARK: - 懒加载
     lazy var layout: UICollectionViewFlowLayout = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -26,6 +28,9 @@ class VStoreListViewController: UIViewController {
         }
         collectionView.backgroundColor = kHomeBackColor
         collectionView.pan_registerCell(cell: ManagerBillCell.self)
+        collectionView.pan_registerCell(cell: BrokerClientCell.self)
+        collectionView.pan_registerCell(cell: ProductDetailCollectionViewCell.self)
+        collectionView.pan_registerCell(cell: HotResourceCell.self)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
@@ -62,8 +67,12 @@ extension VStoreListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as ManagerBillCell
-//        cell.purchasedSegmentType = PurchasedSegmentType(rawValue: indexPath.row)!
-        return cell
+        if storeType == .manager {
+            let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as ManagerBillCell
+            return cell
+        }else {
+            let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as HotResourceCell
+            return cell
+        }
     }
 }

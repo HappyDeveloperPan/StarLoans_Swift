@@ -76,6 +76,7 @@ extension TeachCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = LoansCollegeDetailViewController.loadStoryboard()
+        vc.resourceModel = cellDataArr[indexPath.row]
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

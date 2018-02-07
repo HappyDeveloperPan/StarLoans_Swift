@@ -9,10 +9,14 @@
 import UIKit
 
 class LoansCollegeDetailViewController: UIViewController, StoryboardLoadable {
-    
+    //MARK: - Storyboard连线
     @IBOutlet weak var contentLB: UILabel!
     @IBOutlet weak var shadeView: UIView!
     @IBOutlet weak var commitBtn: UIButton!
+    
+    //MARK: - 外部属性
+    var id: Int = 0
+    var resourceModel = ResourceModel()
     
     //MARK: - 生命周期
     override func viewDidLoad() {

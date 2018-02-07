@@ -1,21 +1,26 @@
 //
-//  ActivityCenterViewController.swift
+//  InformationShowViewController.swift
 //  StarLoans_Swift
 //
-//  Created by iOS Pan on 2018/1/21.
+//  Created by iOS Pan on 2018/2/7.
 //  Copyright © 2018年 iOS Pan. All rights reserved.
 //
 
 import UIKit
 import WebKit
 
-class ActivityCenterViewController: BaseViewController {
+class InformationShowViewController: BaseViewController, StoryboardLoadable {
+    //MARK: - Storyboard连线
+    @IBOutlet weak var titleLB: UILabel!
+    @IBOutlet weak var formLB: UILabel!
+    @IBOutlet weak var readNumLB: UILabel!
+    @IBOutlet weak var timeLB: UILabel!
     
-    //MARK: - 对外属性
-    var url: String = ""
-
-    //MARK: - 内部属性
-    fileprivate lazy var webView: WKWebView = { [unowned self] in
+    //MARK: - 外部属性
+    var resourceModel = ResourceModel()
+    
+    //MARK: - 懒加载
+    lazy var webView: WKWebView = { [unowned self] in
         let webView = WKWebView()
         self.view.addSubview(webView)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
@@ -24,7 +29,7 @@ class ActivityCenterViewController: BaseViewController {
         return webView
     }()
     
-    fileprivate lazy var progressView: UIProgressView = { [unowned self] in
+    lazy var progressView: UIProgressView = { [unowned self] in
         let progressView = UIProgressView()
         progressView.progressTintColor = kMainColor
         progressView.trackTintColor = UIColor.white
@@ -35,9 +40,16 @@ class ActivityCenterViewController: BaseViewController {
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        if url.judgeURL() {
-            webView.load(URLRequest(url: URL(string: url)!))
+        setBasicData()
+        if resourceModel.url.judgeURL() {
+            webView.load(URLRequest(url: URL(string: resourceModel.url)!))
         }
+    }
+    
+    func setBasicData() {
+        titleLB.text = resourceModel.title
+        readNumLB.text = String(resourceModel.reading_number)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,9 +63,10 @@ class ActivityCenterViewController: BaseViewController {
             make.bottom.left.right.equalToSuperview()
             make.height.equalTo(2)
         }
-        
         webView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+//            make.edges.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(formLB.snp.bottom).offset(16)
         }
     }
     
@@ -61,7 +74,7 @@ class ActivityCenterViewController: BaseViewController {
         super .viewWillDisappear(animated)
         isNavLineHidden = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -77,22 +90,10 @@ class ActivityCenterViewController: BaseViewController {
             progressView.setProgress(Float(webView.estimatedProgress), animated: true)
         }
     }
-
-}
-
-//MARK: - 数据处理
-extension ActivityCenterViewController {
-    func backItemPressed() {
-        if webView.canGoBack {
-            webView.goBack()
-        }else {
-            navigationController?.popViewController(animated: true)
-        }
-    }
 }
 
 //MARK: - WKWebView代理
-extension ActivityCenterViewController: WKUIDelegate, WKNavigationDelegate, UINavigationControllerDelegate {
+extension InformationShowViewController: WKUIDelegate, WKNavigationDelegate, UINavigationControllerDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         progressView.setProgress(0.0, animated: false)

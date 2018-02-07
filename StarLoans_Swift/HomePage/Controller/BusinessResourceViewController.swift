@@ -222,11 +222,11 @@ extension BusinessResourceViewController {
 extension BusinessResourceViewController: TopAdverViewDelegate {
     /// 点击图片回调
     func topAdverViewDidSelect(at index: Int, cycleScrollView: WRCycleScrollView) {
-        print("点击了第\(index+1)个图片")
+//        print("点击了第\(index+1)个图片")
     }
     /// 图片滚动回调
     func topAdverViewDidScroll(to index: Int, cycleScrollView: WRCycleScrollView) {
-        print("滚动到了第\(index+1)个图片")
+//        print("滚动到了第\(index+1)个图片")
     }
 }
 

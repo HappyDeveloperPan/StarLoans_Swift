@@ -1,38 +1,35 @@
 //
-//  CommonProblemViewController.swift
+//  HotNewsListViewController.swift
 //  StarLoans_Swift
 //
-//  Created by iOS Pan on 2018/1/3.
+//  Created by iOS Pan on 2018/2/6.
 //  Copyright © 2018年 iOS Pan. All rights reserved.
 //
 
 import UIKit
 
-class CommonProblemViewController: BaseViewController {
+class HotNewsListViewController: BaseViewController {
+    //MARK: - 内部属性
+    var newsDataArr = [ResourceModel]()
+    
     //MARK: - 懒加载
     lazy var tableView: UITableView = { [unowned self] in
         let tableView = UITableView()
         self.view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.white
-        tableView.pan_registerCell(cell: CommonProblemCell.self)
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 50
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.backgroundColor = UIColor.white
+        tableView.pan_registerCell(cell: MessageTableViewCell.self)
         return tableView
         }()
-    
-    //MARK: - 内部属性
-    fileprivate var problemArr = [UserModel]()
     
     //MARK: - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "常见问题"
+        title = "热门新闻"
         tableView.addHeaderRefresh { [weak self] in
-            self?.getCommonProblemData()
+            self?.getNewsData()
         }
         tableView.beginHeaderRefresh()
     }
@@ -62,23 +59,25 @@ class CommonProblemViewController: BaseViewController {
 }
 
 //MARK: - 数据处理
-extension CommonProblemViewController {
-    func getCommonProblemData() {
-//        var parameters = [String: Any]()
-        
-        NetWorksManager.requst(with: kUrl_QuestionList, type: .post, parameters: nil) { [weak self] (jsonData, error) in
-            if jsonData?["status"] == 200 {
-                if let dataArr = jsonData?["data"].array {
-                    var problemDataArr = [UserModel]()
+extension HotNewsListViewController {
+    ///获取新闻列表数据
+    func getNewsData() {
+        var parameters = [String: Any]()
+        parameters["key"] = NewsAppKey
+        parameters["type"] = "caijing"
+        NetWorksManager.requst(with: kUrl_HotNews, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["result"]["stat"].intValue == 1 {
+                if let dataArr = jsonData?["result"]["data"].array {
+                    var newsArr = [ResourceModel]()
                     for data in dataArr {
-                        problemDataArr.append(UserModel(with: data))
+                        newsArr.append(ResourceModel(with: data))
                     }
-                    self?.problemArr = problemDataArr
+                    self?.newsDataArr = newsArr
                     self?.tableView.reloadData()
                 }
             }else {
                 if error == nil {
-                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                    if let msg = jsonData?["reason"].stringValue {
                         JSProgress.showFailStatus(with: msg)
                     }
                 }else {
@@ -90,22 +89,26 @@ extension CommonProblemViewController {
     }
 }
 
-//MARK: - UITableview代理
-extension CommonProblemViewController: UITableViewDelegate, UITableViewDataSource {
+//MARK: - UITableView代理
+extension HotNewsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return problemArr.count
+        return newsDataArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 104
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.pan_dequeueReusableCell(indexPath: indexPath) as CommonProblemCell
-        cell.setCommonProblemCellData(problemArr[indexPath.row])
+        let cell = tableView.pan_dequeueReusableCell(indexPath: indexPath) as MessageTableViewCell
+        cell.setHotNewsData(newsDataArr[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = CommonProblemDetailViewController.loadStoryboard()
-        vc.titleText = problemArr[indexPath.row].question
-        vc.questionID = problemArr[indexPath.row].question_id
+        let vc = ActivityCenterViewController()
+        vc.url = newsDataArr[indexPath.row].url
+        vc.title = "热点新闻"
         navigationController?.pushViewController(vc, animated: true)
     }
 }

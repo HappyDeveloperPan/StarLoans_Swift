@@ -18,7 +18,7 @@ class PlanView: UIView {
         topMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         topMoreBtn.setTitleColor(UIColor.RGB(with: 51, green: 51, blue: 51), for: .normal)
         topMoreBtn.setImage(#imageLiteral(resourceName: "ICON-huodong"), for: .normal)
-        topMoreBtn.addTarget(self, action: #selector(topMoreBtnClick(_:)), for: .touchUpInside)
+//        topMoreBtn.addTarget(self, action: #selector(topMoreBtnClick(_:)), for: .touchUpInside)
         return topMoreBtn
         }()
     
@@ -42,6 +42,8 @@ class PlanView: UIView {
         let topRightImage = UIImageView()
         addSubview(topRightImage)
         topRightImage.backgroundColor = kHomeBackColor
+        topRightImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(topRightClick(_:))))
+        topRightImage.isUserInteractionEnabled = true
         return topRightImage
         }()
     
@@ -107,9 +109,27 @@ class PlanView: UIView {
     }
     
     @objc func imgClick(_ sender: UIGestureRecognizer) {
+        guard !dataArr[0].url.isEmpty else {
+            return
+        }
         let vc = ActivityCenterViewController()
         vc.url = dataArr[0].url
         vc.title = dataArr[0].title
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
+    }
+    
+    @objc func topRightClick(_ sender: UIGestureRecognizer) {
+        guard !dataArr[1].url.isEmpty else {
+            return
+        }
+        let vc = ActivityCenterViewController()
+        vc.url = dataArr[1].url
+        vc.title = dataArr[1].title
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

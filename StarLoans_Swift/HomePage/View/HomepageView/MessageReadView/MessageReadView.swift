@@ -16,7 +16,7 @@ class MessageReadView: UIView {
     lazy var topMoreBtn: UIButton = { [unowned self] in
         let topMoreBtn = UIButton()
         addSubview(topMoreBtn)
-        topMoreBtn.setTitle("热门新闻", for: .normal)
+        topMoreBtn.setTitle("热门新闻 >", for: .normal)
         topMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         topMoreBtn.setTitleColor(UIColor.RGB(with: 51, green: 51, blue: 51), for: .normal)
         topMoreBtn.setImage(#imageLiteral(resourceName: "ICON-hot"), for: .normal)
@@ -78,7 +78,13 @@ class MessageReadView: UIView {
     }
     
     @objc func topMoreBtnClick(_ sender: UIButton) {
-        print("更多资讯研读")
+        let vc = HotNewsListViewController()
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
     }
 }
 

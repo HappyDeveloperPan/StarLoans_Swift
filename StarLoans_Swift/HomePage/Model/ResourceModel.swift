@@ -33,6 +33,7 @@ class ResourceModel: NSObject {
         static let thumbnail_pic_s = "thumbnail_pic_s"              //小图
         static let thumbnail_pic_s02 = "thumbnail_pic_s02"          //图片1
         static let thumbnail_pic_s03 = "thumbnail_pic_s03"          //图片2
+        static let time = "time"                                    //时间
     }
     
     public var id: Int = 0
@@ -49,6 +50,7 @@ class ResourceModel: NSObject {
     public var thumbnail_pic_s: String = ""
     public var thumbnail_pic_s02: String = ""
     public var thumbnail_pic_s03: String = ""
+    public var time: String = ""
     
     public init(with json:JSON) {
         let appInfo = json
@@ -66,6 +68,7 @@ class ResourceModel: NSObject {
         self.thumbnail_pic_s = appInfo[Keys.thumbnail_pic_s].stringValue
         self.thumbnail_pic_s02 = appInfo[Keys.thumbnail_pic_s02].stringValue
         self.thumbnail_pic_s03 = appInfo[Keys.thumbnail_pic_s03].stringValue
+        self.time = appInfo[Keys.time].stringValue
     }
     
     override init() {

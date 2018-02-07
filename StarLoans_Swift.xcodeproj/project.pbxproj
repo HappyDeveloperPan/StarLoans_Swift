@@ -66,6 +66,8 @@
 		1C1376131FF27A02003EC987 /* LoansDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1376121FF27A02003EC987 /* LoansDetailViewController.storyboard */; };
 		1C1376151FF27C87003EC987 /* LoansProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1376141FF27C87003EC987 /* LoansProductView.swift */; };
 		1C1376171FF27CBB003EC987 /* LoansProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1376161FF27CBB003EC987 /* LoansProductView.xib */; };
+		1C17492E202980F80082EF50 /* HotNewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17492D202980F80082EF50 /* HotNewsListViewController.swift */; };
+		1C174930202993B10082EF50 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17492F202993B10082EF50 /* BaseWebViewController.swift */; };
 		1C1C1F931FDFBBFF00C71D73 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C1F921FDFBBFF00C71D73 /* ProductCollectionViewCell.swift */; };
 		1C1C1F961FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C1F941FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift */; };
 		1C1C1F971FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1C1F951FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib */; };
@@ -194,6 +196,9 @@
 		1C9961A91FF51C4900E4990C /* InputUserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9961A81FF51C4900E4990C /* InputUserInfoTableViewController.swift */; };
 		1C9A585C2024494C000E19E2 /* CommonProblemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9A585A2024494C000E19E2 /* CommonProblemCell.swift */; };
 		1C9A585D2024494C000E19E2 /* CommonProblemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C9A585B2024494C000E19E2 /* CommonProblemCell.xib */; };
+		1C9BFD98202803D5000C9142 /* CommonProblemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9BFD97202803D5000C9142 /* CommonProblemDetailViewController.swift */; };
+		1C9BFD9A202803DF000C9142 /* CommonProblemDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C9BFD99202803DF000C9142 /* CommonProblemDetailViewController.storyboard */; };
+		1C9BFD9C20280DCA000C9142 /* AboutWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9BFD9B20280DCA000C9142 /* AboutWebViewController.swift */; };
 		1C9EBBAD200D945B0022259A /* ComboBoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBAC200D945B0022259A /* ComboBoxModel.swift */; };
 		1C9EBBAF200DD7240022259A /* PushCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EBBAE200DD7240022259A /* PushCompleteViewController.swift */; };
 		1C9EBBB1200DD7320022259A /* PushCompleteViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C9EBBB0200DD7320022259A /* PushCompleteViewController.storyboard */; };
@@ -280,6 +285,8 @@
 		1CE3BF251FFCFC09003D6629 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF241FFCFC09003D6629 /* SettingTableViewController.swift */; };
 		1CE3BF271FFD02EC003D6629 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3BF261FFD02EC003D6629 /* ResetViewController.swift */; };
 		1CE3BF291FFD02FD003D6629 /* ResetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3BF281FFD02FD003D6629 /* ResetViewController.storyboard */; };
+		1CECDD46202AB18A000247B6 /* InformationShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CECDD45202AB18A000247B6 /* InformationShowViewController.swift */; };
+		1CECDD48202ACBDD000247B6 /* InformationShowViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CECDD47202ACBDD000247B6 /* InformationShowViewController.storyboard */; };
 		1CED7B551FDE798300AABDDE /* BusinessResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED7B541FDE798300AABDDE /* BusinessResourceViewController.swift */; };
 		1CED7B581FDE9DAC00AABDDE /* TeachCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED7B571FDE9DAC00AABDDE /* TeachCollectionViewCell.swift */; };
 		1CED7B5B1FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED7B591FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift */; };
@@ -378,6 +385,8 @@
 		1C1376121FF27A02003EC987 /* LoansDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoansDetailViewController.storyboard; sourceTree = "<group>"; };
 		1C1376141FF27C87003EC987 /* LoansProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansProductView.swift; sourceTree = "<group>"; };
 		1C1376161FF27CBB003EC987 /* LoansProductView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoansProductView.xib; sourceTree = "<group>"; };
+		1C17492D202980F80082EF50 /* HotNewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotNewsListViewController.swift; sourceTree = "<group>"; };
+		1C17492F202993B10082EF50 /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
 		1C1C1F921FDFBBFF00C71D73 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C1C1F941FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C1C1F951FDFBD1B00C71D73 /* ProductDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -513,6 +522,9 @@
 		1C9961A81FF51C4900E4990C /* InputUserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoTableViewController.swift; sourceTree = "<group>"; };
 		1C9A585A2024494C000E19E2 /* CommonProblemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProblemCell.swift; sourceTree = "<group>"; };
 		1C9A585B2024494C000E19E2 /* CommonProblemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonProblemCell.xib; sourceTree = "<group>"; };
+		1C9BFD97202803D5000C9142 /* CommonProblemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProblemDetailViewController.swift; sourceTree = "<group>"; };
+		1C9BFD99202803DF000C9142 /* CommonProblemDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommonProblemDetailViewController.storyboard; sourceTree = "<group>"; };
+		1C9BFD9B20280DCA000C9142 /* AboutWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWebViewController.swift; sourceTree = "<group>"; };
 		1C9EBBAC200D945B0022259A /* ComboBoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboBoxModel.swift; sourceTree = "<group>"; };
 		1C9EBBAE200DD7240022259A /* PushCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCompleteViewController.swift; sourceTree = "<group>"; };
 		1C9EBBB0200DD7320022259A /* PushCompleteViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PushCompleteViewController.storyboard; sourceTree = "<group>"; };
@@ -600,6 +612,8 @@
 		1CE3BF241FFCFC09003D6629 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		1CE3BF261FFD02EC003D6629 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
 		1CE3BF281FFD02FD003D6629 /* ResetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetViewController.storyboard; sourceTree = "<group>"; };
+		1CECDD45202AB18A000247B6 /* InformationShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationShowViewController.swift; sourceTree = "<group>"; };
+		1CECDD47202ACBDD000247B6 /* InformationShowViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InformationShowViewController.storyboard; sourceTree = "<group>"; };
 		1CED7B541FDE798300AABDDE /* BusinessResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessResourceViewController.swift; sourceTree = "<group>"; };
 		1CED7B571FDE9DAC00AABDDE /* TeachCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachCollectionViewCell.swift; sourceTree = "<group>"; };
 		1CED7B591FDEA73100AABDDE /* TeachDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachDetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -675,6 +689,7 @@
 			children = (
 				1C40662C1FB1A7EB009A59FD /* JSTabBarViewController.swift */,
 				1C1D945F1FE2732100F65049 /* BaseViewController.swift */,
+				1C17492F202993B10082EF50 /* BaseWebViewController.swift */,
 				1C6AD3A22016D1080022696A /* WelcomeViewController.swift */,
 				1C363A391FE0BD8D00D87014 /* AXDNavigationController.swift */,
 				1CF12AAA1FCD7C8F00474AFB /* AXDTabBarViewController.swift */,
@@ -807,7 +822,10 @@
 				1CE3BF171FFCF637003D6629 /* AboutViewController.swift */,
 				1CE3BF1B1FFCF828003D6629 /* AboutTableViewController.swift */,
 				1CE3BF191FFCF660003D6629 /* AboutViewController.storyboard */,
+				1C9BFD9B20280DCA000C9142 /* AboutWebViewController.swift */,
 				1CE3BF1D1FFCFA38003D6629 /* CommonProblemViewController.swift */,
+				1C9BFD97202803D5000C9142 /* CommonProblemDetailViewController.swift */,
+				1C9BFD99202803DF000C9142 /* CommonProblemDetailViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -887,6 +905,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1C17492C202980D80082EF50 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				1C17492D202980F80082EF50 /* HotNewsListViewController.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		1C1D94611FE277D700F65049 /* VideoCenterView */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +961,8 @@
 				1C1C1F9A1FDFD41A00C71D73 /* LoansCollegeViewController.swift */,
 				1C1C1F9E1FDFF5D000C71D73 /* LoansCollegeDetailViewController.swift */,
 				1C1C1FA21FDFF61400C71D73 /* LoansCollegeDetailViewController.storyboard */,
+				1CECDD45202AB18A000247B6 /* InformationShowViewController.swift */,
+				1CECDD47202ACBDD000247B6 /* InformationShowViewController.storyboard */,
 				1C363A3B1FE0D51B00D87014 /* PayCompleteViewController.swift */,
 				1C363A3D1FE0D53C00D87014 /* PayCompleteViewController.storyboard */,
 				1C363A3F1FE0F7E700D87014 /* SignInViewController.swift */,
@@ -949,6 +977,7 @@
 				1C6AD3A62017119E0022696A /* SearchViewController.swift */,
 				1CE3BF161FFCF553003D6629 /* QuickBill */,
 				1C4388522014664100E73C85 /* ActivityCenter */,
+				1C17492C202980D80082EF50 /* New Group */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1570,6 +1599,8 @@
 			files = (
 				1C06E4161FFB35B400B46A10 /* InfoDetailViewController.storyboard in Resources */,
 				1CE3BF0F1FFCCFF8003D6629 /* DBPayCompleteViewController.storyboard in Resources */,
+				1C9BFD9A202803DF000C9142 /* CommonProblemDetailViewController.storyboard in Resources */,
+				1CECDD48202ACBDD000247B6 /* InformationShowViewController.storyboard in Resources */,
 				1C1376171FF27CBB003EC987 /* LoansProductView.xib in Resources */,
 				1C857C821FFDBFBB009F45EE /* SettingInformAdminViewController.storyboard in Resources */,
 				1C4066091FB190C8009A59FD /* LaunchScreen.storyboard in Resources */,
@@ -1873,6 +1904,7 @@
 				1C857C871FFDD6C6009F45EE /* UserDataViewController.swift in Sources */,
 				1C4066371FB1B0ED009A59FD /* LoginViewController.swift in Sources */,
 				1C6AD3A32016D1080022696A /* WelcomeViewController.swift in Sources */,
+				1CECDD46202AB18A000247B6 /* InformationShowViewController.swift in Sources */,
 				1CE3BF181FFCF637003D6629 /* AboutViewController.swift in Sources */,
 				1C9961A31FF4EB4600E4990C /* AuthorizationViewController.swift in Sources */,
 				1C06E4141FFB359C00B46A10 /* InfoDetailViewController.swift in Sources */,
@@ -1936,10 +1968,12 @@
 				1C014A0E2019BAA500AD3FB6 /* ManagerBillApprovalFiveViewController.swift in Sources */,
 				1C6D2BE8200C90D9003E4501 /* LoanManagerApproveViewController.swift in Sources */,
 				1C6AD3A72017119E0022696A /* SearchViewController.swift in Sources */,
+				1C9BFD98202803D5000C9142 /* CommonProblemDetailViewController.swift in Sources */,
 				1C609DB91FE7EA24004D4E54 /* MoneyDetailTableViewCell.swift in Sources */,
 				1CD0B4231FE9148700A4A796 /* YHAlertView.swift in Sources */,
 				1CC1CFE32010C3C400B2046C /* AnimationButton.swift in Sources */,
 				1CE3BF091FFCC5D7003D6629 /* QBDUserInfoTableViewController.swift in Sources */,
+				1C17492E202980F80082EF50 /* HotNewsListViewController.swift in Sources */,
 				1CED7B551FDE798300AABDDE /* BusinessResourceViewController.swift in Sources */,
 				1CA5D10120186282009218C9 /* ChoiceBankCardViewController.swift in Sources */,
 				1CD0B4171FE8AF9C00A4A796 /* BindingCardFirstViewController.swift in Sources */,
@@ -2034,6 +2068,7 @@
 				1CBFFBA81FE4ED1B00E89B7E /* UICollectionView+Extension.swift in Sources */,
 				1C8442561FC96BB6005BE65C /* VerifyViewController.swift in Sources */,
 				1C8531DB1FDBC7C7009713A7 /* SegmentCollectionViewCell.swift in Sources */,
+				1C174930202993B10082EF50 /* BaseWebViewController.swift in Sources */,
 				1C9EBBAD200D945B0022259A /* ComboBoxModel.swift in Sources */,
 				1C0892201FC43D2500E2320E /* ForgetViewController.swift in Sources */,
 				1C609DA81FE7B905004D4E54 /* BankCardViewController.swift in Sources */,
@@ -2050,6 +2085,7 @@
 				1C857C981FFE2EAA009F45EE /* VStoreCustomFlowLayout.swift in Sources */,
 				1CE3BF0B1FFCC617003D6629 /* QBDPropertyTableViewController.swift in Sources */,
 				1C551D4C2009BAF500742066 /* QuestionModel.swift in Sources */,
+				1C9BFD9C20280DCA000C9142 /* AboutWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

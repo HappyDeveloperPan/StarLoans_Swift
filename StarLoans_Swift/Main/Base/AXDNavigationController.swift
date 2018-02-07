@@ -57,12 +57,21 @@ class AXDNavigationController: UINavigationController {
             
 //            UINavigationBar.appearance().backItem?.hidesBackButton = false
             viewController.hidesBottomBarWhenPushed = true
-            viewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+//            viewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ICON-comback"), style: .plain, target: self, action: #selector(backVC))
             viewController.hidesBottomBarWhenPushed = true
         }
         
         super.pushViewController(viewController, animated: animated)
     }
     
+}
+
+extension AXDNavigationController {
+    ///JS调用原生返回上一级界面
+    @objc func backVC() {
+//        navigationController?.popViewController(animated: true)
+        popViewController(animated: true)
+    }
 }
 

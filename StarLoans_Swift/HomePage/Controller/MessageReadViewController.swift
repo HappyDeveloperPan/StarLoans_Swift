@@ -111,9 +111,9 @@ extension MessageReadViewController {
         NetWorksManager.requst(with: kUrl_LoanCollege, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
                 if let dataArr = jsonData?["data"].array {
-                    var cellDataArr = [MessageReadModel]()
+                    var cellDataArr = [ResourceModel]()
                     for dict in dataArr {
-                        cellDataArr.append(MessageReadModel(with: dict))
+                        cellDataArr.append(ResourceModel(with: dict))
                     }
                     cell.cellArr = cellDataArr
                 }

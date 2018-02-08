@@ -48,12 +48,13 @@ class MessageTableViewCell: UITableViewCell, RegisterCellOrNib {
 }
 
 extension MessageTableViewCell {
-    func setMessageReadData(with cellData: MessageReadModel) {
+    func setMessageReadData(with cellData: ResourceModel) {
         //TODO: - 图片地址拼接要改
-        messImageView.setImage(with: cellData.image_video)
+//        messImageView.setImage(with: cellData.image_video)
+        messImageView.setImage(with: picAdress + cellData.image_video)
         contentLB.text = cellData.title
         readNumber.text = String(cellData.reading_number)
-        timeLB.text = cellData.date_time
+        timeLB.text = cellData.time
     }
     ///设置热点新闻数据
     func setHotNewsData(_ cellData: ResourceModel) {

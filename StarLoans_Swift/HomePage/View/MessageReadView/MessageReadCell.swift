@@ -16,7 +16,7 @@ class MessageReadCell: UICollectionViewCell{
     //MARK: - 可操作数据
     weak var delegate: MessageReadCellDelegate?
     var type: MessageReadType = .businessHot
-    var cellArr: [MessageReadModel] = [MessageReadModel]() {
+    var cellArr: [ResourceModel] = [ResourceModel]() {
         didSet {
             tableView.reloadData()
         }
@@ -25,7 +25,7 @@ class MessageReadCell: UICollectionViewCell{
     lazy var tableView: UITableView = { [unowned self] in
         let tableView = UITableView()
         addSubview(tableView)
-        tableView.backgroundColor = kHomeBackColor
+        tableView.backgroundColor = UIColor.white
         tableView.pan_registerCell(cell: MessageTableViewCell.self)
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -72,7 +72,9 @@ extension MessageReadCell: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = MessageDetailViewController.loadStoryboard()
+        let vc = InformationShowViewController.loadStoryboard()
+        vc.title = "资讯详情"
+        vc.resourceModel = cellArr[indexPath.row]
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

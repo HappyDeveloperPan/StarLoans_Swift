@@ -134,18 +134,12 @@ extension LoansCollegeViewController {
         NetWorksManager.requst(with: kUrl_LoanCollege, type: .post, parameters: parameters) { (jsonData, error) in
             if jsonData?["status"] == 200 {
                 if let dataArr = jsonData?["data"].array {
-                    var cellDataArr = [LoansCollegeModel]()
+                    var cellDataArr = [ResourceModel]()
                     for dict in dataArr {
-                        cellDataArr.append(LoansCollegeModel(with: dict))
+                        cellDataArr.append(ResourceModel(with: dict))
                     }
                     cell.cellArr = cellDataArr
                 }
-                
-//                var cellArr = [LoansCollegeModel]()
-//                for dict in (jsonData?["data"].array)! {
-//                    cellArr.append(LoansCollegeModel(with: dict))
-//                }
-//                cell.cellArr = cellArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -164,11 +158,11 @@ extension LoansCollegeViewController {
 extension LoansCollegeViewController: TopAdverViewDelegate {
     /// 点击图片回调
     func topAdverViewDidSelect(at index: Int, cycleScrollView: WRCycleScrollView) {
-        print("点击了第\(index+1)个图片")
+//        print("点击了第\(index+1)个图片")
     }
     /// 图片滚动回调
     func topAdverViewDidScroll(to index: Int, cycleScrollView: WRCycleScrollView) {
-        print("滚动到了第\(index+1)个图片")
+//        print("滚动到了第\(index+1)个图片")
     }
 }
 

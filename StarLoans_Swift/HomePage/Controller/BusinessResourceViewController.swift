@@ -13,7 +13,7 @@ fileprivate let clientListCellId = "ClientListCollectionViewCell"
 fileprivate let productCellID = "ProductCollectionViewCell"
 
 //MARK: - 界面部分
-class BusinessResourceViewController: UIViewController {
+class BusinessResourceViewController: BaseViewController {
 
     //MARK: - 可操作数据
     ///广告栏数据
@@ -77,7 +77,6 @@ class BusinessResourceViewController: UIViewController {
         super.viewDidLoad()
         title = "行业资源"
         view.backgroundColor = UIColor.white
-        setNavigationBarConfig()
         topAdBannerView.localImgArray = adverList
     }
 
@@ -134,12 +133,6 @@ extension BusinessResourceViewController {
                     }
                     cell.cellDataArr = cellDataArr
                 }
-//                var cellDataArr = [ResourceModel]()
-//                for dict in (jsonData?["data"].array)! {
-//                    cellDataArr.append(ResourceModel(with: dict))
-//                }
-//                cell.cellDataArr = cellDataArr
-                
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -167,11 +160,6 @@ extension BusinessResourceViewController {
                     }
                     cell.cellDataArr = cellDataArr
                 }
-//                var cellDataArr = [ClientInfoModel]()
-//                for dict in (jsonData?["data"].array)! {
-//                    cellDataArr.append(ClientInfoModel(with: dict))
-//                }
-//                cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {
@@ -198,12 +186,6 @@ extension BusinessResourceViewController {
                     }
                     cell.cellDataArr = cellDataArr
                 }
-                
-//                var cellDataArr = [ProductModel]()
-//                for dict in (jsonData?["data"].array)! {
-//                    cellDataArr.append(ProductModel(with: dict))
-//                }
-//                cell.cellDataArr = cellDataArr
             }else {
                 if error == nil {
                     if let msg = jsonData?["msg_zhcn"].stringValue {

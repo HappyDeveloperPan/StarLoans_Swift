@@ -20,7 +20,7 @@ class LoansCollegeCollectionViewCell: UICollectionViewCell, RegisterCellOrNib {
     //MARK: - 可操作数据
     weak var delegate: LoansCollegeCollectionViewCellDelegate?
     var type: loansCollegeType = .newcomerGuide
-    var cellArr: [LoansCollegeModel] = [LoansCollegeModel]() {
+    var cellArr: [ResourceModel] = [ResourceModel]() {
         didSet {
             collectionView.reloadData()
         }
@@ -80,8 +80,10 @@ extension LoansCollegeCollectionViewCell: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = LoansCollegeDetailViewController.loadStoryboard()
+//        let vc = LoansCollegeDetailViewController.loadStoryboard()
+        let vc = InformationShowViewController.loadStoryboard()
         vc.title = "推单教学"
+        vc.resourceModel = cellArr[indexPath.row]
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)

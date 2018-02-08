@@ -28,7 +28,8 @@ class ActivityCenterViewController: BaseViewController {
         let progressView = UIProgressView()
         progressView.progressTintColor = kMainColor
         progressView.trackTintColor = UIColor.white
-        self.navigationController?.navigationBar.addSubview(progressView)
+//        self.navigationController?.navigationBar.addSubview(progressView)
+        self.view.addSubview(progressView)
         return progressView
     }()
     
@@ -48,7 +49,7 @@ class ActivityCenterViewController: BaseViewController {
     override func viewWillLayoutSubviews() {
         super .viewWillLayoutSubviews()
         progressView.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalToSuperview()
+            make.top.left.right.equalToSuperview()
             make.height.equalTo(2)
         }
         
@@ -69,6 +70,7 @@ class ActivityCenterViewController: BaseViewController {
     deinit {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
         progressView.reloadInputViews()
+        progressView.removeFromSuperview()
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

@@ -28,41 +28,28 @@
                                             <constraint firstAttribute="height" constant="0.5" id="8hV-lv-HRO"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdZ-HC-Lry">
-                                        <rect key="frame" x="0.0" y="0.5" width="111" height="63.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="认证免费播放">
-                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="freePlayClick:" destination="K8j-4X-Xoe" eventType="touchUpInside" id="7fD-oE-OEG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hO8-ss-yEn">
-                                        <rect key="frame" x="136" y="0.5" width="103" height="63.5"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdZ-HC-Lry">
+                                        <rect key="frame" x="0.0" y="0.5" width="375" height="63.5"/>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.21960784310000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="支付2元播放">
+                                        <state key="normal" title="认证播放">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="payPlayClick:" destination="K8j-4X-Xoe" eventType="touchUpInside" id="mk6-W7-ouF"/>
+                                            <action selector="freePlayClick:" destination="K8j-4X-Xoe" eventType="touchUpInside" id="7fD-oE-OEG"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="0Nt-dK-IYX"/>
-                                    <constraint firstAttribute="trailing" secondItem="hO8-ss-yEn" secondAttribute="trailing" id="HLJ-rZ-ez3"/>
+                                    <constraint firstItem="UdZ-HC-Lry" firstAttribute="top" secondItem="1yy-1d-ImV" secondAttribute="bottom" id="BJq-6l-5HS"/>
+                                    <constraint firstItem="UdZ-HC-Lry" firstAttribute="leading" secondItem="7FA-vI-NC9" secondAttribute="leading" id="Ccc-3v-PK8"/>
+                                    <constraint firstAttribute="bottom" secondItem="UdZ-HC-Lry" secondAttribute="bottom" id="DdO-sm-jhC"/>
                                     <constraint firstAttribute="trailing" secondItem="1yy-1d-ImV" secondAttribute="trailing" id="LIH-Pd-8e6"/>
+                                    <constraint firstAttribute="trailing" secondItem="UdZ-HC-Lry" secondAttribute="trailing" id="M2s-Zg-l9g"/>
                                     <constraint firstItem="1yy-1d-ImV" firstAttribute="leading" secondItem="7FA-vI-NC9" secondAttribute="leading" id="QaY-Mi-L2a"/>
                                     <constraint firstItem="1yy-1d-ImV" firstAttribute="top" secondItem="7FA-vI-NC9" secondAttribute="top" id="RJk-vR-45P"/>
-                                    <constraint firstItem="hO8-ss-yEn" firstAttribute="top" secondItem="1yy-1d-ImV" secondAttribute="bottom" id="jDp-rt-c2x"/>
-                                    <constraint firstItem="UdZ-HC-Lry" firstAttribute="leading" secondItem="7FA-vI-NC9" secondAttribute="leading" id="mPk-sd-qLC"/>
-                                    <constraint firstAttribute="bottom" secondItem="hO8-ss-yEn" secondAttribute="bottom" id="naA-J0-SS9"/>
-                                    <constraint firstItem="hO8-ss-yEn" firstAttribute="leading" secondItem="UdZ-HC-Lry" secondAttribute="trailing" id="oke-cs-EH8"/>
-                                    <constraint firstItem="UdZ-HC-Lry" firstAttribute="top" secondItem="1yy-1d-ImV" secondAttribute="bottom" id="sx0-Yy-ndQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="UdZ-HC-Lry" secondAttribute="bottom" id="tIc-3c-fbQ"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOS-nQ-1Qh">
@@ -376,7 +363,6 @@
                         <outlet property="mainGuestContent" destination="k82-6h-sh6" id="CDe-kk-tv8"/>
                         <outlet property="mainGuestLb" destination="ckR-Xm-x3R" id="8eS-lC-8rh"/>
                         <outlet property="mainView" destination="8B9-5y-Xla" id="rC8-gv-PjM"/>
-                        <outlet property="payPlayBtn" destination="hO8-ss-yEn" id="jmu-2h-2Az"/>
                         <outlet property="readNumLB" destination="Hm0-ze-nGf" id="92Y-M4-twd"/>
                         <outlet property="sponsorContent" destination="MmZ-Iy-8VO" id="M5V-EW-Qux"/>
                         <outlet property="sponsorLB" destination="Y6b-DM-NY6" id="Iak-37-Wr1"/>

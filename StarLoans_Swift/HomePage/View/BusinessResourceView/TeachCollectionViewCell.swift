@@ -75,7 +75,9 @@ extension TeachCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = LoansCollegeDetailViewController.loadStoryboard()
+//        let vc = LoansCollegeDetailViewController.loadStoryboard()
+        let vc = InformationShowViewController.loadStoryboard()
+        vc.title = "进件教程"
         vc.resourceModel = cellDataArr[indexPath.row]
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{

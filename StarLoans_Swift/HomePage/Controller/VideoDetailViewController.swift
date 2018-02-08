@@ -34,7 +34,6 @@ class VideoDetailViewController: BaseViewController, StoryboardLoadable {
     @IBOutlet weak var videoIntroLB: UILabel!
     @IBOutlet weak var videoIntroContent: UILabel!
     @IBOutlet weak var freePlayBtn: UIButton!
-    @IBOutlet weak var payPlayBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +43,8 @@ class VideoDetailViewController: BaseViewController, StoryboardLoadable {
     }
     
     func setupBasic() {
+        videoImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(videoImgClick(_:))))
+        videoImg.isUserInteractionEnabled = true
         videoTypeLB.layer.backgroundColor = UIColor.RGB(with: 248, green: 225, blue: 225).cgColor
         videoTypeLB.layer.cornerRadius = videoTypeLB.height/2
         readNumLB.sizeToFit()
@@ -74,12 +75,40 @@ class VideoDetailViewController: BaseViewController, StoryboardLoadable {
     }
     
     @IBAction func freePlayClick(_ sender: UIButton) {
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            return
+        }
+        guard UserManager.shareManager.userModel.is_audit == 4 else {
+            
+            if UserManager.shareManager.userModel.is_audit == 2{
+                JSProgress.showFailStatus(with: "审核中")
+            }else {
+                let vc = ApproveSelectViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            return
+        }
         let vc = VideoPlayViewController()
         vc.videoModel = videoModel
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func payPlayClick(_ sender: UIButton) {
+    @objc func videoImgClick(_ sender: UIGestureRecognizer) {
+        guard UserManager.shareManager.isLogin else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPresentLogin), object: nil)
+            return
+        }
+        guard UserManager.shareManager.userModel.is_audit == 4 else {
+            
+            if UserManager.shareManager.userModel.is_audit == 2{
+                JSProgress.showFailStatus(with: "审核中")
+            }else {
+                let vc = ApproveSelectViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            return
+        }
         let vc = VideoPlayViewController()
         vc.videoModel = videoModel
         navigationController?.pushViewController(vc, animated: true)
@@ -111,7 +140,6 @@ extension VideoDetailViewController {
                     self?.mainGuestContent.text = self?.videoModel.video_speakers
                     self?.durationContent.text = self?.videoModel.video_duration
                     self?.videoIntroContent.text = self?.videoModel.video_desc
-                    self?.payPlayBtn.setTitle("支付" + String((self?.videoModel.video_price)!) + "元播放", for: .normal)
                 }
                 
             }else {

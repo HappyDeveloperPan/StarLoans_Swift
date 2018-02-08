@@ -33,7 +33,8 @@ class InformationShowViewController: BaseViewController, StoryboardLoadable {
         let progressView = UIProgressView()
         progressView.progressTintColor = kMainColor
         progressView.trackTintColor = UIColor.white
-        self.navigationController?.navigationBar.addSubview(progressView)
+//        self.navigationController?.navigationBar.addSubview(progressView)
+        self.view.addSubview(progressView)
         return progressView
     }()
     
@@ -44,12 +45,14 @@ class InformationShowViewController: BaseViewController, StoryboardLoadable {
         if resourceModel.url.judgeURL() {
             webView.load(URLRequest(url: URL(string: resourceModel.url)!))
         }
+//        webView.load(URLRequest(url: URL(string: "https://www.baidu.com")!))
     }
     
     func setBasicData() {
         titleLB.text = resourceModel.title
         readNumLB.text = String(resourceModel.reading_number)
-        
+        formLB.text = resourceModel.coming_from
+        timeLB.text = resourceModel.time
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,11 +63,10 @@ class InformationShowViewController: BaseViewController, StoryboardLoadable {
     override func viewWillLayoutSubviews() {
         super .viewWillLayoutSubviews()
         progressView.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalToSuperview()
+            make.top.left.right.equalToSuperview()
             make.height.equalTo(2)
         }
         webView.snp.makeConstraints { (make) in
-//            make.edges.equalToSuperview()
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(formLB.snp.bottom).offset(16)
         }
@@ -82,6 +84,7 @@ class InformationShowViewController: BaseViewController, StoryboardLoadable {
     deinit {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
         progressView.reloadInputViews()
+//        progressView.removeFromSuperview()
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

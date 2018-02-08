@@ -28,7 +28,8 @@ class BaseWebViewController: BaseViewController {
         let progressView = UIProgressView()
         progressView.progressTintColor = kMainColor
         progressView.trackTintColor = UIColor.white
-        self.navigationController?.navigationBar.addSubview(progressView)
+//        self.navigationController?.navigationBar.addSubview(progressView)
+        self.view.addSubview(progressView)
         return progressView
         }()
     

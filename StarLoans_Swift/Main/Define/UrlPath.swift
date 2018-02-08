@@ -144,6 +144,28 @@ public let kUrl_AddApprove = hostAdress + "/Home/MobileCenter/centerAuthInfo"
 ///所属门店
 public let kUrl_ApproveStore = hostAdress + "/Home/MobileCenter/centerBelongStore"
 
+///客户经理个人首页
+public let kUrl_ManagerHomePage = hostAdress + "/Home/MobileOrder/managerOrderTotal"
+///客户经理微店订单列表
+public let kUrl_ManagerOrderList = hostAdress + "/Home/MobileOrder/managerOrderList"
+///微店订单受理
+public let kUrl_ManagerOrderHandle = hostAdress + "/Home/MobileOrder/managerOrderHandle"
+///微店初审通过
+public let kUrl_ManagerOrderFeedback = hostAdress + "/Home/MobileOrder/managerOrderFeedback"
+///微店提交资料
+public let kUrl_ManagerOrderFurtherInfo = hostAdress + "/Home/MobileOrder/managerOrderFurtherInfo"
+///微店审批通过
+public let kUrl_ManagerOrderPass = hostAdress + "/Home/MobileOrder/managerOrderPass"
+///微店审批不通过
+public let kUrl_ManagerOrderNoPass = hostAdress + "/Home/MobileOrder/managerOrderNoPass"
+///微店抵押
+public let kUrl_ManagerOrderMortgage = hostAdress + "/Home/MobileOrder/managerOrderMortgage"
+///微店放款
+public let kUrl_ManagerOrderLending = hostAdress + "/Home/MobileOrder/managerOrderLending"
+
+///经纪人微店订单列表
+public let kUrl_BrokerOrderList = hostAdress + "/Home/MobileOrder/orderList"
+
 //MARK: - 支付接口
 ///调取微信支付
 public let kUrl_WeChatPay = hostAdress + "/Home/MobileWxPreorder/index"

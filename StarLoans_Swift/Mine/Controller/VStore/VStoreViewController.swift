@@ -17,14 +17,21 @@ enum VStoreType {
 }
 
 class VStoreViewController: BaseViewController, StoryboardLoadable {
+    //MARK: - Storyboard连线
     @IBOutlet weak var headIMg: UIImageView!
     @IBOutlet weak var userNameLB: UILabel!
     @IBOutlet weak var userTypeLB: UILabel!
     @IBOutlet weak var makeMoneyLB: UILabel!
     @IBOutlet weak var loanLB: UILabel!
     @IBOutlet weak var funcView: UIView!
-    //MARK: - 可操作数据
+    
+    //MARK: - 外部属性
     var storeType: VStoreType = .broker
+    
+    //MARK: - 内部属性
+    fileprivate var VStoreModel = UserModel()
+    fileprivate var orderArr = [Int]()
+    
     //MARK: - 懒加载
     lazy var layout: UICollectionViewFlowLayout = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -56,6 +63,7 @@ class VStoreViewController: BaseViewController, StoryboardLoadable {
         title = "微店订单"
         setupBasic()
         setupBasicData()
+        getVStoreData()
     }
     
     func setupBasic() {
@@ -98,6 +106,37 @@ class VStoreViewController: BaseViewController, StoryboardLoadable {
     }
 }
 
+//MARK: - VStoreViewController {
+extension VStoreViewController {
+    ///获取微店订单数据
+    func getVStoreData() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        NetWorksManager.requst(with: kUrl_ManagerHomePage, type: .post, parameters: parameters) { [weak self] (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                if let data = jsonData?["data"][0] {
+                    self?.VStoreModel = UserModel(with: data)
+                    self?.orderArr.append((self?.VStoreModel.waitHandle)!)
+                    self?.orderArr.append((self?.VStoreModel.waitFeedback)!)
+                    self?.orderArr.append((self?.VStoreModel.waitApprove)!)
+                    self?.orderArr.append((self?.VStoreModel.waitPay)!)
+                    self?.orderArr.append((self?.VStoreModel.noPass)!)
+                    self?.orderArr.append((self?.VStoreModel.finish)!)
+                    self?.collectionView.reloadData()
+                }
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
+}
+
 //MARK: - UICollectionView代理
 extension VStoreViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -108,9 +147,15 @@ extension VStoreViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.pan_dequeueReusableCell(indexPath: indexPath) as VStoreFuncCollectionViewCell
         if storeType == .broker {
             cell.titleLB.text = brokerFuncArr[indexPath.row]
+            if orderArr.count == 6 {
+                cell.contentLB.text = String(orderArr[indexPath.row])
+            }
         }
         if storeType == .manager {
             cell.titleLB.text = managerFuncArr[indexPath.row]
+            if orderArr.count == 6 {
+                cell.contentLB.text = String(orderArr[indexPath.row])
+            }
         }
         return cell
     }

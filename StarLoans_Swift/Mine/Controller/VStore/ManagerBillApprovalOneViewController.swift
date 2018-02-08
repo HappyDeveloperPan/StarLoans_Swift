@@ -48,7 +48,10 @@ class ManagerBillApprovalOneViewController: BaseViewController, StoryboardLoadab
     
     //MARK: - 控件点击事件
     @IBAction func detaliBtnClick(_ sender: UIButton) {
+        let vc = BaseWebViewController()
+        vc.title = "客户详情"
         
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func commitBtnClick(_ sender: AnimatableButton) {

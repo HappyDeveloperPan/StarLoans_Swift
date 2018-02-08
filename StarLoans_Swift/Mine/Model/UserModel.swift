@@ -52,6 +52,13 @@ class UserModel: NSObject {
         static let question_id = "question_id"                  //问题id
         static let question = "question"                        //问题标题
         static let answer = "answer"                            //回答问题
+        static let waitHandle = "waitHandle"                    //待受理
+        static let waitFeedback = "waitFeedback"                //待反馈
+        static let waitApprove = "waitApprove"                  //待审批
+        static let waitMortgage = "waitMortgage"                //待抵押
+        static let waitPay = "waitPay"                          //待放款
+        static let noPass = "noPass"                            //未通过
+        static let finish = "finish"                            //已完成
     }
     
     public var id: Int = 0
@@ -94,6 +101,13 @@ class UserModel: NSObject {
     public var question_id: Int = 0
     public var question: String = ""
     public var answer: String = ""
+    public var waitHandle: Int = 0
+    public var waitFeedback: Int = 0
+    public var waitApprove: Int = 0
+    public var waitMortgage: Int = 0
+    public var waitPay: Int = 0
+    public var noPass: Int = 0
+    public var finish: Int = 0
     
     public init(with json:JSON) {
         let appInfo = json
@@ -137,6 +151,13 @@ class UserModel: NSObject {
         self.question_id = appInfo[Keys.question_id].intValue
         self.question = appInfo[Keys.question].stringValue
         self.answer = appInfo[Keys.answer].stringValue
+        self.waitHandle = appInfo[Keys.waitHandle].intValue
+        self.waitFeedback = appInfo[Keys.waitFeedback].intValue
+        self.waitApprove = appInfo[Keys.waitApprove].intValue
+        self.waitMortgage = appInfo[Keys.waitMortgage].intValue
+        self.waitPay = appInfo[Keys.waitPay].intValue
+        self.noPass = appInfo[Keys.noPass].intValue
+        self.finish = appInfo[Keys.finish].intValue
     }
 
     override init() {

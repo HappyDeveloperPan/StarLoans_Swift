@@ -42,6 +42,7 @@ class VStoreListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = kHomeBackColor
+        getVStoreListData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -57,6 +58,30 @@ class VStoreListViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+}
+
+//MARK: - 数据处理
+extension VStoreListViewController {
+    ///获取微店订单数据
+    func getVStoreListData() {
+        var parameters = [String: Any]()
+        parameters["token"] = UserManager.shareManager.userModel.token
+        parameters["page"] = 1
+        parameters["order_type"] = 1
+        NetWorksManager.requst(with: kUrl_ManagerOrderList, type: .post, parameters: parameters) { (jsonData, error) in
+            if jsonData?["status"] == 200 {
+                
+            }else {
+                if error == nil {
+                    if let msg = jsonData?["msg_zhcn"].stringValue {
+                        JSProgress.showFailStatus(with: msg)
+                    }
+                }else {
+                    JSProgress.showFailStatus(with: "请求失败")
+                }
+            }
+        }
+    }
 }
 
 //MARK: - UICollectionView代理

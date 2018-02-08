@@ -95,7 +95,6 @@ extension BaseWebViewController {
 
 //MARK: - WKWebView代理
 extension BaseWebViewController: WKUIDelegate, WKNavigationDelegate, UINavigationControllerDelegate {
-    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         progressView.setProgress(0.0, animated: false)
     }

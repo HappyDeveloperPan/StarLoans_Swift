@@ -356,17 +356,6 @@ extension HomePageViewController {
     func getTopBannerData() {
         NetWorksManager.requst(with: kUrl_HomePageTopBanner, type: .post, parameters: nil) { [weak self] (jsonData, error) in
             if jsonData?["status"] == 200 {
-//                var bannerArr = [String]()
-//                for index in 0...2 {
-//                    if !(jsonData!["data"][index].isEmpty) {
-//                        let bannerModel = BannerModel(with: jsonData!["data"][index])
-//                        bannerArr.append(bannerModel.image)
-//                    }else {
-//                        bannerArr.append("")
-//                    }
-//                }
-//                self?.topAdBannerView.serverImgArray = bannerArr
-                
                 if let data = jsonData?["data"].array {
                     var bannerArr = [String]()
                     for index in 0...2 {
@@ -420,9 +409,9 @@ extension HomePageViewController {
             if jsonData?["status"] == 200 {
                 
                 if let data = jsonData?["data"].array {
-                    var cellArr = [ProductAgencyModel]()
+                    var cellArr = [ProductModel]()
                     for dict in data {
-                        cellArr.append(ProductAgencyModel(with: dict))
+                        cellArr.append(ProductModel(with: dict))
                     }
                     self?.hotAgencyView.cellDataArr = cellArr
                 }
@@ -586,6 +575,8 @@ extension HomePageViewController: FunctionViewDelegate {
         case 2:
             let vc = LoansCollegeViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            JSProgress.showInfoWithStatus(with: "功能暂未开放")
         case 4:
             let vc = SignInViewController.loadStoryboard()
             navigationController?.pushViewController(vc, animated: true)

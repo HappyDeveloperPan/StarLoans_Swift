@@ -335,10 +335,10 @@ class HotAgencyCollectionViewCell: UICollectionViewCell {
 }
 
 extension HotAgencyCollectionViewCell {
-    func setHotAgencyData(with cellModel: ProductAgencyModel) {
+    func setHotAgencyData(with cellModel: ProductModel) {
         topCenterLB.text = cellModel.product
         centerPriceLB.text = cellModel.quota
-        lbContentLb.text = cellModel.return_commission + "%"
+        lbContentLb.text = String(cellModel.return_commission) + "%"
         cbContentLb.text = String(cellModel.claim_amount) + "万"
         rbContentLb.text = String(cellModel.leader_number) + "人"
     }

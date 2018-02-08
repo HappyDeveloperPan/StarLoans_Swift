@@ -51,7 +51,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     lazy var countDownLB: UILabel = { [unowned self] in
         let countDownLB = UILabel()
         backImg.addSubview(countDownLB)
-        countDownLB.text = "倒计时: 23: 59: 59"
+//        countDownLB.text = "倒计时: 23: 59: 59"
         countDownLB.textColor = UIColor.white
         countDownLB.font = UIFont.systemFont(ofSize: 12)
         countDownLB.textAlignment = .center
@@ -62,7 +62,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     lazy var bottomLB: UILabel = { [unowned self] in
         let bottomLB = UILabel()
         backImg.addSubview(bottomLB)
-        bottomLB.text = "这段话以后要删掉!"
+//        bottomLB.text = "这段话以后要删掉!"
         bottomLB.textColor = UIColor.white
         bottomLB.font = UIFont.systemFont(ofSize: 14)
         bottomLB.textAlignment = .center

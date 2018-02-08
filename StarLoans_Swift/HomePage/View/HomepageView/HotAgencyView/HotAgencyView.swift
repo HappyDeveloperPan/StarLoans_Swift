@@ -18,7 +18,7 @@ class HotAgencyView: UIView {
     var productList: Array<String> = ["http://p.lrlz.com/data/upload/mobile/special/s252/s252_05471521705899113.png",
                                       "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
                                       "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
-    var cellDataArr: [ProductAgencyModel] = [ProductAgencyModel]() {
+    var cellDataArr: [ProductModel] = [ProductModel]() {
         didSet {
             productCollectionView.reloadData()
         }
@@ -127,9 +127,9 @@ extension HotAgencyView: UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! HotAgencyCollectionViewCell
-        let cellModel: ProductAgencyModel
+        let cellModel: ProductModel
         if cellDataArr.count == 0 {
-            cellModel = ProductAgencyModel()
+            cellModel = ProductModel()
         }else {
             cellModel = cellDataArr[indexPath.item%cellDataArr.count]
         }
@@ -139,6 +139,15 @@ extension HotAgencyView: UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = LoansDetailViewController.loadStoryboard()
+        let cellModel: ProductModel
+        if cellDataArr.count == 0 {
+            cellModel = ProductModel()
+        }else {
+            cellModel = cellDataArr[indexPath.item%cellDataArr.count]
+        }
+        vc.loansProductType = .selfSupport
+        vc.productModel = cellModel
+        vc.productModel.product_id = cellModel.id
         let topViewController = Utils.currentTopViewController()
         if topViewController?.navigationController != nil{
             topViewController?.navigationController?.pushViewController(vc, animated: true)
@@ -172,7 +181,7 @@ extension HotAgencyView: UICollectionViewDelegate, UICollectionViewDataSource, U
 extension HotAgencyView: UIScrollViewDelegate {
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         contentOffsetX = scrollView.contentOffset.x
-        print(contentOffsetX)
+//        print(contentOffsetX)
     }
     
     //滑动减速时触发的代理，当用户用力滑动或者清扫时触发
@@ -206,7 +215,7 @@ extension HotAgencyView: UIScrollViewDelegate {
     
     func scrollOnePage(with scrollView: UIScrollView) {
         let curItem = Int((scrollView.contentOffset.x + cellSpace) / (cellWidth + cellSpace))
-        print("当前item:\(curItem)")
+//        print("当前item:\(curItem)")
         if scrollView.contentOffset.x > contentOffsetX {
             if curItem == (itemsInSection - 2) {
                 changeToFirstCycleCell(animated: false, collectionView: productCollectionView)

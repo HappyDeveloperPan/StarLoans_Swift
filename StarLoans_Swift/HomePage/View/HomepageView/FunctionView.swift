@@ -80,7 +80,7 @@ class FunctionView: UIView {
     
     //按钮点击
     @objc func funcBtnClick(_ button: UIButton) {
-        print("第\(button.tag)个按钮被点击了")
+//        print("第\(button.tag)个按钮被点击了")
         delegate?.buttonDidSelect(at: button.tag)
     }
 }

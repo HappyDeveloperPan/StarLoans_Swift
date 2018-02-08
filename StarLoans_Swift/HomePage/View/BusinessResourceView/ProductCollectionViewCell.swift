@@ -73,4 +73,17 @@ extension ProductCollectionViewCell: UICollectionViewDelegate, UICollectionViewD
         cell.setProductListCellData(with: cellDataArr[indexPath.row])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = LoansDetailViewController.loadStoryboard()
+        vc.loansProductType = .selfSupport
+        vc.productModel = cellDataArr[indexPath.row]
+        vc.productModel.product_id = cellDataArr[indexPath.row].id
+        let topViewController = Utils.currentTopViewController()
+        if topViewController?.navigationController != nil{
+            topViewController?.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            topViewController?.present(vc, animated: true , completion: nil)
+        }
+    }
 }
